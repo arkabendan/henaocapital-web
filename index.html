@@ -36,6 +36,7 @@
                 muted: '#666666',    // Slate Gray
                 navy: '#0F172A',     // Deep Navy Blue (Primary Action)
                 gold: '#BFA15F',     // Muted Bronze/Gold (Accents)
+                darkGold: '#C5A059', // Darker Gold for text
                 border: '#E5E5E5'    // Very light gray
               }
             },
@@ -92,13 +93,59 @@
       const ArrowLeftIcon = ({ className }) => (
         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={className}><path d="m12 19-7-7 7-7"/><path d="M19 12H5"/></svg>
       );
+      const LockIcon = ({ className }) => (
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={className}><rect width="18" height="11" x="3" y="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+      );
+      
+      // Hybrid Icon: "Baldosa de Bilbao" meets "Dublin Shamrock"
+      const HybridIcon = ({ className }) => (
+        <svg viewBox="0 0 24 24" fill="currentColor" className={className}>
+          <path d="M12 21.5C12 21.5 9 18.5 9 16C9 14.5 10 13.5 11 13.5C11.5 13.5 12 13.8 12 14.2C12 13.8 12.5 13.5 13 13.5C14 13.5 15 14.5 15 16C15 18.5 12 21.5 12 21.5Z" opacity="0.95" />
+          <path d="M2.5 12C2.5 12 5.5 15 8 15C9.5 15 10.5 14 10.5 13C10.5 12.5 10.2 12 9.8 12C10.2 12 10.5 11.5 10.5 11C10.5 10 9.5 9 8 9C5.5 9 2.5 12 2.5 12Z" opacity="0.95" />
+          <path d="M12 2.5C12 2.5 15 5.5 15 8C15 9.5 14 10.5 13 10.5C12.5 10.5 12 10.2 12 9.8C12 10.2 11.5 10.5 11 10.5C10 10.5 9 9.5 9 8C9 5.5 12 2.5 12 2.5Z" opacity="0.95" />
+          <path d="M21.5 12C21.5 12 18.5 9 16 9C14.5 9 13.5 10 13.5 11C13.5 11.5 13.8 12 14.2 12C13.8 12 13.5 12.5 13.5 13C13.5 14 14.5 15 16 15C18.5 15 21.5 12 21.5 12Z" opacity="0.95" />
+          <circle cx="12" cy="12" r="1.5" />
+        </svg>
+      );
 
-      // --- DATA (RECOVERED ARTICLES) ---
+      // Enhanced Trend Line Graphic: Mountain/Market Fusion
+      const TrendLineIcon = ({ className }) => (
+        <svg viewBox="0 0 600 160" className={className} preserveAspectRatio="none">
+           <defs>
+             <linearGradient id="lineGradient" x1="0%" y1="0%" x2="100%" y2="0%">
+               <stop offset="0%" stopColor="#D4D4D4" stopOpacity="0" />
+               <stop offset="15%" stopColor="#A3A3A3" stopOpacity="1" />
+               <stop offset="85%" stopColor="#A3A3A3" stopOpacity="1" />
+               <stop offset="100%" stopColor="#D4D4D4" stopOpacity="0" />
+             </linearGradient>
+             <linearGradient id="fillGradient" x1="0%" y1="0%" x2="0%" y2="100%">
+               <stop offset="0%" stopColor="#E5E5E5" stopOpacity="0.5" />
+               <stop offset="100%" stopColor="#FDFBF7" stopOpacity="0" />
+             </linearGradient>
+           </defs>
+           <path 
+             d="M0,130 L40,125 L90,135 L150,100 L200,115 L280,80 L340,95 L420,50 L480,65 L550,25 L600,35 L600,160 L0,160 Z"
+             fill="url(#fillGradient)"
+             style={{ mixBlendMode: 'multiply' }}
+           />
+           <path 
+             d="M0,130 L40,125 L90,135 L150,100 L200,115 L280,80 L340,95 L420,50 L480,65 L550,25 L600,35"
+             fill="none" 
+             stroke="url(#lineGradient)" 
+             strokeWidth="2" 
+             strokeLinecap="round"
+             strokeLinejoin="round"
+             style={{ filter: 'drop-shadow(0px 4px 6px rgba(0,0,0,0.05))' }}
+           />
+        </svg>
+      );
+
+      // --- DATA ---
       const ARTICLES = [
         {
           id: 'nvidia-q3-2025',
-          date: '19 NOV 2025',
-          category: 'MARKET STRUCTURE',
+          date: '19 NOV 2025 | 22:15 CET',
+          category: '$NVDA',
           title: 'NVIDIA vuelve a examen y el mercado mirando con lupa',
           excerpt: 'Analizamos los ingresos de 35.100 M USD, el capex de los hyperscalers y por qué la IA no es un castillo de data centers vacíos.',
           imageUrl: 'https://upload.wikimedia.org/wikipedia/commons/thumb/c/c4/Jensen_Huang_%28cropped%29.jpg/800px-Jensen_Huang_%28cropped%29.jpg',
@@ -111,8 +158,8 @@
         },
         {
           id: 'btc-eth-correction',
-          date: '18 NOV 2025',
-          category: 'MACRO & CRYPTO',
+          date: '18 NOV 2025 | 08:45 AM CET',
+          category: '$BTCUSD',
           title: 'BTC rompe los 90.000 USD: ¿Winter is coming o corrección sana?',
           excerpt: 'Esta noche BTC ha roto 90.000 USD a la baja y ETH los 3.000 USD. Analizamos si es el inicio de un cripto-invierno.',
           imageUrl: 'https://images.unsplash.com/photo-1518546305927-5a555bb7020d?q=80&w=2000&auto=format&fit=crop',
@@ -125,8 +172,8 @@
         },
         {
           id: 'buffett-google',
-          date: '17 NOV 2025',
-          category: 'EQUITY RESEARCH',
+          date: '17 NOV 2025 | 14:30 CET',
+          category: '$BRK.B / $GOOGL',
           title: 'Berkshire y Google: Nunca es tarde para comprar negocios extraordinarios',
           excerpt: 'Berkshire Hathaway entra en Alphabet. Analizamos el movimiento de Buffett y Greg Abel en un momento de máximos históricos.',
           imageUrl: 'https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?q=80&w=2070&auto=format&fit=crop',
@@ -138,8 +185,8 @@
         },
         {
           id: 'ia-bubble-revolution',
-          date: '17 NOV 2025',
-          category: 'STRATEGY',
+          date: '17 NOV 2025 | 10:00 AM CET',
+          category: '#AI',
           title: 'IA: ¿Burbuja o Revolución? El reto del inversor',
           excerpt: '“Esto es un déjà vu de 1999”. Analizamos cómo conviven los excesos con un cambio estructural de infraestructura y productividad.',
           imageUrl: 'https://images.unsplash.com/photo-1620712943543-bcc4688e7485?q=80&w=2000&auto=format&fit=crop',
@@ -163,23 +210,45 @@
         }, []);
 
         return (
-          <header className={`fixed top-0 w-full z-50 transition-all duration-500 ${scrolled ? 'bg-brand-surface/95 backdrop-blur-sm border-b border-brand-border py-4 shadow-sm' : 'bg-transparent py-6 md:py-8'}`}>
+          <header className={`fixed top-0 w-full z-50 transition-all duration-500 ${scrolled ? 'bg-brand-surface/95 backdrop-blur-sm border-b border-brand-border py-3 shadow-sm' : 'bg-transparent py-5 md:py-6'}`}>
             <div className="max-w-7xl mx-auto px-6 md:px-12 flex justify-between items-center">
               
-              {/* Logo */}
-              <button onClick={() => onNavigate('home')} className="focus:outline-none group">
-                <h1 className="font-serif text-xl md:text-2xl tracking-wide text-brand-text group-hover:text-brand-muted transition-colors">
-                  HENAO <span className="font-semibold">CAPITAL</span>
-                </h1>
-              </button>
+              {/* Logo Block (Left) */}
+              <div className="flex items-start group">
+                <button onClick={() => onNavigate('home')} className="flex items-center focus:outline-none pt-1">
+                  <HybridIcon className="w-[20px] h-[20px] text-brand-gold transition-transform duration-700 group-hover:rotate-90" />
+                </button>
+                <div className="flex flex-col ml-3">
+                    <button onClick={() => onNavigate('home')} className="text-left focus:outline-none">
+                        <h1 className="font-serif text-xl md:text-2xl tracking-wide text-brand-text group-hover:text-brand-muted transition-colors">
+                        HENAO <span className="font-semibold">CAPITAL</span>
+                        </h1>
+                    </button>
+                    
+                    {/* TRACK RECORD LINK - Italic, subtle, below logo */}
+                    <a 
+                        href="track_record.pdf" 
+                        target="_blank"
+                        className="text-[11px] italic text-brand-muted/60 hover:text-brand-gold transition-colors leading-tight mt-0.5 block"
+                    >
+                        Track Record
+                    </a>
+                </div>
+              </div>
 
-              {/* Nav */}
-              <nav>
+              {/* Nav Block (Right) - STACKED VERTICAL */}
+              <nav className="flex flex-col items-end justify-center space-y-1">
                 <button 
                   onClick={() => onNavigate('insights')}
-                  className="text-[11px] md:text-xs uppercase tracking-[0.25em] font-medium text-brand-text hover:text-brand-gold transition-colors relative after:content-[''] after:absolute after:w-0 after:h-px after:bg-brand-gold after:bottom-[-4px] after:left-0 after:transition-all after:duration-300 hover:after:w-full"
+                  className="text-[10px] uppercase tracking-[0.2em] font-medium text-brand-text hover:text-brand-gold transition-colors"
                 >
-                  Insights
+                  INSIGHTS
+                </button>
+                <button 
+                  onClick={() => onNavigate('socio-pro')}
+                  className="text-[10px] uppercase tracking-[0.2em] font-medium text-brand-muted hover:text-brand-text transition-colors"
+                >
+                  SOCIO PRO
                 </button>
               </nav>
 
@@ -191,14 +260,22 @@
       // --- COMPONENT: HERO ---
       const Hero = () => {
         return (
-          <section className="relative w-full pt-40 pb-20 md:pt-52 md:pb-32 px-6 bg-brand-bg">
-            <div className="max-w-4xl mx-auto text-center animate-fade-in">
+          <section className="relative w-full pt-40 pb-20 md:pt-52 md:pb-28 px-6 bg-brand-bg overflow-hidden">
+            <div className="max-w-4xl mx-auto text-center animate-fade-in relative z-10">
               <span className="block text-brand-gold text-[10px] md:text-xs uppercase tracking-[0.3em] font-semibold mb-6 md:mb-8">
                 Private Investment Office
               </span>
-              <h1 className="font-serif text-3xl md:text-5xl lg:text-6xl text-brand-text leading-[1.2] font-medium tracking-tight mb-10 md:mb-12">
+              <h1 className="font-serif text-3xl md:text-5xl lg:text-6xl text-brand-text leading-[1.2] font-medium tracking-tight mb-8 md:mb-10">
                 Inteligencia de Mercado Institucional para el Inversor Independiente.
               </h1>
+              
+              {/* SUBTLE TREND LINE GRAPHIC */}
+              <div className="w-full flex justify-center mb-12">
+                <div className="w-[80%] md:w-[70%] max-w-[600px] h-20 opacity-80">
+                  <TrendLineIcon className="w-full h-full" />
+                </div>
+              </div>
+
               <div className="w-12 h-px bg-brand-text/10 mx-auto"></div>
             </div>
           </section>
@@ -208,30 +285,26 @@
       // --- COMPONENT: SERVICES ---
       const Services = ({ onNavigate }) => {
         return (
-          <section className="py-16 md:py-24 bg-brand-bg relative">
-            <div className="max-w-6xl mx-auto px-6 md:px-8">
+          <section className="py-12 bg-brand-bg relative">
+            <div className="max-w-4xl mx-auto px-6">
               
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-12 items-stretch">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-6 items-stretch">
                 
-                {/* CARD 1: Newsletter (Free) */}
-                <div className="bg-brand-surface border border-brand-border p-8 md:p-10 flex flex-col hover:border-brand-border/80 hover:shadow-xl hover:shadow-gray-200/50 transition-all duration-500 group rounded-[2px]">
-                  <div className="mb-8">
-                    <h3 className="font-serif text-xl md:text-2xl text-brand-text mb-2">Newsletter Profesional</h3>
-                    <div className="font-serif text-3xl text-brand-text mt-4 mb-6">0,00 €</div>
-                    <p className="text-brand-muted text-[14px] leading-relaxed font-sans border-l border-brand-gold/30 pl-4">
-                      Visión de mercado de grado institucional. Recibe diariamente un análisis conciso y directo sobre estructura, macro y flujos. Sin ruido.
-                    </p>
+                {/* CARD 1: Newsletter (Ultra Compact - No Price) */}
+                <div className="bg-brand-surface border border-brand-border p-5 md:p-6 flex flex-col hover:border-brand-border/80 hover:shadow-xl hover:shadow-gray-200/50 transition-all duration-500 group rounded-[2px]">
+                  <div className="mb-3">
+                    <h3 className="font-serif text-lg md:text-xl text-brand-text mb-0">Newsletter Profesional</h3>
                   </div>
 
-                  <ul className="space-y-3 mb-10 flex-grow mt-2">
-                    <li className="flex items-center text-xs md:text-sm text-brand-text/80 font-medium tracking-wide">
-                      <span className="w-1 h-1 bg-brand-gold rounded-full mr-3"></span> Briefing de Mercado Diario
+                  <ul className="space-y-2 mb-5 flex-grow mt-2">
+                    <li className="flex items-center text-[11px] text-brand-text/80 font-medium tracking-wide">
+                      <span className="w-1 h-1 bg-brand-gold rounded-full mr-2.5"></span> Briefing de Mercado Diario
                     </li>
-                    <li className="flex items-center text-xs md:text-sm text-brand-text/80 font-medium tracking-wide">
-                       <span className="w-1 h-1 bg-brand-gold rounded-full mr-3"></span> Análisis Macro & Estructura
+                    <li className="flex items-center text-[11px] text-brand-text/80 font-medium tracking-wide">
+                       <span className="w-1 h-1 bg-brand-gold rounded-full mr-2.5"></span> Análisis Macro & Estructura
                     </li>
-                    <li className="flex items-center text-xs md:text-sm text-brand-text/80 font-medium tracking-wide">
-                       <span className="w-1 h-1 bg-brand-gold rounded-full mr-3"></span> Identificación de Catalizadores
+                    <li className="flex items-center text-[11px] text-brand-text/80 font-medium tracking-wide">
+                       <span className="w-1 h-1 bg-brand-gold rounded-full mr-2.5"></span> Identificación de Catalizadores
                     </li>
                   </ul>
 
@@ -239,52 +312,49 @@
                     <input 
                       type="email" 
                       placeholder="Email corporativo" 
-                      className="w-full bg-brand-bg border border-brand-border text-brand-text px-4 py-3 text-xs focus:outline-none focus:border-brand-navy transition-colors placeholder-brand-muted/40"
+                      className="w-full bg-brand-bg border border-brand-border text-brand-text px-3 py-2 text-[11px] focus:outline-none focus:border-brand-navy transition-colors placeholder-brand-muted/40"
                     />
                     <button 
                         onClick={() => alert("Bienvenido a la lista prioritaria.")}
-                        className="w-full py-3 bg-white border border-brand-navy text-brand-navy font-sans text-[11px] font-bold uppercase tracking-[0.2em] hover:bg-brand-navy hover:text-white transition-all duration-300"
+                        className="w-full py-2 bg-white border border-brand-navy text-brand-navy font-sans text-[9px] font-bold uppercase tracking-[0.2em] hover:bg-brand-navy hover:text-white transition-all duration-300"
                     >
                       Suscribirme Gratis
                     </button>
                   </div>
                 </div>
 
-                {/* CARD 2: Partner Pro (Premium) */}
-                <div className="relative bg-brand-surface border border-brand-border p-8 md:p-10 flex flex-col hover:border-brand-gold/50 hover:shadow-xl hover:shadow-brand-gold/5 transition-all duration-500 rounded-[2px]">
+                {/* CARD 2: Partner Pro (Ultra Compact & Gold Badge) */}
+                <div className="relative bg-brand-surface border border-brand-border p-5 md:p-6 flex flex-col hover:border-brand-gold/40 hover:shadow-xl hover:shadow-brand-gold/5 transition-all duration-500 rounded-[2px]">
                   
-                  {/* Badge */}
-                  <div className="absolute top-0 right-0 bg-brand-navy text-white text-[9px] font-bold uppercase tracking-widest px-3 py-1.5">
+                  {/* Golden Badge - Updated Style */}
+                  <div className="absolute top-0 right-0 bg-brand-gold/5 border border-brand-gold/20 border-t-0 border-r-0 text-brand-darkGold text-[8px] font-bold uppercase tracking-widest px-3 py-1.5">
                     Institutional Grade
                   </div>
 
-                  <div className="mb-8">
-                    <h3 className="font-serif text-xl md:text-2xl text-brand-text mb-2">Socio Partner PRO</h3>
-                    <div className="font-serif text-3xl text-brand-text mt-4 mb-6">29,99 € <span className="text-sm text-brand-muted font-sans font-normal">/ mes</span></div>
-                    <p className="text-brand-muted text-[14px] leading-relaxed font-sans border-l border-brand-navy/30 pl-4">
-                      Acceso al cuarto de máquinas. Tesis de alta convicción, transparencia radical y gestión de capital real.
-                    </p>
+                  <div className="mb-3">
+                    <h3 className="font-serif text-lg md:text-xl text-brand-text mb-1">Socio Partner PRO</h3>
+                    <div className="font-serif text-xl text-brand-text mt-1 mb-1">29,99 € <span className="text-[10px] text-brand-muted font-sans font-normal uppercase tracking-wider">/ mes</span></div>
                   </div>
 
-                  <ul className="space-y-3 mb-10 flex-grow mt-2">
-                    <li className="flex items-center text-xs md:text-sm text-brand-text font-medium tracking-wide">
-                      <CheckIcon className="w-3 h-3 text-brand-navy mr-3" /> Cartera LIVE (Tiempo Real)
+                  <ul className="space-y-2 mb-5 flex-grow mt-2">
+                    <li className="flex items-center text-[11px] text-brand-text font-medium tracking-wide">
+                      <CheckIcon className="w-3 h-3 text-brand-darkGold mr-2.5" /> Cartera LIVE (Tiempo Real)
                     </li>
-                    <li className="flex items-center text-xs md:text-sm text-brand-text font-medium tracking-wide">
-                      <CheckIcon className="w-3 h-3 text-brand-navy mr-3" /> Tesis "Deep Dive"
+                    <li className="flex items-center text-[11px] text-brand-text font-medium tracking-wide">
+                      <CheckIcon className="w-3 h-3 text-brand-darkGold mr-2.5" /> Tesis "Deep Dive"
                     </li>
-                    <li className="flex items-center text-xs md:text-sm text-brand-text font-medium tracking-wide">
-                      <CheckIcon className="w-3 h-3 text-brand-navy mr-3" /> Alertas de Compra/Venta
+                    <li className="flex items-center text-[11px] text-brand-text font-medium tracking-wide">
+                      <CheckIcon className="w-3 h-3 text-brand-darkGold mr-2.5" /> Alertas de Compra/Venta
                     </li>
-                    <li className="flex items-center text-xs md:text-sm text-brand-text font-medium tracking-wide">
-                      <CheckIcon className="w-3 h-3 text-brand-navy mr-3" /> Webinars Trimestrales
+                    <li className="flex items-center text-[11px] text-brand-text font-medium tracking-wide">
+                      <CheckIcon className="w-3 h-3 text-brand-darkGold mr-2.5" /> Webinars Trimestrales
                     </li>
                   </ul>
 
                   <div className="mt-auto">
                     <button 
-                        onClick={() => onNavigate('cartera-live')}
-                        className="w-full py-3 bg-brand-navy text-white font-sans text-[11px] font-bold uppercase tracking-[0.2em] hover:bg-brand-gold hover:text-brand-navy transition-all duration-300 shadow-sm"
+                        onClick={() => onNavigate('socio-pro')}
+                        className="w-full py-2.5 bg-brand-navy text-white font-sans text-[9px] font-bold uppercase tracking-[0.2em] hover:bg-brand-darkGold hover:text-white transition-all duration-300 shadow-sm"
                     >
                       Solicitar Acceso Pro
                     </button>
@@ -311,9 +381,9 @@
                         {ARTICLES.map(article => (
                             <div key={article.id} className="group cursor-pointer flex flex-col" onClick={() => onSelectArticle(article)}>
                                 <div className="flex items-center space-x-3 mb-3">
-                                     <span className="text-[9px] font-bold uppercase tracking-[0.2em] text-brand-gold">{article.category}</span>
+                                     <span className="text-[10px] font-bold tracking-[0.1em] text-brand-gold font-sans">{article.category}</span>
                                      <span className="w-px h-3 bg-brand-border"></span>
-                                     <span className="text-[10px] uppercase tracking-wider text-brand-muted font-medium">{article.date}</span>
+                                     <span className="text-[9px] uppercase tracking-wider text-brand-muted font-medium font-sans">{article.date}</span>
                                 </div>
                                 <h3 className="font-serif text-xl text-brand-text mb-3 leading-snug group-hover:text-brand-muted transition-colors">
                                     {article.title}
@@ -348,7 +418,7 @@
                     </button>
 
                     <div className="mb-10 text-center">
-                         <div className="flex justify-center items-center space-x-3 mb-4 text-[10px] font-bold uppercase tracking-[0.2em] text-brand-gold">
+                         <div className="flex justify-center items-center space-x-3 mb-4 text-[10px] font-bold uppercase tracking-[0.2em] text-brand-gold font-sans">
                              <span>{article.category}</span>
                              <span className="text-brand-border">•</span>
                              <span className="text-brand-muted">{article.date}</span>
@@ -377,6 +447,82 @@
           )
       }
       
+      // --- COMPONENT: SOCIO PRO PRIVATE VIEW ---
+      const SocioProView = () => {
+        const FEED_ITEMS = [
+            { id: 1, title: 'Update 18 November 2025' },
+            { id: 2, title: 'Update 14 November 2025' },
+            { id: 3, title: 'Update 07 November 2025' }
+        ];
+
+        return (
+            <div className="pt-32 pb-24 min-h-screen bg-brand-bg animate-fade-in">
+                
+                {/* SUB-NAVIGATION: PRIVATE AREA */}
+                <div className="max-w-3xl mx-auto px-6 mb-10 flex justify-center">
+                    <div className="flex items-center space-x-2 text-brand-darkGold opacity-80 hover:opacity-100 cursor-pointer transition-opacity group">
+                        <LockIcon className="w-3 h-3" />
+                        <span className="font-serif italic text-sm tracking-wide border-b border-transparent group-hover:border-brand-darkGold transition-all">
+                            Cartera Real
+                        </span>
+                    </div>
+                </div>
+
+                <div className="max-w-[750px] mx-auto px-6">
+                    
+                    {/* BLOCK A: PINNED MESSAGE */}
+                    <article className="relative bg-[#FAF9F6] p-8 md:p-10 border border-brand-gold/30 rounded-[2px] shadow-sm mb-12">
+                         {/* Pinned Label */}
+                         <div className="absolute top-0 right-0 bg-brand-gold/10 px-3 py-1 border-l border-b border-brand-gold/20">
+                            <span className="text-[9px] font-bold uppercase tracking-widest text-brand-darkGold flex items-center gap-1">
+                                <span className="w-1.5 h-1.5 rounded-full bg-brand-darkGold"></span>
+                                Mensaje del Gestor
+                            </span>
+                         </div>
+
+                         <header className="mb-6 mt-2">
+                            <h1 className="font-serif text-2xl md:text-3xl text-brand-text leading-tight">
+                                Carta a los Socios.
+                            </h1>
+                         </header>
+
+                         <div className="prose prose-stone prose-lg max-w-none font-serif text-brand-text/90 leading-relaxed text-justify text-[15px] md:text-[16px]">
+                            <p className="mb-4">
+                                Si estáis leyendo esto, pasáis a ser nuestra prioridad absoluta.
+                            </p>
+                            <p className="mb-4">
+                                Bienvenidos al núcleo de ejecución de Henao Capital. Este entorno ha sido diseñado para eliminar el ruido mediático y centrarse exclusivamente en la generación de valor y la preservación de capital.
+                            </p>
+                            <p className="mb-4">
+                                En la pestaña 'Cartera Real' encontraréis nuestras posiciones actuales y su peso en tiempo real. Asimismo, utilizaremos este canal confidencial para compartir actualizaciones estratégicas, el racional detrás de cada movimiento táctico y los cambios en la composición estructural de la cartera.
+                            </p>
+                            <p className="mb-0">
+                                Gracias por la confianza.
+                            </p>
+                         </div>
+                    </article>
+
+                    {/* BLOCK B: UPDATES STREAM (MINIMALIST LIST) */}
+                    <div className="border-t border-brand-border">
+                        {FEED_ITEMS.map((item) => (
+                            <div key={item.id} className="group flex items-center justify-between py-5 border-b border-brand-border cursor-pointer hover:bg-brand-surface/50 transition-colors px-2">
+                                <span className="font-serif text-lg text-brand-text group-hover:text-brand-darkGold transition-colors">
+                                    {item.title}
+                                </span>
+                                <ArrowRightIcon className="w-4 h-4 text-brand-border group-hover:text-brand-darkGold transition-colors opacity-0 group-hover:opacity-100 transform group-hover:translate-x-1 duration-300" />
+                            </div>
+                        ))}
+                    </div>
+
+                    {/* End Marker */}
+                    <div className="flex justify-center pt-12 opacity-30">
+                        <HybridIcon className="w-3 h-3 text-brand-muted" />
+                    </div>
+                </div>
+            </div>
+        );
+      };
+
       // --- COMPONENT: FOOTER ---
       const Footer = () => {
         return (
@@ -386,7 +532,7 @@
                 HENAO <span className="font-semibold">CAPITAL</span>
               </h2>
               <p className="text-[9px] uppercase tracking-widest opacity-60 font-medium">
-                &copy; 2025 Henao Capital. Zürich - Madrid.
+                &copy; 2025 Henao Capital. Dublin - Bilbao.
               </p>
             </div>
           </footer>
@@ -395,7 +541,7 @@
 
       // --- MAIN APP ---
       function App() {
-        const [view, setView] = useState('home'); // 'home' | 'article' | 'cartera-live'
+        const [view, setView] = useState('home'); // 'home' | 'article' | 'socio-pro'
         const [selectedArticle, setSelectedArticle] = useState(null);
 
         const handleNavigate = (destination) => {
@@ -404,8 +550,9 @@
                 setTimeout(() => {
                     document.getElementById('insights')?.scrollIntoView({ behavior: 'smooth' });
                 }, 100);
-            } else if (destination === 'cartera-live') {
-                 alert("Acceso restringido a miembros activos.");
+            } else if (destination === 'socio-pro') {
+                 setView('socio-pro');
+                 window.scrollTo(0, 0);
             } else {
                 window.scrollTo(0, 0);
                 setView(destination);
@@ -434,6 +581,10 @@
               
               {view === 'article' && selectedArticle && (
                   <ArticleView article={selectedArticle} onBack={() => setView('home')} />
+              )}
+
+              {view === 'socio-pro' && (
+                  <SocioProView />
               )}
             </main>
             
