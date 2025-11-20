@@ -1,0 +1,1455 @@
+
+<!DOCTYPE html>
+<html lang="es" class="scroll-smooth">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover, maximum-scale=1" />
+    <title>HENAO CAPITAL | Asset Management</title>
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    
+    <!-- React & ReactDOM & Babel -->
+    <script src="https://unpkg.com/react@18/umd/react.production.min.js" crossorigin></script>
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js" crossorigin></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+
+    <!-- Tailwind Config -->
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            fontFamily: {
+              serif: ['"EB Garamond"', 'serif'],
+              sans: ['"Inter"', 'sans-serif'],
+            },
+            colors: {
+              brand: {
+                primary: '#0A1C36', // Deep Navy / Prussian Blue
+                dark: '#050E1B',    // Darker for footer
+                gold: '#D4AF37',    // Classical Gold
+                light: '#FAFAFA',   // Light Gray background
+              }
+            },
+            animation: {
+              'fade-in': 'fadeIn 0.5s ease-out',
+              'pulse-slow': 'pulse 4s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+            },
+            keyframes: {
+              fadeIn: {
+                '0%': { opacity: '0', transform: 'translateY(10px)' },
+                '100%': { opacity: '1', transform: 'translateY(0)' },
+              }
+            }
+          }
+        }
+      }
+    </script>
+    <style>
+      ::-webkit-scrollbar { width: 8px; }
+      ::-webkit-scrollbar-track { background: #f1f1f1; }
+      ::-webkit-scrollbar-thumb { background: #0A1C36; }
+    </style>
+  <script type="importmap">
+{
+  "imports": {
+    "react": "https://aistudiocdn.com/react@^19.2.0",
+    "react/": "https://aistudiocdn.com/react@^19.2.0/",
+    "lucide-react": "https://aistudiocdn.com/lucide-react@^0.554.0"
+  }
+}
+</script>
+</head>
+  <body class="antialiased text-slate-800 bg-brand-light">
+    <div id="root"></div>
+
+    <script type="text/babel" data-presets="react,typescript">
+      const { useState, useEffect } = React;
+
+      // --- ICONS ---
+      const CheckIcon = ({ className }) => (
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={className}><polyline points="20 6 9 17 4 12"/></svg>
+      );
+      const ArrowLeftIcon = ({ className }) => (
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={className}><path d="m12 19-7-7 7-7"/><path d="M19 12H5"/></svg>
+      );
+      const ArrowRightIcon = ({ className }) => (
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={className}><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+      );
+      const MenuIcon = ({ className }) => (
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={className}><line x1="4" x2="20" y1="12" y2="12"/><line x1="4" x2="20" y1="6" y2="6"/><line x1="4" x2="20" y1="18" y2="18"/></svg>
+      );
+      const XIcon = ({ className }) => (
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={className}><path d="M18 6 6 18"/><path d="m6 6 18 18"/></svg>
+      );
+      const Share2Icon = ({ className }) => (
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={className}><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" x2="15.42" y1="13.51" y2="17.49"/><line x1="15.41" x2="8.59" y1="6.51" y2="10.49"/></svg>
+      );
+      const FileTextIcon = ({ className }) => (
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={className}><path d="M14.5 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7.5L14.5 2z"/><polyline points="14 2 14 8 20 8"/><line x1="16" x2="8" y1="13" y2="13"/><line x1="16" x2="8" y1="17" y2="17"/><line x1="10" x2="8" y1="9" y2="9"/></svg>
+      );
+      const DownloadIcon = ({ className }) => (
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={className}><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" x2="12" y1="15" y2="3"/></svg>
+      );
+
+      // --- DATA ---
+      const CARTERA_UPDATES = [
+        {
+            id: 'bienvenida-club-henao',
+            date: '20 nov 2025',
+            title: 'Bienvenidos al Club Exclusivo Henao Capital',
+            excerpt: 'Iniciamos una nueva etapa de transparencia radical. Acceso directo a nuestra gestión, filosofía y movimientos en tiempo real.',
+            imageUrl: 'https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?q=80&w=2070&auto=format&fit=crop', 
+            category: 'Cartera Live',
+            body: [
+                {
+                    type: 'paragraph',
+                    content: 'Estimados socios,'
+                },
+                {
+                    type: 'paragraph',
+                    content: 'Es un placer daros la bienvenida al servicio Cartera LIVE de Henao Capital. Este espacio nace con una vocación clara: la transparencia radical. En una industria a menudo opaca, creemos que la mejor forma de demostrar nuestra convicción es mostrando exactamente qué hacemos con nuestro propio capital.'
+                },
+                {
+                    type: 'header',
+                    content: '¿Qué encontraréis aquí?'
+                },
+                {
+                    type: 'paragraph',
+                    content: 'En esta sección exclusiva no solo veréis los movimientos de compra y venta. Encontraréis el racional detrás de cada decisión. Entenderéis por qué aumentamos peso en tecnología cuando otros venden, o por qué mantenemos liquidez cuando el mercado parece eufórico.'
+                },
+                {
+                    type: 'paragraph',
+                    content: 'Además, tendréis acceso prioritario a nuestros informes de cartera auditados, como el que ya tenéis disponible en la cabecera de esta sección.'
+                },
+                {
+                    type: 'paragraph',
+                    content: 'Este es un viaje a largo plazo. La volatilidad será nuestra compañera, pero la disciplina y la calidad de los activos serán nuestro norte. Gracias por vuestra confianza.'
+                },
+                {
+                    type: 'paragraph',
+                    content: 'Atentamente,\nEl equipo de Henao Capital.'
+                }
+            ]
+        }
+      ];
+
+      const DEEP_DIVE_ARTICLES = [
+        {
+          id: 'chubb-limited-thesis',
+          date: '21 nov 2025 • 14:30 CET',
+          title: 'Chubb Limited (CB): La Fortaleza del Risk Management. Institutional Research.',
+          excerpt: 'RESEARCH NOTE: Q3 24 Earnings Call Review. Desglosamos el "Combined Ratio" líder en la industria (89.1%), el impacto estructural de tipos en el NII y nuestra valoración a 2030.',
+          imageUrl: 'https://images.unsplash.com/photo-1464938050520-ef2270bb8ce8?q=80&w=2074&auto=format&fit=crop',
+          category: 'Equity Research',
+          body: [
+            {
+              type: 'paragraph',
+              content: 'Chubb Limited no es simplemente una aseguradora; es una máquina de composición de capital disfrazada de compañía financiera aburrida. Bajo el liderazgo de Evan Greenberg, la compañía ha demostrado una disciplina de suscripción (underwriting) que la separa estructuralmente de sus pares. En esta nota de investigación, analizamos los resultados del Q3, la calidad de su balance y proyectamos escenarios de retorno a 5 años.'
+            },
+            {
+              type: 'header',
+              content: 'Executive Summary: Calidad Premium a Precio Razonable'
+            },
+            {
+              type: 'list',
+              content: [
+                  'Core Operating Income Record: $2.33 billones en el trimestre (+14.3% YoY).',
+                  'Combined Ratio de 89.1%: La métrica que define la excelencia. Por cada dólar ingresado, Chubb gasta solo 89 centavos en siniestros y gastos, generando "float" gratuito antes incluso de invertir.',
+                  'Crecimiento en Primas Globales: +5.5% en P&C, demostrando poder de fijación de precios (pricing power) en un entorno inflacionario.'
+              ]
+            },
+            {
+              type: 'header',
+              content: 'Análisis Forense: The Float Engine & NII'
+            },
+            {
+              type: 'paragraph',
+              content: 'El mercado a menudo ignora el impacto retardado de los tipos de interés en las aseguradoras. Chubb gestiona un portafolio de inversiones de más de $140 billones. Durante la última década, reinvertían vencimientos al 1-2%. Hoy, están reinvirtiendo al 5.5%-6.0%.'
+            },
+            {
+              type: 'paragraph',
+              content: 'En el Q3, el Adjusted Net Investment Income (NII) alcanzó los $1.64 billones, un crecimiento del 15% YoY. Este es un viento de cola estructural que durará años a medida que los bonos antiguos vencen y se reemplazan por nuevos de alto rendimiento. El "Book Yield" de la cartera sigue subiendo, garantizando crecimiento de beneficios incluso si el crecimiento de primas se ralentiza.'
+            },
+            {
+              type: 'header',
+              content: 'Valoración y Resiliencia del Balance'
+            },
+            {
+              type: 'paragraph',
+              content: 'Chubb cotiza actualmente en el entorno de los $296/acción. Esto implica un múltiplo de ~12.5x beneficios esperados (Forward PE) y ~1.7x Book Value. Históricamente, Chubb ha merecido una prima sobre el sector debido a su menor volatilidad y mejor gestión de reservas.'
+            },
+            {
+              type: 'header',
+              content: 'Escenarios de Valoración a 5 Años (2030 Outlook)'
+            },
+            {
+              type: 'paragraph',
+              content: 'Basándonos en nuestras proyecciones de crecimiento de valor en libros (Book Value Growth) y expansión/compresión de múltiplos, estimamos los siguientes escenarios:'
+            },
+            {
+              type: 'header',
+              content: '🐻 SCENARIO BEAR: "Soft Market & Errors"'
+            },
+            {
+              type: 'paragraph',
+              content: 'Supuestos: El ciclo de precios de seguros se ablanda agresivamente. El Combined Ratio se deteriora al 96% por catástrofes naturales inesperadas. Crecimiento de EPS del 5% CAGR.'
+            },
+            {
+              type: 'list',
+              content: [
+                  'Múltiplo Terminal: 10x PE',
+                  'Precio Objetivo 2030: ~$380 USD',
+                  'Retorno Anual Estimado (incl. dividendos): ~5-6% CAGR'
+              ]
+            },
+            {
+              type: 'header',
+              content: '🏢 SCENARIO BASE: "Execution Continues"'
+            },
+            {
+              type: 'paragraph',
+              content: 'Supuestos: Greenberg mantiene la disciplina. Combined Ratio promedio de 90-91%. Recompra de acciones moderada (2% anual). NII sigue creciendo. Crecimiento de EPS del 9-10% CAGR.'
+            },
+            {
+              type: 'list',
+              content: [
+                  'Múltiplo Terminal: 13.5x PE (Media histórica)',
+                  'Precio Objetivo 2030: ~$585 USD',
+                  'Retorno Anual Estimado (incl. dividendos): ~13-14% CAGR'
+              ]
+            },
+            {
+              type: 'header',
+              content: '🐂 SCENARIO BULL: "Flight to Quality"'
+            },
+            {
+              type: 'paragraph',
+              content: 'Supuestos: Entorno de "Hard Market" persiste. Chubb gana cuota de mercado a competidores más débiles. Combined Ratio <88%. Recompra agresiva de acciones. El mercado otorga prima de calidad.'
+            },
+            {
+              type: 'list',
+              content: [
+                  'Múltiplo Terminal: 16x PE',
+                  'Precio Objetivo 2030: ~$750 USD',
+                  'Retorno Anual Estimado (incl. dividendos): ~19-20% CAGR'
+              ]
+            },
+            {
+              type: 'header',
+              content: 'Conclusión Henao Capital'
+            },
+            {
+              type: 'paragraph',
+              content: 'Consideramos a Chubb una posición "Core" defensiva. Ofrece protección contra la inflación (pricing power), beneficio de tipos altos (float) y una gestión de clase mundial. A precios actuales, el riesgo asimétrico favorece claramente al inversor de largo plazo.'
+            }
+          ]
+        }
+      ];
+
+      const HOLDINGS_DATA = {
+        rates: {
+          eur_usd: "1,16",
+          usd_cad: "1,4"
+        },
+        holdings: [
+          { pos: 1, country: "WORLD", symbol: "BTC", company: "Bitcoin", pct: "11,36%", shares: "0,8", price: "89.500,000 USD", total: "71.600,00 USD" },
+          { pos: 2, country: "USA", symbol: "META", company: "Meta Platforms, Inc.", pct: "10,30%", shares: "110", price: "590,320 USD", total: "64.935,20 USD" },
+          { pos: 3, country: "CAD", symbol: "BN", company: "Brookfield Corporation", pct: "7,62%", shares: "1100", price: "61,14 CAD", total: "48.038,57 USD" },
+          { pos: 4, country: "USA", symbol: "BRKB", company: "Berkshire Hathaway Inc.", pct: "7,39%", shares: "93", price: "501,270 USD", total: "46.618,11 USD" },
+          { pos: 5, country: "USA", symbol: "TSLA", company: "Tesla Incorporated", pct: "6,90%", shares: "108", price: "403,000 USD", total: "43.524,00 USD" },
+          { pos: 6, country: "USA", symbol: "AMZN", company: "Amazon.com Inc.", pct: "5,46%", shares: "155", price: "222,000 USD", total: "34.410,00 USD" },
+          { pos: 6, country: "USA", symbol: "MSTR", company: "Chubb Limited", pct: "5,63%", shares: "120", price: "296,000 USD", total: "35.520,00 USD" },
+          { pos: 7, country: "USA", symbol: "SPGI", company: "S&P Global Inc.", pct: "5,44%", shares: "70", price: "490,000 USD", total: "34.300,00 USD" },
+          { pos: 8, country: "", symbol: "CASH", company: "", pct: "4,89%", shares: "", price: "", total: "30.800,00 USD" },
+          { pos: 9, country: "USA", symbol: "MSFT", company: "Microsoft Corporation", pct: "4,64%", shares: "60", price: "488,000 USD", total: "29.280,00 USD" },
+          { pos: 10, country: "USA", symbol: "MA", company: "Mastercard Inc.", pct: "4,58%", shares: "55", price: "525,000 USD", total: "28.875,00 USD" },
+          { pos: 11, country: "USA", symbol: "GOOGL", company: "Alphabet Inc.", pct: "4,65%", shares: "100", price: "293,000 USD", total: "29.300,00 USD" },
+          { pos: 12, country: "USA", symbol: "WM", company: "Waste Management, Inc.", pct: "4,60%", shares: "135", price: "215,000 USD", total: "29.025,00 USD" },
+          { pos: 13, country: "USA", symbol: "BMNR", company: "Bitmine Immersion Technologies", pct: "4,14%", shares: "900", price: "29,000 USD", total: "26.100,00 USD" },
+          { pos: 14, country: "USA", symbol: "ADBE", company: "Adobe Inc.", pct: "4,07%", shares: "80", price: "321,000 USD", total: "25.680,00 USD" },
+          { pos: 14, country: "USA", symbol: "DHR", company: "Danaher Corporation", pct: "4,26%", shares: "120", price: "223,700 USD", total: "26.844,00 USD" },
+          { pos: 15, country: "USA", symbol: "TMO", company: "Thermofisher", pct: "4,06%", shares: "45", price: "569,000 USD", total: "25.605,00 USD" },
+        ],
+        totals: {
+          pct: "100,00%",
+          usd: "630.454,88 USD",
+          eur: "543.495,59 EUR"
+        }
+      };
+
+      const ARTICLES = [
+        {
+            id: 'nvidia-q3-2025',
+            date: '19 nov 2025 • 22:15 CET',
+            title: 'NVIDIA vuelve a examen y el mercado mirando con lupa',
+            excerpt: 'Hoy, después del cierre, NVIDIA vuelve a examen. Analizamos los ingresos de 35.100 M USD, el capex de los hyperscalers y por qué la IA no es un castillo de data centers vacíos.',
+            imageUrl: 'https://upload.wikimedia.org/wikipedia/commons/thumb/c/c4/Jensen_Huang_%28cropped%29.jpg/800px-Jensen_Huang_%28cropped%29.jpg',
+            category: 'Henao Capital',
+            body: [
+            {
+                type: 'paragraph',
+                content: 'Hoy, después del cierre, NVIDIA vuelve a examen y el mercado mirando con lupa cualquier señal de frenazo en pedidos de GPUs de los hyperscalers.'
+            },
+            {
+                type: 'paragraph',
+                content: 'NVIDIA cerró su último trimestre reportado (Q3 fiscal 2025) con 35.100 M USD de ingresos, +94 % interanual, de los que 30.800 M USD vienen de Data Center, creciendo al 112 % año contra año. Márgenes brutos en el 75 % y guía al alza para el siguiente trimestre.'
+            },
+            {
+                type: 'paragraph',
+                content: 'A primera vista, se nos hace difícil llamar “burbuja vacía” a una P&L así.'
+            },
+            {
+                type: 'header',
+                content: '¿Y del otro lado de la mesa, los que compran toda esa capacidad?'
+            },
+            {
+                type: 'paragraph',
+                content: 'Microsoft: trimestre fiscal Q1 2026 con 77.700 M USD de ingresos (+18 %), Microsoft Cloud creciendo +26 % hasta 49.000 M USD, y Azure en torno al +40 % año contra año, con la propia compañía admitiendo que sigue capacity constrained. Es decir, Microsoft pierde negocio porque no llega a tiempo con la infraestructura.'
+            },
+            {
+                type: 'paragraph',
+                content: 'Amazon: Q3 2025 con ventas de 180.200 M USD (+13 %), AWS re-acelerando crecimiento y el discurso muy centrado en que la demanda de servicios de IA (Bedrock, Q, etc.) es ya el motor central de la división.'
+            },
+            {
+                type: 'paragraph',
+                content: 'Alphabet: primer trimestre de su historia por encima de 100.000 M USD de ingresos (102.300 M USD, +16 %), Google Cloud creciendo al 34 % hasta 15.160 M USD y backlog de Cloud +82 % hasta 155.000 M USD. Capex guiado otra vez al alza: 91–93.000 M USD en 2025, la mayor parte para data centers y chips de IA.'
+            },
+            {
+                type: 'paragraph',
+                content: 'Si esto fuera una sobreinversión masiva ya claramente fallida, se podría esperar otra foto. Pero lo que vemos hoy es prácticamente lo contrario: crecimientos del 20–40 % en cloud, tensiones de capacidad y guías de inversión subiendo, no bajando.'
+            },
+            {
+                type: 'paragraph',
+                content: 'Aunque esto no garantiza retornos a medio y largo plazo, sí nos dice algo importante: de momento, la IA no es un castillo de data centers vacíos. Se están usando. Y se están pagando.'
+            },
+            {
+                type: 'header',
+                content: 'El “arms race” es real'
+            },
+            {
+                type: 'paragraph',
+                content: 'Dicho esto, vayamos con la parte que cada vez preocupa más al mercado.'
+            },
+            {
+                type: 'paragraph',
+                content: 'Entre Microsoft, Amazon, Alphabet y Meta, el capex agregado ligado a IA y cloud para 2025 se mueve ya en el entorno de 300.000–315.000 M USD, con estimaciones que hablan de más de 2,8 trillion USD de inversión acumulada en infra de IA hasta 2029.'
+            },
+            {
+                type: 'paragraph',
+                content: 'Eso sin duda se parece mucho a una carrera armamentística. Nadie quiere ser el que se queda corto en cómputo, aunque el retorno marginal del siguiente data center ya no sea tan evidente.'
+            },
+            {
+                type: 'paragraph',
+                content: 'Goldman Sachs viene avisando… si este boom de capex se desacelera hacia 2026–2027, el crecimiento de ventas del S&P 500 podría recortarse significativamente. Es decir: buena parte del mercado de renta variable hoy está enganchado a que esta ola de inversión continúe.'
+            },
+            {
+                type: 'paragraph',
+                content: 'El Financial Times y otros medios llevan semanas planteando el paralelismo con la fibra óptica de los 2000: demanda estructural real, sí, pero riesgo de sobreconstrucción, de infra poco utilizada y de dolor contable si el ciclo se frena.'
+            },
+            {
+                type: 'paragraph',
+                content: 'Entendemos y compartimos en cierta medida estas preocupaciones, pero nuestra lectura aquí es que lo más probable será una normalización progresiva del capex, no un derrumbe dramático: la demanda de cómputo para IA seguiría creciendo, pero con retornos razonables, menos “mágicos” de lo que descuenta parte de la narrativa actual.'
+            },
+            {
+                type: 'paragraph',
+                content: 'Nada de todo esto invalida la macrotendencia secular de fondo; simplemente implica que el superciclo de IA se irá pareciendo menos a una fiesta indiscriminada y más a un proceso de separación entre ganadores y perdedores.'
+            },
+            {
+                type: 'header',
+                content: 'El caso especial de Google y los TPUs'
+            },
+            {
+                type: 'paragraph',
+                content: 'Dentro de este tablero, Alphabet juega una partida algo distinta. Además de comprar GPUs a NVIDIA, lleva casi una década desarrollando sus propios chips de IA: los Tensor Processing Units (TPUs).'
+            },
+            {
+                type: 'paragraph',
+                content: 'Vamos ya por la sexta generación en producción (Trillium, v6e) y una séptima (Ironwood) orientada directamente a escalar clientes externos de Google Cloud. Los números técnicos importan porque acaban siendo números económicos:'
+            },
+            {
+                type: 'list',
+                content: [
+                'TPU v6e multiplica por 4,7 el cómputo BF16 por chip frente a la generación anterior y dobla la memoria HBM y el ancho de banda.',
+                'En determinadas cargas (modelos tipo transformer, visión, generación de imágenes), tests independientes hablan de hasta 4x mejor rendimiento por dólar frente a GPUs NVIDIA H100.',
+                'Casos reales: Midjourney recorta un 65 % sus costes de inferencia al migrar a TPUs, Cohere multiplica por 3 su throughput.'
+                ]
+            },
+            {
+                type: 'paragraph',
+                content: 'En cristiano... Google se ha montado su propio “departamento NVIDIA” in-house. Y, sobre todo, Google es su propio cliente ancla: Gemini se entrena y sirve sobre TPUs; Search con AI Overviews, YouTube, Ads, recomendadores… toda la capa de productos core se apoya crecientemente en esta infraestructura interna.'
+            },
+            {
+                type: 'paragraph',
+                content: 'Eso le da a Alphabet tres ventajas que el mercado a veces infravalora:'
+            },
+            {
+                type: 'list',
+                content: [
+                    'Independencia relativa de NVIDIA. No deja de usar GPUs, pero parte del cómputo crítico depende de ellos mismos.',
+                    'Economía de escala vertical. Chip + data center + red + plataforma (Vertex, Gemini) + productos finales.',
+                    'Flexibilidad táctica. Si el pricing de GPUs se vuelve menos atractivo, puede derivar más tráfico a TPUs.'
+                ]
+            },
+            {
+                type: 'paragraph',
+                content: 'Ahora bien, no todo es fiesta: TPUs implican asumir riesgos de ejecución tecnológica y de capex propietario. Pero en el entorno actual, en Henao Capital nos parece más una asimetría a favor que una fuente de problemas futuros.'
+            },
+            {
+                type: 'header',
+                content: 'Entonces... ¿Qué nos jugamos hoy con NVIDIA?'
+            },
+            {
+                type: 'paragraph',
+                content: 'Volviendo a NVIDIA y a la jornada de hoy, el foco está menos en si baten el trimestre (probabilidad alta) y más en tres mensajes:'
+            },
+            {
+                type: 'list',
+                content: [
+                    'Elasticidad de la demanda. ¿Siguen Microsoft, Amazon, Google, Meta pidiendo todo lo que NVIDIA puede servir?',
+                    'Mix de producto. ¿Qué peso empiezan a tener Blackwell y nuevos diseños frente a Hopper?',
+                    'Guía y narrativa de 2026. El mercado ya ha leído los informes de Goldman/Barclays alertando de un posible frenazo en el AI capex.'
+                ]
+            },
+            {
+                type: 'header',
+                content: 'Conclusiones'
+            },
+            {
+                type: 'paragraph',
+                content: 'Para cerrar: hasta ahora la marea de la IA ha estado alta y casi todo flotando. Pero, como diría Buffett, cuando la marea baje se verá quién nadaba desnudo.'
+            },
+            {
+                type: 'paragraph',
+                content: 'A medida que se normalice el capex y el mercado empiece a separar hype de flujo de caja real, algunos quedarán en la arena tiritando y unos pocos seguirán nadando a placer, dueños de la infraestructura y de los productos que de verdad capturan el valor de este superciclo.'
+            }
+            ]
+        },
+        {
+            id: 'btc-eth-correction-nov-2025',
+            date: '18 nov 2025 • 08:45 CET',
+            title: 'BTC rompe los 90.000 USD: ¿Winter is coming o corrección sana?',
+            excerpt: 'Esta noche BTC ha roto 90.000 USD a la baja y ETH los 3.000 USD. Analizamos si es el inicio de un cripto-invierno o una corrección violenta dentro de un superciclo de adopción.',
+            imageUrl: 'https://images.unsplash.com/photo-1518546305927-5a555bb7020d?q=80&w=2000&auto=format&fit=crop',
+            category: 'Henao Capital',
+            body: [
+            {
+                type: 'paragraph',
+                content: 'Esta noche BTC ha roto 90.000 USD a la baja y ETH los 3.000 USD. Quién lo diría hace un par de meses…'
+            },
+            {
+                type: 'header',
+                content: '¿Winter is coming? ¿Bear market? ¿Corrección sana?'
+            },
+            {
+                type: 'paragraph',
+                content: 'En primer lugar, algo de contexto. Venimos de semanas de nervios en los activos de riesgo en general: dudas sobre valoraciones en IA y tech, correcciones en high-growth, mucho ruido político, cierre de gobierno en USA y un mercado pendiente al milímetro de qué tono adopta la FED en diciembre.'
+            },
+            {
+                type: 'paragraph',
+                content: 'En un entorno así, el mercado suele descargar los golpes donde la beta es más alta: en los activos más volátiles y risk-on. Y cripto está en primera línea de fuego..'
+            },
+            {
+                type: 'paragraph',
+                content: 'Si a ese entorno le sumas el gran evento de liquidación de hace apenas un mes, el cuadro encaja mejor. El mercado venía muy cargado de apalancamiento en derivados... el precio gira, empiezan a saltar margin calls, los brókers cierran posiciones para recuperar el dinero prestado, esas ventas forzadas empujan aún más abajo, saltan nuevas liquidaciones… y en pocas horas tienes un movimiento que se vive como “colapso”, sensación de que "algo se ha roto". Feo de ver, pero nada que desmonte la tesis de fondo.'
+            },
+            {
+                type: 'paragraph',
+                content: 'Y aquí es donde entra la parte difícil de verdad: separar señal de ruido y aparcar las emociones.'
+            },
+            {
+                type: 'header',
+                content: 'Pregunta clave: ¿esto es el inicio de un cripto-invierno?'
+            },
+            {
+                type: 'paragraph',
+                content: '¿Es esto el inicio de un cripto-invierno o una corrección dura dentro de un ciclo alcista más largo? A día de hoy, en Henao Capital vemos bastante más argumentos para lo segundo. El marco de 12–24 meses no ha cambiado: seguimos en un mundo con deuda pública muy elevada, bancos centrales cada vez más condicionados, y una demanda creciente de activos reales escasos. La corrección es violenta, sí, pero forma parte del viaje. ¿Puede caer más? Siempre.'
+            },
+            {
+                type: 'paragraph',
+                content: 'Aquí conviene hacer una pausa y volver a los basics de por qué, para nosotros, Bitcoin es el activo real por excelencia del siglo XXI.'
+            },
+            {
+                type: 'paragraph',
+                content: 'En Henao Capital no lo vemos así por dogma, sino por diseño. Si estudias la historia monetaria, el patrón se repite: cada vez que aparece un dinero con mejores propiedades que el anterior… más difícil de censurar, más fácil de verificar, más resistente a la inflación… el capital migra poco a poco hacia ese nuevo estándar. Bitcoin lleva esa lógica al extremo: tiene una oferta conocida y limitada, un calendario de emisión que nadie puede tocar, reglas transparentes y una network descentralizada que no depende de ningún estado ni banco central.'
+            },
+            {
+                type: 'paragraph',
+                content: 'Es, a día de hoy, la red descentralizada más robusta e independiente del mundo digital, asegurada por el mayor poder computacional dedicado a una única red que existe, muy por encima de cualquier otra blockchain y de todas las otras principales infraestructuras tecnológicas individuales... combinadas.'
+            },
+            {
+                type: 'paragraph',
+                content: 'Ahora comparémoslo con el sistema tradicional: llevamos décadas en un mundo donde el dinero fiat es el pasivo de bancos y gobiernos, y donde la tentación de diluirlo vía inflación, queda a criterio e intereses de quien esté al mando. El mal es estructural. En ese contexto, Bitcoin es un outsider: un activo sin riesgo de contraparte y con una política monetaria que nadie puede tocar.'
+            },
+            {
+                type: 'paragraph',
+                content: 'Pero todo esto evidentemente no implica que sea estable en precio a corto plazo, al contrario: la volatilidad viene en el pack.'
+            },
+            {
+                type: 'paragraph',
+                content: 'Desde el punto de vista de asset allocation, Bitcoin es nuestro activo real núcleo. El coste es evidente: hay que convivir con una volatilidad muy alta en el corto plazo. A cambio, a 5–10 años vista, la combinación de escasez programada, adopción creciente e institucionalización vía ETFs le da un perfil de activo real prácticamente imposible de replicar.'
+            },
+            {
+                type: 'header',
+                content: 'Ethereum y la infraestructura'
+            },
+            {
+                type: 'paragraph',
+                content: 'Ethereum, por su parte, juega otra liga. Menos “oro digital”, más “infraestructura financiera y de datos” sobre la que se construyen stablecoins, protocolos DeFi, tokenización de activos, mercados de predicción e identidad digital, etc...'
+            },
+            {
+                type: 'paragraph',
+                content: 'Aquí el riesgo es distinto: más tecnológico, más regulatorio… y también más competitivo. Pero el vector común es similar: son tendencias seculares que pueden seguir avanzando con sus vaivenes. En una corrección como la actual, Ethereum sufre como cualquier activo de crecimiento, pero si miras el ecosistema subyacente no se parece en absoluto a un sistema muerto. Para nosotros, dejando de lado Bitcoin, Ethereum tiene sentido como posición satélite relevante.'
+            },
+            {
+                type: 'header',
+                content: 'La visión de Henao Capital'
+            },
+            {
+                type: 'paragraph',
+                content: 'Dicho todo esto… ¿Cómo interpretamos todo este escenario en Henao Capital? De forma bastante simple:'
+            },
+            {
+                type: 'list',
+                content: [
+                'No vemos señales claras de cambio estructural de régimen en cripto, vemos una corrección agresiva dentro de un superciclo ligado a activos reales escasos (Bitcoin) e infra de nueva generación (Ethereum y posiblemente pocas cosas más muy seleccionadas).',
+                'En este tipo de fases no tiene sentido dramatizar ni idealizar. Tiene sentido revisar tamaños y horizontes. Bitcoin sigue siendo el principal activo real de una cartera macro pensada a largo plazo. Ethereum puede complementar como apuesta de infraestructura. Y US high-quality equities siguen siendo el otro gran bloque de riesgo.'
+                ]
+            },
+            {
+                type: 'header',
+                content: '¿Hace frío en cripto?'
+            },
+            {
+                type: 'paragraph',
+                content: 'Sí. ¿Winter is coming? No es como lo vemos.'
+            },
+            {
+                type: 'paragraph',
+                content: 'La forma sensata de monetizar la volatilidad de Bitcoin no es adivinar cada giro, es estar estructuralmente largo con un horizonte suficientemente amplio. Si entras en un activo hipervolátil con mentalidad de corto plazo, no estás invirtiendo, estás en el casino. Y en el casino ya sabemos lo que pasa.'
+            }
+            ]
+        },
+        {
+            id: 'buffett-google-nov-2025',
+            date: '17 nov 2025 • 16:20 CET',
+            title: 'Berkshire y Google: Nunca es tarde para comprar negocios extraordinarios',
+            excerpt: 'Berkshire Hathaway entra en Alphabet. Analizamos el movimiento de Buffett y Greg Abel en un momento de máximos históricos y ruido de IA.',
+            imageUrl: 'https://www.doveinvestire.com/wp-content/uploads/2025/11/warren-buffett-compra-google.jpg',
+            category: 'Henao Capital',
+            body: [
+            {
+                type: 'paragraph',
+                content: 'Nunca es tarde para comprar negocios extraordinarios. Eso debió pensar Buffett, con su retirement oficial ya a la vuelta de la esquina. Y debió pensar también que la mejor manera de pasarle el testigo a Greg Abel en Berkshire Hathaway era dejándole en cartera uno de los mejores negocios del mundo.'
+            },
+            {
+                type: 'paragraph',
+                content: 'Buffett se redime así de lo que él mismo ha reconocido como uno de los grandes errores de omisión de la era reciente de Berkshire: no haber comprado Google cuando ya era una máquina de imprimir caja. Puede que también estemos empezando a ver el toque de Greg Abel asomando... Quién sabe.'
+            },
+            {
+                type: 'paragraph',
+                content: 'En Henao Capital coincidimos con Warren en el qué, pero no en el cuándo. Alphabet tenía que haber estado en su cartera hace ya muchos años. Pero, efectivamente, nunca es tarde.'
+            },
+            {
+                type: 'paragraph',
+                content: 'Y sin duda lo interesante aquí no es el titular, es el contexto. Berkshire podría seguir sentado sobre su montaña de liquidez, sin mover ficha. Aun así, deciden destinar una parte de ese dry powder a Google en pleno ruido de “burbuja de IA”, con el valor cerca de máximos históricos y después de un rally muy serio en el año, especialmente en las últimas semanas.'
+            },
+            {
+                type: 'paragraph',
+                content: 'No es una jugada contrarian de manual, estilo value old school, desde luego...'
+            },
+            {
+                type: 'paragraph',
+                content: 'En nuestra opinión, Berkshire no solo valida el activo, Alphabet, como un actor dominante, diversificado, y con amplia opcionalidad, sino que valida la estructura subyacente. Y respaldan ese diagnóstico con una asignación de capital significativa, para nada testimonial.'
+            },
+            {
+                type: 'paragraph',
+                content: 'Sin alargarlo más, hemos considerado interesante subrayar este movimiento como lo que es: una señal que interpretamos sin duda como relevante.'
+            }
+            ]
+        },
+        {
+            id: 'ia-bubble-revolution-nov-2025',
+            date: '17 nov 2025 • 09:00 CET',
+            title: 'IA: ¿Burbuja o Revolución? El reto del inversor',
+            excerpt: '“Esto es un déjà vu de 1999”. “La IA es la solución definitiva”. Analizamos cómo conviven los excesos con un cambio estructural de infraestructura y productividad.',
+            imageUrl: 'https://www.santanderopenacademy.com/es/blog/IA-generativa/_jcr_content/root/hero/imageDesktopLG.coreimg.jpeg/1708074308823/ia-generativa-1.jpeg',
+            category: 'Henao Capital',
+            body: [
+            {
+                type: 'paragraph',
+                content: '“Esto es un déjà vu de 1999: valoraciones de ciencia ficción, capex a lo loco y contabilidad creativa… la burbuja está servida.”'
+            },
+            {
+                type: 'paragraph',
+                content: '“La IA es la solución definitiva. Abundancia para todos. Va a arreglar el crecimiento, la productividad y casi todos los problemas de las economías desarrolladas por sí misma.”'
+            },
+            {
+                type: 'paragraph',
+                content: 'Probablemente ninguna de las dos visiones describe bien lo que tenemos delante.'
+            },
+            {
+                type: 'paragraph',
+                content: 'En el corto plazo, y en tramos muy concretos del mercado, es cierto que hay claros excesos envueltos en la etiqueta ‘IA’. Sin embargo, por debajo de ese ruido, en Henao Capital consideramos que se está desarrollando una infraestructura de propósito general, transversal y multi-sectorial, que sin ninguna duda puede reescribir la trayectoria de productividad de la economía durante las próximas décadas.'
+            },
+            {
+                type: 'paragraph',
+                content: 'El reto para el inversor no es elegir entre burbuja o revolución, sino entender cómo conviven ambos elementos dentro de un mismo superciclo.'
+            },
+            {
+                type: 'header',
+                content: 'IA: tenemos claro que no es una moda, es un cambio de infraestructura'
+            },
+            {
+                type: 'paragraph',
+                content: 'La IA definitivamente no es solo otro nicho de crecimiento más. Es una capa nueva de infraestructura que se está desarrollando, poco a poco, en casi toda la cadena productiva: industria, servicios, energía, logística, salud, finanzas, sector público, educación, entretenimiento, etc.'
+            },
+            {
+                type: 'paragraph',
+                content: 'Una tecnología transversal a la economía.'
+            },
+            {
+                type: 'paragraph',
+                content: 'Si esta trayectoria se mantiene, el impacto no será un par de años buenos de beneficios, sino un cambio en la pendiente de la productividad y en la estructura de márgenes corporativos durante décadas.'
+            },
+            {
+                type: 'paragraph',
+                content: 'Más automatización, menos fricción operativa, mejor utilización de capital y datos: eso, agregado, significa más capacidad de generar cash flow real con la misma unidad de trabajo y de inversión. Si la economía se reorganiza y consolida alrededor de esta nueva infraestructura, el eje lógico a largo plazo es claro: ser dueño, en alguna medida, de los activos productivos que capturen ese salto de productividad.'
+            },
+            {
+                type: 'header',
+                content: 'Sí, hay excesos… pero dentro de un superciclo real'
+            },
+            {
+                type: 'paragraph',
+                content: 'Dicho todo lo anterior, hay ciertos puntos con rasgos clásicos de sobrecalentamiento:'
+            },
+            {
+                type: 'list',
+                content: [
+                    'Capex muy agresivo en hardware e infra.',
+                    'Esquemas de financiación creativos entre proveedores y clientes (OpenAI, etc...).',
+                    'Valoraciones que pre-suponen una ejecución casi perfecta.'
+                ]
+            },
+            {
+                type: 'paragraph',
+                content: 'Eso hace que muy probablemente veremos correcciones fuertes en áreas concretas y fases de “mini-burbuja” en segmentos específicos.'
+            },
+            {
+                type: 'paragraph',
+                content: 'Pero esto no invalida la estructura de fondo: si la adopción sigue y se consolida (lo hará), el mundo necesitará sin ninguna duda más cómputo, más energía y más software inteligente de forma estructural.'
+            },
+            {
+                type: 'header',
+                content: 'De sector tecnológico a activo estratégico a nivel geopolítico'
+            },
+            {
+                type: 'paragraph',
+                content: 'A nivel global, la IA ya se ha convertido de-facto en una carrera geopolítica. USA vs. China.'
+            },
+            {
+                type: 'paragraph',
+                content: 'Dominar chips, data centers, recopilación de datos y modelos no solo da beneficios; da poder económico, militar y de negociación.'
+            },
+            {
+                type: 'paragraph',
+                content: 'Esto no quiere decir que aquí no vaya a haber cadáveres corporativos; los habrá. Lo que sí implica es que cuando algo pasa a ser infraestructura estratégica, los gobiernos pueden dejar caer piezas, pero harán todo lo posible por evitar que se hunda el tablero en su conjunto.'
+            },
+            {
+                type: 'header',
+                content: '¿Y el impacto en el mercado laboral?'
+            },
+            {
+                type: 'paragraph',
+                content: 'Sí parece claro que IA y robótica van a eliminar muchas tareas automatizables y a forzar cambios drásticos en sectores concretos.'
+            },
+            {
+                type: 'paragraph',
+                content: 'Pero un mundo donde producir es más barato suele generar más productos, servicios y sistemas que mantener. No implica necesariamente menos empleo total, sino empleo distinto. Como cualquier otra revolución tecnológica.'
+            },
+            {
+                type: 'paragraph',
+                content: 'Parece claro que el riesgo macro no es de paro masivo permanente a 20-30 años vista. Sí lo será la gestión de la transición: fuerza laboral reacia al cambio, regiones descolocadas, transformación de industrias... la flexibilidad y agilidad en la adaptación serán claves. Ahí estará la tensión política y social.'
+            },
+            {
+                type: 'header',
+                content: 'Cómo lo enfocamos en Henao Capital'
+            },
+            {
+                type: 'paragraph',
+                content: 'Tenemos perfectamente asumido que la IA va a reconfigurar crecimiento y productividad global.'
+            },
+            {
+                type: 'paragraph',
+                content: 'En este contexto el riesgo principal no es sufrir varios drawdowns duros durante el camino... hay que aceptar la volatilidad. El riesgo principal lo vemos en llegar tarde o con una exposición irrelevante aun habiendo acertado en la tesis de fondo.'
+            },
+            {
+                type: 'paragraph',
+                content: 'Evidentemente esto no justifica comprar cualquier cosa “con narrativa IA” ni ignorar valoraciones. Implica:'
+            },
+            {
+                type: 'list',
+                content: [
+                    'Asumir que estamos en un superciclo con fases inevitables de exceso y corrección.',
+                    'Decidir en qué tramos de la cadena (infraestructura, energía asociada, plataformas, aplicaciones con casos de uso claro) tiene sentido ser propietario de activos.',
+                    'Calibrar el tamaño de la exposición para poder aguantar la volatilidad sin desmontar la tesis en cada drawdown.'
+                ]
+            },
+            {
+                type: 'paragraph',
+                content: 'Por lo tanto, el debate ya no es “¿hay burbuja en la IA?”.'
+            },
+            {
+                type: 'paragraph',
+                content: 'La pregunta relevante para nosotros como asset allocators es otra: ¿qué grado de exposición estructural tiene sentido en un superciclo que sin duda damos por confirmado, y que va a ser uno de los vectores centrales de rentabilidad real en las próximas décadas?'
+            },
+            {
+                type: 'paragraph',
+                content: 'Sin duda habrá volatilidad por el camino, habrá fases de euforia y de purga, y saber ser selectivos será clave.'
+            },
+            {
+                type: 'paragraph',
+                content: 'Pero el verdadero error será no reconocer la transformación tecnológica de fondo, la mejora de productividad que trae consigo y quedarse sin una exposición significativa a ese proceso.'
+            }
+            ]
+        }
+      ];
+
+      // --- COMPONENTS ---
+
+      const Header = ({ onNavigate, currentView }) => {
+        const [isScrolled, setIsScrolled] = useState(false);
+        const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+
+        useEffect(() => {
+          const handleScroll = () => {
+            setIsScrolled(window.scrollY > 50);
+          };
+          window.addEventListener('scroll', handleScroll);
+          return () => window.removeEventListener('scroll', handleScroll);
+        }, []);
+
+        const isDarkText = isScrolled || currentView === 'newsletter' || currentView === 'cartera-live' || currentView === 'deep-dive' || isMobileMenuOpen;
+        
+        const headerBgClass = isMobileMenuOpen 
+            ? 'bg-white' 
+            : (isDarkText ? 'bg-white/95 backdrop-blur-md shadow-sm py-4 border-b border-slate-200/50' : 'bg-transparent py-6 border-b border-white/5');
+
+        const handleNav = (view, section) => {
+          setIsMobileMenuOpen(false);
+          onNavigate(view, section);
+        };
+        
+        return (
+          <header className={`fixed top-0 w-full z-50 transition-all duration-500 ${headerBgClass}`}>
+            <div className="max-w-7xl mx-auto px-6 flex justify-between items-center">
+              
+              {/* Logo Left */}
+              <button 
+                onClick={() => handleNav('home')} 
+                className="group focus:outline-none z-50 relative"
+              >
+                <h1 className={`font-serif text-2xl md:text-3xl tracking-[0.15em] font-bold transition-colors duration-500 ${
+                  isDarkText ? 'text-brand-primary' : 'text-white'
+                }`}>
+                  HENAO <span className="font-light">CAPITAL</span>
+                </h1>
+              </button>
+
+              {/* Desktop Nav Right */}
+              <nav className="hidden md:flex gap-8">
+                <button 
+                  onClick={() => handleNav('newsletter')}
+                  className={`text-sm uppercase tracking-[0.2em] font-medium transition-all duration-300 hover:text-brand-gold ${
+                    isDarkText 
+                      ? (currentView === 'newsletter' ? 'text-brand-gold' : 'text-slate-600') 
+                      : 'text-white/80 hover:text-white'
+                  }`}
+                >
+                  Newsletter
+                </button>
+                <button 
+                  onClick={() => handleNav('deep-dive')}
+                  className={`text-sm uppercase tracking-[0.2em] font-medium transition-all duration-300 hover:text-brand-gold ${
+                    isDarkText 
+                      ? (currentView === 'deep-dive' ? 'text-brand-gold' : 'text-slate-600')
+                      : 'text-white/80 hover:text-white'
+                  }`}
+                >
+                  Tesis de Inversión
+                </button>
+                <button 
+                  onClick={() => handleNav('cartera-live')}
+                  className={`text-sm uppercase tracking-[0.2em] font-medium transition-all duration-300 hover:text-brand-gold ${
+                    isDarkText 
+                      ? (currentView === 'cartera-live' ? 'text-brand-gold' : 'text-slate-600') 
+                      : 'text-white/80 hover:text-white'
+                  }`}
+                >
+                  Cartera LIVE
+                </button>
+              </nav>
+
+              {/* Mobile Menu Toggle */}
+              <button 
+                className="md:hidden z-50 focus:outline-none"
+                onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+              >
+                {isMobileMenuOpen ? (
+                   <XIcon className={`w-6 h-6 ${isDarkText ? 'text-brand-primary' : 'text-white'}`} />
+                ) : (
+                   <MenuIcon className={`w-6 h-6 ${isDarkText ? 'text-brand-primary' : 'text-white'}`} />
+                )}
+              </button>
+            </div>
+
+            {/* Mobile Menu Overlay */}
+            <div className={`fixed inset-0 bg-white z-40 transition-transform duration-300 ease-in-out md:hidden flex flex-col items-center justify-start pt-32 space-y-8 ${
+              isMobileMenuOpen ? 'translate-x-0' : 'translate-x-full'
+            }`}>
+                <button 
+                  onClick={() => handleNav('newsletter')}
+                  className="font-serif text-3xl text-brand-primary hover:text-brand-gold transition-colors"
+                >
+                  Newsletter
+                </button>
+                <button 
+                  onClick={() => handleNav('deep-dive')}
+                  className="font-serif text-3xl text-brand-primary hover:text-brand-gold transition-colors"
+                >
+                  Tesis de Inversión
+                </button>
+                <button 
+                  onClick={() => handleNav('cartera-live')}
+                  className="font-serif text-3xl text-brand-primary hover:text-brand-gold transition-colors"
+                >
+                  Cartera LIVE
+                </button>
+            </div>
+          </header>
+        );
+      };
+
+      const TrackRecordModal = ({ isOpen, onClose }) => {
+        if (!isOpen) return null;
+
+        return (
+          <div className="fixed inset-0 z-[60] flex items-center justify-center p-4 bg-black/60 backdrop-blur-sm animate-fade-in" onClick={onClose}>
+            <div className="bg-white w-full max-w-2xl shadow-2xl p-8 md:p-12 relative rounded-sm" onClick={e => e.stopPropagation()}>
+              <button onClick={onClose} className="absolute top-4 right-4 text-slate-400 hover:text-brand-primary transition-colors">
+                <XIcon className="w-6 h-6" />
+              </button>
+
+              <div className="text-center mb-8">
+                 <h2 className="font-serif text-3xl text-brand-primary mb-2">Track Record Henao Capital</h2>
+                 <p className="text-slate-500 text-sm font-light">vs S&P 500 (incl. dividendos)</p>
+              </div>
+
+              <div className="overflow-x-auto">
+                <table className="w-full text-sm text-left">
+                  <thead className="border-b-2 border-brand-primary">
+                    <tr>
+                      <th className="py-3 font-bold text-slate-600 pl-2">Año</th>
+                      <th className="py-3 font-bold text-brand-primary text-right">Henao Capital</th>
+                      <th className="py-3 font-bold text-slate-500 text-right pr-2">S&P 500</th>
+                    </tr>
+                  </thead>
+                  <tbody className="divide-y divide-slate-100 font-mono">
+                    <tr><td className="py-3 pl-2">2020</td><td className="py-3 text-right font-bold text-brand-primary">21,10%</td><td className="py-3 text-right text-slate-500 pr-2">18,40%</td></tr>
+                    <tr><td className="py-3 pl-2">2021</td><td className="py-3 text-right font-bold text-brand-primary">18,93%</td><td className="py-3 text-right text-slate-500 pr-2">28,70%</td></tr>
+                    <tr><td className="py-3 pl-2">2022</td><td className="py-3 text-right font-bold text-red-600">-28,01%</td><td className="py-3 text-right text-red-400 pr-2">-18,10%</td></tr>
+                    <tr><td className="py-3 pl-2">2023</td><td className="py-3 text-right font-bold text-brand-primary">80,82%</td><td className="py-3 text-right text-slate-500 pr-2">26,30%</td></tr>
+                    <tr><td className="py-3 pl-2">2024</td><td className="py-3 text-right font-bold text-brand-primary">54,68%</td><td className="py-3 text-right text-slate-500 pr-2">25,00%</td></tr>
+                  </tbody>
+                  <tfoot className="bg-brand-light font-serif border-t border-brand-gold/30">
+                     <tr>
+                      <td className="py-4 font-bold text-brand-primary pl-2">CAGR 2020-2025</td>
+                      <td className="py-4 text-right font-bold text-brand-gold text-lg">21,17%</td>
+                      <td className="py-4 text-right font-bold text-slate-600 pr-2">14,53%</td>
+                    </tr>
+                  </tfoot>
+                </table>
+              </div>
+
+              <p className="mt-8 text-[10px] text-center text-slate-400 uppercase tracking-wider">
+                &copy; 2025 by Henao Capital. Rentabilidades pasadas no garantizan rentabilidades futuras.
+              </p>
+            </div>
+          </div>
+        );
+      };
+      
+      const ReportModal = ({ isOpen, onClose }) => {
+        if (!isOpen) return null;
+
+        return (
+          <div className="fixed inset-0 z-[60] flex items-center justify-center p-4 bg-black/60 backdrop-blur-sm animate-fade-in" onClick={onClose}>
+            <div className="bg-white w-full max-w-5xl max-h-[90vh] overflow-y-auto shadow-2xl p-8 md:p-12 relative rounded-sm" onClick={e => e.stopPropagation()}>
+              <button onClick={onClose} className="absolute top-4 right-4 text-slate-400 hover:text-brand-primary transition-colors">
+                <XIcon className="w-6 h-6" />
+              </button>
+
+              <div className="text-center mb-8">
+                 <h2 className="font-serif text-3xl text-brand-primary mb-2">Informe Cartera Henao Capital</h2>
+                 <div className="flex justify-center gap-8 text-sm font-mono text-slate-500 mt-2">
+                    <span>EUR/USD: {HOLDINGS_DATA.rates.eur_usd}</span>
+                    <span>USD/CAD: {HOLDINGS_DATA.rates.usd_cad}</span>
+                 </div>
+              </div>
+
+              <div className="overflow-x-auto">
+                <table className="w-full text-xs md:text-sm text-left">
+                  <thead className="border-b-2 border-brand-primary bg-slate-50">
+                    <tr>
+                      <th className="py-3 px-2 font-bold text-slate-600">Posición</th>
+                      <th className="py-3 px-2 font-bold text-slate-600">País</th>
+                      <th className="py-3 px-2 font-bold text-slate-600">Símbolo</th>
+                      <th className="py-3 px-2 font-bold text-slate-600">Empresa</th>
+                      <th className="py-3 px-2 font-bold text-slate-600 text-right">% Posición</th>
+                      <th className="py-3 px-2 font-bold text-slate-600 text-right">Nº Acciones</th>
+                      <th className="py-3 px-2 font-bold text-slate-600 text-right">PPS Actual $</th>
+                      <th className="py-3 px-2 font-bold text-brand-primary text-right">Total $ Actual</th>
+                    </tr>
+                  </thead>
+                  <tbody className="divide-y divide-slate-100 font-mono">
+                    {HOLDINGS_DATA.holdings.map((item, idx) => (
+                        <tr key={idx} className="hover:bg-slate-50 transition-colors">
+                            <td className="py-2 px-2 text-center">{item.pos}</td>
+                            <td className="py-2 px-2">{item.country}</td>
+                            <td className="py-2 px-2 font-semibold text-brand-primary">{item.symbol}</td>
+                            <td className="py-2 px-2 text-slate-700">{item.company}</td>
+                            <td className="py-2 px-2 text-right">{item.pct}</td>
+                            <td className="py-2 px-2 text-right text-slate-500">{item.shares}</td>
+                            <td className="py-2 px-2 text-right text-slate-500">{item.price}</td>
+                            <td className="py-2 px-2 text-right font-bold text-slate-800">{item.total}</td>
+                        </tr>
+                    ))}
+                  </tbody>
+                  <tfoot className="bg-brand-light font-serif border-t-2 border-brand-primary">
+                     <tr>
+                      <td colSpan={4} className="py-4 font-bold text-brand-primary pl-2">TOTAL CARTERA</td>
+                      <td className="py-4 text-right font-bold text-brand-gold text-lg px-2">{HOLDINGS_DATA.totals.pct}</td>
+                      <td colSpan={2}></td>
+                      <td className="py-4 text-right font-bold text-brand-primary px-2">
+                        <div className="flex flex-col">
+                            <span>{HOLDINGS_DATA.totals.usd}</span>
+                            <span className="text-xs text-slate-400 mt-1">{HOLDINGS_DATA.totals.eur}</span>
+                        </div>
+                      </td>
+                    </tr>
+                  </tfoot>
+                </table>
+              </div>
+
+              <p className="mt-8 text-[10px] text-center text-slate-400 uppercase tracking-wider">
+                &copy; 2025 by Henao Capital. Este documento es estrictamente confidencial.
+              </p>
+            </div>
+          </div>
+        );
+      };
+
+      const Hero = () => {
+        const [showTrackRecord, setShowTrackRecord] = useState(false);
+
+        return (
+          <section className="relative w-full min-h-screen flex items-start lg:items-center justify-center overflow-hidden bg-brand-primary">
+            {/* Modal */}
+            <TrackRecordModal isOpen={showTrackRecord} onClose={() => setShowTrackRecord(false)} />
+
+            <div 
+              className="absolute inset-0 w-full h-full bg-cover bg-center bg-no-repeat fixed bg-fixed grayscale"
+              style={{ 
+                backgroundImage: 'url("https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?q=80&w=2070&auto=format&fit=crop")', 
+              }} 
+            />
+            <div className="absolute inset-0 bg-zinc-900/50" />
+            <div className="absolute inset-0 bg-gradient-to-b from-zinc-900/60 via-transparent to-zinc-900/90" />
+
+            <div className="relative z-10 max-w-7xl mx-auto px-6 lg:px-8 grid lg:grid-cols-2 gap-12 items-center pt-32 lg:pt-0 pb-12 lg:pb-0">
+              {/* Text Container - Order 1 on Mobile */}
+              <div className="space-y-8 text-center lg:text-left order-1 lg:order-1">
+                <div className="inline-block border-b border-brand-gold pb-2">
+                  <span className="text-brand-gold text-xs lg:text-sm uppercase tracking-[0.3em] font-semibold">Research & Asset Management</span>
+                </div>
+                <h1 className="font-serif text-5xl md:text-7xl text-white leading-tight font-medium">
+                  Estrategia.<br/>Disciplina.<br/>Transparencia.
+                </h1>
+                <div className="text-white/90 text-lg font-light max-w-xl mx-auto lg:mx-0 leading-relaxed font-sans space-y-6 text-justify lg:text-left">
+                  <p>Tras años de dedicación compaginando una carrera profesional de alto nivel con la inversión particular, alcancé la independencia financiera.</p>
+                  <p>Formado como Ingeniero Industrial y CFA®, mi misión es sencilla: democratizar ese camino hacia la libertad financiera.</p>
+                </div>
+
+                {/* Interactive Track Record Button */}
+                <div className="py-2 flex justify-center lg:justify-start">
+                    <button 
+                        onClick={() => setShowTrackRecord(true)}
+                        className="group flex items-center space-x-3 cursor-pointer focus:outline-none"
+                    >
+                        <div className="pl-4 border-l-4 border-brand-gold bg-white/5 py-2 pr-4 transition-colors group-hover:bg-white/10">
+                            <span className="text-brand-gold font-serif text-xl lg:text-2xl italic tracking-wide group-hover:text-white transition-colors">
+                                Track record auditado
+                            </span>
+                        </div>
+                        <div className="w-8 h-8 rounded-full border border-brand-gold/50 flex items-center justify-center group-hover:border-white group-hover:bg-white/10 transition-all">
+                            <FileTextIcon className="w-4 h-4 text-brand-gold group-hover:text-white" />
+                        </div>
+                    </button>
+                </div>
+
+              </div>
+              
+              {/* Image Container - Order 2 on Mobile */}
+              <div className="flex flex-col items-center lg:items-end justify-center mt-12 lg:mt-0 order-2 lg:order-2">
+                 <div className="relative group">
+                     <div className="absolute inset-0 rounded-full border border-white/10 scale-105 animate-pulse-slow"></div>
+                     <div className="w-64 h-64 lg:w-80 lg:h-80 rounded-full overflow-hidden border-4 border-white shadow-2xl relative bg-neutral-800 grayscale hover:grayscale-0 transition-all duration-700">
+                          <img src="https://lh3.googleusercontent.com/d/1_wsKDKEX1QMlvMoWOnP6JpgsWlz0Gu16=w1000" alt="Fundador" className="w-full h-full object-cover" />
+                      </div>
+                 </div>
+              </div>
+            </div>
+          </section>
+        );
+      };
+
+      const Services = ({ onNavigateToNewsletter, onNavigateToCartera, onNavigateToDeepDive }) => {
+        return (
+          <section id="servicios" className="py-24 bg-white relative">
+            <div className="max-w-7xl mx-auto px-6 lg:px-8">
+              <div className="text-center mb-20">
+                <h2 className="font-serif text-4xl md:text-5xl text-brand-primary mb-4">Nuestros Servicios</h2>
+                <div className="w-24 h-1 bg-brand-primary mx-auto opacity-20"></div>
+              </div>
+              <div className="grid md:grid-cols-3 gap-8 lg:gap-12 items-stretch">
+                {/* Newsletter */}
+                <div id="newsletter" className="group p-8 bg-white border border-slate-200 hover:shadow-xl transition-all duration-500 flex flex-col rounded-sm">
+                  <div className="mb-6">
+                    <h3 className="font-serif text-3xl text-brand-primary mt-2">Newsletter</h3>
+                    <p className="text-xl font-light text-slate-500 mt-2">0,00 €<span className="text-sm">/mes</span></p>
+                  </div>
+                  <p className="text-slate-600 text-sm leading-relaxed mb-8 font-light flex-grow">
+                    Nuestra visión diaria del mercado. Sin muros de pago, sin registros. Simplemente análisis institucional claro y directo para empezar el día con ventaja.
+                  </p>
+                  <ul className="space-y-3 mb-8">
+                    <li className="flex items-center text-sm text-slate-700"><CheckIcon className="w-4 h-4 mr-3 text-brand-primary" /> Visión diaria del mercado</li>
+                    <li className="flex items-center text-sm text-slate-700"><CheckIcon className="w-4 h-4 mr-3 text-brand-primary" /> Sin registro</li>
+                    <li className="flex items-center text-sm text-slate-700"><CheckIcon className="w-4 h-4 mr-3 text-brand-primary" /> Análisis institucional</li>
+                  </ul>
+                  <button onClick={onNavigateToNewsletter} className="w-full py-3 border border-brand-primary text-brand-primary hover:bg-brand-primary hover:text-white transition-colors text-sm font-bold uppercase tracking-widest">
+                    LEER AHORA
+                  </button>
+                </div>
+                {/* Deep Dive */}
+                <div id="deep-dive-thesis" className="group p-8 bg-white border border-slate-200 hover:shadow-xl transition-all duration-500 flex flex-col rounded-sm">
+                   <div className="mb-6">
+                    <h3 className="font-serif text-3xl text-brand-primary mt-2">Tesis de Inversión</h3>
+                    <p className="text-xl font-light text-slate-500 mt-2">5,99 €<span className="text-sm">/mes</span></p>
+                  </div>
+                  <p className="text-slate-600 text-sm leading-relaxed mb-8 font-light flex-grow">
+                    Ultra-deep dives en compañías de extrema calidad. Acceso a investigaciones exclusivas y análisis fundamentales en profundidad. Tesis de inversión estructuradas, claras y accionables.
+                  </p>
+                   <ul className="space-y-3 mb-8">
+                    <li className="flex items-center text-sm text-slate-700"><CheckIcon className="w-4 h-4 mr-3 text-brand-primary" /> Tesis de inversión accionables</li>
+                    <li className="flex items-center text-sm text-slate-700"><CheckIcon className="w-4 h-4 mr-3 text-brand-primary" /> Modelos de Valoración</li>
+                    <li className="flex items-center text-sm text-slate-700"><CheckIcon className="w-4 h-4 mr-3 text-brand-primary" /> Análisis de Riesgos</li>
+                  </ul>
+                  <button onClick={onNavigateToDeepDive} className="w-full py-3 border border-brand-primary text-brand-primary hover:bg-brand-primary hover:text-white transition-colors text-sm font-bold uppercase tracking-widest">
+                    UNIRSE
+                  </button>
+                </div>
+                {/* Cartera Live */}
+                <div id="cartera-live" className="group relative p-8 bg-white border-2 border-brand-gold/40 shadow-lg hover:shadow-2xl transition-all duration-500 flex flex-col transform md:-translate-y-4 rounded-sm">
+                  <div className="absolute top-0 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-brand-primary text-white px-4 py-1 text-xs font-bold tracking-widest uppercase shadow-md">
+                    Recomendado
+                  </div>
+                  <div className="mb-6">
+                    <h3 className="font-serif text-3xl text-brand-primary mt-2">Cartera LIVE</h3>
+                    <p className="text-xl font-light text-slate-500 mt-2">9,99 €<span className="text-sm">/mes</span></p>
+                  </div>
+                  <p className="text-slate-600 text-sm leading-relaxed mb-8 font-light flex-grow">
+                    Transparencia radical. Observa cómo gestionamos capital real en tiempo real.
+                  </p>
+                   <ul className="space-y-3 mb-8">
+                    <li className="flex items-center text-sm text-slate-800 font-medium"><CheckIcon className="w-4 h-4 mr-3 text-brand-gold" /> Acceso a la cartera en tiempo real</li>
+                    <li className="flex items-center text-sm text-slate-800 font-medium"><CheckIcon className="w-4 h-4 mr-3 text-brand-gold" /> Notificaciones de Compra/Venta</li>
+                    <li className="flex items-center text-sm text-slate-800 font-medium"><CheckIcon className="w-4 h-4 mr-3 text-brand-gold" /> Webinars trimestrales</li>
+                  </ul>
+                  <button onClick={onNavigateToCartera} className="w-full py-3 bg-brand-primary text-white text-sm font-bold uppercase tracking-widest hover:bg-brand-dark transition-colors mt-auto shadow-md">
+                    UNIRSE AHORA
+                  </button>
+                </div>
+              </div>
+            </div>
+          </section>
+        );
+      };
+      
+      const DeepDive = () => {
+        const [selectedArticle, setSelectedArticle] = useState(null);
+        
+        if (selectedArticle) {
+            return (
+            <div className="pt-32 pb-24 bg-white min-h-screen animate-fade-in">
+              <article className="max-w-3xl mx-auto px-6">
+                  <button 
+                      onClick={() => setSelectedArticle(null)}
+                      className="group flex items-center text-sm text-slate-500 mb-8 hover:text-brand-primary transition-colors"
+                  >
+                      <ArrowLeftIcon className="w-4 h-4 mr-2 transform group-hover:-translate-x-1 transition-transform" />
+                      Volver a Deep Dives
+                  </button>
+                  <div className="mb-8 border-b border-slate-200 pb-8">
+                      <div className="flex items-center space-x-4 text-xs font-bold tracking-widest uppercase text-slate-400 mb-4">
+                          <span>{selectedArticle.category}</span>
+                          <span>•</span>
+                          <span>{selectedArticle.date}</span>
+                      </div>
+                      <h1 className="font-serif text-4xl md:text-5xl text-brand-primary leading-tight mb-6">
+                          {selectedArticle.title}
+                      </h1>
+                  </div>
+                  <div className="w-full h-64 md:h-96 mb-12 overflow-hidden bg-slate-100 rounded-sm">
+                      <img src={selectedArticle.imageUrl} alt={selectedArticle.title} className="w-full h-full object-cover object-top" />
+                  </div>
+                  <div className="prose prose-lg prose-slate max-w-none font-serif text-slate-700 pb-12">
+                      {selectedArticle.body.map((block, index) => {
+                          if (block.type === 'header') return <h2 key={index} className="text-2xl font-bold text-brand-primary mt-12 mb-6">{block.content}</h2>;
+                          if (block.type === 'list') return (
+                            <ul key={index} className="space-y-4 mb-6 list-disc pl-6 marker:text-brand-gold">
+                                {block.content.map((item, i) => <li key={i}>{item}</li>)}
+                            </ul>
+                          );
+                          return <p key={index} className="mb-6 leading-relaxed">{block.content}</p>
+                      })}
+                  </div>
+                  <div className="mt-8 pt-8 border-t border-slate-200 flex justify-between items-center">
+                    <div className="flex items-center space-x-2 text-brand-gold">
+                        <span className="h-px w-8 bg-brand-gold"></span>
+                        <span className="font-serif italic">Henao Capital Research</span>
+                    </div>
+                    <button className="flex items-center text-sm font-bold uppercase tracking-widest text-slate-400 hover:text-brand-primary transition-colors">
+                        <Share2Icon className="w-4 h-4 mr-2" /> Compartir
+                    </button>
+                </div>
+              </article>
+            </div>
+          );
+        }
+
+        return (
+           <div className="pt-32 pb-24 bg-white min-h-screen animate-fade-in relative">
+             <div className="max-w-7xl mx-auto px-6 lg:px-8">
+               <div className="text-center mb-16">
+                  <p className="text-slate-500 font-light text-xl max-w-2xl mx-auto mb-8 mt-8">
+                      Análisis profundo de compañías de extrema calidad. Valoración, riesgos y escenarios.
+                  </p>
+                  <div className="w-px h-16 bg-slate-200 mx-auto mt-12"></div>
+                </div>
+
+                <div className="grid md:grid-cols-2 gap-12">
+                    {DEEP_DIVE_ARTICLES.map((article) => (
+                       <div key={article.id} className="group cursor-pointer flex flex-col h-full" onClick={() => setSelectedArticle(article)}>
+                          <div className="overflow-hidden mb-6 h-64 bg-slate-100 rounded-sm">
+                              <img src={article.imageUrl} alt={article.title} className="w-full h-full object-cover transform transition-transform duration-700 group-hover:scale-105" />
+                          </div>
+                          <div className="mb-3 flex items-center space-x-2">
+                                <span className="text-xs font-bold tracking-widest uppercase text-brand-gold">{article.category}</span>
+                                <span className="text-slate-300">|</span>
+                                <span className="text-xs text-slate-400">{article.date}</span>
+                          </div>
+                          <h3 className="font-serif text-3xl text-brand-primary leading-snug mb-3 group-hover:text-brand-gold transition-colors">{article.title}</h3>
+                          <p className="text-slate-600 font-light text-base leading-relaxed line-clamp-3 mb-4 flex-grow">{article.excerpt}</p>
+                          <div className="flex items-center text-brand-primary font-bold text-xs uppercase tracking-widest mt-auto group-hover:translate-x-2 transition-transform duration-300">
+                             Leer Tesis <ArrowRightIcon className="ml-2 w-4 h-4" />
+                          </div>
+                       </div>
+                    ))}
+                </div>
+             </div>
+           </div>
+        );
+      };
+
+      const CarteraLive = () => {
+        const [selectedArticle, setSelectedArticle] = useState(null);
+        const [showReport, setShowReport] = useState(false);
+
+        if (selectedArticle) {
+            return (
+            <div className="pt-32 pb-24 bg-white min-h-screen animate-fade-in">
+              <article className="max-w-3xl mx-auto px-6">
+                  <button 
+                      onClick={() => setSelectedArticle(null)}
+                      className="group flex items-center text-sm text-slate-500 mb-8 hover:text-brand-primary transition-colors"
+                  >
+                      <ArrowLeftIcon className="w-4 h-4 mr-2 transform group-hover:-translate-x-1 transition-transform" />
+                      Volver a Cartera
+                  </button>
+                  <div className="mb-8 border-b border-slate-200 pb-8">
+                      <div className="flex items-center space-x-4 text-xs font-bold tracking-widest uppercase text-slate-400 mb-4">
+                          <span>{selectedArticle.category}</span>
+                          <span>•</span>
+                          <span>{selectedArticle.date}</span>
+                      </div>
+                      <h1 className="font-serif text-4xl md:text-5xl text-brand-primary leading-tight mb-6">
+                          {selectedArticle.title}
+                      </h1>
+                  </div>
+                  <div className="w-full h-64 md:h-96 mb-12 overflow-hidden bg-slate-100 rounded-sm">
+                      <img src={selectedArticle.imageUrl} alt={selectedArticle.title} className="w-full h-full object-cover object-top" />
+                  </div>
+                  <div className="prose prose-lg prose-slate max-w-none font-serif text-slate-700 pb-12">
+                      {selectedArticle.body.map((block, index) => {
+                          if (block.type === 'header') return <h2 key={index} className="text-2xl font-bold text-brand-primary mt-12 mb-6">{block.content}</h2>;
+                          if (block.type === 'list') return (
+                            <ul key={index} className="space-y-4 mb-6 list-disc pl-6 marker:text-brand-gold">
+                                {block.content.map((item, i) => <li key={i}>{item}</li>)}
+                            </ul>
+                          );
+                          return <p key={index} className="mb-6 leading-relaxed">{block.content}</p>
+                      })}
+                  </div>
+                  <div className="mt-8 pt-8 border-t border-slate-200 flex justify-between items-center">
+                    <div className="flex items-center space-x-2 text-brand-gold">
+                        <span className="h-px w-8 bg-brand-gold"></span>
+                        <span className="font-serif italic">Henao Capital Team</span>
+                    </div>
+                </div>
+              </article>
+            </div>
+          );
+        }
+
+        return (
+           <div className="pt-32 pb-24 bg-white min-h-screen animate-fade-in relative">
+             <ReportModal isOpen={showReport} onClose={() => setShowReport(false)} />
+             
+             <div className="max-w-7xl mx-auto px-6 lg:px-8">
+               <div className="text-center mb-16">
+                  <p className="text-slate-500 font-light text-xl max-w-2xl mx-auto mb-8 mt-8">
+                      Seguimiento en tiempo real, análisis de movimientos y transparencia radical.
+                  </p>
+                  
+                  {/* PDF Download Button Mock */}
+                  <div className="flex justify-center">
+                    <button 
+                        onClick={() => setShowReport(true)}
+                        className="group flex items-center bg-slate-50 hover:bg-slate-100 border border-slate-200 rounded-sm px-6 py-4 transition-all duration-300 hover:shadow-md"
+                    >
+                        <div className="bg-red-50 p-2 rounded-sm mr-4 group-hover:bg-red-100 transition-colors">
+                            <FileTextIcon className="w-6 h-6 text-red-600" />
+                        </div>
+                        <div className="text-left mr-8">
+                            <p className="text-xs text-slate-400 font-bold uppercase tracking-wider mb-1">Informe PDF</p>
+                            <p className="text-brand-primary font-serif text-lg font-medium">Informe Cartera Henao Capital</p>
+                        </div>
+                        <DownloadIcon className="w-5 h-5 text-slate-300 group-hover:text-brand-primary transition-colors" />
+                    </button>
+                  </div>
+
+                  <div className="w-px h-16 bg-slate-200 mx-auto mt-12"></div>
+                </div>
+
+                <div className="grid md:grid-cols-2 gap-12">
+                    {CARTERA_UPDATES.map((article) => (
+                       <div key={article.id} className="group cursor-pointer flex flex-col h-full" onClick={() => setSelectedArticle(article)}>
+                          <div className="overflow-hidden mb-6 h-64 bg-slate-100 rounded-sm">
+                              <img src={article.imageUrl} alt={article.title} className="w-full h-full object-cover transform transition-transform duration-700 group-hover:scale-105" />
+                          </div>
+                          <div className="mb-3 flex items-center space-x-2">
+                                <span className="text-xs font-bold tracking-widest uppercase text-brand-gold">{article.category}</span>
+                                <span className="text-slate-300">|</span>
+                                <span className="text-xs text-slate-400">{article.date}</span>
+                          </div>
+                          <h3 className="font-serif text-3xl text-brand-primary leading-snug mb-3 group-hover:text-brand-gold transition-colors">{article.title}</h3>
+                          <p className="text-slate-600 font-light text-base leading-relaxed line-clamp-3 mb-4 flex-grow">{article.excerpt}</p>
+                          <div className="flex items-center text-brand-primary font-bold text-xs uppercase tracking-widest mt-auto group-hover:translate-x-2 transition-transform duration-300">
+                             Leer Mensaje <ArrowRightIcon className="ml-2 w-4 h-4" />
+                          </div>
+                       </div>
+                    ))}
+                </div>
+             </div>
+           </div>
+        );
+      };
+
+      const Newsletter = () => {
+        const [selectedArticle, setSelectedArticle] = useState(null);
+        
+        // Force scroll to top when opening an article
+        useEffect(() => {
+          if (selectedArticle) {
+            window.scrollTo({ top: 0, behavior: 'instant' });
+          }
+        }, [selectedArticle]);
+
+        if (selectedArticle) {
+          return (
+            <div className="pt-32 pb-24 bg-white min-h-screen animate-fade-in">
+              <article className="max-w-3xl mx-auto px-6">
+                  <button 
+                      onClick={() => setSelectedArticle(null)}
+                      className="group flex items-center text-sm text-slate-500 mb-8 hover:text-brand-primary transition-colors"
+                  >
+                      <ArrowLeftIcon className="w-4 h-4 mr-2 transform group-hover:-translate-x-1 transition-transform" />
+                      Volver a Newsletter
+                  </button>
+                  <div className="mb-8 border-b border-slate-200 pb-8">
+                      <div className="flex items-center space-x-4 text-xs font-bold tracking-widest uppercase text-slate-400 mb-4">
+                          <span>{selectedArticle.category}</span>
+                          <span>•</span>
+                          <span>{selectedArticle.date}</span>
+                      </div>
+                      <h1 className="font-serif text-4xl md:text-5xl text-brand-primary leading-tight mb-6">
+                          {selectedArticle.title}
+                      </h1>
+                  </div>
+                  <div className="w-full h-64 md:h-96 mb-12 overflow-hidden bg-slate-100 rounded-sm">
+                      <img src={selectedArticle.imageUrl} alt={selectedArticle.title} className="w-full h-full object-cover object-top" />
+                  </div>
+                  <div className="prose prose-lg prose-slate max-w-none font-serif text-slate-700 pb-12">
+                      {selectedArticle.body.map((block, index) => {
+                          if (block.type === 'header') return <h2 key={index} className="text-2xl font-bold text-brand-primary mt-12 mb-6">{block.content}</h2>;
+                          if (block.type === 'list') return (
+                            <ul key={index} className="space-y-4 mb-6 list-disc pl-6 marker:text-brand-gold">
+                                {block.content.map((item, i) => <li key={i}>{item}</li>)}
+                            </ul>
+                          );
+                          return <p key={index} className="mb-6 leading-relaxed">{block.content}</p>
+                      })}
+                  </div>
+                  <div className="mt-8 pt-8 border-t border-slate-200 flex justify-between items-center">
+                    <div className="flex items-center space-x-2 text-brand-gold">
+                        <span className="h-px w-8 bg-brand-gold"></span>
+                        <span className="font-serif italic">Henao Capital Research</span>
+                    </div>
+                    <button className="flex items-center text-sm font-bold uppercase tracking-widest text-slate-400 hover:text-brand-primary transition-colors">
+                        <Share2Icon className="w-4 h-4 mr-2" /> Compartir
+                    </button>
+                </div>
+              </article>
+            </div>
+          );
+        }
+        const [featuredArticle, ...otherArticles] = ARTICLES;
+        
+        // Combine excerpt + first paragraph for longer preview
+        const featuredPreviewText = featuredArticle.excerpt + " " + (featuredArticle.body[0]?.content || "");
+
+        return (
+          <div className="pt-32 pb-24 bg-white min-h-screen animate-fade-in">
+            <div className="max-w-7xl mx-auto px-6 lg:px-8">
+              
+              <div className="grid lg:grid-cols-2 gap-12 mb-24 cursor-pointer group" onClick={() => setSelectedArticle(featuredArticle)}>
+                   <div className="overflow-hidden bg-slate-100 rounded-sm">
+                      <img src={featuredArticle.imageUrl} alt={featuredArticle.title} className="w-full h-full object-cover object-top transform transition-transform duration-700 group-hover:scale-105" />
+                  </div>
+                  <div className="flex flex-col justify-center">
+                      <div className="mb-4 flex items-center space-x-2">
+                          <span className="text-xs font-bold tracking-widest uppercase text-brand-gold">{featuredArticle.category}</span>
+                          <span className="text-slate-300">|</span>
+                          <span className="text-xs text-slate-400">{featuredArticle.date}</span>
+                      </div>
+                      <h2 className="font-serif text-3xl md:text-4xl text-brand-primary leading-tight mb-6 group-hover:text-brand-gold transition-colors">{featuredArticle.title}</h2>
+                      <p className="text-slate-600 font-light text-lg leading-relaxed mb-6 line-clamp-6 lg:line-clamp-none">
+                        {featuredPreviewText}
+                      </p>
+                      <div className="flex items-center text-brand-primary font-bold text-sm uppercase tracking-widest mt-auto group-hover:translate-x-2 transition-transform duration-300">
+                          Leer Artículo <ArrowRightIcon className="ml-2 w-4 h-4" />
+                      </div>
+                  </div>
+              </div>
+              <div className="w-full h-px bg-slate-200 mb-16"></div>
+              <div className="grid md:grid-cols-3 gap-x-8 gap-y-16">
+                   {otherArticles.map((article) => (
+                       <div key={article.id} className="group cursor-pointer flex flex-col h-full" onClick={() => setSelectedArticle(article)}>
+                          <div className="overflow-hidden mb-6 h-48 bg-slate-100 rounded-sm">
+                              <img src={article.imageUrl} alt={article.title} className="w-full h-full object-cover transform transition-transform duration-700 group-hover:scale-105" />
+                          </div>
+                          <div className="mb-3 flex items-center space-x-2">
+                                <span className="text-xs font-bold tracking-widest uppercase text-slate-400">{article.category}</span>
+                          </div>
+                          <h3 className="font-serif text-xl text-brand-primary leading-snug mb-3 group-hover:text-brand-gold transition-colors">{article.title}</h3>
+                          <p className="text-slate-600 font-light text-sm leading-relaxed line-clamp-3 mb-4 flex-grow">{article.excerpt}</p>
+                          <span className="text-xs text-slate-400 mt-auto block">{article.date}</span>
+                       </div>
+                   ))}
+              </div>
+            </div>
+          </div>
+        );
+      };
+
+      const Footer = () => {
+        return (
+          <footer className="bg-brand-primary text-white py-16 border-t border-white/5">
+            <div className="max-w-7xl mx-auto px-6 lg:px-8 flex flex-col items-center text-center">
+              <h2 className="font-serif text-2xl tracking-widest font-bold mb-8">
+                HENAO <span className="font-light">CAPITAL</span>
+              </h2>
+              
+              {/* Legal Text - ONLY THIS as requested */}
+              <div className="text-white/40 text-[10px] leading-relaxed font-light space-y-2">
+                <p>
+                  Research de Inversión Independiente. | La información provista no constituye asesoramiento financiero.
+                </p>
+                <p>
+                  &copy; 2025 HENAO CAPITAL. Todos los derechos reservados
+                </p>
+              </div>
+            </div>
+          </footer>
+        );
+      };
+
+      // --- MAIN APP ---
+      function App() {
+        const [currentView, setCurrentView] = useState('home');
+        const handleNavigate = (view, sectionId) => {
+          setCurrentView(view);
+          if (view === 'home' && sectionId) {
+            setTimeout(() => {
+              const element = document.getElementById(sectionId);
+              if (element) element.scrollIntoView({ behavior: 'smooth' });
+            }, 100);
+          } else {
+            window.scrollTo(0, 0);
+          }
+        };
+
+        return (
+          <div className="min-h-screen flex flex-col bg-brand-light font-sans selection:bg-brand-gold selection:text-white">
+            <Header onNavigate={handleNavigate} currentView={currentView} />
+            <main className="flex-grow">
+              {currentView === 'home' && (
+                <>
+                  <Hero />
+                  <Services 
+                    onNavigateToNewsletter={() => handleNavigate('newsletter')} 
+                    onNavigateToCartera={() => handleNavigate('cartera-live')}
+                    onNavigateToDeepDive={() => handleNavigate('deep-dive')}
+                  />
+                </>
+              )}
+              {currentView === 'newsletter' && <Newsletter />}
+              {currentView === 'deep-dive' && <DeepDive />}
+              {currentView === 'cartera-live' && <CarteraLive />}
+            </main>
+            <Footer />
+          </div>
+        );
+      }
+
+      const root = ReactDOM.createRoot(document.getElementById('root'));
+      root.render(<App />);
+    </script>
+  </body>
+</html>
