@@ -202,7 +202,7 @@
 
       // --- ICONS ---
       const ArrowRightIcon = ({ className }) => (
-        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={className}><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={className}><path d="M5 12h14"/><path d="m12 5 7 7-7 7-7 7"/></svg>
       );
       const CheckIcon = ({ className }) => (
         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={className}><polyline points="20 6 9 17 4 12"/></svg>
@@ -260,6 +260,21 @@
 
       // --- DATA ---
       const ARTICLES = [
+        {
+          id: 'japan-yen-carry-trade',
+          date: '21 NOV 2025 | 17:00 CET',
+          category: '$JPY',
+          title: 'Japón y el yen carry trade: se está acabando el dinero japonés "gratis"',
+          excerpt: 'Llevamos años hablando de la Fed, del BCE, de la IA, de Bitcoin… y, en silencio, se está moviendo una pieza gorda del tablero: Japón.',
+          imageUrl: 'https://image.cnbcfm.com/api/v1/image/107428988-1718330300365-gettyimages-2154653061-AFP_34UB8PH.jpeg?v=1752551942',
+          body: [
+            "<p><strong>El país que durante décadas fue la gasolinera de tipos al 0 % para financiar medio planeta ya no está jugando ese papel.</strong> Y eso tiene implicaciones para todos: liquidez global, renta fija, bolsa, emergentes y, por extensión, cómo pensamos el riesgo desde el <em>asset allocation</em>.</p>",
+            "<h3>Qué ha cambiado en Japón</h3><p>Durante casi 20 años, Japón vivió en un régimen muy simple: inflación baja o negativa, tipos a 0 % o menos, y el Banco de Japón controlando la curva de tipos a 10 años. Eso se ha terminado. Hoy la foto es otra:</p><ul><li>La inflación subyacente está cerca del 3 % interanual y lleva casi tres años por encima del objetivo del 2 %.</li><li>El tipo oficial del BoJ está ya en el 0,5 %, después de subidas este año, y el mercado descuenta que puede ir camino del 0,75 % en los próximos meses.</li><li>El 10 años japonés ronda el 1,8 %, máximos desde la crisis financiera global.</li><li>El 30 años se ha ido por encima del 3,3 %, niveles de finales de los 90, en parte por el miedo a la deuda pública que ya está por encima del 250 % del PIB.</li></ul><p><strong>Conclusión simple:</strong> Japón ya no es ese sitio donde los bonos pagan cero. Estamos en una transición: de país deflacionario que subvencionaba al resto del mundo con dinero casi gratis, a país con inflación algo más alta y tipos más \"normales\".</p>",
+            "<h3>Qué es el yen carry trade</h3><p>El yen <em>carry trade</em> es, en esencia:</p><ul><li>Pides prestado en yenes a tipo bajo, casi 0%.</li><li>Vendes esos yenes y compras otra moneda (dólares, euros…).</li><li>Con ese dinero compras activos que pagan más: bonos USA, crédito, bolsa, emergentes.</li></ul><p>Durante años, el yen fue el combustible barato de multitud de *trades* de riesgo. Ese combustible ya no es tan barato ni tan estable. Y cuando un *carry trade* se vuelve peligroso, se deshace. Eso significa vender los activos comprados fuera, recomprar yenes… y, muchas veces, amplificar los movimientos de mercado.</p>",
+            "<h3>Flujos, riesgo y el escenario base</h3><p>El movimiento reciente tiene dos patas: <strong>1)</strong> Los <em>yields</em> suben porque el mercado mira con otros ojos la deuda (más gasto, menos BOJ dispuesto a absorberlo todo). <strong>2)</strong> El cambio en quién compra y quién vende. Los inversores domésticos ahora encuentran atractivo quedarse en casa en vez de buscar rendimiento fuera. La dirección del flujo ya no es tan obvia.</p><p>Siempre que se mueve Japón, aparecen los titulares catastrofistas. Pongamos esto en contexto: nuestro escenario base razonable hoy es:</p><ul><li>El BoJ normalizará despacio: tipos algo más altos, pero muy lejos de ser restrictivos en términos reales.</li><li>Los <em>yields</em> de los JGBs seguirán más arriba que en la década pasada, pero no tanto como para hacer explotar el sistema.</li><li>El capital japonés que antes volaba a comprar bonos extranjeros irá encontrando atractivo en casa, pero esto es un flujo gradual, no un botón de “pánico, cierro todo hoy”.</li></ul><p>Sí existe un escenario de alto riesgo (no base, pero posible) donde una subida más agresiva de <em>yields</em> obliga a cerrar posiciones apalancadas a la vez. Eso tiende a amplificar movimientos de **\"risk-off\"**. Pero a día de hoy sigue siendo un escenario de cola.</p>",
+            "<h3>Qué implica todo esto para un asset allocator</h3><p>Japón ha dejado de ser el proveedor silencioso de dinero casi gratuito que lubricaba una parte importante del sistema financiero global.</p><p>Esto no implica “crash garantizado”, pero sí **más volatilidad** cuando el BoJ hable, cuando los JGBs se muevan fuerte o cuando el yen tenga un rally repentino. A medio plazo, es otro ladrillo en la pared del nuevo régimen: tipos algo más altos, más dispersión entre activos y menos viento de cola de \"dinero gratis\".</p><p><strong>El mensaje con Japón no es “se hunde el mundo”, es otro:</strong> una de las grandes fuentes históricas de liquidez barata está cambiando de fase. En un sistema cargado de deuda y apalancamiento, estos cambios no revientan nada de un día para otro, pero sí van moviendo las placas del ciclo. Y conviene entenderlo a tiempo.</p>"
+          ]
+        },
         {
           id: 'fed-fiscal-dominance',
           date: '20 NOV 2025 | 16:30 CET',
@@ -389,17 +404,19 @@
 
               {/* Nav Block (Right) - MOBILE: Stacked Vertical, DESKTOP: Horizontal */}
               <nav className="flex flex-col items-end gap-1 md:flex-row md:items-center md:gap-0 md:space-x-8">
+                {/* LINK: BASE */}
                 <button 
-                  onClick={() => onNavigate('archive')}
+                  onClick={() => onNavigate('base-area')}
                   className="text-[9px] md:text-[11px] uppercase tracking-[0.15em] md:tracking-[0.2em] font-medium text-brand-text hover:text-brand-gold transition-colors"
                 >
-                  INSIGHTS
+                  BASE
                 </button>
+                {/* LINK: SOCIOS (Destacado sutilmente) */}
                 <button 
                   onClick={() => onNavigate('socio-pro')}
                   className="border border-brand-gold/50 px-2 py-[3px] md:px-4 md:py-2 text-[9px] md:text-[10px] uppercase tracking-[0.1em] md:tracking-[0.15em] font-bold text-brand-darkGold hover:bg-brand-gold hover:text-white hover:border-brand-gold transition-all duration-300 rounded-[1px]"
                 >
-                  ÁREA PARTNERS
+                  SOCIOS
                 </button>
               </nav>
 
@@ -407,11 +424,34 @@
           </header>
         );
       };
+      
+      // --- COMPONENT: DETAILS MODAL (NEW) ---
+      const DetailsModal = ({ title, items, onClose }) => (
+        <div className="fixed inset-0 z-[80] flex items-center justify-center bg-brand-navy/40 backdrop-blur-sm p-4 animate-fade-in" onClick={onClose}>
+            <div className="bg-white w-full max-w-md p-8 md:p-10 relative rounded-[2px] shadow-2xl animate-slide-up" onClick={e => e.stopPropagation()}>
+                <button onClick={onClose} className="absolute top-4 right-4 text-gray-300 hover:text-gray-600 transition-colors p-2">
+                   <XIcon className="w-4 h-4"/>
+                </button>
+                <div className="mb-6 text-brand-gold opacity-60">
+                     <HybridIcon className="w-6 h-6" />
+                </div>
+                <h3 className="font-serif text-xl md:text-2xl text-brand-text mb-6 leading-tight pr-4">{title}</h3>
+                <ul className="space-y-4">
+                    {items.map((item, idx) => (
+                        <li key={idx} className="flex items-start">
+                            <span className="text-brand-gold mr-3 mt-1.5 text-[8px]">●</span>
+                            <span className="text-sm text-gray-600 font-sans leading-relaxed">{item}</span>
+                        </li>
+                    ))}
+                </ul>
+            </div>
+        </div>
+      );
 
-      // --- COMPONENT: HERO ---
-      const Hero = () => {
+      // --- COMPONENT: HERO (UPDATED CTA) ---
+      const Hero = ({ onNavigate, onOpenNewsletter, onOpenBaseDetails, onOpenSocioDetails }) => {
         return (
-          <section className="relative w-full pt-40 pb-20 md:pt-48 md:pb-24 px-6 bg-brand-bg overflow-hidden">
+          <section className="relative w-full pt-40 pb-32 md:pt-48 md:pb-40 px-6 bg-brand-bg overflow-hidden">
             <div className="max-w-5xl mx-auto text-center animate-fade-in relative z-10">
               
               <h1 className="font-serif text-[2rem] md:text-[2.75rem] text-brand-text leading-[1.2] font-medium tracking-tight mb-6">
@@ -424,94 +464,99 @@
                 Tu socio profesional en los mercados
               </p>
               
-              <div className="w-full flex justify-center mb-12">
+              {/* Chart */}
+              <div className="w-full flex justify-center">
                 <div className="w-[80%] md:w-[70%] max-w-[600px] h-20 opacity-80">
                   <TrendLineIcon className="w-full h-full" />
                 </div>
               </div>
-            </div>
-          </section>
-        );
-      };
 
-      // --- COMPONENT: SERVICES ---
-      const Services = ({ onNavigate }) => {
-        return (
-          <section className="py-12 bg-brand-bg relative">
-            <div className="max-w-4xl mx-auto px-6">
-              
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-6 items-stretch">
-                {/* CARD 1: Free Insights (Renamed) */}
-                <div className="bg-brand-surface border border-brand-border p-5 md:p-6 flex flex-col hover:border-brand-border/80 hover:shadow-xl hover:shadow-gray-200/50 transition-all duration-500 group rounded-[2px]">
-                  <div className="mb-3">
-                    <h3 className="font-serif text-lg md:text-xl text-brand-text mb-0">Henao Capital Insights</h3>
+              {/* New Hybrid CTA Section - UPDATED SPACING & SIZING */}
+              <div className="flex flex-col items-center animate-slide-up mt-12 md:mt-16" style={{ animationDelay: '0.2s' }}>
+                  {/* Level 1: Main Actions */}
+                  <div className="flex flex-col md:flex-row gap-6 md:gap-8 w-full md:w-auto items-start md:items-start">
+                      {/* Button A: PLAN BASE */}
+                      <div className="flex flex-col items-center w-full md:w-auto">
+                          <button 
+                              onClick={() => onNavigate('base-area')}
+                              className="w-full md:w-auto min-w-[240px] md:min-w-[260px] px-5 py-3 md:px-6 md:py-3.5 bg-brand-navy text-white rounded-[1px] hover:bg-brand-text transition-all duration-300 shadow-sm hover:shadow-md flex flex-col items-center justify-center group"
+                          >
+                              <span className="text-[10px] md:text-[11px] font-bold tracking-[0.2em] uppercase mb-1">PLAN BASE</span>
+                              <span className="text-[8px] md:text-[9px] font-light opacity-70 tracking-widest group-hover:opacity-90">9,99 € / mes</span>
+                          </button>
+                          <button onClick={onOpenBaseDetails} className="mt-2 text-[9px] md:text-[10px] text-gray-400 hover:text-brand-muted underline decoration-gray-300 underline-offset-2 transition-colors">
+                              Qué ofrecemos
+                          </button>
+                      </div>
+
+                      {/* Button B: PLAN SOCIOS */}
+                      <div className="flex flex-col items-center w-full md:w-auto">
+                           <button 
+                              onClick={() => onNavigate('socio-pro')}
+                              className="w-full md:w-auto min-w-[240px] md:min-w-[260px] px-5 py-3 md:px-6 md:py-3.5 bg-transparent border border-brand-gold text-brand-darkGold rounded-[1px] hover:bg-brand-gold hover:text-white transition-all duration-300 flex flex-col items-center justify-center group"
+                          >
+                                  <span className="text-[10px] md:text-[11px] font-bold tracking-[0.2em] uppercase mb-1">PLAN SOCIOS</span>
+                                  <span className="text-[8px] md:text-[9px] font-light opacity-90 tracking-widest group-hover:text-white text-brand-darkGold/80">29,99 € / mes</span>
+                          </button>
+                          <button onClick={onOpenSocioDetails} className="mt-2 text-[9px] md:text-[10px] text-gray-400 hover:text-brand-muted underline decoration-gray-300 underline-offset-2 transition-colors">
+                              Qué ofrecemos
+                          </button>
+                      </div>
                   </div>
 
-                  <ul className="space-y-2 mb-5 flex-grow mt-2">
-                    <li className="flex items-center text-[11px] text-brand-text/80 font-medium tracking-wide">
-                      <span className="w-1 h-1 bg-brand-gold rounded-full mr-2.5"></span> Briefings de mercado diarios
-                    </li>
-                    <li className="flex items-center text-[11px] text-brand-text/80 font-medium tracking-wide">
-                       <span className="w-1 h-1 bg-brand-gold rounded-full mr-2.5"></span> Análisis macro-micro
-                    </li>
-                    <li className="flex items-center text-[11px] text-brand-text/80 font-medium tracking-wide">
-                       <span className="w-1 h-1 bg-brand-gold rounded-full mr-2.5"></span> Señales y catalizadores
-                    </li>
-                  </ul>
-
-                  <div className="mt-auto space-y-3">
-                    <input 
-                      type="email" 
-                      placeholder="Email corporativo" 
-                      className="w-full bg-brand-bg border border-brand-border text-brand-text px-3 py-2 text-[11px] focus:outline-none focus:border-brand-navy transition-colors placeholder-brand-muted/40"
-                    />
-                    <button 
-                        onClick={() => alert("Bienvenido a la lista prioritaria.")}
-                        className="w-full py-2 bg-white border border-brand-navy text-brand-navy font-sans text-[9px] font-bold uppercase tracking-[0.2em] hover:bg-brand-navy hover:text-white transition-all duration-300"
-                    >
-                      Suscribirme Gratis
-                    </button>
+                  {/* Level 2: Lead Magnet Text Link */}
+                  <div className="mt-10 md:mt-12">
+                      <button 
+                          onClick={onOpenNewsletter}
+                          className="text-[11px] md:text-[12px] text-gray-400 font-sans font-normal tracking-wide border-b border-transparent hover:border-brand-gold/50 hover:text-brand-muted transition-all pb-0.5"
+                      >
+                          ¿Prefieres probar primero? Recibe nuestros Insights diarios gratis.
+                      </button>
                   </div>
-                </div>
-
-                {/* CARD 2: Partner Pro (Renamed) */}
-                <div className="relative bg-brand-surface border border-brand-border p-5 md:p-6 flex flex-col hover:border-brand-gold/40 hover:shadow-xl hover:shadow-brand-gold/5 transition-all duration-500 rounded-[2px]">
-                  <div className="absolute top-0 right-0 bg-brand-gold/5 border border-brand-gold/20 border-t-0 border-r-0 text-brand-darkGold text-[8px] font-bold uppercase tracking-widest px-3 py-1.5">
-                    Institutional Grade
-                  </div>
-
-                  <div className="mb-3">
-                    <h3 className="font-serif text-lg md:text-xl text-brand-text mb-1">Servicio PARTNERS</h3>
-                    <div className="font-serif text-xl text-brand-text mt-1 mb-1">29,99 € <span className="text-[10px] text-brand-muted font-sans font-normal uppercase tracking-wider">/ mes</span></div>
-                  </div>
-
-                  <ul className="space-y-2 mb-5 flex-grow mt-2">
-                    <li className="flex items-center text-[11px] text-brand-text font-medium tracking-wide">
-                      <CheckIcon className="w-3 h-3 text-brand-darkGold mr-2.5" /> Cartera LIVE (Tiempo Real)
-                    </li>
-                    <li className="flex items-center text-[11px] text-brand-text font-medium tracking-wide">
-                      <CheckIcon className="w-3 h-3 text-brand-darkGold mr-2.5" /> Deep-dives de compañías
-                    </li>
-                    <li className="flex items-center text-[11px] text-brand-text font-medium tracking-wide">
-                      <CheckIcon className="w-3 h-3 text-brand-darkGold mr-2.5" /> Análisis mensual de posiciones de cartera
-                    </li>
-                  </ul>
-
-                  <div className="mt-auto">
-                    <button 
-                        onClick={() => onNavigate('socio-pro')}
-                        className="w-full py-2.5 bg-brand-navy text-white font-sans text-[9px] font-bold uppercase tracking-[0.2em] hover:bg-brand-darkGold hover:text-white transition-all duration-300 shadow-sm"
-                    >
-                      Solicitar Acceso Pro
-                    </button>
-                  </div>
-                </div>
-
               </div>
+
             </div>
           </section>
         );
       };
+
+      // --- COMPONENT: NEWSLETTER MODAL ---
+      const NewsletterModal = ({ onClose, onSkip }) => (
+        <div className="fixed inset-0 z-[80] flex items-center justify-center bg-brand-navy/40 backdrop-blur-sm p-4 animate-fade-in" onClick={onClose}>
+            <div className="bg-white w-full max-w-md p-8 md:p-12 shadow-2xl relative rounded-[2px] animate-slide-up text-center" onClick={e => e.stopPropagation()}>
+                <button onClick={onClose} className="absolute top-4 right-4 text-gray-300 hover:text-gray-600 transition-colors p-2">
+                   <XIcon className="w-5 h-5"/>
+                </button>
+                <div className="mb-6 flex justify-center text-brand-gold">
+                   <HybridIcon className="w-10 h-10 opacity-80" />
+                </div>
+                <h3 className="font-serif text-2xl text-brand-text mb-3">Henao Capital Insights</h3>
+                <p className="text-sm text-gray-500 mb-8 font-sans leading-relaxed px-4">
+                    Recibe cada mañana nuestros briefings de mercado, análisis macro y señales de inversión directamente en tu bandeja de entrada.
+                </p>
+                <input 
+                    type="email" 
+                    placeholder="Email corporativo" 
+                    className="w-full border border-brand-border bg-brand-bg p-4 text-sm mb-4 focus:border-brand-navy focus:ring-0 outline-none transition-colors text-brand-text placeholder-gray-400" 
+                    autoFocus 
+                />
+                <button 
+                    onClick={() => { alert('Gracias. Suscripción confirmada.'); onClose(); }} 
+                    className="w-full bg-brand-navy text-white py-4 text-[10px] font-bold uppercase tracking-[0.2em] hover:bg-brand-text transition-colors shadow-md mb-6"
+                >
+                    Suscribirme Gratis
+                </button>
+                
+                {/* SKIP LINK */}
+                <button 
+                    onClick={() => { onClose(); onSkip(); }}
+                    className="text-[10px] text-brand-muted/60 hover:text-brand-navy transition-colors border-b border-transparent hover:border-brand-navy pb-0.5 font-sans tracking-wide"
+                >
+                   Saltar este paso y ver los insights ahora &rarr;
+                </button>
+            </div>
+        </div>
+      );
 
       // --- COMPONENT: ARTICLE CARD (Used in Archive) ---
       const ArticleCard = ({ article, onClick, variant = 'minimal' }) => {
@@ -548,20 +593,34 @@
          );
       };
 
-      // --- COMPONENT: HOME VIEW (Hero + Services + Limited Insights List) ---
-      const HomeView = ({ onNavigate, onSelectArticle }) => {
+      // --- COMPONENT: HOME VIEW (Hero + Limited Insights List) ---
+      const HomeView = ({ onNavigate, onSelectArticle, onOpenNewsletter, onOpenBaseDetails, onOpenSocioDetails }) => {
         // Limit to latest 4 articles
         const latestArticles = ARTICLES.slice(0, 4);
 
         return (
           <div className="animate-fade-in">
-            <Hero />
-            <Services onNavigate={onNavigate} />
+            {/* Updated Hero with new CTA props */}
+            <Hero 
+                onNavigate={onNavigate} 
+                onOpenNewsletter={onOpenNewsletter}
+                onOpenBaseDetails={onOpenBaseDetails}
+                onOpenSocioDetails={onOpenSocioDetails}
+            />
+            
+            {/* Services Component Removed as per request */}
             
             <section id="latest-insights" className="py-16 md:py-24 bg-white border-t border-brand-border">
                 <div className="max-w-4xl mx-auto px-6 md:px-8">
                     <div className="flex items-end justify-between mb-8 md:mb-12 pb-4 border-b border-brand-border">
                          <h2 className="font-serif text-2xl md:text-3xl text-brand-text">Insights más recientes</h2>
+                         {/* Link to access all insights */}
+                         <button 
+                            onClick={() => onNavigate('archive')} 
+                            className="text-[10px] md:text-[11px] font-sans font-medium text-brand-muted hover:text-brand-navy uppercase tracking-wider border-b border-transparent hover:border-brand-navy transition-all pb-0.5 mb-1"
+                         >
+                            Acceso a todos los Insights &rarr;
+                         </button>
                     </div>
                    
                     <div className="flex flex-col">
@@ -866,6 +925,104 @@
             </div>
         );
       };
+      
+      // --- COMPONENT: BASE AREA VIEW (NEW) ---
+      const BaseAreaView = () => {
+        const [activeTab, setActiveTab] = useState('welcome'); 
+
+        const TABS_BASE = [
+            { id: 'welcome', label: 'Bienvenida' },
+            { id: 'structural-portfolio', label: 'Cartera Estructural' },
+            { id: 'fundamentals', label: 'Fundamentos' },
+            { id: 'analysis-base', label: 'Análisis Base' },
+        ];
+
+        return (
+            <div className="pt-32 pb-24 min-h-screen bg-brand-bg animate-fade-in">
+                {/* Navigation Bar - Optimized for Mobile Horizontal Scroll */}
+                <div className="max-w-5xl mx-auto px-0 md:px-6 mb-8 md:mb-10 border-b border-brand-border/50">
+                    <div 
+                        className="flex flex-nowrap overflow-x-auto no-scrollbar items-center justify-start px-4 md:px-0 gap-2 md:gap-8" 
+                        style={{ 
+                            scrollbarWidth: 'none', 
+                            msOverflowStyle: 'none',
+                            WebkitOverflowScrolling: 'touch'
+                        }}
+                    >
+                        {TABS_BASE.map((tab) => (
+                            <button 
+                                key={tab.id}
+                                onClick={() => setActiveTab(tab.id)}
+                                className={`
+                                    flex-shrink-0 whitespace-nowrap px-2.5 py-2 md:px-0 md:py-0 md:pb-3 transition-all relative text-[11px] md:text-sm font-serif italic tracking-wide
+                                    ${activeTab === tab.id ? 'text-brand-text font-medium' : 'text-brand-muted hover:text-brand-text'}
+                                `}
+                            >
+                                {tab.label}
+                                {/* Active Border Indicator */}
+                                <span className={`absolute bottom-0 left-0 w-full md:w-full h-[1.5px] md:h-[2px] transition-colors ${
+                                    activeTab === tab.id 
+                                    ? 'bg-brand-darkGold' 
+                                    : 'bg-transparent'
+                                }`}></span>
+                            </button>
+                        ))}
+                    </div>
+                </div>
+
+                <div className="max-w-[900px] mx-auto px-6">
+                    
+                    {/* TAB: BIENVENIDA (Carta) */}
+                    {activeTab === 'welcome' && (
+                      <div className="animate-fade-in max-w-[750px] mx-auto">
+                          <article className="relative bg-[#FAF9F6] p-8 md:p-10 border border-brand-gold/30 rounded-[2px] shadow-sm">
+                              <div className="absolute top-0 right-0 bg-brand-gold/10 px-3 py-1 border-l border-b border-brand-gold/20">
+                                  <span className="text-[9px] font-bold uppercase tracking-widest text-brand-darkGold flex items-center gap-1">
+                                      <span className="w-1.5 h-1.5 rounded-full bg-brand-darkGold"></span>
+                                      Plan Base
+                                  </span>
+                              </div>
+
+                              <header className="mb-6 mt-2">
+                                  <h1 className="font-serif text-2xl md:text-3xl text-brand-text leading-tight">
+                                      Bienvenido a la base.
+                                  </h1>
+                              </header>
+
+                              <div className="prose prose-stone prose-lg max-w-none font-serif text-brand-text/90 leading-relaxed text-justify text-[15px] md:text-[16px]">
+                                  <p className="mb-4">
+                                      Si estás aquí, has decidido dejar de improvisar. Bienvenido al primer escalón de Henao Capital.
+                                  </p>
+                                  <p className="mb-4">
+                                      Este entorno no es para buscar el "pelotazo" rápido, sino para entender los cimientos. Aquí compartiremos la estructura mental y las referencias necesarias para que empieces a operar con criterio propio y seguridad.
+                                  </p>
+                                  <p className="mb-4">
+                                      En la pestaña 'Cartera Estructural' verás una asignación de activos estratégica de referencia, diseñada para la preservación y el crecimiento a largo plazo.
+                                  </p>
+                                  <p className="mb-0">
+                                      Empieza por lo esencial: entender el juego antes de jugarlo. Gracias por la confianza.
+                                  </p>
+                              </div>
+                          </article>
+                      </div>
+                    )}
+
+                    {/* TABS: Placeholder Content */}
+                    {activeTab !== 'welcome' && (
+                        <div className="animate-fade-in flex flex-col items-center justify-center py-20 border border-dashed border-brand-border rounded-[2px] bg-brand-surface/50">
+                             <div className="w-12 h-12 text-brand-muted/30 mb-4">
+                                 <LockIcon className="w-full h-full" />
+                             </div>
+                             <h3 className="font-serif text-xl text-brand-text mb-2">Próximamente</h3>
+                             <p className="text-sm text-brand-muted font-sans mb-6">
+                                 Contenido exclusivo del Plan Base. Próxima actualización: Diciembre 2025.
+                             </p>
+                        </div>
+                    )}
+                </div>
+            </div>
+        );
+      };
 
       // --- COMPONENT: FOOTER ---
       const Footer = () => {
@@ -885,18 +1042,18 @@
 
       // --- MAIN APP ---
       function App() {
-        const [view, setView] = useState('home'); // 'home' | 'archive' | 'article' | 'socio-pro'
+        const [view, setView] = useState('home'); // 'home' | 'archive' | 'article' | 'socio-pro' | 'base-area'
         const [selectedArticle, setSelectedArticle] = useState(null);
         const [showTrackRecord, setShowTrackRecord] = useState(false);
+        const [showNewsletter, setShowNewsletter] = useState(false);
+        
+        // Modal States for Service Details
+        const [showBaseDetails, setShowBaseDetails] = useState(false);
+        const [showSocioDetails, setShowSocioDetails] = useState(false);
 
         const handleNavigate = (destination) => {
             window.scrollTo(0, 0);
-            if (destination === 'insights') {
-                // Default Insights link goes to Archive
-                setView('archive');
-            } else {
-                setView(destination);
-            }
+            setView(destination);
             
             if (destination !== 'article') {
                 setSelectedArticle(null);
@@ -909,13 +1066,24 @@
             window.scrollTo(0, 0);
         };
 
+        const handleNewsletterSkip = () => {
+            // Skip directly to the archive/insights view
+            handleNavigate('archive');
+        };
+
         return (
           <div className="min-h-screen flex flex-col bg-brand-bg selection:bg-brand-border selection:text-brand-navy">
             <Header onNavigate={handleNavigate} onOpenTrackRecord={() => setShowTrackRecord(true)} />
             
             <main className="flex-grow relative">
               {view === 'home' && (
-                <HomeView onNavigate={handleNavigate} onSelectArticle={handleArticleSelect} />
+                <HomeView 
+                    onNavigate={handleNavigate} 
+                    onSelectArticle={handleArticleSelect}
+                    onOpenNewsletter={() => setShowNewsletter(true)}
+                    onOpenBaseDetails={() => setShowBaseDetails(true)}
+                    onOpenSocioDetails={() => setShowSocioDetails(true)}
+                />
               )}
 
               {view === 'archive' && (
@@ -928,6 +1096,46 @@
 
               {view === 'socio-pro' && (
                   <SocioProView />
+              )}
+              
+              {view === 'base-area' && (
+                  <BaseAreaView />
+              )}
+
+              {/* NEWSLETTER MODAL */}
+              {showNewsletter && (
+                  <NewsletterModal 
+                      onClose={() => setShowNewsletter(false)} 
+                      onSkip={handleNewsletterSkip}
+                  />
+              )}
+              
+              {/* SERVICE DETAILS MODALS */}
+              {showBaseDetails && (
+                  <DetailsModal 
+                      title="Lo esencial para empezar bien."
+                      items={[
+                          "Acceso al Área Privada BASE.",
+                          "Carta de Bienvenida y Estructura Mental del Gestor.",
+                          "Cartera Estructural de Referencia (Asignación de Activos a Largo Plazo).",
+                          "Análisis de Fundamentos de Inversión."
+                      ]}
+                      onClose={() => setShowBaseDetails(false)}
+                  />
+              )}
+
+              {showSocioDetails && (
+                  <DetailsModal 
+                      title="Inversión institucional. Ejecución real."
+                      items={[
+                          "Acceso al Área Privada SOCIOS (Institutional Grade).",
+                          "Cartera LIVE: Gestión de capital real en tiempo real.",
+                          "Notificaciones de Compra/Venta.",
+                          "Tesis de Inversión 'Deep Dive' (Investigaciones Exclusivas).",
+                          "Análisis Mensual de Posiciones y Estrategia."
+                      ]}
+                      onClose={() => setShowSocioDetails(false)}
+                  />
               )}
 
               {/* TRACK RECORD MODAL */}
