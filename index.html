@@ -35,23 +35,23 @@
                 surface: '#FFFFFF',  // Pure white for cards
                 text: '#222222',     // Charcoal - soft black
                 muted: '#666666',    // Slate Gray
-                navy: '#0F172A',     // Deep Navy Blue (Primary Action)
-                gold: '#BFA15F',     // Muted Bronze/Gold (Accents)
+                navy: '#0F172A',     // Deep Navy Blue
+                gold: '#BFA15F',     // Muted Bronze/Gold
                 darkGold: '#C5A059', // Darker Gold for text
                 border: '#E5E5E5'    // Very light gray
               }
             },
             animation: {
-              'fade-in': 'fadeIn 0.6s ease-out',
-              'slide-up': 'slideUp 0.4s ease-out',
+              'fade-in': 'fadeIn 0.8s ease-out',
+              'slide-down': 'slideDown 0.4s ease-out',
             },
             keyframes: {
               fadeIn: {
                 '0%': { opacity: '0' },
                 '100%': { opacity: '1' },
               },
-              slideUp: {
-                 '0%': { opacity: '0', transform: 'translateY(20px)' },
+              slideDown: {
+                 '0%': { opacity: '0', transform: 'translateY(-10px)' },
                  '100%': { opacity: '1', transform: 'translateY(0)' },
               }
             }
@@ -60,129 +60,71 @@
       }
     </script>
     <style>
-      body { background-color: #FDFBF7; color: #222222; }
+      body { 
+        background-color: #FDFBF7; 
+        color: #222222; 
+        overflow-x: hidden;
+        /* Massive Density Subtle Texture */
+        background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 2000 2000' width='2000' height='2000'%3E%3Cdefs%3E%3Cg id='shamrock'%3E%3Cpath d='M12 2.5C12 2.5 15 5.5 15 8C15 9.5 14 10.5 13 10.5C12.5 10.5 12 10.2 12 9.8C12 10.2 11.5 10.5 11 10.5C10 10.5 9 9.5 9 8C9 5.5 12 2.5 12 2.5Z' /%3E%3Cpath d='M2.5 12C2.5 12 5.5 15 8 15C9.5 15 10.5 14 10.5 13C10.5 12.5 10.2 12 9.8 12C10.2 12 10.5 11.5 10.5 11C10.5 10 9.5 9 8 9C5.5 9 2.5 12 2.5 12Z' /%3E%3Cpath d='M21.5 12C21.5 12 18.5 9 16 9C14.5 9 13.5 10 13.5 11C13.5 11.5 13.8 12 14.2 12C13.8 12 13.5 12.5 13.5 13C13.5 14 14.5 15 16 15C18.5 15 21.5 12 21.5 12Z' /%3E%3Cpath d='M12 12 Q12 20 16 23' fill='none' /%3E%3C/g%3E%3C/defs%3E%3Cstyle%3E use { fill: none; stroke: %23999999; stroke-opacity: 0.18; stroke-width: 0.2px; } %3C/style%3E%3Cuse href='%23shamrock' transform='translate(100,150) rotate(45 12 12) scale(0.8)' /%3E%3Cuse href='%23shamrock' transform='translate(500,600) rotate(120 12 12) scale(1.1)' /%3E%3Cuse href='%23shamrock' transform='translate(1200,300) rotate(200 12 12) scale(0.9)' /%3E%3Cuse href='%23shamrock' transform='translate(1800,50) rotate(15 12 12) scale(0.7)' /%3E%3Cuse href='%23shamrock' transform='translate(80,1900) rotate(300 12 12) scale(1.2)' /%3E%3Cuse href='%23shamrock' transform='translate(900,1200) rotate(90 12 12) scale(0.6)' /%3E%3Cuse href='%23shamrock' transform='translate(1500,800) rotate(180 12 12) scale(1.0)' /%3E%3Cuse href='%23shamrock' transform='translate(300,800) rotate(270 12 12) scale(0.85)' /%3E%3Cuse href='%23shamrock' transform='translate(650,150) rotate(30 12 12) scale(0.95)' /%3E%3Cuse href='%23shamrock' transform='translate(1100,1600) rotate(220 12 12) scale(0.75)' /%3E%3Cuse href='%23shamrock' transform='translate(1900,1900) rotate(50 12 12) scale(1.1)' /%3E%3Cuse href='%23shamrock' transform='translate(50,500) rotate(140 12 12) scale(0.65)' /%3E%3Cuse href='%23shamrock' transform='translate(1350,450) rotate(330 12 12) scale(0.9)' /%3E%3Cuse href='%23shamrock' transform='translate(700,900) rotate(80 12 12) scale(0.8)' /%3E%3Cuse href='%23shamrock' transform='translate(250,1300) rotate(200 12 12) scale(1.15)' /%3E%3Cuse href='%23shamrock' transform='translate(1600,200) rotate(10 12 12) scale(0.7)' /%3E%3Cuse href='%23shamrock' transform='translate(1000,50) rotate(160 12 12) scale(0.9)' /%3E%3Cuse href='%23shamrock' transform='translate(400,1800) rotate(250 12 12) scale(0.8)' /%3E%3Cuse href='%23shamrock' transform='translate(1750,1400) rotate(60 12 12) scale(1.0)' /%3E%3Cuse href='%23shamrock' transform='translate(200,250) rotate(310 12 12) scale(0.6)' /%3E%3Cuse href='%23shamrock' transform='translate(850,550) rotate(110 12 12) scale(0.9)' /%3E%3Cuse href='%23shamrock' transform='translate(1450,100) rotate(230 12 12) scale(0.7)' /%3E%3Cuse href='%23shamrock' transform='translate(550,1150) rotate(350 12 12) scale(1.05)' /%3E%3Cuse href='%23shamrock' transform='translate(1250,1850) rotate(40 12 12) scale(0.8)' /%3E%3Cuse href='%23shamrock' transform='translate(50,950) rotate(190 12 12) scale(0.75)' /%3E%3Cuse href='%23shamrock' transform='translate(1950,750) rotate(280 12 12) scale(1.1)' /%3E%3Cuse href='%23shamrock' transform='translate(750,1600) rotate(130 12 12) scale(0.6)' /%3E%3Cuse href='%23shamrock' transform='translate(350,400) rotate(20 12 12) scale(0.95)' /%3E%3Cuse href='%23shamrock' transform='translate(1650,1100) rotate(260 12 12) scale(0.85)' /%3E%3Cuse href='%23shamrock' transform='translate(950,250) rotate(70 12 12) scale(1.2)' /%3E%3Cuse href='%23shamrock' transform='translate(150,1650) rotate(320 12 12) scale(0.7)' /%3E%3Cuse href='%23shamrock' transform='translate(1150,750) rotate(150 12 12) scale(0.9)' /%3E%3Cuse href='%23shamrock' transform='translate(600,1950) rotate(5 12 12) scale(0.8)' /%3E%3Cuse href='%23shamrock' transform='translate(1850,400) rotate(210 12 12) scale(1.0)' /%3E%3Cuse href='%23shamrock' transform='translate(450,750) rotate(100 12 12) scale(0.65)' /%3E%3Cuse href='%23shamrock' transform='translate(1300,1300) rotate(290 12 12) scale(0.95)' /%3E%3Cuse href='%23shamrock' transform='translate(800,100) rotate(170 12 12) scale(0.75)' /%3E%3Cuse href='%23shamrock' transform='translate(100,1100) rotate(340 12 12) scale(1.1)' /%3E%3Cuse href='%23shamrock' transform='translate(1550,1700) rotate(25 12 12) scale(0.8)' /%3E%3Cuse href='%23shamrock' transform='translate(1050,1050) rotate(180 12 12) scale(0.9)' /%3E%3Cuse href='%23shamrock' transform='translate(200,700) rotate(85 12 12) scale(0.6)' /%3E%3Cuse href='%23shamrock' transform='translate(1400,550) rotate(235 12 12) scale(1.0)' /%3E%3Cuse href='%23shamrock' transform='translate(1900,250) rotate(305 12 12) scale(0.8)' /%3E%3Cuse href='%23shamrock' transform='translate(500,1450) rotate(125 12 12) scale(0.9)' /%3E%3Cuse href='%23shamrock' transform='translate(1700,950) rotate(15 12 12) scale(0.7)' /%3E%3Cuse href='%23shamrock' transform='translate(900,1800) rotate(265 12 12) scale(1.1)' /%3E%3Cuse href='%23shamrock' transform='translate(1150,200) rotate(55 12 12) scale(0.75)' /%3E%3Cuse href='%23shamrock' transform='translate(300,1750) rotate(195 12 12) scale(0.85)' /%3E%3Cuse href='%23shamrock' transform='translate(1250,900) rotate(335 12 12) scale(0.95)' /%3E%3Cuse href='%23shamrock' transform='translate(650,450) rotate(145 12 12) scale(0.65)' /%3E%3Cuse href='%23shamrock' transform='translate(1600,1550) rotate(275 12 12) scale(1.05)' /%3E%3Cuse href='%23shamrock' transform='translate(750,650) rotate(95 12 12) scale(0.8)' /%3E%3Cuse href='%23shamrock' transform='translate(1350,50) rotate(225 12 12) scale(0.9)' /%3E%3Cuse href='%23shamrock' transform='translate(50,1400) rotate(10 12 12) scale(0.7)' /%3E%3Cuse href='%23shamrock' transform='translate(1800,1250) rotate(165 12 12) scale(1.1)' /%3E%3Cuse href='%23shamrock' transform='translate(1000,1400) rotate(315 12 12) scale(0.85)' /%3E%3Cuse href='%23shamrock' transform='translate(250,100) rotate(45 12 12) scale(0.6)' /%3E%3Cuse href='%23shamrock' transform='translate(1500,400) rotate(200 12 12) scale(1.0)' /%3E%3Cuse href='%23shamrock' transform='translate(400,950) rotate(350 12 12) scale(0.8)' /%3E%3Cuse href='%23shamrock' transform='translate(1100,550) rotate(75 12 12) scale(0.9)' /%3E%3Cuse href='%23shamrock' transform='translate(1950,150) rotate(240 12 12) scale(0.75)' /%3E%3Cuse href='%23shamrock' transform='translate(600,1300) rotate(115 12 12) scale(1.1)' /%3E%3Cuse href='%23shamrock' transform='translate(1200,1750) rotate(295 12 12) scale(0.65)' /%3E%3Cuse href='%23shamrock' transform='translate(850,1500) rotate(160 12 12) scale(0.9)' /%3E%3Cuse href='%23shamrock' transform='translate(150,600) rotate(30 12 12) scale(0.8)' /%3E%3Cuse href='%23shamrock' transform='translate(1750,800) rotate(210 12 12) scale(1.0)' /%3E%3Cuse href='%23shamrock' transform='translate(350,1550) rotate(325 12 12) scale(0.7)' /%3E%3Cuse href='%23shamrock' transform='translate(1450,1150) rotate(65 12 12) scale(0.95)' /%3E%3Cuse href='%23shamrock' transform='translate(700,250) rotate(185 12 12) scale(0.85)' /%3E%3Cuse href='%23shamrock' transform='translate(1050,1900) rotate(5 12 12) scale(1.1)' /%3E%3Cuse href='%23shamrock' transform='translate(1300,250) rotate(255 12 12) scale(0.6)' /%3E%3Cuse href='%23shamrock' transform='translate(50,800) rotate(135 12 12) scale(0.75)' /%3E%3Cuse href='%23shamrock' transform='translate(1900,1100) rotate(315 12 12) scale(0.9)' /%3E%3Cuse href='%23shamrock' transform='translate(550,100) rotate(80 12 12) scale(1.0)' /%3E%3Cuse href='%23shamrock' transform='translate(950,700) rotate(230 12 12) scale(0.7)' /%3E%3Cuse href='%23shamrock' transform='translate(1650,50) rotate(345 12 12) scale(0.85)' /%3E%3Cuse href='%23shamrock' transform='translate(200,1200) rotate(120 12 12) scale(0.65)' /%3E%3Cuse href='%23shamrock' transform='translate(1150,1250) rotate(260 12 12) scale(1.1)' /%3E%3Cuse href='%23shamrock' transform='translate(800,1750) rotate(40 12 12) scale(0.8)' /%3E%3Cuse href='%23shamrock' transform='translate(1500,1450) rotate(190 12 12) scale(0.95)' /%3E%3Cuse href='%23shamrock' transform='translate(450,300) rotate(300 12 12) scale(0.75)' /%3E%3Cuse href='%23shamrock' transform='translate(1850,1650) rotate(50 12 12) scale(0.9)' /%3E%3Cuse href='%23shamrock' transform='translate(1250,500) rotate(215 12 12) scale(1.05)' /%3E%3Cuse href='%23shamrock' transform='translate(100,1850) rotate(330 12 12) scale(0.6)' /%3E%3Cuse href='%23shamrock' transform='translate(750,1100) rotate(90 12 12) scale(0.85)' /%3E%3Cuse href='%23shamrock' transform='translate(1400,900) rotate(245 12 12) scale(0.7)' /%3E%3Cuse href='%23shamrock' transform='translate(1050,350) rotate(10 12 12) scale(0.95)' /%3E%3Cuse href='%23shamrock' transform='translate(300,650) rotate(150 12 12) scale(0.8)' /%3E%3Cuse href='%23shamrock' transform='translate(1700,200) rotate(285 12 12) scale(1.1)' /%3E%3Cuse href='%23shamrock' transform='translate(900,150) rotate(60 12 12) scale(0.65)' /%3E%3Cuse href='%23shamrock' transform='translate(1600,1250) rotate(175 12 12) scale(0.9)' /%3E%3Cuse href='%23shamrock' transform='translate(500,850) rotate(310 12 12) scale(0.75)' /%3E%3Cuse href='%23shamrock' transform='translate(1100,1900) rotate(25 12 12) scale(1.0)' /%3E%3Cuse href='%23shamrock' transform='translate(250,1550) rotate(205 12 12) scale(0.85)' /%3E%3Cuse href='%23shamrock' transform='translate(1950,550) rotate(355 12 12) scale(0.7)' /%3E%3Cuse href='%23shamrock' transform='translate(850,350) rotate(130 12 12) scale(0.95)' /%3E%3Cuse href='%23shamrock' transform='translate(1350,800) rotate(270 12 12) scale(0.8)' /%3E%3Cuse href='%23shamrock' transform='translate(650,1750) rotate(105 12 12) scale(1.05)' /%3E%3Cuse href='%23shamrock' transform='translate(150,200) rotate(250 12 12) scale(0.6)' /%3E%3Cuse href='%23shamrock' transform='translate(1800,1050) rotate(15 12 12) scale(0.9)' /%3E%3Cuse href='%23shamrock' transform='translate(1200,150) rotate(160 12 12) scale(0.75)' /%3E%3Cuse href='%23shamrock' transform='translate(400,1350) rotate(335 12 12) scale(1.1)' /%3E%3Cuse href='%23shamrock' transform='translate(950,950) rotate(75 12 12) scale(0.65)' /%3E%3Cuse href='%23shamrock' transform='translate(1450,1650) rotate(220 12 12) scale(0.85)' /%3E%3Cuse href='%23shamrock' transform='translate(600,500) rotate(305 12 12) scale(0.95)' /%3E%3Cuse href='%23shamrock' transform='translate(200,1950) rotate(40 12 12) scale(0.7)' /%3E%3Cuse href='%23shamrock' transform='translate(1750,350) rotate(195 12 12) scale(1.0)' /%3E%3Cuse href='%23shamrock' transform='translate(1000,1150) rotate(280 12 12) scale(0.8)' /%3E%3Cuse href='%23shamrock' transform='translate(1300,650) rotate(115 12 12) scale(0.9)' /%3E%3Cuse href='%23shamrock' transform='translate(350,900) rotate(345 12 12) scale(0.75)' /%3E%3Cuse href='%23shamrock' transform='translate(1550,50) rotate(170 12 12) scale(1.1)' /%3E%3Cuse href='%23shamrock' transform='translate(850,1050) rotate(55 12 12) scale(0.65)' /%3E%3Cuse href='%23shamrock' transform='translate(50,1650) rotate(235 12 12) scale(0.95)' /%3E%3Cuse href='%23shamrock' transform='translate(1900,1400) rotate(30 12 12) scale(0.85)' /%3E%3Cuse href='%23shamrock' transform='translate(700,1300) rotate(155 12 12) scale(0.7)' /%3E%3Cuse href='%23shamrock' transform='translate(1150,1550) rotate(290 12 12) scale(1.0)' /%3E%3Cuse href='%23shamrock' transform='translate(1650,750) rotate(85 12 12) scale(0.6)' /%3E%3Cuse href='%23shamrock' transform='translate(500,200) rotate(260 12 12) scale(0.9)' /%3E%3Cuse href='%23shamrock' transform='translate(1400,1850) rotate(120 12 12) scale(0.8)' /%3E%3Cuse href='%23shamrock' transform='translate(1050,600) rotate(350 12 12) scale(0.75)' /%3E%3Cuse href='%23shamrock' transform='translate(250,550) rotate(205 12 12) scale(1.05)' /%3E%3Cuse href='%23shamrock' transform='translate(1850,1200) rotate(45 12 12) scale(0.65)' /%3E%3Cuse href='%23shamrock' transform='translate(900,400) rotate(180 12 12) scale(0.95)' /%3E%3Cuse href='%23shamrock' transform='translate(1250,100) rotate(315 12 12) scale(0.7)' /%3E%3Cuse href='%23shamrock' transform='translate(300,1400) rotate(95 12 12) scale(0.85)' /%3E%3Cuse href='%23shamrock' transform='translate(1600,950) rotate(230 12 12) scale(1.1)' /%3E%3Cuse href='%23shamrock' transform='translate(750,1850) rotate(10 12 12) scale(0.6)' /%3E%3Cuse href='%23shamrock' transform='translate(1500,1350) rotate(135 12 12) scale(0.9)' /%3E%3Cuse href='%23shamrock' transform='translate(600,750) rotate(275 12 12) scale(0.8)' /%3E%3Cuse href='%23shamrock' transform='translate(1100,300) rotate(60 12 12) scale(1.0)' /%3E%3Cuse href='%23shamrock' transform='translate(1950,1650) rotate(215 12 12) scale(0.75)' /%3E%3Cuse href='%23shamrock' transform='translate(450,1150) rotate(340 12 12) scale(0.65)' /%3E%3Cuse href='%23shamrock' transform='translate(1300,1600) rotate(190 12 12) scale(0.95)' /%3E%3Cuse href='%23shamrock' transform='translate(150,850) rotate(25 12 12) scale(0.85)' /%3E%3Cuse href='%23shamrock' transform='translate(1700,500) rotate(165 12 12) scale(0.7)' /%3E%3Cuse href='%23shamrock' transform='translate(1000,1700) rotate(305 12 12) scale(1.05)' /%3E%3Cuse href='%23shamrock' transform='translate(550,1600) rotate(80 12 12) scale(0.6)' /%3E%3Cuse href='%23shamrock' transform='translate(1350,1200) rotate(245 12 12) scale(0.9)' /%3E%3Cuse href='%23shamrock' transform='translate(800,650) rotate(110 12 12) scale(0.8)' /%3E%3Cuse href='%23shamrock' transform='translate(200,1500) rotate(320 12 12) scale(0.75)' /%3E%3Cuse href='%23shamrock' transform='translate(1850,900) rotate(175 12 12) scale(1.0)' /%3E%3Cuse href='%23shamrock' transform='translate(1150,450) rotate(35 12 12) scale(0.65)' /%3E%3Cuse href='%23shamrock' transform='translate(400,250) rotate(295 12 12) scale(0.95)' /%3E%3Cuse href='%23shamrock' transform='translate(1550,1850) rotate(150 12 12) scale(0.7)' /%3E%3Cuse href='%23shamrock' transform='translate(950,1350) rotate(225 12 12) scale(0.85)' /%3E%3Cuse href='%23shamrock' transform='translate(1250,750) rotate(90 12 12) scale(1.1)' /%3E%3Cuse href='%23shamrock' transform='translate(700,1950) rotate(335 12 12) scale(0.6)' /%3E%3Cuse href='%23shamrock' transform='translate(1750,100) rotate(200 12 12) scale(0.9)' /%3E%3Cuse href='%23shamrock' transform='translate(350,100) rotate(55 12 12) scale(0.75)' /%3E%3Cuse href='%23shamrock' transform='translate(1450,1500) rotate(270 12 12) scale(0.95)' /%3E%3Cuse href='%23shamrock' transform='translate(1050,850) rotate(125 12 12) scale(0.8)' /%3E%3Cuse href='%23shamrock' transform='translate(100,300) rotate(15 12 12) scale(0.65)' /%3E%3Cuse href='%23shamrock' transform='translate(1600,600) rotate(265 12 12) scale(1.05)' /%3E%3Cuse href='%23shamrock' transform='translate(600,1100) rotate(140 12 12) scale(0.7)' /%3E%3Cuse href='%23shamrock' transform='translate(1900,1800) rotate(310 12 12) scale(0.9)' /%3E%3Cuse href='%23shamrock' transform='translate(850,250) rotate(185 12 12) scale(0.85)' /%3E%3Cuse href='%23shamrock' transform='translate(1200,1350) rotate(50 12 12) scale(0.75)' /%3E%3Cuse href='%23shamrock' transform='translate(500,1750) rotate(220 12 12) scale(1.0)' /%3E%3Cuse href='%23shamrock' transform='translate(1500,250) rotate(350 12 12) scale(0.6)' /%3E%3Cuse href='%23shamrock' transform='translate(250,1700) rotate(95 12 12) scale(0.8)' /%3E%3Cuse href='%23shamrock' transform='translate(1800,1500) rotate(245 12 12) scale(0.9)' /%3E%3Cuse href='%23shamrock' transform='translate(1350,950) rotate(115 12 12) scale(0.7)' /%3E%3Cuse href='%23shamrock' transform='translate(900,50) rotate(325 12 12) scale(1.1)' /%3E%3Cuse href='%23shamrock' transform='translate(1150,1050) rotate(165 12 12) scale(0.65)' /%3E%3Cuse href='%23shamrock' transform='translate(450,1450) rotate(30 12 12) scale(0.95)' /%3E%3Cuse href='%23shamrock' transform='translate(1700,1850) rotate(195 12 12) scale(0.8)' /%3E%3Cuse href='%23shamrock' transform='translate(750,400) rotate(275 12 12) scale(0.75)' /%3E%3Cuse href='%23shamrock' transform='translate(100,750) rotate(130 12 12) scale(0.9)' /%3E%3Cuse href='%23shamrock' transform='translate(1400,100) rotate(345 12 12) scale(0.85)' /%3E%3Cuse href='%23shamrock' transform='translate(1950,1000) rotate(210 12 12) scale(0.6)' /%3E%3Cuse href='%23shamrock' transform='translate(550,650) rotate(70 12 12) scale(1.0)' /%3E%3Cuse href='%23shamrock' transform='translate(1250,1400) rotate(295 12 12) scale(0.7)' /%3E%3Cuse href='%23shamrock' transform='translate(300,200) rotate(155 12 12) scale(0.8)' /%3E%3Cuse href='%23shamrock' transform='translate(1650,1350) rotate(320 12 12) scale(0.9)' /%3E%3Cuse href='%23shamrock' transform='translate(800,1900) rotate(25 12 12) scale(0.65)' /%3E%3Cuse href='%23shamrock' transform='translate(1100,800) rotate(180 12 12) scale(1.05)' /%3E%3Cuse href='%23shamrock' transform='translate(150,1300) rotate(250 12 12) scale(0.75)' /%3E%3Cuse href='%23shamrock' transform='translate(1850,600) rotate(100 12 12) scale(0.85)' /%3E%3Cuse href='%23shamrock' transform='translate(650,1450) rotate(355 12 12) scale(0.6)' /%3E%3Cuse href='%23shamrock' transform='translate(1550,1050) rotate(205 12 12) scale(0.95)' /%3E%3Cuse href='%23shamrock' transform='translate(1050,1500) rotate(55 12 12) scale(0.8)' /%3E%3Cuse href='%23shamrock' transform='translate(400,600) rotate(145 12 12) scale(0.7)' /%3E%3Cuse href='%23shamrock' transform='translate(1300,1900) rotate(285 12 12) scale(1.0)' /%3E%3Cuse href='%23shamrock' transform='translate(200,900) rotate(40 12 12) scale(0.65)' /%3E%3Cuse href='%23shamrock' transform='translate(1750,1700) rotate(170 12 12) scale(0.9)' /%3E%3Cuse href='%23shamrock' transform='translate(950,1600) rotate(315 12 12) scale(0.75)' /%3E%3Cuse href='%23shamrock' transform='translate(500,1100) rotate(85 12 12) scale(0.85)' /%3E%3Cuse href='%23shamrock' transform='translate(1450,500) rotate(230 12 12) scale(0.95)' /%3E%3Cuse href='%23shamrock' transform='translate(1150,50) rotate(340 12 12) scale(0.6)' /%3E%3Cuse href='%23shamrock' transform='translate(850,800) rotate(195 12 12) scale(1.05)' /%3E%3Cuse href='%23shamrock' transform='translate(100,1900) rotate(60 12 12) scale(0.7)' /%3E%3Cuse href='%23shamrock' transform='translate(1600,250) rotate(275 12 12) scale(0.9)' /%3E%3Cuse href='%23shamrock' transform='translate(1250,1650) rotate(125 12 12) scale(0.8)' /%3E%3Cuse href='%23shamrock' transform='translate(350,1250) rotate(15 12 12) scale(0.75)' /%3E%3Cuse href='%23shamrock' transform='translate(1900,450) rotate(150 12 12) scale(0.65)' /%3E%3Cuse href='%23shamrock' transform='translate(700,1550) rotate(305 12 12) scale(0.95)' /%3E%3Cuse href='%23shamrock' transform='translate(1400,1250) rotate(215 12 12) scale(0.85)' /%3E%3Cuse href='%23shamrock' transform='translate(550,350) rotate(90 12 12) scale(1.0)' /%3E%3Cuse href='%23shamrock' transform='translate(1700,1450) rotate(330 12 12) scale(0.7)' /%3E%3Cuse href='%23shamrock' transform='translate(1050,1250) rotate(240 12 12) scale(0.9)' /%3E%3Cuse href='%23shamrock' transform='translate(250,850) rotate(45 12 12) scale(0.8)' /%3E%3Cuse href='%23shamrock' transform='translate(1550,700) rotate(185 12 12) scale(0.6)' /%3E%3Cuse href='%23shamrock' transform='translate(900,1950) rotate(110 12 12) scale(1.1)' /%3E%3Cuse href='%23shamrock' transform='translate(1300,400) rotate(260 12 12) scale(0.75)' /%3E%3Cuse href='%23shamrock' transform='translate(450,1700) rotate(135 12 12) scale(0.9)' /%3E%3Cuse href='%23shamrock' transform='translate(1800,1900) rotate(350 12 12) scale(0.65)' /%3E%3Cuse href='%23shamrock' transform='translate(750,900) rotate(25 12 12) scale(0.85)' /%3E%3Cuse href='%23shamrock' transform='translate(1100,1350) rotate(170 12 12) scale(0.95)' /%3E%3Cuse href='%23shamrock' transform='translate(1950,800) rotate(295 12 12) scale(0.7)' /%3E%3Cuse href='%23shamrock' transform='translate(600,150) rotate(205 12 12) scale(0.8)' /%3E%3Cuse href='%23shamrock' transform='translate(150,450) rotate(55 12 12) scale(1.0)' /%3E%3Cuse href='%23shamrock' transform='translate(1450,1750) rotate(315 12 12) scale(0.6)' /%3E%3Cuse href='%23shamrock' transform='translate(1200,600) rotate(140 12 12) scale(0.9)' /%3E%3Cuse href='%23shamrock' transform='translate(300,1150) rotate(230 12 12) scale(0.75)' /%3E%3Cuse href='%23shamrock' transform='translate(1650,1600) rotate(10 12 12) scale(0.85)' /%3E%3Cuse href='%23shamrock' transform='translate(800,1300) rotate(120 12 12) scale(0.7)' /%3E%3Cuse href='%23shamrock' transform='translate(1000,500) rotate(280 12 12) scale(1.05)' /%3E%3Cuse href='%23shamrock' transform='translate(1850,1350) rotate(190 12 12) scale(0.65)' /%3E%3Cuse href='%23shamrock' transform='translate(500,1900) rotate(75 12 12) scale(0.9)' /%3E%3Cuse href='%23shamrock' transform='translate(1350,200) rotate(325 12 12) scale(0.8)' /%3E%3Cuse href='%23shamrock' transform='translate(650,950) rotate(165 12 12) scale(0.7)' /%3E%3Cuse href='%23shamrock' transform='translate(1500,600) rotate(35 12 12) scale(0.95)' /%3E%3Cuse href='%23shamrock' transform='translate(200,1650) rotate(255 12 12) scale(0.8)' /%3E%3Cuse href='%23shamrock' transform='translate(1750,550) rotate(105 12 12) scale(0.6)' /%3E%3Cuse href='%23shamrock' transform='translate(950,1100) rotate(220 12 12) scale(0.9)' /%3E%3Cuse href='%23shamrock' transform='translate(1250,1950) rotate(345 12 12) scale(1.0)' /%3E%3Cuse href='%23shamrock' transform='translate(400,500) rotate(155 12 12) scale(0.75)' /%3E%3Cuse href='%23shamrock' transform='translate(1600,1800) rotate(290 12 12) scale(0.85)' /%3E%3Cuse href='%23shamrock' transform='translate(1150,850) rotate(60 12 12) scale(0.7)' /%3E%3Cuse href='%23shamrock' transform='translate(750,150) rotate(200 12 12) scale(0.9)' /%3E%3Cuse href='%23shamrock' transform='translate(1900,1150) rotate(310 12 12) scale(0.65)' /%3E%3Cuse href='%23shamrock' transform='translate(100,1550) rotate(135 12 12) scale(0.95)' /%3E%3Cuse href='%23shamrock' transform='translate(1400,350) rotate(275 12 12) scale(0.8)' /%3E%3Cuse href='%23shamrock' transform='translate(850,1750) rotate(30 12 12) scale(1.05)' /%3E%3Cuse href='%23shamrock' transform='translate(1300,1100) rotate(180 12 12) scale(0.7)' /%3E%3Cuse href='%23shamrock' transform='translate(350,1800) rotate(95 12 12) scale(0.85)' /%3E%3Cuse href='%23shamrock' transform='translate(1700,1300) rotate(230 12 12) scale(0.9)' /%3E%3Cuse href='%23shamrock' transform='translate(550,1300) rotate(350 12 12) scale(0.6)' /%3E%3Cuse href='%23shamrock' transform='translate(1100,1650) rotate(85 12 12) scale(0.95)' /%3E%3Cuse href='%23shamrock' transform='translate(1550,1400) rotate(240 12 12) scale(0.75)' /%3E%3Cuse href='%23shamrock' transform='translate(900,650) rotate(15 12 12) scale(1.0)' /%3E%3Cuse href='%23shamrock' transform='translate(250,350) rotate(145 12 12) scale(0.8)' /%3E%3Cuse href='%23shamrock' transform='translate(1800,250) rotate(325 12 12) scale(0.7)' /%3E%3Cuse href='%23shamrock' transform='translate(1200,900) rotate(195 12 12) scale(0.85)' /%3E%3Cuse href='%23shamrock' transform='translate(650,1250) rotate(75 12 12) scale(0.9)' /%3E%3Cuse href='%23shamrock' transform='translate(1450,750) rotate(250 12 12) scale(0.65)' /%3E%3Cuse href='%23shamrock' transform='translate(450,850) rotate(120 12 12) scale(0.95)' /%3E%3Cuse href='%23shamrock' transform='translate(1650,450) rotate(335 12 12) scale(1.05)' /%3E%3Cuse href='%23shamrock' transform='translate(1000,200) rotate(50 12 12) scale(0.6)' /%3E%3Cuse href='%23shamrock' transform='translate(150,1800) rotate(215 12 12) scale(0.8)' /%3E%3Cuse href='%23shamrock' transform='translate(1950,1350) rotate(110 12 12) scale(0.75)' /%3E%3Cuse href='%23shamrock' transform='translate(800,400) rotate(295 12 12) scale(0.9)' /%3E%3Cuse href='%23shamrock' transform='translate(1350,1550) rotate(160 12 12) scale(0.7)' /%3E%3Cuse href='%23shamrock' transform='translate(600,1650) rotate(40 12 12) scale(1.0)' /%3E%3Cuse href='%23shamrock' transform='translate(1150,1850) rotate(260 12 12) scale(0.85)' /%3E%3Cuse href='%23shamrock' transform='translate(1750,1550) rotate(90 12 12) scale(0.7)' /%3E%3Cuse href='%23shamrock' transform='translate(300,450) rotate(180 12 12) scale(0.95)' /%3E%3Cuse href='%23shamrock' transform='translate(1500,1950) rotate(315 12 12) scale(0.65)' /%3E%3Cuse href='%23shamrock' transform='translate(950,500) rotate(20 12 12) scale(0.8)' /%3E%3Cuse href='%23shamrock' transform='translate(1250,300) rotate(230 12 12) scale(1.05)' /%3E%3Cuse href='%23shamrock' transform='translate(500,150) rotate(105 12 12) scale(0.6)' /%3E%3Cuse href='%23shamrock' transform='translate(1850,100) rotate(355 12 12) scale(0.9)' /%3E%3Cuse href='%23shamrock' transform='translate(1050,1650) rotate(150 12 12) scale(0.75)' /%3E%3Cuse href='%23shamrock' transform='translate(200,1350) rotate(65 12 12) scale(0.85)' /%3E%3Cuse href='%23shamrock' transform='translate(1400,800) rotate(270 12 12) scale(0.7)' /%3E%3Cuse href='%23shamrock' transform='translate(700,550) rotate(130 12 12) scale(0.95)' /%3E%3Cuse href='%23shamrock' transform='translate(1600,1400) rotate(320 12 12) scale(0.8)' /%3E%3Cuse href='%23shamrock' transform='translate(1100,1150) rotate(200 12 12) scale(0.9)' /%3E%3Cuse href='%23shamrock' transform='translate(400,1600) rotate(35 12 12) scale(0.65)' /%3E%3Cuse href='%23shamrock' transform='translate(1900,650) rotate(285 12 12) scale(1.0)' /%3E%3Cuse href='%23shamrock' transform='translate(850,1250) rotate(100 12 12) scale(0.75)' /%3E%3Cuse href='%23shamrock' transform='translate(1300,1700) rotate(240 12 12) scale(0.85)' /%3E%3Cuse href='%23shamrock' transform='translate(150,1000) rotate(50 12 12) scale(0.6)' /%3E%3Cuse href='%23shamrock' transform='translate(1750,1150) rotate(175 12 12) scale(0.9)' /%3E%3Cuse href='%23shamrock' transform='translate(950,800) rotate(330 12 12) scale(0.8)' /%3E%3Cuse href='%23shamrock' transform='translate(1200,450) rotate(145 12 12) scale(1.05)' /%3E%3Cuse href='%23shamrock' transform='translate(550,1850) rotate(255 12 12) scale(0.7)' /%3E%3Cuse href='%23shamrock' transform='translate(1450,950) rotate(10 12 12) scale(0.85)' /%3E%3Cuse href='%23shamrock' transform='translate(750,1350) rotate(190 12 12) scale(0.95)' /%3E%3Cuse href='%23shamrock' transform='translate(250,200) rotate(315 12 12) scale(0.65)' /%3E%3Cuse href='%23shamrock' transform='translate(1650,1900) rotate(85 12 12) scale(0.8)' /%3E%3Cuse href='%23shamrock' transform='translate(1000,100) rotate(215 12 12) scale(0.9)' /%3E%3Cuse href='%23shamrock' transform='translate(350,1450) rotate(60 12 12) scale(0.75)' /%3E%3Cuse href='%23shamrock' transform='translate(1800,700) rotate(300 12 12) scale(1.0)' /%3E%3Cuse href='%23shamrock' transform='translate(1350,100) rotate(125 12 12) scale(0.6)' /%3E%3Cuse href='%23shamrock' transform='translate(600,900) rotate(235 12 12) scale(0.85)' /%3E%3Cuse href='%23shamrock' transform='translate(1550,350) rotate(355 12 12) scale(0.95)' /%3E%3Cuse href='%23shamrock' transform='translate(900,1650) rotate(165 12 12) scale(0.7)' /%3E%3Cuse href='%23shamrock' transform='translate(1150,1400) rotate(40 12 12) scale(1.05)' /%3E%3Cuse href='%23shamrock' transform='translate(1950,1850) rotate(280 12 12) scale(0.65)' /%3E%3Cuse href='%23shamrock' transform='translate(450,550) rotate(135 12 12) scale(0.8)' /%3E%3Cuse href='%23shamrock' transform='translate(1500,1100) rotate(290 12 12) scale(0.9)' /%3E%3Cuse href='%23shamrock' transform='translate(800,250) rotate(90 12 12) scale(0.75)' /%3E%3Cuse href='%23shamrock' transform='translate(1250,1150) rotate(245 12 12) scale(0.85)' /%3E%3Cuse href='%23shamrock' transform='translate(100,550) rotate(15 12 12) scale(0.6)' /%3E%3Cuse href='%23shamrock' transform='translate(1700,1650) rotate(180 12 12) scale(0.95)' /%3E%3Cuse href='%23shamrock' transform='translate(1050,450) rotate(320 12 12) scale(0.8)' /%3E%3Cuse href='%23shamrock' transform='translate(300,1950) rotate(110 12 12) scale(0.7)' /%3E%3Cuse href='%23shamrock' transform='translate(1900,900) rotate(250 12 12) scale(1.0)' /%3E%3Cuse href='%23shamrock' transform='translate(500,750) rotate(45 12 12) scale(0.65)' /%3E%3Cuse href='%23shamrock' transform='translate(1400,1550) rotate(195 12 12) scale(0.9)' /%3E%3Cuse href='%23shamrock' transform='translate(700,1150) rotate(340 12 12) scale(0.85)' /%3E%3Cuse href='%23shamrock' transform='translate(1150,650) rotate(130 12 12) scale(0.75)' /%3E%3Cuse href='%23shamrock' transform='translate(1600,50) rotate(270 12 12) scale(1.05)' /%3E%3Cuse href='%23shamrock' transform='translate(200,1800) rotate(55 12 12) scale(0.6)' /%3E%3Cuse href='%23shamrock' transform='translate(1850,1500) rotate(220 12 12) scale(0.9)' /%3E%3Cuse href='%23shamrock' transform='translate(1250,1800) rotate(35 12 12) scale(0.8)' /%3E%3Cuse href='%23shamrock' transform='translate(650,300) rotate(170 12 12) scale(0.7)' /%3E%3Cuse href='%23shamrock' transform='translate(1450,250) rotate(305 12 12) scale(0.95)' /%3E%3Cuse href='%23shamrock' transform='translate(900,1350) rotate(120 12 12) scale(0.85)' /%3E%3Cuse href='%23shamrock' transform='translate(350,600) rotate(265 12 12) scale(0.75)' /%3E%3Cuse href='%23shamrock' transform='translate(1750,1950) rotate(75 12 12) scale(1.0)' /%3E%3Cuse href='%23shamrock' transform='translate(1050,950) rotate(225 12 12) scale(0.65)' /%3E%3Cuse href='%23shamrock' transform='translate(1550,1250) rotate(10 12 12) scale(0.9)' /%3E%3Cuse href='%23shamrock' transform='translate(550,1400) rotate(145 12 12) scale(0.8)' /%3E%3Cuse href='%23shamrock' transform='translate(1300,500) rotate(285 12 12) scale(0.6)' /%3E%3Cuse href='%23shamrock' transform='translate(150,1150) rotate(100 12 12) scale(0.85)' /%3E%3Cuse href='%23shamrock' transform='translate(1950,300) rotate(255 12 12) scale(0.95)' /%3E%3Cuse href='%23shamrock' transform='translate(850,1850) rotate(65 12 12) scale(0.7)' /%3E%3Cuse href='%23shamrock' transform='translate(1100,100) rotate(190 12 12) scale(1.05)' /%3E%3Cuse href='%23shamrock' transform='translate(400,1200) rotate(335 12 12) scale(0.75)' /%3E%3Cuse href='%23shamrock' transform='translate(1650,850) rotate(160 12 12) scale(0.9)' /%3E%3Cuse href='%23shamrock' transform='translate(750,1700) rotate(30 12 12) scale(0.65)' /%3E%3Cuse href='%23shamrock' transform='translate(1400,1950) rotate(210 12 12) scale(0.85)' /%3E%3C/svg%3E");
+        background-repeat: repeat;
+        background-attachment: fixed;
+        background-size: 2000px 2000px;
+      }
+      
+      /* Enforce clean header background */
+      header {
+        background-color: #FDFBF7;
+        position: relative;
+        z-index: 50;
+      }
+
       /* Elegant scrollbar */
       ::-webkit-scrollbar { width: 6px; }
       ::-webkit-scrollbar-track { background: #FDFBF7; }
       ::-webkit-scrollbar-thumb { background: #D4D4D4; border-radius: 3px; }
       ::-webkit-scrollbar-thumb:hover { background: #BFA15F; }
       
-      /* Custom selection color */
-      ::selection {
-        background: #F3F4F6; /* Very light gray */
-        color: #0F172A; /* Navy */
-      }
-      
-      /* --- ARTICLE READER TYPOGRAPHY & LAYOUT (Editorial) --- */
-      .article-container {
-        width: 100%;
-        max-width: 720px; /* Width constraint for readability */
-        margin: 0 auto;
-      }
-
+      /* Typography Standards */
       .article-body p {
-        font-family: 'Inter', sans-serif; /* Clean, legible sans for body */
-        font-size: 1.1rem; /* ~17.6px */
-        line-height: 1.8; /* Generous line height */
+        font-family: 'Inter', sans-serif;
+        font-size: 1.125rem; /* 18px */
+        line-height: 1.8;
         margin-bottom: 1.5rem;
-        color: #2a2a2a; /* Soft black */
+        color: #2a2a2a;
         font-weight: 400;
       }
-
       .article-body h3 {
-        font-family: 'Playfair Display', serif; /* Elegant Serif for headings */
+        font-family: 'Playfair Display', serif;
         font-weight: 600;
-        font-size: 1.6rem;
+        font-size: 1.5rem;
         margin-top: 2.5rem;
         margin-bottom: 1rem;
         color: #111111;
-        line-height: 1.3;
       }
-
-      .article-body ul, .article-body ol {
+      .article-body ul {
         margin-bottom: 1.5rem;
-        padding-left: 1.5rem;
+        padding-left: 1.2rem;
         list-style-type: disc;
       }
-
       .article-body li {
         font-family: 'Inter', sans-serif;
-        font-size: 1.1rem;
+        font-size: 1.125rem;
         line-height: 1.7;
         margin-bottom: 0.5rem;
         color: #2a2a2a;
       }
-      
-      .article-body strong {
-        font-weight: 600;
-        color: #111111;
-      }
-      
-      /* Highlighted Quotes / Excerpts */
-      .quote-highlight {
-         border-left: 4px solid #BFA15F; /* Brand Gold */
-         padding-left: 1.25rem;
-         font-family: 'Playfair Display', serif;
-         font-style: italic;
-         font-size: 1.25rem;
-         line-height: 1.6;
-         color: #444444;
-         margin-bottom: 2rem;
-         margin-top: 1rem;
-      }
+      .article-body strong { font-weight: 600; color: #111111; }
+      .article-body em { font-style: italic; color: #444; }
 
-      .article-body em {
-        font-style: italic;
-        color: #444;
-      }
-
-      /* --- RESPONSIVE TABLE (Socio Pro) --- */
+      /* Responsive Table */
       .responsive-table-container {
           width: 100%;
-          overflow-x: auto; /* Habilita el scroll horizontal */
-          -webkit-overflow-scrolling: touch; /* Scroll suave en iPhone */
-          margin-bottom: 20px;
-          padding-bottom: 10px; /* Espacio para la barra de scroll si aparece */
+          overflow-x: auto;
+          -webkit-overflow-scrolling: touch;
       }
-
-      /* Ajustes específicos para móvil */
       @media (max-width: 768px) {
-          .responsive-table-container {
-              /* Truco de diseño: márgenes negativos para que la tabla toque los bordes de la pantalla */
-              margin-left: -20px; 
-              margin-right: -20px;
-              padding-left: 20px; /* Compensación visual */
-              padding-right: 20px;
-          }
-
-          .responsive-table-container table {
-              /* Forzamos un ancho mínimo para que las columnas no se aplasten */
-              min-width: 600px; 
-          }
-
-          .responsive-table-container th, 
-          .responsive-table-container td {
-              /* Texto más pequeño pero legible */
-              font-size: 13px;
-              padding: 10px 8px;
-              white-space: nowrap; /* Evita que los números se partan en dos líneas */
-          }
-
-          /* Excepción: La columna de "Empresa" (2ª columna) sí puede tener texto en varias líneas */
-          .responsive-table-container td:nth-child(2) {
-              white-space: normal;
-              min-width: 120px; /* Ancho mínimo para el nombre */
-              line-height: 1.3;
-          }
-      }
-
-      /* Hide Scrollbar for Nav */
-      .no-scrollbar::-webkit-scrollbar {
-          display: none;
-      }
-      .no-scrollbar {
-          -ms-overflow-style: none;  /* IE and Edge */
-          scrollbar-width: none;  /* Firefox */
+          .responsive-table-container table { min-width: 600px; }
+          .responsive-table-container th, .responsive-table-container td { font-size: 12px; padding: 8px 6px; }
       }
     </style>
     <script type="importmap">
@@ -194,29 +136,13 @@
       }
     </script>
 </head>
-  <body class="antialiased">
+  <body class="antialiased relative min-h-screen">
     <div id="root"></div>
 
     <script type="text/babel" data-presets="react,typescript">
-      const { useState, useEffect } = React;
+      const { useState, useEffect, useRef } = React;
 
       // --- ICONS ---
-      const ArrowRightIcon = ({ className }) => (
-        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={className}><path d="M5 12h14"/><path d="m12 5 7 7-7 7-7 7"/></svg>
-      );
-      const CheckIcon = ({ className }) => (
-        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={className}><polyline points="20 6 9 17 4 12"/></svg>
-      );
-      const ArrowLeftIcon = ({ className }) => (
-        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={className}><path d="m12 19-7-7 7-7 7-7"/><path d="M19 12H5"/></svg>
-      );
-      const LockIcon = ({ className }) => (
-        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={className}><rect width="18" height="11" x="3" y="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
-      );
-      const XIcon = ({ className }) => (
-         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={className}><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg>
-      );
-      
       const HybridIcon = ({ className }) => (
         <svg viewBox="0 0 24 24" fill="currentColor" className={className}>
           <path d="M12 21.5C12 21.5 9 18.5 9 16C9 14.5 10 13.5 11 13.5C11.5 13.5 12 13.8 12 14.2C12 13.8 12.5 13.5 13 13.5C14 13.5 15 14.5 15 16C15 18.5 12 21.5 12 21.5Z" opacity="0.95" />
@@ -227,39 +153,60 @@
         </svg>
       );
 
-      const TrendLineIcon = ({ className }) => (
-        <svg viewBox="0 0 600 160" className={className} preserveAspectRatio="none">
-           <defs>
-             <linearGradient id="lineGradient" x1="0%" y1="0%" x2="100%" y2="0%">
-               <stop offset="0%" stopColor="#D4D4D4" stopOpacity="0" />
-               <stop offset="15%" stopColor="#A3A3A3" stopOpacity="1" />
-               <stop offset="85%" stopColor="#A3A3A3" stopOpacity="1" />
-               <stop offset="100%" stopColor="#D4D4D4" stopOpacity="0" />
-             </linearGradient>
-             <linearGradient id="fillGradient" x1="0%" y1="0%" x2="0%" y2="100%">
-               <stop offset="0%" stopColor="#E5E5E5" stopOpacity="0.5" />
-               <stop offset="100%" stopColor="#FDFBF7" stopOpacity="0" />
-             </linearGradient>
-           </defs>
-           <path 
-             d="M0,130 L40,125 L90,135 L150,100 L200,115 L280,80 L340,95 L420,50 L480,65 L550,25 L600,35 L600,160 L0,160 Z"
-             fill="url(#fillGradient)"
-             style={{ mixBlendMode: 'multiply' }}
-           />
-           <path 
-             d="M0,130 L40,125 L90,135 L150,100 L200,115 L280,80 L340,95 L420,50 L480,65 L550,25 L600,35"
-             fill="none" 
-             stroke="url(#lineGradient)" 
-             strokeWidth="2" 
-             strokeLinecap="round"
-             strokeLinejoin="round"
-             style={{ filter: 'drop-shadow(0px 4px 6px rgba(0,0,0,0.05))' }}
-           />
-        </svg>
+      const ChevronDown = ({ className }) => (
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={className}><path d="m6 9 6 6 6-6"/></svg>
+      );
+      
+      const ChevronUp = ({ className }) => (
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={className}><path d="m18 15-6-6-6 6"/></svg>
+      );
+
+      const XIcon = ({ className }) => (
+         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={className}><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg>
+      );
+
+      const ArrowLeft = ({ className }) => (
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={className}><path d="m12 19-7-7 7-7"/><path d="M19 12H5"/></svg>
       );
 
       // --- DATA ---
+      const PORTFOLIO_DATA = [
+          { rank: 1, symbol: 'BTC', name: 'Bitcoin', weight: '11,36%', shares: '0,8', price: '89.500,000', value: '71.600,00 USD' },
+          { rank: 2, symbol: 'META', name: 'Meta Platforms, Inc.', weight: '10,30%', shares: '110', price: '590,320', value: '64.935,20 USD' },
+          { rank: 3, symbol: 'BN', name: 'Brookfield Corporation', weight: '7,62%', shares: '1100', price: '61,14', value: '48.038,57 USD' },
+          { rank: 4, symbol: 'BRK.B', name: 'Berkshire Hathaway Inc.', weight: '7,39%', shares: '93', price: '501,270', value: '46.618,11 USD' },
+          { rank: 5, symbol: 'TSLA', name: 'Tesla Incorporated', weight: '6,90%', shares: '108', price: '403,000', value: '43.524,00 USD' },
+          { rank: 6, symbol: 'MSTR', name: 'MicroStrategy Inc.', weight: '5,63%', shares: '120', price: '296,000', value: '35.520,00 USD' }, 
+          { rank: 7, symbol: 'AMZN', name: 'Amazon.com Inc.', weight: '5,46%', shares: '155', price: '222,000', value: '34.410,00 USD' },
+          { rank: 8, symbol: 'SPGI', name: 'S&P Global Inc.', weight: '5,44%', shares: '70', price: '490,000', value: '34.300,00 USD' },
+          { rank: 9, symbol: 'CASH', name: 'Liquidez / USD', weight: '4,89%', shares: '-', price: '-', value: '30.800,00 USD' },
+          { rank: 10, symbol: 'MSFT', name: 'Microsoft Corporation', weight: '4,64%', shares: '60', price: '488,000', value: '29.280,00 USD' },
+          { rank: 11, symbol: 'MA', name: 'Mastercard Inc.', weight: '4,58%', shares: '55', price: '525,000', value: '28.875,00 USD' },
+          { rank: 12, symbol: 'GOOGL', name: 'Alphabet Inc.', weight: '4,65%', shares: '100', price: '293,000', value: '29.300,00 USD' },
+          { rank: 13, symbol: 'WM', name: 'Waste Management, Inc.', weight: '4,60%', shares: '135', price: '215,000', value: '29.025,00 USD' },
+          { rank: 14, symbol: 'BMNR', name: 'Bitmine Immersion Tech', weight: '4,14%', shares: '900', price: '29,000', value: '26.100,00 USD' },
+          { rank: 15, symbol: 'ADBE', name: 'Adobe Inc.', weight: '4,07%', shares: '80', price: '321,000', value: '25.680,00 USD' },
+          { rank: 16, symbol: 'DHR', name: 'Danaher Corporation', weight: '4,26%', shares: '120', price: '223,700', value: '26.844,00 USD' },
+          { rank: 17, symbol: 'TMO', name: 'Thermofisher', weight: '4,06%', shares: '45', price: '569,000', value: '25.605,00 USD' }
+      ];
+
       const ARTICLES = [
+        {
+          id: 'mstr-strategy-detailed',
+          date: '21 NOV 2025 | 20:24 CET',
+          category: '$MSTR',
+          title: 'MSTR: mucho más que una tesorería de Bitcoin',
+          excerpt: 'Mientras el mercado sigue etiquetando a la compañía como un simple vehículo pasivo de BTC, la realidad operativa de Strategy apunta a algo mucho mayor: la primera institución financiera estructurada sobre capital digital.',
+          imageUrl: 'https://phantom-expansion.unidadeditorial.es/ff2e7c910349c88ba432e853291e9840/resize/640/assets/multimedia/imagenes/2023/03/20/16793421418455.jpg',
+          body: [
+            "<p>La narrativa dominante en medios generalistas y en buena parte de Wall Street sigue siendo cómoda: Strategy (MSTR) sería poco más que una “tesorería de Bitcoin” o un proxy apalancado del activo. Esa lectura simplista pasa por alto lo que, en nuestra opinión, es el punto central: <strong>MSTR no es un fondo, ni un trust, ni una holding pasiva. Es una empresa operativa que utiliza Bitcoin como capital productivo.</strong></p>",
+            "<p>Strategy no solo custodia Bitcoin… crea productos a partir de él. Mientras que un fondo o un ETF se limita a tener BTC en una caja fuerte, Strategy lo utiliza como base para diseñar y vender sus propios productos financieros al mercado. Está construyendo, en la práctica, una especie de <strong>“banco digital” respaldado por Bitcoin</strong>, que compite con la banca tradicional, pero con una estructura mucho más transparente y directa.</p>",
+            "<p>En esta línea, este año Strategy ha levantado más de <strong>7.700 millones de dólares</strong> mediante la emisión de cinco productos de crédito digital propios: $STRK, $STRF, $STRD, $STRC, $STRE.</p>",
+            "<h3>El menú de productos de capital digital de MSTR</h3><p>Explicado en sencillo, a nivel inversor bajo–medio, el menú es algo así:</p><ul><li><strong>STRK (“Strike”):</strong> preferente perpetua con cupón del entorno del 8 %, dividendo acumulativo y opción de conversión en acciones ordinarias. Para el inversor, es una forma de tener exposición a la estructura de capital de MSTR con menos volatilidad que la acción. Para la compañía, es capital a muy largo plazo sin diluir de golpe al accionista común.</li><li><strong>STRF (“Strife”):</strong> preferente perpetua con cupón fijo del 10 %, senior a STRK y sin opción de conversión. Es, en la práctica, financiación de largo plazo de tipo “bono con esteroides”: alto cupón, prioridad de cobro frente a otros preferentes y sin vencimiento. Muy útil para MSTR porque consigue mucho capital estable sin tocar la base accionarial.</li><li><strong>STRD (“Stride”):</strong> otra preferente perpetua al 10 % pero situada un escalón por debajo de STRF en la jerarquía. Es el tramo intermedio de la curva de capital: paga mucho, asume algo más de riesgo dentro de la propia estructura de MSTR y completa la “escala” entre preferentes más seguras y la acción ordinaria.</li><li><strong>STRC (“Stretch”):</strong> preferente perpetua con dividendo variable pagado mes a mes, diseñada para intentar que el precio se mantenga cerca del valor nominal. Es una herramienta muy flexible para la tesorería: MSTR puede ajustar el dividendo dentro de un rango para hacerla atractiva según las condiciones de mercado, a cambio de ofrecer al inversor una pieza de “renta” ligada al universo Bitcoin.</li><li><strong>STRE (“Stream”):</strong> preferente perpetua en euros, con cupón del 10 % que puede subir hasta el 18 % si se difieren dividendos, dirigida principalmente a institucionales europeos. Amplía el abanico geográfico y de divisa, y deja claro que MSTR ya no juega solo en dólar: está construyendo una curva de capital global respaldada por Bitcoin.</li></ul>",
+            "<p>En conjunto, todo esto demuestra que la compañía dispone de herramientas financieras exclusivas y potentes. Ningún ETF ni fondo pasivo puede hacer esto: <strong>emitir su propia deuda híbrida, escalonada, para seguir comprando Bitcoin de forma agresiva y, al mismo tiempo, reforzar la sostenibilidad de su estructura de capital a largo plazo.</strong></p>",
+            "<h3>La diferencia fundamental y la oportunidad</h3><p>En resumidas cuentas, la diferencia entre MSTR y un vehículo pasivo es su capacidad para aumentar la cantidad de BTC por acción con el paso del tiempo.</p><p>A día de hoy, con MSTR cotizando en el entorno de 171 USD por acción, la incomprensión del mercado sobre esta ventaja estructural genera ineficiencias claras. <strong>MicroStrategy cotiza por debajo de 1x su Valor Neto de Activos Modificado (MNAV).</strong> Traducido: a estos múltiplos, el mercado está descontando, implícitamente, que la compañía será más destructiva que creativa en términos de BTC por acción; que es más probable que diluya o destruya valor que que siga aumentando esa métrica con el tiempo.</p><p>El único argumento sólido para descartar una exposición responsable a MSTR es no confiar en Bitcoin como activo de fondo. Si no crees en BTC, no tiene sentido dar un paso más en la pirámide de riesgo. Pero si aceptas la tesis de Bitcoin como activo real del siglo XXI, la ingeniería que ha desarrollado Saylor (y su equipo) y, sobre todo, la escala que han alcanzado mientras el resto del mundo miraba y dudaba, le dan a MSTR una ventaja competitiva difícil de ignorar.</p><p>Históricamente, cuando MicroStrategy ha cotizado con este tipo de descuento frente al valor de sus tenencias subyacentes de BTC, el tiempo ha terminado dando la razón a quien fue capaz de mirar más allá de la etiqueta y verlo por lo que es: <strong>una apuesta asimétrica, de largo plazo, sobre la combinación de Bitcoin y una arquitectura de capital digital que el mercado todavía no ha terminado de entender.</strong></p>"
+          ]
+        },
         {
           id: 'japan-yen-carry-trade',
           date: '21 NOV 2025 | 17:00 CET',
@@ -355,852 +302,376 @@
           excerpt: 'Nunca es tarde para comprar negocios extraordinarios.',
           imageUrl: 'https://i.ytimg.com/vi/fFXjeg61msc/hq720.jpg?sqp=-oaymwEhCK4FEIIDSFryq4qpAxMIARUAAAAAGAElAADIQj0AgKJD&rs=AOn4CLBsChPB-3oy8E7_YZZbzhlLyR5xwg',
           body: [
-            "Nunca es tarde para comprar negocios extraordinarios. Eso debió pensar Buffett, con su retirement oficial ya a la vuelta de la esquina. Y debió pensar también que la mejor manera de pasarle el testigo a Greg Abel en Berkshire Hathaway era dejándole en cartera uno de los mejores negocios del mundo.",
-            "Buffett se redime así de lo que él mismo ha reconocido como uno de los grandes errores de omisión de la era reciente de Berkshire: no haber comprado Google cuando ya era una máquina de imprimir caja. Puede que también estemos empezando a ver el toque de Greg Abel asomando... Quién sabe.",
-            "En Henao Capital coincidimos con Warren en el qué, pero no en el cuándo. Alphabet tenía que haber estado en su cartera hace ya muchos años. Pero, efectivamente, nunca es tarde.",
-            "Y sin duda lo interesante aquí no es el titular, es el contexto. Berkshire podría seguir sentado sobre su montaña de liquidez, sin mover ficha. Aun así, deciden destinar una parte de ese dry powder a Google en pleno ruido de “burbuja de IA”, con el valor cerca de máximos históricos y después de un rally muy serio en el año, especialmente en las últimas semanas.",
-            "No es una jugada contrarian de manual, estilo value old school, desde luego...",
-            "En nuestra opinión, Berkshire no solo valida el activo, Alphabet, como un actor dominante, diversificado, y con amplia opcionalidad, sino que valida la estructura subyacente. Y respaldan ese diagnóstico con una asignación de capital significativa, para nada testimonial.",
-            "Sin alargarlo más, hemos considerado interesante subrayar este movimiento como lo que es: una señal que interpretamos sin duda como relevante."
+            "<p>Nunca es tarde para comprar negocios extraordinarios. Eso debió pensar Buffett, con su retirement oficial ya a la vuelta de la esquina. Y debió pensar también que la mejor manera de pasarle el testigo a Greg Abel en Berkshire Hathaway era dejándole en cartera uno de los mejores negocios del mundo.</p>",
+            "<p>Buffett se redime así de lo que él mismo ha reconocido como uno de los grandes errores de omisión de la era reciente de Berkshire: no haber comprado Google cuando ya era una máquina de imprimir caja. Puede que también estemos empezando a ver el toque de Greg Abel asomando... Quién sabe.</p>",
+            "<p>En Henao Capital coincidimos con Warren en el qué, pero no en el cuándo. Alphabet tenía que haber estado en su cartera hace ya muchos años. Pero, efectivamente, nunca es tarde.</p>",
+            "<p>Y sin duda lo interesante aquí no es el titular, es el contexto. Berkshire podría seguir sentado sobre su montaña de liquidez, sin mover ficha. Aun así, deciden destinar una parte de ese dry powder a Google en pleno ruido de “burbuja de IA”, con el valor cerca de máximos históricos y después de un rally muy serio en el año, especialmente en las últimas semanas.</p>",
+            "<p>No es una jugada contrarian de manual, estilo value old school, desde luego...</p>",
+            "<p>En nuestra opinión, Berkshire no solo valida el activo, Alphabet, como un actor dominante, diversificado, y con amplia opcionalidad, sino que valida la estructura subyacente. Y respaldan ese diagnóstico con una asignación de capital significativa, para nada testimonial.</p>",
+            "<p>Sin alargarlo más, hemos considerado interesante subrayar este movimiento como lo que es: una señal que interpretamos sin duda como relevante.</p>"
           ]
         }
       ];
 
-      // --- COMPONENT: HEADER ---
-      const Header = ({ onNavigate, onOpenTrackRecord }) => {
-        const [scrolled, setScrolled] = useState(false);
+      // --- COMPONENTS ---
 
-        useEffect(() => {
-            const handleScroll = () => setScrolled(window.scrollY > 50);
-            window.addEventListener('scroll', handleScroll);
-            return () => window.removeEventListener('scroll', handleScroll);
-        }, []);
+      const Header = () => {
+          const [isManifestoOpen, setIsManifestoOpen] = useState(false);
 
-        return (
-          <header className={`fixed top-0 w-full z-50 transition-all duration-500 ${scrolled ? 'bg-brand-surface/95 backdrop-blur-sm border-b border-brand-border py-3 shadow-sm' : 'bg-transparent py-5 md:py-6'}`}>
-            <div className="max-w-7xl mx-auto px-6 md:px-12 flex justify-between items-center">
-              
-              {/* Logo Block (Left) - Navigate to Home */}
-              <div className="flex items-center md:items-start group">
-                <button onClick={() => onNavigate('home')} className="flex items-center focus:outline-none pt-1">
-                  <HybridIcon className="w-[20px] h-[20px] text-brand-gold transition-transform duration-700 group-hover:rotate-90" />
-                </button>
-                <div className="flex flex-col ml-2 md:ml-3">
-                    <button onClick={() => onNavigate('home')} className="text-left focus:outline-none">
-                        <h1 className="font-serif text-lg md:text-2xl tracking-wide text-brand-text group-hover:text-brand-muted transition-colors whitespace-nowrap leading-none">
-                        HENAO <span className="font-semibold">CAPITAL</span>
-                        </h1>
-                    </button>
-                    
-                    {/* TRACK RECORD BUTTON */}
-                    <button 
-                        onClick={onOpenTrackRecord}
-                        className="text-[9px] md:text-[11px] italic text-brand-muted/60 hover:text-brand-gold transition-colors leading-tight mt-0.5 block focus:outline-none text-left"
-                    >
-                        Track Record
-                    </button>
-                </div>
-              </div>
-
-              {/* Nav Block (Right) - MOBILE: Stacked Vertical, DESKTOP: Horizontal */}
-              <nav className="flex flex-col items-end gap-1 md:flex-row md:items-center md:gap-0 md:space-x-8">
-                {/* LINK: BASE */}
-                <button 
-                  onClick={() => onNavigate('base-area')}
-                  className="text-[9px] md:text-[11px] uppercase tracking-[0.15em] md:tracking-[0.2em] font-medium text-brand-text hover:text-brand-gold transition-colors"
-                >
-                  BASE
-                </button>
-                {/* LINK: SOCIOS (Destacado sutilmente) */}
-                <button 
-                  onClick={() => onNavigate('socio-pro')}
-                  className="border border-brand-gold/50 px-2 py-[3px] md:px-4 md:py-2 text-[9px] md:text-[10px] uppercase tracking-[0.1em] md:tracking-[0.15em] font-bold text-brand-darkGold hover:bg-brand-gold hover:text-white hover:border-brand-gold transition-all duration-300 rounded-[1px]"
-                >
-                  SOCIOS
-                </button>
-              </nav>
-
-            </div>
-          </header>
-        );
-      };
-      
-      // --- COMPONENT: DETAILS MODAL (NEW) ---
-      const DetailsModal = ({ title, items, onClose }) => (
-        <div className="fixed inset-0 z-[80] flex items-center justify-center bg-brand-navy/40 backdrop-blur-sm p-4 animate-fade-in" onClick={onClose}>
-            <div className="bg-white w-full max-w-md p-8 md:p-10 relative rounded-[2px] shadow-2xl animate-slide-up" onClick={e => e.stopPropagation()}>
-                <button onClick={onClose} className="absolute top-4 right-4 text-gray-300 hover:text-gray-600 transition-colors p-2">
-                   <XIcon className="w-4 h-4"/>
-                </button>
-                <div className="mb-6 text-brand-gold opacity-60">
-                     <HybridIcon className="w-6 h-6" />
-                </div>
-                <h3 className="font-serif text-xl md:text-2xl text-brand-text mb-6 leading-tight pr-4">{title}</h3>
-                <ul className="space-y-4">
-                    {items.map((item, idx) => (
-                        <li key={idx} className="flex items-start">
-                            <span className="text-brand-gold mr-3 mt-1.5 text-[8px]">●</span>
-                            <span className="text-sm text-gray-600 font-sans leading-relaxed">{item}</span>
-                        </li>
-                    ))}
-                </ul>
-            </div>
-        </div>
-      );
-
-      // --- COMPONENT: HERO (UPDATED CTA) ---
-      const Hero = ({ onNavigate, onOpenNewsletter, onOpenBaseDetails, onOpenSocioDetails }) => {
-        return (
-          <section className="relative w-full pt-40 pb-32 md:pt-48 md:pb-40 px-6 bg-brand-bg overflow-hidden">
-            <div className="max-w-5xl mx-auto text-center animate-fade-in relative z-10">
-              
-              <h1 className="font-serif text-[2rem] md:text-[2.75rem] text-brand-text leading-[1.2] font-medium tracking-tight mb-6">
-                Protegemos tu patrimonio
-                <br />
-                Lo hacemos crecer
-              </h1>
-
-              <p className="text-[1.1rem] text-brand-muted/90 font-sans font-light tracking-wide mb-12 md:mb-16 max-w-2xl mx-auto">
-                Tu socio profesional en los mercados
-              </p>
-              
-              {/* Chart */}
-              <div className="w-full flex justify-center">
-                <div className="w-[80%] md:w-[70%] max-w-[600px] h-20 opacity-80">
-                  <TrendLineIcon className="w-full h-full" />
-                </div>
-              </div>
-
-              {/* New Hybrid CTA Section - UPDATED SPACING & SIZING */}
-              <div className="flex flex-col items-center animate-slide-up mt-12 md:mt-16" style={{ animationDelay: '0.2s' }}>
-                  {/* Level 1: Main Actions */}
-                  <div className="flex flex-col md:flex-row gap-6 md:gap-8 w-full md:w-auto items-start md:items-start">
-                      {/* Button A: PLAN BASE */}
-                      <div className="flex flex-col items-center w-full md:w-auto">
-                          <button 
-                              onClick={() => onNavigate('base-area')}
-                              className="w-full md:w-auto min-w-[240px] md:min-w-[260px] px-5 py-3 md:px-6 md:py-3.5 bg-brand-navy text-white rounded-[1px] hover:bg-brand-text transition-all duration-300 shadow-sm hover:shadow-md flex flex-col items-center justify-center group"
-                          >
-                              <span className="text-[10px] md:text-[11px] font-bold tracking-[0.2em] uppercase mb-1">PLAN BASE</span>
-                              <span className="text-[8px] md:text-[9px] font-light opacity-70 tracking-widest group-hover:opacity-90">9,99 € / mes</span>
-                          </button>
-                          <button onClick={onOpenBaseDetails} className="mt-2 text-[9px] md:text-[10px] text-gray-400 hover:text-brand-muted underline decoration-gray-300 underline-offset-2 transition-colors">
-                              Qué ofrecemos
-                          </button>
-                      </div>
-
-                      {/* Button B: PLAN SOCIOS */}
-                      <div className="flex flex-col items-center w-full md:w-auto">
-                           <button 
-                              onClick={() => onNavigate('socio-pro')}
-                              className="w-full md:w-auto min-w-[240px] md:min-w-[260px] px-5 py-3 md:px-6 md:py-3.5 bg-transparent border border-brand-gold text-brand-darkGold rounded-[1px] hover:bg-brand-gold hover:text-white transition-all duration-300 flex flex-col items-center justify-center group"
-                          >
-                                  <span className="text-[10px] md:text-[11px] font-bold tracking-[0.2em] uppercase mb-1">PLAN SOCIOS</span>
-                                  <span className="text-[8px] md:text-[9px] font-light opacity-90 tracking-widest group-hover:text-white text-brand-darkGold/80">29,99 € / mes</span>
-                          </button>
-                          <button onClick={onOpenSocioDetails} className="mt-2 text-[9px] md:text-[10px] text-gray-400 hover:text-brand-muted underline decoration-gray-300 underline-offset-2 transition-colors">
-                              Qué ofrecemos
-                          </button>
-                      </div>
-                  </div>
-
-                  {/* Level 2: Lead Magnet Text Link */}
-                  <div className="mt-10 md:mt-12">
-                      <button 
-                          onClick={onOpenNewsletter}
-                          className="text-[11px] md:text-[12px] text-gray-400 font-sans font-normal tracking-wide border-b border-transparent hover:border-brand-gold/50 hover:text-brand-muted transition-all pb-0.5"
-                      >
-                          ¿Prefieres probar primero? Recibe nuestros Insights diarios gratis.
-                      </button>
-                  </div>
-              </div>
-
-            </div>
-          </section>
-        );
-      };
-
-      // --- COMPONENT: NEWSLETTER MODAL ---
-      const NewsletterModal = ({ onClose, onSkip }) => (
-        <div className="fixed inset-0 z-[80] flex items-center justify-center bg-brand-navy/40 backdrop-blur-sm p-4 animate-fade-in" onClick={onClose}>
-            <div className="bg-white w-full max-w-md p-8 md:p-12 shadow-2xl relative rounded-[2px] animate-slide-up text-center" onClick={e => e.stopPropagation()}>
-                <button onClick={onClose} className="absolute top-4 right-4 text-gray-300 hover:text-gray-600 transition-colors p-2">
-                   <XIcon className="w-5 h-5"/>
-                </button>
-                <div className="mb-6 flex justify-center text-brand-gold">
-                   <HybridIcon className="w-10 h-10 opacity-80" />
-                </div>
-                <h3 className="font-serif text-2xl text-brand-text mb-3">Henao Capital Insights</h3>
-                <p className="text-sm text-gray-500 mb-8 font-sans leading-relaxed px-4">
-                    Recibe cada mañana nuestros briefings de mercado, análisis macro y señales de inversión directamente en tu bandeja de entrada.
-                </p>
-                <input 
-                    type="email" 
-                    placeholder="Email corporativo" 
-                    className="w-full border border-brand-border bg-brand-bg p-4 text-sm mb-4 focus:border-brand-navy focus:ring-0 outline-none transition-colors text-brand-text placeholder-gray-400" 
-                    autoFocus 
-                />
-                <button 
-                    onClick={() => { alert('Gracias. Suscripción confirmada.'); onClose(); }} 
-                    className="w-full bg-brand-navy text-white py-4 text-[10px] font-bold uppercase tracking-[0.2em] hover:bg-brand-text transition-colors shadow-md mb-6"
-                >
-                    Suscribirme Gratis
-                </button>
-                
-                {/* SKIP LINK */}
-                <button 
-                    onClick={() => { onClose(); onSkip(); }}
-                    className="text-[10px] text-brand-muted/60 hover:text-brand-navy transition-colors border-b border-transparent hover:border-brand-navy pb-0.5 font-sans tracking-wide"
-                >
-                   Saltar este paso y ver los insights ahora &rarr;
-                </button>
-            </div>
-        </div>
-      );
-
-      // --- COMPONENT: ARTICLE CARD (Used in Archive) ---
-      const ArticleCard = ({ article, onClick, variant = 'minimal' }) => {
-         // variant: 'minimal' (Home - DEPRECATED/UNUSED) | 'visual' (Archive, full color image)
-         const showImage = variant === 'visual';
-
-         return (
-            <div className="group cursor-pointer flex flex-col h-full" onClick={onClick}>
-                {showImage && article.imageUrl && (
-                  <div className="mb-6 overflow-hidden rounded-[2px] aspect-video">
-                    <img 
-                      src={article.imageUrl} 
-                      alt={article.title}
-                      className="w-full h-full object-cover object-top transform group-hover:scale-105 transition-transform duration-700"
-                    />
-                  </div>
-                )}
-                
-                <div className="flex items-center space-x-3 mb-3">
-                     <span className="text-[10px] font-bold tracking-[0.1em] text-brand-gold font-sans">{article.category}</span>
-                     <span className="w-px h-3 bg-brand-border"></span>
-                     <span className="text-[9px] uppercase tracking-wider text-brand-muted font-medium font-sans">{article.date}</span>
-                </div>
-                <h3 className="font-serif text-xl text-brand-text mb-3 leading-snug group-hover:text-brand-muted transition-colors">
-                    {article.title}
-                </h3>
-                <p className="text-brand-muted text-sm leading-relaxed font-light mb-4 line-clamp-3 flex-grow">
-                    {article.excerpt}
-                </p>
-                <button className="mt-auto self-start text-[10px] font-bold uppercase tracking-[0.2em] text-brand-navy border-b border-transparent group-hover:border-brand-navy pb-0.5 transition-all">
-                    Leer Análisis
-                </button>
-            </div>
-         );
-      };
-
-      // --- COMPONENT: HOME VIEW (Hero + Limited Insights List) ---
-      const HomeView = ({ onNavigate, onSelectArticle, onOpenNewsletter, onOpenBaseDetails, onOpenSocioDetails }) => {
-        // Limit to latest 4 articles
-        const latestArticles = ARTICLES.slice(0, 4);
-
-        return (
-          <div className="animate-fade-in">
-            {/* Updated Hero with new CTA props */}
-            <Hero 
-                onNavigate={onNavigate} 
-                onOpenNewsletter={onOpenNewsletter}
-                onOpenBaseDetails={onOpenBaseDetails}
-                onOpenSocioDetails={onOpenSocioDetails}
-            />
-            
-            {/* Services Component Removed as per request */}
-            
-            <section id="latest-insights" className="py-16 md:py-24 bg-white border-t border-brand-border">
-                <div className="max-w-4xl mx-auto px-6 md:px-8">
-                    <div className="flex items-end justify-between mb-8 md:mb-12 pb-4 border-b border-brand-border">
-                         <h2 className="font-serif text-2xl md:text-3xl text-brand-text">Insights más recientes</h2>
-                         {/* Link to access all insights */}
-                         <button 
-                            onClick={() => onNavigate('archive')} 
-                            className="text-[10px] md:text-[11px] font-sans font-medium text-brand-muted hover:text-brand-navy uppercase tracking-wider border-b border-transparent hover:border-brand-navy transition-all pb-0.5 mb-1"
-                         >
-                            Acceso a todos los Insights &rarr;
-                         </button>
-                    </div>
-                   
-                    <div className="flex flex-col">
-                        {latestArticles.map(article => (
-                            <div 
-                              key={article.id} 
-                              onClick={() => onSelectArticle(article)} 
-                              className="group py-6 md:py-8 border-b border-brand-border/40 cursor-pointer flex flex-col md:flex-row md:items-center justify-between gap-4 hover:bg-gray-50/50 transition-colors px-2 -mx-2 rounded-sm"
-                            >
-                                <div className="flex flex-col gap-1.5 max-w-2xl">
-                                    <span className="text-[10px] md:text-[11px] font-sans font-medium text-gray-400 uppercase tracking-wider">
-                                        {article.date}
-                                    </span>
-                                    <h3 className="font-serif text-xl md:text-2xl text-brand-text leading-snug group-hover:text-brand-darkGold transition-colors">
-                                        {article.title}
-                                    </h3>
-                                </div>
-                                <div className="flex items-center text-[10px] font-bold uppercase tracking-[0.2em] text-brand-muted group-hover:text-brand-navy transition-colors whitespace-nowrap self-start md:self-center mt-1 md:mt-0">
-                                    Leer Análisis <span className="ml-2 text-lg leading-none">&rarr;</span>
-                                </div>
-                            </div>
-                        ))}
-                    </div>
-                </div>
-            </section>
-          </div>
-        );
-      };
-
-      // --- COMPONENT: ARCHIVE VIEW (Full Collection) ---
-      const ArchiveView = ({ onSelectArticle }) => {
-        return (
-          <div id="archive-view" className="pt-32 pb-24 min-h-screen bg-brand-bg animate-fade-in">
-             <div className="max-w-6xl mx-auto px-6 md:px-8">
-                <div className="mb-16 text-center md:text-left border-b border-brand-border pb-8">
-                    <h1 className="font-serif text-xl md:text-2xl text-brand-text leading-tight tracking-wide">
-                       ARCHIVO
-                    </h1>
-                </div>
-
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-x-8 gap-y-12">
-                    {ARTICLES.map(article => (
-                         <ArticleCard 
-                            key={article.id} 
-                            article={article} 
-                            onClick={() => onSelectArticle(article)}
-                            variant="visual"
-                         />
-                    ))}
-                </div>
-             </div>
-          </div>
-        );
-      };
-
-      // --- COMPONENT: ARTICLE DETAIL (READER VIEW) ---
-      const ArticleView = ({ article, onBack }) => {
-          if (!article) return null;
-          
-          // Scroll to top on mount
-          useEffect(() => {
-              window.scrollTo(0, 0);
-          }, []);
-          
           return (
-            <div 
-                id="article-reader" 
-                className="pt-28 pb-24 min-h-screen w-full animate-fade-in bg-white text-gray-900 z-10"
-                style={{ backgroundColor: '#FFFFFF', color: '#222222', position: 'relative' }}
-            >
-                <article className="article-container px-6">
-                    {/* Back Navigation */}
-                    <div className="mb-10">
+              <header className="w-full bg-brand-bg pt-12 pb-6 z-50 relative text-center shadow-sm">
+                  <div className="flex flex-col items-center justify-center relative z-50">
+                        {/* Icon removed as per instructions */}
+                        <h1 className="font-serif text-2xl md:text-3xl tracking-widest text-brand-text leading-none cursor-default">
+                            HENAO <span className="font-semibold">CAPITAL</span>
+                        </h1>
+
+                        {/* Manifesto Link */}
                         <button 
-                            onClick={onBack}
-                            className="group inline-flex items-center text-[10px] uppercase tracking-widest text-brand-muted hover:text-brand-navy transition-colors font-medium border-b border-transparent hover:border-brand-navy pb-0.5"
+                             onClick={() => setIsManifestoOpen(!isManifestoOpen)}
+                             className="mt-3 text-[0.8rem] text-brand-text/60 hover:text-brand-text transition-colors border-b border-dashed border-brand-text/20 hover:border-brand-text/50 pb-[1px]"
                         >
-                            <ArrowLeftIcon className="w-3 h-3 mr-2 transition-transform group-hover:-translate-x-1" />
-                            Volver al Archivo
+                            ¿Por qué hago esto?
                         </button>
-                    </div>
 
-                    {/* Header Section */}
-                    <header className="mb-10 text-center">
-                         <div className="flex justify-center items-center space-x-3 mb-5 text-[10px] font-bold uppercase tracking-[0.2em] text-brand-gold font-sans">
-                             <span>{article.category}</span>
-                             <span className="text-brand-border">•</span>
-                             <span className="text-brand-muted">{article.date}</span>
-                         </div>
-                         <h1 className="font-serif text-3xl md:text-5xl text-brand-text leading-[1.15] mb-8 font-medium">
-                             {article.title}
-                         </h1>
-                         
-                         <div className="w-full aspect-[16/9] overflow-hidden mb-10 rounded-[2px] shadow-sm">
-                            <img 
-                                src={article.imageUrl} 
-                                alt={article.title} 
-                                className="w-full h-full object-cover object-top"
-                            />
-                         </div>
-                    </header>
+                        {/* Manifesto Dropdown */}
+                        {isManifestoOpen && (
+                            <>
+                                {/* Backdrop */}
+                                <div className="fixed inset-0 z-40 bg-transparent" onClick={() => setIsManifestoOpen(false)}></div>
+                                
+                                {/* Dropdown Content */}
+                                <div className="absolute top-full mt-4 left-1/2 -translate-x-1/2 w-[90%] max-w-[340px] bg-white border border-brand-border shadow-xl p-6 rounded-[2px] z-50 animate-slide-down text-center">
+                                      <p className="font-serif text-base md:text-lg text-brand-text leading-relaxed mb-4 italic">
+                                          "Porque en un mercado lleno de humo, la transparencia absoluta es mi única ventaja competitiva real."
+                                      </p>
+                                      <p className="font-sans text-xs md:text-sm text-brand-muted leading-relaxed">
+                                          Aquí no hay muros de pago ni promesas vacías. Tienes mi cartera en tiempo real, cada uno de mis movimientos y el racional exacto detrás de cada decisión.
+                                      </p>
+                                      <div className="mt-4 pt-4 border-t border-brand-border/30">
+                                          <button onClick={() => setIsManifestoOpen(false)} className="text-[10px] uppercase font-bold tracking-widest text-brand-gold hover:text-brand-darkGold">
+                                              Cerrar
+                                          </button>
+                                      </div>
+                                </div>
+                            </>
+                        )}
+                  </div>
+              </header>
+          );
+      };
 
-                    {/* Body Content - Custom Editorial Styling */}
-                    <div className="article-body pb-16">
-                        {/* Excerpt styled as highlight quote */}
-                        <blockquote className="quote-highlight">
-                            {article.excerpt}
-                        </blockquote>
+      const DataNav = ({ activeTab, onToggle }) => {
+          const items = [
+              { id: 'portfolio', label: 'CARTERA' },
+              { id: 'movements', label: 'MOVIMIENTOS' },
+              { id: 'track-record', label: 'TRACK RECORD' }
+          ];
+
+          return (
+              <nav className="sticky top-0 z-40 w-full bg-brand-bg/95 backdrop-blur-md border-y border-brand-border/60 shadow-sm">
+                  <div className="max-w-3xl mx-auto px-6 flex items-center justify-between h-12 md:h-14">
+                      {items.map((item, idx) => {
+                          const isActive = activeTab === item.id;
+                          // Determine alignment based on index for "Left, Center, Right" layout
+                          const alignClass = idx === 0 ? 'justify-start' : idx === 1 ? 'justify-center' : 'justify-end';
+                          
+                          return (
+                              <button
+                                  key={item.id}
+                                  onClick={() => onToggle(item.id)}
+                                  className={`flex items-center gap-1.5 text-[10px] md:text-[11px] font-bold uppercase tracking-widest transition-colors flex-1 ${alignClass} ${isActive ? 'text-brand-navy' : 'text-brand-muted hover:text-brand-text'}`}
+                              >
+                                  {item.label}
+                                  {isActive ? <ChevronUp className="w-3 h-3" /> : <ChevronDown className="w-3 h-3 opacity-50" />}
+                              </button>
+                          )
+                      })}
+                  </div>
+              </nav>
+          );
+      };
+
+      const DataDrawer = ({ activeTab, onClose }) => {
+          if (!activeTab) return null;
+
+          return (
+              <div className="fixed inset-0 z-30 pt-[160px] pb-10 px-4 md:px-8 pointer-events-none flex flex-col items-center">
+                   {/* Backdrop Click Area to Close */}
+                   <div className="absolute inset-0 bg-brand-navy/10 backdrop-blur-[1px] pointer-events-auto" onClick={onClose}></div>
+
+                   {/* Drawer Content */}
+                   <div className="bg-white w-full max-w-4xl max-h-[70vh] shadow-2xl border border-brand-border/50 rounded-[2px] pointer-events-auto overflow-hidden flex flex-col animate-slide-down relative">
+                        <button onClick={onClose} className="absolute top-3 right-3 text-gray-400 hover:text-brand-navy p-2 z-20">
+                            <XIcon className="w-4 h-4" />
+                        </button>
                         
-                        <div>
+                        <div className="overflow-y-auto h-full p-6 md:p-10 scroll-smooth">
+                            {activeTab === 'portfolio' && (
+                                <div className="w-full">
+                                     <div className="responsive-table-container">
+                                        <table className="w-full text-sm md:text-base border-collapse">
+                                            <thead>
+                                                <tr className="border-b border-gray-900">
+                                                    <th className="pb-2 pl-2 text-left font-bold text-gray-900 w-[15%]">Simbolo</th>
+                                                    <th className="pb-2 text-left font-bold text-gray-900 w-[30%]">Empresa</th>
+                                                    <th className="pb-2 text-right font-bold text-gray-900">Acciones</th>
+                                                    <th className="pb-2 text-right font-bold text-gray-900">Precio</th>
+                                                    <th className="pb-2 text-right font-bold text-gray-900">Valor Total</th>
+                                                    <th className="pb-2 pr-2 text-right font-bold text-gray-900">%</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody className="font-mono text-gray-700 text-xs md:text-sm">
+                                                {PORTFOLIO_DATA.map((row, i) => (
+                                                    <tr key={i} className="border-b border-gray-200 last:border-0 hover:bg-gray-50 transition-colors">
+                                                        <td className="py-3 pl-2 text-left font-bold text-brand-navy">{row.symbol}</td>
+                                                        <td className="py-3 text-left font-sans text-gray-900">{row.name}</td>
+                                                        <td className="py-3 text-right">{row.shares}</td>
+                                                        <td className="py-3 text-right">{row.price} $</td>
+                                                        <td className="py-3 text-right">{row.value}</td>
+                                                        <td className="py-3 pr-2 text-right font-bold text-gray-900">{row.weight}</td>
+                                                    </tr>
+                                                ))}
+                                            </tbody>
+                                        </table>
+                                     </div>
+                                     <div className="mt-4 flex justify-between items-center px-2 opacity-60 text-[10px] uppercase tracking-widest text-brand-muted">
+                                          <span>Total AUM: 630.454,88 USD</span>
+                                          <span>Ref: EUR/USD 1.16</span>
+                                     </div>
+                                </div>
+                            )}
+
+                            {activeTab === 'movements' && (
+                                <div className="flex flex-col items-center justify-center h-64 text-center">
+                                     <div className="text-brand-gold/40 mb-4">
+                                         <HybridIcon className="w-10 h-10" />
+                                     </div>
+                                     <p className="font-serif text-lg text-brand-text mb-2">Registro de operaciones 2025</p>
+                                     <p className="font-sans text-sm text-brand-muted italic">Documento PDF no disponible actualmente.</p>
+                                </div>
+                            )}
+
+                            {activeTab === 'track-record' && (
+                                <div className="w-full flex flex-col items-center">
+                                    <div className="w-full max-w-lg mt-6">
+                                        <table className="w-full text-sm md:text-base border-collapse">
+                                            <thead>
+                                                <tr className="border-b border-gray-900">
+                                                    <th className="pb-2 text-left font-normal text-gray-500 italic w-1/4"></th>
+                                                    <th className="pb-2 text-right font-mono text-xs md:text-sm font-normal text-gray-900">Henao Capital</th>
+                                                    <th className="pb-2 text-right font-mono text-xs md:text-sm font-normal text-gray-900">S&P 500 (incl. div.)</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody className="font-mono text-gray-700 text-xs md:text-sm">
+                                                {[
+                                                    ['2020', '21,10%', '18,40%'],
+                                                    ['2021', '18,93%', '28,70%'],
+                                                    ['2022', '-28,01%', '-18,10%'],
+                                                    ['2023', '80,82%', '26,30%'],
+                                                    ['2024', '54,68%', '25,00%'],
+                                                    ['2025', '', '']
+                                                ].map((row, i) => (
+                                                    <tr key={i}>
+                                                        <td className="py-3 text-left font-sans font-medium text-gray-900">{row[0]}</td>
+                                                        <td className="py-3 text-right">{row[1]}</td>
+                                                        <td className="py-3 text-right">{row[2]}</td>
+                                                    </tr>
+                                                ))}
+                                                <tr className="h-6"></tr>
+                                                <tr className="border-t border-gray-900 font-bold text-gray-900">
+                                                    <td className="py-4 text-left font-sans text-xs md:text-sm uppercase tracking-wider">CAGR 2020-2025</td>
+                                                    <td className="py-4 text-right">21,17%</td>
+                                                    <td className="py-4 text-right">14,53%</td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            )}
+                        </div>
+                   </div>
+              </div>
+          );
+      }
+
+      // --- NEW: ARTICLE SUMMARY CARD ---
+      const ArticleSummaryCard = ({ article, onClick }) => (
+          <div 
+              className="group mb-12 pb-12 border-b border-brand-gold/20 last:border-0 last:mb-0 last:pb-0 cursor-pointer"
+              onClick={onClick}
+          >
+              <div className="flex flex-col md:flex-row gap-6 md:gap-8 items-start">
+                  {/* Left: Image */}
+                  <div className="w-full md:w-[240px] shrink-0 aspect-[16/9] md:aspect-[4/3] overflow-hidden rounded-[2px] bg-gray-100">
+                       <img 
+                           src={article.imageUrl} 
+                           alt={article.title}
+                           className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+                           loading="lazy"
+                       />
+                  </div>
+                  
+                  {/* Right: Content */}
+                  <div className="flex-1 flex flex-col">
+                       {/* Meta */}
+                       <div className="text-[10px] font-bold uppercase tracking-widest text-brand-muted mb-3 font-sans flex flex-wrap gap-2">
+                           <span className="text-brand-gold">{article.category}</span>
+                           <span className="text-brand-border">•</span>
+                           <span>{article.date}</span>
+                       </div>
+
+                       {/* Title */}
+                       <h2 className="font-serif text-2xl md:text-[1.75rem] leading-tight text-brand-text mb-3 group-hover:text-brand-gold transition-colors font-medium">
+                           {article.title}
+                       </h2>
+
+                       {/* Subtitle */}
+                       <p className="font-sans text-sm md:text-base text-gray-600 leading-relaxed line-clamp-3 md:line-clamp-none mb-4">
+                           {article.excerpt}
+                       </p>
+
+                       {/* CTA Link */}
+                       <div className="flex items-center text-xs uppercase tracking-widest font-bold text-brand-text/80 group-hover:translate-x-1 transition-transform duration-300 mt-auto">
+                           Leer análisis completo <span className="ml-2">→</span>
+                       </div>
+                  </div>
+              </div>
+          </div>
+      );
+
+      // --- NEW: ARTICLE READER (FULL VIEW) ---
+      const ArticleReader = ({ article, onClose }) => {
+           // Scroll to top when component mounts
+           useEffect(() => {
+               window.scrollTo(0, 0);
+           }, []);
+
+           return (
+              <div className="w-full max-w-[800px] mx-auto px-6 pb-32 pt-12 relative z-10 animate-fade-in">
+                  {/* Back Button */}
+                  <button 
+                      onClick={onClose}
+                      className="mb-10 flex items-center gap-2 text-[10px] md:text-xs font-bold uppercase tracking-widest text-brand-muted hover:text-brand-text transition-colors group"
+                  >
+                      <ArrowLeft className="w-4 h-4 group-hover:-translate-x-1 transition-transform" /> 
+                      Volver al listado
+                  </button>
+
+                  <article>
+                       {/* Image Header */}
+                       <div className="w-full aspect-[21/9] md:aspect-[2/1] overflow-hidden rounded-[2px] mb-8 shadow-sm bg-gray-100">
+                           <img 
+                               src={article.imageUrl} 
+                               alt={article.title}
+                               className="w-full h-full object-cover object-center"
+                           />
+                       </div>
+
+                       {/* Meta Data */}
+                       <div className="flex flex-wrap items-center justify-center gap-3 mb-6 text-[10px] md:text-[11px] font-bold uppercase tracking-[0.2em] text-brand-gold font-sans text-center">
+                           <span>{article.category}</span>
+                           <span className="text-brand-border">•</span>
+                           <span className="text-brand-muted">{article.date}</span>
+                       </div>
+
+                       {/* Title & Excerpt */}
+                       <header className="text-center mb-10 px-2 md:px-8">
+                           <h1 className="font-serif text-3xl md:text-[2.75rem] text-brand-text leading-[1.1] mb-6 font-medium">
+                               {article.title}
+                           </h1>
+                           <p className="font-serif text-lg md:text-xl italic text-brand-muted/80 leading-relaxed max-w-2xl mx-auto border-l-2 border-brand-gold/30 pl-4 md:pl-0 md:border-l-0">
+                               {article.excerpt}
+                           </p>
+                       </header>
+
+                       {/* Full Article Body */}
+                       <div className="article-body max-w-[700px] mx-auto">
                             {article.body.map((paragraph, idx) => (
                                 <div 
                                     key={idx} 
                                     dangerouslySetInnerHTML={{ __html: paragraph }}
                                 />
                             ))}
-                        </div>
-                    </div>
-
-                    {/* Footer / Signature */}
-                    <div className="border-t border-brand-border pt-12 pb-8 flex flex-col items-center">
-                        <div className="w-8 h-8 mb-4 text-brand-gold opacity-50">
-                             <HybridIcon />
-                        </div>
-                        <span className="font-serif italic text-brand-muted text-sm">Henao Capital Research</span>
-                    </div>
-                </article>
-            </div>
-          )
-      }
-      
-      // --- COMPONENT: SOCIO PRO PRIVATE VIEW ---
-      const SocioProView = () => {
-        // 'letter' indicates the default view (Carta), which is not a tab.
-        // Clicking a tab sets activeTab to the tab's ID.
-        const [activeTab, setActiveTab] = useState('letter'); 
-
-        const PORTFOLIO_DATA = [
-          { rank: 1, symbol: 'BTC', name: 'Bitcoin', weight: '11,36%', shares: '0,8', price: '89.500,000', value: '71.600,00 USD' },
-          { rank: 2, symbol: 'META', name: 'Meta Platforms, Inc.', weight: '10,30%', shares: '110', price: '590,320', value: '64.935,20 USD' },
-          { rank: 3, symbol: 'BN', name: 'Brookfield Corporation', weight: '7,62%', shares: '1100', price: '61,14', value: '48.038,57 USD' },
-          { rank: 4, symbol: 'BRK.B', name: 'Berkshire Hathaway Inc.', weight: '7,39%', shares: '93', price: '501,270', value: '46.618,11 USD' },
-          { rank: 5, symbol: 'TSLA', name: 'Tesla Incorporated', weight: '6,90%', shares: '108', price: '403,000', value: '43.524,00 USD' },
-          { rank: 6, symbol: 'MSTR', name: 'MicroStrategy Inc.', weight: '5,63%', shares: '120', price: '296,000', value: '35.520,00 USD' }, 
-          { rank: 7, symbol: 'AMZN', name: 'Amazon.com Inc.', weight: '5,46%', shares: '155', price: '222,000', value: '34.410,00 USD' },
-          { rank: 8, symbol: 'SPGI', name: 'S&P Global Inc.', weight: '5,44%', shares: '70', price: '490,000', value: '34.300,00 USD' },
-          { rank: 9, symbol: 'CASH', name: 'Liquidez / USD', weight: '4,89%', shares: '-', price: '-', value: '30.800,00 USD' },
-          { rank: 10, symbol: 'MSFT', name: 'Microsoft Corporation', weight: '4,64%', shares: '60', price: '488,000', value: '29.280,00 USD' },
-          { rank: 11, symbol: 'MA', name: 'Mastercard Inc.', weight: '4,58%', shares: '55', price: '525,000', value: '28.875,00 USD' },
-          { rank: 12, symbol: 'GOOGL', name: 'Alphabet Inc.', weight: '4,65%', shares: '100', price: '293,000', value: '29.300,00 USD' },
-          { rank: 13, symbol: 'WM', name: 'Waste Management, Inc.', weight: '4,60%', shares: '135', price: '215,000', value: '29.025,00 USD' },
-          { rank: 14, symbol: 'BMNR', name: 'Bitmine Immersion Tech', weight: '4,14%', shares: '900', price: '29,000', value: '26.100,00 USD' },
-          { rank: 15, symbol: 'ADBE', name: 'Adobe Inc.', weight: '4,07%', shares: '80', price: '321,000', value: '25.680,00 USD' },
-          { rank: 16, symbol: 'DHR', name: 'Danaher Corporation', weight: '4,26%', shares: '120', price: '223,700', value: '26.844,00 USD' },
-          { rank: 17, symbol: 'TMO', name: 'Thermofisher', weight: '4,06%', shares: '45', price: '569,000', value: '25.605,00 USD' }
-        ];
-
-        // UPDATED TAB NAMES
-        const TABS = [
-            { id: 'movements', label: 'Movimientos' },
-            { id: 'portfolio', label: 'Cartera' },
-            { id: 'analysis', label: 'Análisis Mensual' },
-            { id: 'deep-dives', label: 'Deep Dives' },
-        ];
-
-        return (
-            <div className="pt-32 pb-24 min-h-screen bg-brand-bg animate-fade-in">
-                {/* Navigation Bar - Optimized for Mobile Horizontal Scroll */}
-                <div className="max-w-5xl mx-auto px-0 md:px-6 mb-8 md:mb-10 border-b border-brand-border/50">
-                    <div 
-                        className="flex flex-nowrap overflow-x-auto no-scrollbar items-center justify-start px-4 md:px-0 gap-2 md:gap-8" 
-                        style={{ 
-                            scrollbarWidth: 'none', 
-                            msOverflowStyle: 'none',
-                            WebkitOverflowScrolling: 'touch'
-                        }}
-                    >
-                        {TABS.map((tab) => (
+                       </div>
+                       
+                       {/* Bottom Close Button */}
+                       <div className="mt-16 flex justify-center">
                             <button 
-                                key={tab.id}
-                                onClick={() => setActiveTab(tab.id)}
-                                className={`
-                                    flex-shrink-0 whitespace-nowrap px-2.5 py-2 md:px-0 md:py-0 md:pb-3 transition-all relative text-[11px] md:text-sm font-serif italic tracking-wide
-                                    ${activeTab === tab.id ? 'text-brand-text font-medium' : 'text-brand-muted hover:text-brand-text'}
-                                `}
+                                onClick={onClose}
+                                className="px-8 py-3 border border-brand-border text-xs font-bold uppercase tracking-widest text-brand-muted hover:text-brand-text hover:border-brand-text transition-colors"
                             >
-                                {tab.label}
-                                {/* Active Border Indicator */}
-                                <span className={`absolute bottom-0 left-0 w-full md:w-full h-[1.5px] md:h-[2px] transition-colors ${
-                                    activeTab === tab.id 
-                                    ? 'bg-brand-darkGold' 
-                                    : 'bg-transparent'
-                                }`}></span>
+                                Cerrar Artículo
                             </button>
-                        ))}
-                    </div>
-                </div>
-
-                <div className="max-w-[900px] mx-auto px-6">
-                    
-                    {/* DEFAULT VIEW: INICIO (Carta) - Only shown when activeTab is 'letter' */}
-                    {activeTab === 'letter' && (
-                      <div className="animate-fade-in max-w-[750px] mx-auto">
-                          <article className="relative bg-[#FAF9F6] p-8 md:p-10 border border-brand-gold/30 rounded-[2px] shadow-sm">
-                              <div className="absolute top-0 right-0 bg-brand-gold/10 px-3 py-1 border-l border-b border-brand-gold/20">
-                                  <span className="text-[9px] font-bold uppercase tracking-widest text-brand-darkGold flex items-center gap-1">
-                                      <span className="w-1.5 h-1.5 rounded-full bg-brand-darkGold"></span>
-                                      Mensaje del Gestor
-                                  </span>
-                              </div>
-
-                              <header className="mb-6 mt-2">
-                                  <h1 className="font-serif text-2xl md:text-3xl text-brand-text leading-tight">
-                                      Carta a los Socios.
-                                  </h1>
-                              </header>
-
-                              <div className="prose prose-stone prose-lg max-w-none font-serif text-brand-text/90 leading-relaxed text-justify text-[15px] md:text-[16px]">
-                                  <p className="mb-4">
-                                      Si estáis leyendo esto, pasáis a ser nuestra prioridad absoluta.
-                                  </p>
-                                  <p className="mb-4">
-                                      Bienvenidos al núcleo de ejecución de Henao Capital. Este entorno ha sido diseñado para eliminar el ruido mediático y centrarse exclusivamente en la generación de valor y la preservación de capital.
-                                  </p>
-                                  <p className="mb-4">
-                                      En la pestaña 'Cartera' encontraréis nuestras posiciones actuales y su peso en tiempo real. Asimismo, utilizaremos este canal confidencial para compartir actualizaciones estratégicas, el racional detrás de cada movimiento táctico y los cambios en la composición estructural de la cartera.
-                                  </p>
-                                  <p className="mb-0">
-                                      Gracias por la confianza.
-                                  </p>
-                              </div>
-                          </article>
-                      </div>
-                    )}
-
-                    {/* TAB: CARTERA (Table/PDF Embed) */}
-                    {activeTab === 'portfolio' && (
-                      <div className="animate-fade-in">
-                          <div className="bg-white border border-brand-border/50 p-2 rounded-[2px] shadow-sm">
-                            {/* We use the table to represent the 'Real Portfolio' document */}
-                            <div className="responsive-table-container">
-                               <table className="w-full text-sm md:text-base border-collapse">
-                                  <thead>
-                                      <tr className="border-b border-gray-900">
-                                          <th className="pb-2 pl-2 text-left font-bold text-gray-900 w-[15%]">Simbolo</th>
-                                          <th className="pb-2 text-left font-bold text-gray-900 w-[30%]">Empresa</th>
-                                          <th className="pb-2 text-right font-bold text-gray-900">Acciones</th>
-                                          <th className="pb-2 text-right font-bold text-gray-900">Precio</th>
-                                          <th className="pb-2 text-right font-bold text-gray-900">Valor Total</th>
-                                          <th className="pb-2 pr-2 text-right font-bold text-gray-900">%</th>
-                                      </tr>
-                                  </thead>
-                                  <tbody className="font-mono text-gray-700 text-xs md:text-sm">
-                                      {PORTFOLIO_DATA.map((row, i) => (
-                                          <tr key={i} className="border-b border-gray-200 last:border-0 hover:bg-gray-50 transition-colors">
-                                              <td className="py-3 pl-2 text-left font-bold text-brand-navy">{row.symbol}</td>
-                                              <td className="py-3 text-left font-sans text-gray-900">{row.name}</td>
-                                              <td className="py-3 text-right">{row.shares}</td>
-                                              <td className="py-3 text-right">{row.price} $</td>
-                                              <td className="py-3 text-right">{row.value}</td>
-                                              <td className="py-3 pr-2 text-right font-bold text-gray-900">{row.weight}</td>
-                                          </tr>
-                                      ))}
-                                  </tbody>
-                               </table>
-                            </div>
-                          </div>
-                          
-                          <div className="mt-4 flex justify-between items-center px-2 opacity-50">
-                             <span className="text-[10px] uppercase tracking-widest text-brand-muted">Total AUM: 630.454,88 USD</span>
-                             <span className="text-[10px] uppercase tracking-widest text-brand-muted">Ref: EUR/USD 1.16</span>
-                          </div>
-                      </div>
-                    )}
-
-                    {/* TAB: MOVIMIENTOS */}
-                    {activeTab === 'movements' && (
-                        <div className="animate-fade-in flex flex-col items-center justify-center py-20 border border-dashed border-brand-border rounded-[2px] bg-brand-surface/50">
-                             <div className="w-12 h-12 text-brand-muted/30 mb-4">
-                                 <CheckIcon className="w-full h-full" />
-                             </div>
-                             <h3 className="font-serif text-xl text-brand-text mb-2">Registro de Operaciones</h3>
-                             <p className="text-sm text-brand-muted font-sans">
-                                 Registro de operaciones: Sin movimientos pendientes.
-                             </p>
-                        </div>
-                    )}
-
-                    {/* TABS: ANÁLISIS & DEEP DIVES (Empty States) */}
-                    {(activeTab === 'analysis' || activeTab === 'deep-dives') && (
-                        <div className="animate-fade-in flex flex-col items-center justify-center py-20 border border-dashed border-brand-border rounded-[2px] bg-brand-surface/50">
-                             <div className="w-12 h-12 text-brand-muted/30 mb-4">
-                                 <LockIcon className="w-full h-full" />
-                             </div>
-                             <h3 className="font-serif text-xl text-brand-text mb-2">Próximamente</h3>
-                             <p className="text-sm text-brand-muted font-sans mb-6">
-                                 No hay documentos recientes en esta categoría.
-                             </p>
-                        </div>
-                    )}
-                </div>
-            </div>
-        );
-      };
-      
-      // --- COMPONENT: BASE AREA VIEW (NEW) ---
-      const BaseAreaView = () => {
-        const [activeTab, setActiveTab] = useState('welcome'); 
-
-        const TABS_BASE = [
-            { id: 'welcome', label: 'Bienvenida' },
-            { id: 'structural-portfolio', label: 'Cartera Estructural' },
-            { id: 'fundamentals', label: 'Fundamentos' },
-            { id: 'analysis-base', label: 'Análisis Base' },
-        ];
-
-        return (
-            <div className="pt-32 pb-24 min-h-screen bg-brand-bg animate-fade-in">
-                {/* Navigation Bar - Optimized for Mobile Horizontal Scroll */}
-                <div className="max-w-5xl mx-auto px-0 md:px-6 mb-8 md:mb-10 border-b border-brand-border/50">
-                    <div 
-                        className="flex flex-nowrap overflow-x-auto no-scrollbar items-center justify-start px-4 md:px-0 gap-2 md:gap-8" 
-                        style={{ 
-                            scrollbarWidth: 'none', 
-                            msOverflowStyle: 'none',
-                            WebkitOverflowScrolling: 'touch'
-                        }}
-                    >
-                        {TABS_BASE.map((tab) => (
-                            <button 
-                                key={tab.id}
-                                onClick={() => setActiveTab(tab.id)}
-                                className={`
-                                    flex-shrink-0 whitespace-nowrap px-2.5 py-2 md:px-0 md:py-0 md:pb-3 transition-all relative text-[11px] md:text-sm font-serif italic tracking-wide
-                                    ${activeTab === tab.id ? 'text-brand-text font-medium' : 'text-brand-muted hover:text-brand-text'}
-                                `}
-                            >
-                                {tab.label}
-                                {/* Active Border Indicator */}
-                                <span className={`absolute bottom-0 left-0 w-full md:w-full h-[1.5px] md:h-[2px] transition-colors ${
-                                    activeTab === tab.id 
-                                    ? 'bg-brand-darkGold' 
-                                    : 'bg-transparent'
-                                }`}></span>
-                            </button>
-                        ))}
-                    </div>
-                </div>
-
-                <div className="max-w-[900px] mx-auto px-6">
-                    
-                    {/* TAB: BIENVENIDA (Carta) */}
-                    {activeTab === 'welcome' && (
-                      <div className="animate-fade-in max-w-[750px] mx-auto">
-                          <article className="relative bg-[#FAF9F6] p-8 md:p-10 border border-brand-gold/30 rounded-[2px] shadow-sm">
-                              <div className="absolute top-0 right-0 bg-brand-gold/10 px-3 py-1 border-l border-b border-brand-gold/20">
-                                  <span className="text-[9px] font-bold uppercase tracking-widest text-brand-darkGold flex items-center gap-1">
-                                      <span className="w-1.5 h-1.5 rounded-full bg-brand-darkGold"></span>
-                                      Plan Base
-                                  </span>
-                              </div>
-
-                              <header className="mb-6 mt-2">
-                                  <h1 className="font-serif text-2xl md:text-3xl text-brand-text leading-tight">
-                                      Bienvenido a la base.
-                                  </h1>
-                              </header>
-
-                              <div className="prose prose-stone prose-lg max-w-none font-serif text-brand-text/90 leading-relaxed text-justify text-[15px] md:text-[16px]">
-                                  <p className="mb-4">
-                                      Si estás aquí, has decidido dejar de improvisar. Bienvenido al primer escalón de Henao Capital.
-                                  </p>
-                                  <p className="mb-4">
-                                      Este entorno no es para buscar el "pelotazo" rápido, sino para entender los cimientos. Aquí compartiremos la estructura mental y las referencias necesarias para que empieces a operar con criterio propio y seguridad.
-                                  </p>
-                                  <p className="mb-4">
-                                      En la pestaña 'Cartera Estructural' verás una asignación de activos estratégica de referencia, diseñada para la preservación y el crecimiento a largo plazo.
-                                  </p>
-                                  <p className="mb-0">
-                                      Empieza por lo esencial: entender el juego antes de jugarlo. Gracias por la confianza.
-                                  </p>
-                              </div>
-                          </article>
-                      </div>
-                    )}
-
-                    {/* TABS: Placeholder Content */}
-                    {activeTab !== 'welcome' && (
-                        <div className="animate-fade-in flex flex-col items-center justify-center py-20 border border-dashed border-brand-border rounded-[2px] bg-brand-surface/50">
-                             <div className="w-12 h-12 text-brand-muted/30 mb-4">
-                                 <LockIcon className="w-full h-full" />
-                             </div>
-                             <h3 className="font-serif text-xl text-brand-text mb-2">Próximamente</h3>
-                             <p className="text-sm text-brand-muted font-sans mb-6">
-                                 Contenido exclusivo del Plan Base. Próxima actualización: Diciembre 2025.
-                             </p>
-                        </div>
-                    )}
-                </div>
-            </div>
-        );
+                       </div>
+                  </article>
+              </div>
+           );
       };
 
-      // --- COMPONENT: FOOTER ---
-      const Footer = () => {
-        return (
-          <footer className="bg-brand-bg text-brand-muted py-12 border-t border-brand-border">
-            <div className="max-w-6xl mx-auto px-6 text-center">
-              <h2 className="font-serif text-lg tracking-wide text-brand-text mb-6">
-                HENAO <span className="font-semibold">CAPITAL</span>
-              </h2>
-              <p className="text-[9px] uppercase tracking-widest opacity-60 font-medium">
-                &copy; 2025 Henao Capital. Dublin - Bilbao.
+      const Footer = () => (
+          <footer className="bg-transparent py-12 text-center relative z-10 border-t border-brand-border/30 max-w-4xl mx-auto mt-12">
+              <div className="mb-4 opacity-30">
+                  <HybridIcon className="w-6 h-6 mx-auto text-brand-muted" />
+              </div>
+              <p className="text-[9px] uppercase tracking-widest text-brand-muted opacity-60">
+                  &copy; 2025 Henao Capital. Institutional Intelligence.
               </p>
-            </div>
           </footer>
-        );
-      };
+      );
 
-      // --- MAIN APP ---
       function App() {
-        const [view, setView] = useState('home'); // 'home' | 'archive' | 'article' | 'socio-pro' | 'base-area'
-        const [selectedArticle, setSelectedArticle] = useState(null);
-        const [showTrackRecord, setShowTrackRecord] = useState(false);
-        const [showNewsletter, setShowNewsletter] = useState(false);
-        
-        // Modal States for Service Details
-        const [showBaseDetails, setShowBaseDetails] = useState(false);
-        const [showSocioDetails, setShowSocioDetails] = useState(false);
+          const [activeDataView, setActiveDataView] = useState(null);
+          const [selectedArticleId, setSelectedArticleId] = useState(null);
 
-        const handleNavigate = (destination) => {
-            window.scrollTo(0, 0);
-            setView(destination);
-            
-            if (destination !== 'article') {
-                setSelectedArticle(null);
-            }
-        };
+          const toggleDataView = (viewId) => {
+              if (activeDataView === viewId) {
+                  setActiveDataView(null);
+              } else {
+                  setActiveDataView(viewId);
+              }
+          };
 
-        const handleArticleSelect = (article) => {
-            setSelectedArticle(article);
-            setView('article');
-            window.scrollTo(0, 0);
-        };
+          const handleArticleClick = (id) => {
+              setSelectedArticleId(id);
+          };
 
-        const handleNewsletterSkip = () => {
-            // Skip directly to the archive/insights view
-            handleNavigate('archive');
-        };
+          const handleCloseArticle = () => {
+              setSelectedArticleId(null);
+              window.scrollTo(0, 0);
+          };
 
-        return (
-          <div className="min-h-screen flex flex-col bg-brand-bg selection:bg-brand-border selection:text-brand-navy">
-            <Header onNavigate={handleNavigate} onOpenTrackRecord={() => setShowTrackRecord(true)} />
-            
-            <main className="flex-grow relative">
-              {view === 'home' && (
-                <HomeView 
-                    onNavigate={handleNavigate} 
-                    onSelectArticle={handleArticleSelect}
-                    onOpenNewsletter={() => setShowNewsletter(true)}
-                    onOpenBaseDetails={() => setShowBaseDetails(true)}
-                    onOpenSocioDetails={() => setShowSocioDetails(true)}
-                />
-              )}
+          // Find selected article object
+          const selectedArticle = ARTICLES.find(a => a.id === selectedArticleId);
 
-              {view === 'archive' && (
-                <ArchiveView onSelectArticle={handleArticleSelect} />
-              )}
-              
-              {view === 'article' && selectedArticle && (
-                  <ArticleView article={selectedArticle} onBack={() => setView('archive')} />
-              )}
-
-              {view === 'socio-pro' && (
-                  <SocioProView />
-              )}
-              
-              {view === 'base-area' && (
-                  <BaseAreaView />
-              )}
-
-              {/* NEWSLETTER MODAL */}
-              {showNewsletter && (
-                  <NewsletterModal 
-                      onClose={() => setShowNewsletter(false)} 
-                      onSkip={handleNewsletterSkip}
-                  />
-              )}
-              
-              {/* SERVICE DETAILS MODALS */}
-              {showBaseDetails && (
-                  <DetailsModal 
-                      title="Lo esencial para empezar bien."
-                      items={[
-                          "Acceso al Área Privada BASE.",
-                          "Carta de Bienvenida y Estructura Mental del Gestor.",
-                          "Cartera Estructural de Referencia (Asignación de Activos a Largo Plazo).",
-                          "Análisis de Fundamentos de Inversión."
-                      ]}
-                      onClose={() => setShowBaseDetails(false)}
-                  />
-              )}
-
-              {showSocioDetails && (
-                  <DetailsModal 
-                      title="Inversión institucional. Ejecución real."
-                      items={[
-                          "Acceso al Área Privada SOCIOS (Institutional Grade).",
-                          "Cartera LIVE: Gestión de capital real en tiempo real.",
-                          "Notificaciones de Compra/Venta.",
-                          "Tesis de Inversión 'Deep Dive' (Investigaciones Exclusivas).",
-                          "Análisis Mensual de Posiciones y Estrategia."
-                      ]}
-                      onClose={() => setShowSocioDetails(false)}
-                  />
-              )}
-
-              {/* TRACK RECORD MODAL */}
-              {showTrackRecord && (
-                <div className="fixed inset-0 z-[70] flex items-center justify-center bg-brand-navy/40 backdrop-blur-sm p-4 animate-fade-in" onClick={() => setShowTrackRecord(false)}>
-                    <div 
-                        className="bg-white w-full max-w-2xl shadow-2xl relative overflow-hidden rounded-[2px] animate-slide-up flex flex-col max-h-[90vh]" 
-                        onClick={e => e.stopPropagation()}
-                    >
-                        <button 
-                            onClick={() => setShowTrackRecord(false)} 
-                            className="absolute top-4 right-4 z-10 p-2 bg-gray-100 hover:bg-gray-200 rounded-full transition-colors"
-                        >
-                           <XIcon className="w-4 h-4 text-gray-600" />
-                        </button>
-
-                        <div className="p-10 md:p-16 flex flex-col items-center text-center border-t-8 border-brand-gold h-full overflow-y-auto">
-                            <h2 className="font-mono text-sm md:text-base text-gray-900 mb-12 tracking-tight">
-                                Track record Henao Capital vs. S&P 500
-                            </h2>
-                            <div className="w-full max-w-lg mb-12">
-                                <table className="w-full text-sm md:text-base border-collapse">
-                                    <thead>
-                                        <tr className="border-b border-gray-900">
-                                            <th className="pb-2 text-left font-normal text-gray-500 italic w-1/4"></th>
-                                            <th className="pb-2 text-right font-mono text-xs md:text-sm font-normal text-gray-900 underline decoration-gray-900 underline-offset-4">Henao Capital</th>
-                                            <th className="pb-2 text-right font-mono text-xs md:text-sm font-normal text-gray-900 underline decoration-gray-900 underline-offset-4">S&P 500 (incl. div.)</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody className="font-mono text-gray-700 text-xs md:text-sm">
-                                        {[
-                                            ['2020', '21,10%', '18,40%'],
-                                            ['2021', '18,93%', '28,70%'],
-                                            ['2022', '-28,01%', '-18,10%'],
-                                            ['2023', '80,82%', '26,30%'],
-                                            ['2024', '54,68%', '25,00%'],
-                                            ['2025', '', '']
-                                        ].map((row, i) => (
-                                            <tr key={i}>
-                                                <td className="py-3 text-left font-sans font-medium text-gray-900">{row[0]}</td>
-                                                <td className="py-3 text-right">{row[1]}</td>
-                                                <td className="py-3 text-right">{row[2]}</td>
-                                            </tr>
-                                        ))}
-                                        <tr className="h-6"></tr>
-                                        <tr className="border-t border-gray-900 font-bold text-gray-900">
-                                            <td className="py-4 text-left font-sans text-xs md:text-sm uppercase tracking-wider">CAGR 2020-2025</td>
-                                            <td className="py-4 text-right">21,17%</td>
-                                            <td className="py-4 text-right">14,53%</td>
-                                        </tr>
-                                    </tbody>
-                                </table>
-                            </div>
-                            <div className="mt-auto pt-8 text-[10px] text-gray-400 uppercase tracking-widest font-sans">
-                                &copy; 2025 by Henao Capital
-                            </div>
-                        </div>
-                    </div>
-                </div>
-              )}
-            </main>
-            
-            <Footer />
-          </div>
-        );
+          return (
+              <>
+                  <Header />
+                  <DataNav activeTab={activeDataView} onToggle={toggleDataView} />
+                  <DataDrawer activeTab={activeDataView} onClose={() => setActiveDataView(null)} />
+                  
+                  <main className="min-h-[60vh]">
+                      {selectedArticle ? (
+                          <ArticleReader 
+                              article={selectedArticle} 
+                              onClose={handleCloseArticle} 
+                          />
+                      ) : (
+                          <div className="w-full max-w-[800px] mx-auto px-6 pb-32 pt-12 relative z-10 animate-fade-in">
+                              {ARTICLES.map((article) => (
+                                  <ArticleSummaryCard 
+                                      key={article.id} 
+                                      article={article}
+                                      onClick={() => handleArticleClick(article.id)}
+                                  />
+                              ))}
+                          </div>
+                      )}
+                  </main>
+                  
+                  <Footer />
+              </>
+          );
       }
 
       const root = ReactDOM.createRoot(document.getElementById('root'));
