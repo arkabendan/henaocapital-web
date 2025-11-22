@@ -11,7 +11,7 @@
     <!-- Fonts: Playfair Display (Serif) & Inter (Sans) & JetBrains Mono (Numbers) -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
     
     <!-- React & ReactDOM & Babel -->
     <script src="https://unpkg.com/react@18/umd/react.production.min.js" crossorigin></script>
@@ -159,20 +159,57 @@
         animation: slideDown 0.3s ease-out;
       }
       
-      /* Estilo para el tagline secundario del header */
-      .header-tagline {
-          font-family: 'Inter', sans-serif; /* Usar la fuente sans-serif para contraste */
-          font-style: italic;               /* Cursiva */
-          font-size: 1.1rem;                /* Tamaño secundario */
-          font-weight: 300;                 /* Peso ligero */
-          color: #666666;                   /* Color gris medio secundario */
-          margin-top: 8px;                  /* Pequeña separación del título */
-          margin-bottom: 0;
+      /* === HEADER STYLE (Minimalist Press) === */
+      .main-header {
+          background: transparent; /* Se integra con el fondo del body */
+          border-bottom: none;     /* Eliminar bordes si los hubiera */
+          box-shadow: none;        /* Eliminar sombras si las hubiera */
+          position: relative;
+          z-index: 50;
       }
-      /* Ajuste para móvil para que no quede muy grande */
+
+      /* El salto de línea móvil se oculta por defecto en escritorio/tablet */
+      .mobile-break {
+        display: none;
+      }
+
+      /* Ajustes para Móvil */
       @media (max-width: 768px) {
-          .header-tagline {
-              font-size: 0.95rem;
+          .brand-name { font-size: 1.8rem; }
+          .header-tagline-animated { font-size: 0.95rem; }
+          
+          /* Mostrar el salto de línea solo en móvil */
+          .mobile-break {
+              display: inline;
+          }
+          
+          /* Opcional: ajustar ligeramente el margen si queda muy separado en móvil */
+          .header-content-wrapper p {
+              margin-top: 8px !important; /* Un poco más de aire si se divide en dos líneas */
+              line-height: 1.4; /* Asegurar buen interlineado */
+          }
+      }
+
+      /* === OPTIMIZACIÓN MÓVIL PARA LA TABLA DE CARTERA === */
+      @media (max-width: 768px) {
+          /* Reducir el padding de las celdas para ganar espacio */
+          .portfolio-table th,
+          .portfolio-table td {
+              padding: 10px 4px !important; /* Menos padding horizontal */
+          }
+
+          /* Reducir ligeramente el tamaño de fuente general de la tabla */
+          .portfolio-table {
+              font-size: 0.8rem !important; /* Un poco más pequeño que el 0.9rem original */
+          }
+
+          /* Opcional: Si alguna columna específica necesita ser más estrecha, se puede ajustar aquí */
+          /* Por ejemplo, la columna de posición (la primera) */
+          .portfolio-table th:first-child,
+          .portfolio-table td:first-child {
+              padding-left: 2px !important;
+              padding-right: 2px !important;
+              text-align: center;
           }
       }
     </style>
@@ -383,15 +420,21 @@
 
       const Header = ({ onHomeClick }) => {
           return (
-              <header className="w-full bg-brand-bg pt-12 pb-6 z-50 relative text-center shadow-sm">
-                  <div className="flex flex-col items-center justify-center relative z-50">
+              <header className="main-header w-full bg-brand-bg relative z-50">
+                  <div className="header-content-wrapper" style={{textAlign: 'center', padding: '30px 20px'}}>
                         <h1 
+                            className="serif-font" 
+                            style={{fontSize: '2.2rem', margin: '0', color: 'var(--text-color)', cursor: 'pointer', letterSpacing: '-0.5px', lineHeight: '1.1', fontWeight: '700'}} 
                             onClick={onHomeClick}
-                            className="font-serif text-2xl md:text-3xl tracking-widest text-brand-text leading-none cursor-pointer hover:text-brand-navy transition-colors"
                         >
-                            HENAO <span className="font-semibold">CAPITAL</span>
+                            HENAO CAPITAL
                         </h1>
-                        <p className="header-tagline">Así invierto mi dinero. Transparente y en tiempo real.</p>
+                        <p 
+                            className="serif-font" 
+                            style={{fontSize: '1.1rem', margin: '5px 0 0 0', color: 'var(--text-color)', opacity: 0.9}}
+                        >
+                            Así invierto mi dinero. <br className="mobile-break" /> Transparente y en tiempo real.
+                        </p>
                   </div>
               </header>
           );
@@ -400,18 +443,26 @@
       const DataNav = ({ activeView, onViewChange }) => {
           return (
               <nav className="sticky top-0 z-40 w-full bg-brand-bg/95 backdrop-blur-md border-y border-brand-border/60 shadow-sm">
-                  <div className="max-w-2xl mx-auto px-6 flex items-center justify-center gap-8 h-12 md:h-14">
+                  <div className="data-nav-container max-w-2xl mx-auto px-6 flex items-center justify-center gap-8 h-12 md:h-14">
                        <span 
-                          onClick={() => onViewChange('portfolio')}
-                          className={`text-[10px] md:text-[11px] font-bold uppercase tracking-widest transition-colors cursor-pointer ${activeView === 'portfolio' ? 'text-brand-navy' : 'text-brand-muted hover:text-brand-text'}`}
+                          className={`data-nav-item text-[10px] md:text-[11px] font-bold uppercase tracking-widest transition-colors cursor-pointer ${activeView === 'home' ? 'text-brand-navy' : 'text-brand-muted hover:text-brand-text'}`} 
+                          onClick={() => onViewChange('home')}
                        >
-                          MI CARTERA
+                          MERCADO
                        </span>
+                       
                        <span 
-                          onClick={() => onViewChange('buying')}
-                          className={`text-[10px] md:text-[11px] font-bold uppercase tracking-widest transition-colors cursor-pointer ${activeView === 'buying' ? 'text-brand-navy' : 'text-brand-muted hover:text-brand-text'}`}
+                          className={`data-nav-item text-[10px] md:text-[11px] font-bold uppercase tracking-widest transition-colors cursor-pointer ${activeView === 'portfolio' ? 'text-brand-navy' : 'text-brand-muted hover:text-brand-text'}`} 
+                          onClick={() => onViewChange('portfolio')}
                        >
-                          QUÉ ESTOY COMPRANDO
+                          CARTERA
+                       </span>
+                       
+                       <span 
+                          className={`data-nav-item text-[10px] md:text-[11px] font-bold uppercase tracking-widest transition-colors cursor-pointer ${activeView === 'buying' ? 'text-brand-navy' : 'text-brand-muted hover:text-brand-text'}`} 
+                          onClick={() => onViewChange('buying')}
+                       >
+                          OPORTUNIDADES
                        </span>
                   </div>
               </nav>
@@ -427,11 +478,10 @@
              {/* Portfolio Table Wrapper */}
              <div className="bg-white shadow-sm border border-brand-border p-4 md:p-6 rounded-[2px]">
                 <div className="w-full overflow-x-auto touch-pan-x">
-                    <table className="w-full min-w-[800px] text-sm md:text-base border-collapse">
+                    <table className="w-full text-sm md:text-base border-collapse portfolio-table">
                         <thead>
                             <tr className="border-b border-gray-900">
                                 <th className="pb-2 pl-2 text-left font-bold text-gray-900">Posición</th>
-                                <th className="pb-2 text-left font-bold text-gray-900">País</th>
                                 <th className="pb-2 text-left font-bold text-gray-900">Símbolo</th>
                                 <th className="pb-2 text-left font-bold text-gray-900 w-[30%]">Empresa</th>
                                 <th className="pb-2 text-right font-bold text-gray-900">% posición</th>
@@ -444,7 +494,6 @@
                             {PORTFOLIO_DATA.map((row, i) => (
                                 <tr key={i} className="border-b border-gray-200 last:border-0 hover:bg-gray-50 transition-colors">
                                     <td className="py-3 pl-2 text-left font-bold text-brand-navy">{row.rank}</td>
-                                    <td className="py-3 text-left text-gray-600">{row.country}</td>
                                     <td className="py-3 text-left font-bold text-brand-navy">{row.symbol}</td>
                                     <td className="py-3 text-left font-sans text-gray-900">{row.name}</td>
                                     <td className="py-3 text-right font-bold text-gray-900">{row.weight}</td>
@@ -455,7 +504,6 @@
                             ))}
                             <tr className="font-semibold bg-gray-50 border-t-2 border-gray-200">
                               <td className="py-4 pl-2"></td>
-                              <td></td>
                               <td></td>
                               <td></td>
                               <td className="py-4 text-right font-bold text-gray-900">100,00%</td>
