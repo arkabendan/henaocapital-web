@@ -212,12 +212,25 @@
               text-align: center;
           }
           
-          /* SOLUCIÓN AL SCROLL TRAP: Permite el scroll vertical de la página sobre la tabla */
+          /* === SOLUCIÓN ROBUSTA AL SCROLL TRAP MÓVIL === */
+
+          /* 1. Configuración estricta del contenedor wrapper */
           .portfolio-table-wrapper {
-              /* Solo captura gestos horizontales; los verticales pasan al body */
-              touch-action: pan-x; 
-              /* Asegura que el comportamiento de scroll sea nativo y suave */
-              -webkit-overflow-scrolling: touch; 
+              overflow-x: auto; /* Mantiene el scroll horizontal necesario */
+              overflow-y: hidden; /* CRÍTICO: Prohíbe explícitamente el scroll vertical interno */
+              -webkit-overflow-scrolling: touch; /* Scroll suave en iOS */
+              touch-action: pan-x; /* Solo permite gestos horizontales aquí */
+              /* Aseguramos que no haya alturas raras que confundan */
+              height: auto; 
+              max-height: none;
+          }
+
+          /* 2. Forzar comportamiento en elementos internos para evitar captura profunda de eventos */
+          .portfolio-table,
+          .portfolio-table th,
+          .portfolio-table td {
+              /* Asegura que tocar una celda tampoco capture el scroll vertical */
+              touch-action: pan-x;
           }
       }
     </style>
