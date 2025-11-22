@@ -211,6 +211,14 @@
               padding-right: 2px !important;
               text-align: center;
           }
+          
+          /* SOLUCIÓN AL SCROLL TRAP: Permite el scroll vertical de la página sobre la tabla */
+          .portfolio-table-wrapper {
+              /* Solo captura gestos horizontales; los verticales pasan al body */
+              touch-action: pan-x; 
+              /* Asegura que el comportamiento de scroll sea nativo y suave */
+              -webkit-overflow-scrolling: touch; 
+          }
       }
     </style>
     <script type="importmap">
@@ -477,7 +485,7 @@
              
              {/* Portfolio Table Wrapper */}
              <div className="bg-white shadow-sm border border-brand-border p-4 md:p-6 rounded-[2px]">
-                <div className="w-full overflow-x-auto touch-pan-x">
+                <div className="w-full overflow-x-auto touch-pan-x portfolio-table-wrapper">
                     <table className="w-full text-sm md:text-base border-collapse portfolio-table">
                         <thead>
                             <tr className="border-b border-gray-900">
