@@ -173,64 +173,60 @@
         display: none;
       }
 
-      /* Ajustes para Móvil */
+      /* === Responsive Design (Móvil) === */
       @media (max-width: 768px) {
-          .brand-name { font-size: 1.8rem; }
-          .header-tagline-animated { font-size: 0.95rem; }
-          
-          /* Mostrar el salto de línea solo en móvil */
-          .mobile-break {
-              display: inline;
-          }
-          
-          /* Opcional: ajustar ligeramente el margen si queda muy separado en móvil */
-          .header-content-wrapper p {
-              margin-top: 8px !important; /* Un poco más de aire si se divide en dos líneas */
-              line-height: 1.4; /* Asegurar buen interlineado */
-          }
-      }
+          /* --- Ajustes Generales y Header --- */
+          .header-content-wrapper h1 { font-size: 2rem !important; }
+          .header-content-wrapper p { font-size: 1rem !important; }
+          .mobile-break { display: inline; }
+          .header-content-wrapper p { margin-top: 8px !important; line-height: 1.4; }
+          .data-nav-container { gap: 15px; font-size: 0.8rem; }
+          .article-title-link { font-size: 1.5rem; }
+          .reader-title { font-size: 2rem; }
+          .main-content { padding-bottom: 40px; } /* Menos padding abajo en móvil */
 
-      /* === OPTIMIZACIÓN MÓVIL PARA LA TABLA DE CARTERA === */
-      @media (max-width: 768px) {
-          /* Reducir el padding de las celdas para ganar espacio */
+          /* --- REDISEÑO TABLA CARTERA MÓVIL --- */
+          
+          /* 1. OCULTAR COLUMNAS SECUNDARIAS (Empresa, Acciones, PPS) */
+          /* Índices basados en la estructura actual: 1:Pos, 2:Sim, 3:Emp, 4:%, 5:Num, 6:PPS, 7:Total */
+          .portfolio-table th:nth-child(3), .portfolio-table td:nth-child(3), /* Empresa */
+          .portfolio-table th:nth-child(5), .portfolio-table td:nth-child(5), /* Nº Acciones */
+          .portfolio-table th:nth-child(6), .portfolio-table td:nth-child(6)  /* PPS actual $ */
+          {
+              display: none;
+          }
+
+          /* 2. AJUSTES DE ESTILO PARA LAS COLUMNAS RESTANTES */
+          .portfolio-table {
+              font-size: 0.85rem; /* Tamaño legible */
+              white-space: normal; /* Permitir salto de línea si es necesario (ej. totales) */
+          }
           .portfolio-table th,
           .portfolio-table td {
-              padding: 10px 4px !important; /* Menos padding horizontal */
+              padding: 12px 8px; /* Padding equilibrado */
           }
-
-          /* Reducir ligeramente el tamaño de fuente general de la tabla */
-          .portfolio-table {
-              font-size: 0.8rem !important; /* Un poco más pequeño que el 0.9rem original */
-          }
-
-          /* Opcional: Si alguna columna específica necesita ser más estrecha, se puede ajustar aquí */
-          /* Por ejemplo, la columna de posición (la primera) */
+          /* Ajuste para la primera columna (Posición) */
           .portfolio-table th:first-child,
           .portfolio-table td:first-child {
-              padding-left: 2px !important;
-              padding-right: 2px !important;
-              text-align: center;
+              padding-left: 5px; padding-right: 5px; text-align: center; width: 40px;
           }
-          
-          /* === SOLUCIÓN ROBUSTA AL SCROLL TRAP MÓVIL === */
+          /* Ajuste específico para la celda de totales (doble línea) */
+          .portfolio-table tr:last-child td:last-child {
+              font-size: 0.8rem; line-height: 1.2;
+          }
 
-          /* 1. Configuración estricta del contenedor wrapper */
+          /* 3. LIMPIEZA DEL WRAPPER (Ya no se necesita scroll horizontal) */
           .portfolio-table-wrapper {
-              overflow-x: auto; /* Mantiene el scroll horizontal necesario */
-              overflow-y: hidden; /* CRÍTICO: Prohíbe explícitamente el scroll vertical interno */
-              -webkit-overflow-scrolling: touch; /* Scroll suave en iOS */
-              touch-action: pan-x; /* Solo permite gestos horizontales aquí */
-              /* Aseguramos que no haya alturas raras que confundan */
-              height: auto; 
-              max-height: none;
+              overflow: visible !important; /* Eliminar cualquier scroll interno */
+              max-height: none !important; /* Eliminar límite de altura */
+              touch-action: auto !important; /* Restaurar scroll nativo de la página */
+              box-shadow: none; /* Diseño más plano en móvil */
+              border: none;
+              background: transparent;
           }
-
-          /* 2. Forzar comportamiento en elementos internos para evitar captura profunda de eventos */
-          .portfolio-table,
-          .portfolio-table th,
-          .portfolio-table td {
-              /* Asegura que tocar una celda tampoco capture el scroll vertical */
-              touch-action: pan-x;
+          /* Asegurar que los elementos internos no bloqueen el scroll */
+          .portfolio-table, .portfolio-table th, .portfolio-table td {
+              touch-action: auto !important;
           }
       }
     </style>
