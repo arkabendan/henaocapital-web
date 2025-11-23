@@ -339,7 +339,7 @@
           }
 
 
-          /* --- REDISEÑO TABLA CARTERA MÓVIL (Mantenido del paso anterior) --- */
+          /* --- REDISEÑO TABLA CARTERA MÓVIL (Reglas wrapper actualizadas) --- */
           .portfolio-table th:nth-child(3), .portfolio-table td:nth-child(3),
           .portfolio-table th:nth-child(5), .portfolio-table td:nth-child(5),
           .portfolio-table th:nth-child(6), .portfolio-table td:nth-child(6) {
@@ -351,11 +351,27 @@
               padding-left: 5px; padding-right: 5px; text-align: center; width: 40px;
           }
           .portfolio-table tr:last-child td:last-child { font-size: 0.8rem; line-height: 1.2; }
+          
+          /* SOLUCIÓN NUCLEAR AL SCROLL TRAP: PROHIBIDO EL SCROLL INTERNO */
           .portfolio-table-wrapper {
-              overflow: visible; max-height: none; touch-action: auto;
-              box-shadow: none; border: none; background: transparent;
+              /* Al ocultar columnas, la tabla cabe en pantalla. 
+                 Forzamos 'hidden' para que NO exista posibilidad de scroll interno.
+                 Esto obliga al navegador a pasar el gesto de scroll al body. */
+              overflow: hidden !important; 
+              
+              /* Reseteo de otras propiedades para asegurar limpieza */
+              max-height: none !important;
+              touch-action: auto !important;
+              box-shadow: none !important;
+              border: none !important;
+              background: transparent !important;
+              margin-top: 20px; /* Mantener un poco de margen si es el dropdown */
           }
-          .portfolio-table, .portfolio-table th, .portfolio-table td { touch-action: auto; }
+
+          /* Asegurar que la tabla interna tampoco capture nada */
+          .portfolio-table {
+              touch-action: auto !important;
+          }
           
           /* Ajustes dashboard cartera móvil */
           .portfolio-dashboard { grid-template-columns: 1fr; gap: 15px; }
@@ -1313,7 +1329,7 @@
                                             name="Alphabet Inc."
                                             sector="Tecnología / Servicios de Comunicación"
                                             logoUrl="https://upload.wikimedia.org/wikipedia/commons/thumb/c/c1/Google_%22G%22_logo.svg/768px-Google_%22G%22_logo.svg.png"
-                                            price="$299"
+                                            price="$284"
                                             target="$491"
                                             potentialAcc="+64,2%"
                                             potentialAnn="+10,4%"
