@@ -241,7 +241,24 @@
         display: none;
       }
 
-      /* === Responsive Design (Móvil) === */
+      /* === AJUSTE DE LAYOUT PARA LA VISTA DE OPORTUNIDADES (GRID 2 COLUMNAS) === */
+
+      /* Convertir el contenedor de lista en un Grid solo en esta vista */
+      #view-buying .articles-list-container {
+          display: grid;
+          /* Crea columnas automáticamente. Mínimo 350px de ancho, si caben dos, las pone. */
+          grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+          gap: 30px; /* Espacio entre tarjetas (horizontal y vertical) */
+          flex-direction: unset; /* Anular el flex-direction: column por defecto */
+      }
+
+      /* Eliminar el margen inferior de las tarjetas cuando están dentro del grid */
+      /* (El espaciado lo controla ahora la propiedad 'gap' del grid container) */
+      #view-buying .tear-sheet-card {
+          margin-bottom: 0;
+      }
+
+      /* === Responsive Design (Móvil) - BLOQUE CORREGIDO Y REFORZADO === */
       @media (max-width: 768px) {
           /* --- Ajustes Generales y Header --- */
           .header-content-wrapper h1 { font-size: 2rem !important; }
@@ -251,51 +268,99 @@
           .data-nav-container { gap: 15px; font-size: 0.8rem; }
           .article-title-link { font-size: 1.5rem; }
           .reader-title { font-size: 2rem; }
-          .main-content { padding-bottom: 40px; } /* Menos padding abajo en móvil */
+          .main-content { padding-bottom: 40px; }
 
-          /* --- REDISEÑO TABLA CARTERA MÓVIL --- */
-          
-          /* 1. OCULTAR COLUMNAS SECUNDARIAS (Empresa, Acciones, PPS) */
-          /* Índices basados en la estructura actual: 1:Pos, 2:Sim, 3:Emp, 4:%, 5:Num, 6:PPS, 7:Total */
-          .portfolio-table th:nth-child(3), .portfolio-table td:nth-child(3), /* Empresa */
-          .portfolio-table th:nth-child(5), .portfolio-table td:nth-child(5), /* Nº Acciones */
-          .portfolio-table th:nth-child(6), .portfolio-table td:nth-child(6)  /* PPS actual $ */
-          {
+          /* --- CORRECCIÓN CRÍTICA DE LAYOUT PARA OPORTUNIDADES --- */
+          /* Desactivar el grid de escritorio en móvil */
+          #view-buying .articles-list-container {
+              display: block !important; /* Volver a apilar verticalmente */
+              gap: 0 !important;
+          }
+          /* Restaurar margen inferior en las tarjetas en móvil */
+          #view-buying .tear-sheet-card {
+              margin-bottom: 15px !important;
+          }
+
+
+          /* --- AJUSTES ULTRA-COMPACTOS PARA TEAR SHEETS (CON !important) --- */
+          .tear-sheet-card {
+              /* Padding mínimo absoluto y borde lateral más fino */
+              padding: 10px !important;
+              border-left-width: 3px !important;
+          }
+          /* Metadatos diminutos y pegados */
+          .tear-sheet-card .article-meta {
+              margin-bottom: 5px !important;
+              font-size: 0.65rem !important;
+          }
+
+          /* Header muy compacto */
+          .tear-sheet-header {
+              margin-bottom: 8px !important; padding-bottom: 8px !important;
+          }
+          .ts-ticker { font-size: 1.3rem !important; } /* Ticker reducido */
+          .ts-company-name { font-size: 0.85rem !important; margin-top: 2px; }
+          .ts-sector { font-size: 0.7rem !important; margin-top: 2px; display: none; } /* Ocultar sector en móvil para ahorrar espacio */
+          .header-logo-container { width: 32px !important; height: 32px !important; } /* Logo mini */
+
+          /* Data Box apretada */
+          .tear-sheet-data-box {
+              gap: 8px !important; row-gap: 8px !important;
+          }
+          .data-point {
+              padding-bottom: 4px !important;
+              /* Asegurar 2 columnas estrictas */
+              flex: 1 1 calc(50% - 8px) !important;
+              min-width: auto !important;
+              border-bottom: 1px solid var(--border-color);
+          }
+          .dp-label {
+              font-size: 0.6rem !important; margin-bottom: 1px !important;
+          }
+          .dp-value {
+              font-size: 1rem !important; /* Valores numéricos mucho más pequeños */
+          }
+          /* Convicción compacta al final */
+          .conviction-point {
+              padding-top: 4px !important;
+              flex: 1 1 100% !important;
+              border-bottom: none !important;
+          }
+          .conviction-point .dp-value {
+              font-size: 0.8rem !important; padding: 2px 6px !important;
+          }
+
+          /* Footer pegado arriba */
+          .tear-sheet-footer {
+              margin-top: 8px !important;
+          }
+          .read-more-link {
+              font-size: 0.75rem !important;
+          }
+
+
+          /* --- REDISEÑO TABLA CARTERA MÓVIL (Mantenido del paso anterior) --- */
+          .portfolio-table th:nth-child(3), .portfolio-table td:nth-child(3),
+          .portfolio-table th:nth-child(5), .portfolio-table td:nth-child(5),
+          .portfolio-table th:nth-child(6), .portfolio-table td:nth-child(6) {
               display: none;
           }
-
-          /* 2. AJUSTES DE ESTILO PARA LAS COLUMNAS RESTANTES */
-          .portfolio-table {
-              font-size: 0.85rem; /* Tamaño legible */
-              white-space: normal; /* Permitir salto de línea si es necesario (ej. totales) */
-          }
-          .portfolio-table th,
-          .portfolio-table td {
-              padding: 12px 8px; /* Padding equilibrado */
-          }
-          /* Ajuste para la primera columna (Posición) */
-          .portfolio-table th:first-child,
-          .portfolio-table td:first-child {
+          .portfolio-table { font-size: 0.85rem; white-space: normal; }
+          .portfolio-table th, .portfolio-table td { padding: 12px 8px; }
+          .portfolio-table th:first-child, .portfolio-table td:first-child {
               padding-left: 5px; padding-right: 5px; text-align: center; width: 40px;
           }
-          /* Ajuste específico para la celda de totales (doble línea) */
-          .portfolio-table tr:last-child td:last-child {
-              font-size: 0.8rem; line-height: 1.2;
-          }
-
-          /* 3. LIMPIEZA DEL WRAPPER (Ya no se necesita scroll horizontal) */
+          .portfolio-table tr:last-child td:last-child { font-size: 0.8rem; line-height: 1.2; }
           .portfolio-table-wrapper {
-              overflow: visible !important; /* Eliminar cualquier scroll interno */
-              max-height: none !important; /* Eliminar límite de altura */
-              touch-action: auto !important; /* Restaurar scroll nativo de la página */
-              box-shadow: none; /* Diseño más plano en móvil */
-              border: none;
-              background: transparent;
+              overflow: visible; max-height: none; touch-action: auto;
+              box-shadow: none; border: none; background: transparent;
           }
-          /* Asegurar que los elementos internos no bloqueen el scroll */
-          .portfolio-table, .portfolio-table th, .portfolio-table td {
-              touch-action: auto !important;
-          }
+          .portfolio-table, .portfolio-table th, .portfolio-table td { touch-action: auto; }
+          
+          /* Ajustes dashboard cartera móvil */
+          .portfolio-dashboard { grid-template-columns: 1fr; gap: 15px; }
+          .track-record-hero-card { padding: 25px; flex-direction: column; text-align: center; gap: 20px; }
+          .tr-content h2 { font-size: 1.5rem; } .tr-content p { font-size: 1rem; }
       }
 
       /* === NUEVOS ESTILOS PARA EL DASHBOARD DE CARTERA === */
@@ -572,6 +637,23 @@
               align-items: flex-start; /* Alinear a la izquierda */
               padding-top: 10px;
           }
+      }
+
+      /* Estilos para el footer de la tarjeta Tear Sheet */
+      .tear-sheet-footer {
+          margin-top: 25px;
+          text-align: right;
+      }
+      .read-more-link {
+          font-size: 0.95rem;
+          font-weight: 600;
+          color: var(--secondary-color);
+          text-transform: uppercase;
+          letter-spacing: 1px;
+          transition: color 0.3s ease;
+      }
+      .tear-sheet-card:hover .read-more-link {
+          color: var(--primary-color); /* Cambia de color al pasar el ratón sobre toda la tarjeta */
       }
     </style>
     <script type="importmap">
@@ -1082,6 +1164,9 @@
                     <span className={`dp-value ${convictionClass}`}>{convictionLabel}</span>
                 </div>
             </div>
+            <div className="tear-sheet-footer">
+                <span className="read-more-link">Más detalles →</span>
+            </div>
         </article>
       );
 
@@ -1220,7 +1305,7 @@
                                             potentialAnn="+30,7%"
                                             convictionLabel="ALTA"
                                             convictionClass="conviction-high"
-                                            meta="$MSTR | 21 NOV 2025 | 20:24 CET"
+                                            meta="21 NOV 2025 | 20:24 CET"
                                             onClick={() => handleArticleClick('mstr-strategy-detailed')}
                                         />
                                         <TearSheetCard 
@@ -1234,6 +1319,7 @@
                                             potentialAnn="+10,4%"
                                             convictionLabel="MUY ALTA"
                                             convictionClass="conviction-very-high"
+                                            meta="17 NOV 2025 | 18:00 CET"
                                             onClick={() => handleArticleClick('buffett-google')}
                                         />
                                     </div>
