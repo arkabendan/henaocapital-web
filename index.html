@@ -9,7 +9,6 @@
     <script src="https://cdn.tailwindcss.com"></script>
     
     <!-- Fonts: Playfair Display (Serif) & Inter (Sans) & JetBrains Mono (Numbers) -->
-    <!-- UPDATED: Added weights 700 and 800 for Inter -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
@@ -62,7 +61,7 @@
     </script>
     <style>
       :root {
-          --bg-color: #2E3F4D;
+          --bg-color: #050505;
           --surface-color: #111111;
           --text-color: #FFFFFF;
           --text-muted: #B0B0B0;
@@ -70,32 +69,40 @@
           --border-color: #333333;
       }
       
-      /* === UNIFIED IMMERSIVE WATER THEME === */
+      /* === HIGH-TECH / MINIMAL THEME (ABSTRACT LIGHTS) === */
 
       /* 1. GLOBAL BACKGROUND (BODY) */
       body {
-          background-color: #2E3F4D; /* Base color */
-          background-image:
-              /* Layer 1: Vertical Gradient (Light Top -> Dark Bottom) */
-              linear-gradient(to bottom,
-                  rgba(213, 221, 227, 0.9) 0%,    /* #D5DDE3 - Top (More opaque for contrast) */
-                  rgba(154, 170, 182, 0.85) 40%,  /* #9AAAB6 - Middle */
-                  rgba(46, 63, 77, 0.95) 100%     /* #2E3F4D - Bottom */
+          /* 1. Fondo base negro puro */
+          background-color: #000000 !important;
+
+          /* 2. IMAGEN + VIÑETEADO PARA CENTRAR LA ATENCIÓN */
+          background-image: 
+              /* Capa 1: Oscurecimiento lateral para que el texto central brille */
+              radial-gradient(circle at center, 
+                  rgba(0, 0, 0, 0.3) 0%,      /* Centro limpio */
+                  rgba(0, 0, 0, 0.8) 100%     /* Bordes oscuros */
               ),
-              /* Layer 2: Water Texture */
-              url('https://images.unsplash.com/photo-1470770841072-f978cf4d019e?q=80&w=2070&auto=format&fit=crop');
+              /* Capa 2: Imagen Minimalista 4K */
+              url('https://images.unsplash.com/photo-1478760329108-5c3ed9d495a0?q=100&w=3840&auto=format&fit=crop');
 
+          /* 3. AJUSTES DE VISUALIZACIÓN */
           background-size: cover !important;
-          background-position: center top !important; /* Anchor top to see light */
-          background-attachment: fixed !important; /* Immersive Parallax */
-          background-blend-mode: multiply; /* Realistic fusion */
+          background-position: center center !important;
+          background-attachment: fixed !important;
+          background-repeat: no-repeat !important;
 
-          color: white;
+          /* 4. TIPOGRAFÍA Y LEGISLADAD */
+          color: #ffffff;
           margin: 0;
-          padding: 0;
           min-height: 100vh;
           font-family: 'Inter', sans-serif;
           overflow-x: hidden;
+      }
+
+      /* REFUERZO DE LEGIBILIDAD (Sombra suave para el texto sobre las líneas de luz) */
+      h1, h2, h3, p, li, a, label {
+          text-shadow: 0 2px 10px rgba(0,0,0,0.8) !important;
       }
 
       /* Ensure root is transparent to let body background show */
@@ -103,42 +110,57 @@
           background: transparent !important;
       }
 
+      /* === STICKY NAVIGATION & PADDING COMPENSATION === */
+
+      /* The Fixed Wrapper for Header & Nav */
+      #fixed-navbar {
+          position: fixed;
+          top: 0;
+          left: 0;
+          width: 100%;
+          z-index: 9999;
+          background-color: rgba(0, 0, 0, 0.85) !important; /* Semi-transparent black */
+          backdrop-filter: blur(10px); /* Modern blur effect */
+          border-bottom: 1px solid rgba(195, 245, 60, 0.2); /* Tech Green border tint */
+          box-shadow: 0 10px 30px rgba(0,0,0,0.8);
+      }
+
+      /* Push content down so it's not hidden behind the fixed header */
+      .main-content {
+          padding-top: 210px; /* Safe padding for header height */
+      }
+      
+      @media (max-width: 768px) {
+          .main-content {
+              padding-top: 180px; /* Adjusted for mobile header height */
+          }
+      }
+
       /* 2. TRANSPARENCY FOR HEADERS (HEADER/NAV) */
-      /* Eliminate black backgrounds, borders, and shadows */
+      /* Note: Elements INSIDE fixed-navbar will be transparent, revealing the black background of the wrapper */
       header, nav, .mini-header, .navbar-container,
       div[class*="bg-black"], nav[class*="bg-black"] 
       {
           background-color: transparent !important;
           background: transparent !important;
           box-shadow: none !important;
-          border-bottom: none !important;
           backdrop-filter: none !important;
       }
-
-      /* 3. CONTRAST CORRECTION (STRONG TEXT SHADOWS) */
-      /* Apply strong shadow to Logo, Menu Links, Mini-header links, Headings */
-      h1, h2, h3, 
-      a, 
-      nav span, /* DataNav menu items are spans */
-      .mini-header a,
-      .text-brand-text, 
-      .text-white,
-      .logo
-      {
-          color: #ffffff !important;
-          text-shadow: 0px 2px 8px rgba(0, 0, 0, 0.8), 0px 1px 3px rgba(0,0,0,0.95) !important;
-          font-weight: 600; /* Slightly bolder for readability */
-      }
       
-      /* Specific override for brand-muted text in header/hero areas to be white/readable */
-      .mini-header a, nav span {
+      /* Tech Borders for Nav */
+      .mini-header {
+          border-bottom: 1px solid rgba(195, 245, 60, 0.15) !important;
+      }
+      nav {
+          border-bottom: none !important; /* Border is now on #fixed-navbar */
+      }
+
+      /* 3. CONTRAST CORRECTION - Specific elements overrides */
+      /* Asegurar que el menú también tenga sombra si es blanco */
+      nav a, nav span, .mini-header a {
           color: #ffffff !important;
           opacity: 1 !important;
-      }
-      
-      /* Keep standard body text readable */
-      p, li, span {
-          text-shadow: 0px 2px 4px rgba(0, 0, 0, 0.6);
+          text-shadow: 0px 1px 3px rgba(0, 0, 0, 0.9) !important;
       }
       
       /* === ROBINHOOD STYLE TYPOGRAPHY UPDATES === */
@@ -168,27 +190,23 @@
           letter-spacing: -0.3px !important;
       }
 
-      /* Explicitly target the manifesto card text to override any previous styles */
+      /* Explicitly target the manifesto card text */
       #view-home .bg-black\/70 p {
           font-family: 'Inter', sans-serif !important;
           font-weight: 400 !important;
           letter-spacing: -0.3px !important;
       }
       
-      /* Only the "Bienvenido a Henao Capital" might want to stay bold but use Inter */
       #view-home .bg-black\/70 .font-serif {
           font-family: 'Inter', sans-serif !important;
-          /* Keep bold if it was bold in class, but ensure font is Inter */
       }
-
 
       /* === Standard Component Styles === */
       
       /* Ensure cards retain their dark backgrounds for content readability */
       .bg-brand-surface, .financial-card, .tear-sheet-card, .portfolio-table-container-styled {
           background-color: var(--surface-color) !important; 
-          /* Optional: border adjustment for water theme */
-          border-color: rgba(255,255,255,0.1);
+          border-color: rgba(195, 245, 60, 0.2); /* Tech Green border tint */
       }
 
       /* Elegant scrollbar */
@@ -200,12 +218,12 @@
       /* Typography Standards */
       .article-body p {
         font-family: 'Inter', sans-serif;
-        font-size: 1.125rem; /* 18px */
+        font-size: 1.125rem;
         line-height: 1.8;
         margin-bottom: 1.5rem;
-        color: #D4D4D4; /* Light Gray for readability inside cards */
+        color: #D4D4D4;
         font-weight: 300;
-        text-shadow: none; /* No shadow needed inside opaque cards */
+        text-shadow: none;
       }
       .article-body h3 {
         font-family: 'Playfair Display', serif;
@@ -251,7 +269,6 @@
           box-shadow: 0 10px 40px rgba(0,0,0,0.5) !important;
       }
 
-      /* Mobile adjustment for padding */
       @media (max-width: 768px) {
           .paper-mode-reader {
               padding: 24px !important;
@@ -259,7 +276,6 @@
           }
       }
 
-      /* Override Text Shadows and Colors for Paper Mode - Clean reading experience */
       .paper-mode-reader h1,
       .paper-mode-reader h2,
       .paper-mode-reader h3,
@@ -293,7 +309,6 @@
           font-weight: 700 !important;
       }
       
-      /* Close buttons and nav in reader - dark contrast */
       .paper-mode-reader button {
           color: #333333 !important;
       }
@@ -326,7 +341,6 @@
           }
 
           /* --- PORTFOLIO TABLE TRANSFORMATION (CARD VIEW) --- */
-          /* 1. Reset Table Structure */
           .portfolio-table, 
           .portfolio-table tbody, 
           .portfolio-table tr, 
@@ -337,12 +351,10 @@
               box-sizing: border-box;
           }
           
-          /* 2. Hide Headers */
           .portfolio-table thead { 
               display: none !important; 
           }
 
-          /* 3. Card Style for Rows */
           .portfolio-table tbody tr {
               background-color: var(--surface-color);
               border: 1px solid var(--border-color);
@@ -352,17 +364,13 @@
               border-radius: 4px;
               box-shadow: 0 4px 6px rgba(0,0,0,0.3);
               position: relative;
-          }
-
-          /* 4. Grid Layout for Card Content */
-          .portfolio-table tbody tr {
               display: grid !important;
               grid-template-columns: 1fr 1fr;
               grid-template-rows: auto auto auto;
               gap: 8px;
           }
 
-          /* 5. Hide Unwanted Columns (Rank, Country, Shares, Price) */
+          /* Hide Unwanted Columns */
           .portfolio-table td:nth-child(1), /* Rank */
           .portfolio-table td:nth-child(2), /* Country */
           .portfolio-table td:nth-child(6), /* Shares */
@@ -370,9 +378,7 @@
               display: none !important;
           }
 
-          /* 6. Style Specific Cells */
-          
-          /* Symbol (Ticker) - Top Full Width */
+          /* Symbol (Ticker) */
           .portfolio-table td:nth-child(3) {
               grid-column: 1 / -1;
               font-family: 'JetBrains Mono', monospace;
@@ -382,10 +388,10 @@
               padding: 0;
               border: none;
               line-height: 1.2;
-              text-shadow: none !important; /* Reset shadow for card content */
+              text-shadow: none !important;
           }
 
-          /* Name (Company) - Below Ticker */
+          /* Name (Company) */
           .portfolio-table td:nth-child(4) {
               grid-column: 1 / -1;
               font-family: 'Inter', sans-serif;
@@ -398,7 +404,7 @@
               text-shadow: none !important;
           }
 
-          /* Weight - Bottom Left */
+          /* Weight */
           .portfolio-table td:nth-child(5) {
               grid-column: 1;
               font-family: 'JetBrains Mono', monospace;
@@ -411,7 +417,6 @@
               align-items: center;
               text-shadow: none !important;
           }
-          /* Label for Weight */
           .portfolio-table td:nth-child(5)::before {
              content: "PESO";
              font-family: 'Inter', sans-serif;
@@ -423,7 +428,7 @@
              letter-spacing: 1px;
           }
 
-          /* Total Value - Bottom Right */
+          /* Total Value */
           .portfolio-table td:nth-child(8) {
               grid-column: 2;
               font-family: 'JetBrains Mono', monospace;
@@ -439,14 +444,13 @@
               text-shadow: none !important;
           }
 
-          /* --- Special Styling for Total Row (Last Child) --- */
+          /* Total Row */
           .portfolio-table tbody tr:last-child {
              border-left-color: #FFFFFF;
              margin-top: 24px;
              background-color: #1a1a1a;
           }
           
-          /* Inject Title for Total Row (using the empty Symbol cell) */
           .portfolio-table tbody tr:last-child td:nth-child(3) {
              display: block !important;
              color: var(--accent-color);
@@ -458,12 +462,10 @@
              content: "TOTAL CARTERA";
           }
           
-          /* Hide Company Name cell in Total Row (it's empty) */
           .portfolio-table tbody tr:last-child td:nth-child(4) {
              display: none !important;
           }
           
-          /* Ensure Total Value stands out */
           .portfolio-table tbody tr:last-child td:nth-child(8) {
              font-size: 1.1rem;
              font-weight: 700;
@@ -478,21 +480,19 @@
           flex-direction: unset;
       }
       
-      /* Table Colors for Dark Mode */
       .portfolio-table th { color: #FFFFFF; background-color: rgba(0,0,0,0.8); border-bottom: 1px solid var(--border-color); }
       .portfolio-table td { color: #B0B0B0; border-bottom: 1px solid #222; }
       .portfolio-table tr:hover td { background-color: rgba(26,26,26,0.9) !important; color: #fff; }
       
       /* === LOGO FIXES FOR FINANCIAL CARDS === */
       .financial-card img {
-          max-height: 40px !important; /* Limit height to align with text */
-          width: auto !important;      /* Maintain aspect ratio */
-          object-fit: contain !important; /* Ensure logo is visible */
-          border-radius: 4px !important; /* Slight rounding */
+          max-height: 40px !important;
+          width: auto !important;
+          object-fit: contain !important;
+          border-radius: 4px !important;
       }
-      /* Adjust container if needed */
       .financial-card .bg-white {
-          border-radius: 4px !important; /* Square with slight round for rectangular logos */
+          border-radius: 4px !important;
           padding: 4px !important;
       }
 
@@ -644,81 +644,81 @@
             "<h3>Dos economías, un solo grifo</h3><p>Estamos viviendo una desconexión histórica en Estados Unidos:</p><ul><li><strong>La economía real sufre:</strong> El ciudadano medio pierde poder adquisitivo, la asequibilidad de la vivienda está en mínimos y la seguridad laboral se deteriora.</li><li><strong>La economía de activos vuela:</strong> Las \"Magníficas 7\" superan los 20 Trillones de capitalización, el crédito privado se dispara y las valoraciones no paran de expandirse.</li></ul><p>La paradoja es cruel: para salvar a la economía real de una recesión inminente, la Fed está obligada a bajar tipos y relajar la política monetaria. Pero al hacerlo, inyecta gasolina de alto octanaje en un mercado de activos que ya está en máximos históricos.</p>",
             "<h3>\"Nothing stops this train\"</h3><p>Como bien señala la analista macro Lyn Alden, nada detiene este tren. La combinación de déficit fiscal estructural y debilidad laboral crea un escenario de <strong>Dominancia Fiscal</strong>. El Tesoro necesita tipos bajos para pagar la deuda, y la economía necesita liquidez para no gripar el motor.</p><p>Aunque las actas muestren dudas y división, la dirección real es inevitable: política monetaria más laxa en coordinación implícita con el Tesoro.</p>",
             "<h3>Nuestra conclusión</h3><p>El mensaje para nuestros socios es el mismo que hemos reiterado todo el año: <strong>\"Own assets or be left behind\"</strong> (Ten activos o quédate atrás).</p><p>El efectivo es un pasivo en un mundo de represión financiera. La única protección real es ser propietario de activos reales y de calidad que capturen esta expansión monetaria.</p>"
-          ]
-        },
-        {
-          id: 'nvidia-q3-2025',
-          date: '19 NOV 2025 | 09:15 CET',
-          category: '$NVDA',
-          title: 'NVIDIA a examen y el mercado mirando con lupa',
-          excerpt: 'Analizamos también el caso específico de Google',
-          imageUrl: 'https://media.es.wired.com/photos/675717ebcc618ee065c49252/master/w_1920,c_limit/2183848501',
-          body: [
-             "<p>Hoy, tras el cierre de mercado, NVIDIA vuelve a someterse a examen. Y no es una presentación de resultados cualquiera; se ha convertido en el evento macroeconómico más relevante del trimestre. Lo que el mercado intenta descifrar hoy no es si la acción subirá o bajará un 5% mañana, sino algo mucho más estructural: <strong>¿Estamos ante una burbuja financiera a punto de estallar o ante el despliegue de una tecnología que marcará las próximas décadas?</strong></p>",
-             "<p>Nuestra lectura en <strong>Henao Capital</strong> es rotunda: no estamos ante una burbuja de \"humo\", sino ante una transformación industrial masiva. Estamos en la fase de construcción de la infraestructura digital del siglo XXI. Y en esta fase, las reglas del juego son distintas.</p>",
-             "<p>A continuación, desarrollamos nuestra tesis en cuatro puntos clave.</p>",
-             "<h3>1. La realidad de la demanda: No se construye para almacenar</h3><p>Para diagnosticar una burbuja, solemos buscar una señal clara: se fabrica mucho más de lo que se consume (exceso de inventario). Los datos de NVIDIA nos cuentan exactamente la historia contraria.</p><p>La compañía ha cerrado su último trimestre con <strong>35.100 millones de dólares</strong> de ingresos, creciendo un 94% respecto al año anterior. Pero el dato crítico no es cuánto vende, sino la insatisfacción de sus clientes. Los gigantes tecnológicos (Microsoft, Amazon, Google) no están recortando pedidos; se están peleando por recibir los chips.</p><ul><li>Microsoft ha confirmado públicamente que su negocio en la nube crecería aún más rápido si tuviera más capacidad instalada.</li><li>Amazon y Google reportan aceleraciones en sus divisiones impulsadas puramente por servicios de IA.</li></ul><p><strong>La conclusión lógica es sencilla:</strong> La infraestructura se está construyendo a toda velocidad porque la demanda real de cómputo excede, con mucho, a la oferta disponible. Se vende todo lo que se fabrica.</p>",
-             "<h3>2. El dilema de los 300.000 Millones: ¿Por qué gastan tanto?</h3><p>El gran miedo del mercado es la cifra de inversión. Entre las cuatro grandes tecnológicas (Microsoft, Amazon, Alphabet, Meta), se estima que gastarán cerca de <strong>300.000 millones de dólares</strong> en 2025 en infraestructura.</p><p>Muchos analistas se preguntan: <em>\"¿Es esto racional? ¿Van a recuperar ese dinero pronto?\"</em>.</p><p>Para entenderlo, hay que mirar esto desde la <strong>Teoría de Juegos</strong>. Estas empresas se enfrentan a lo que llamamos un \"Dilema del Prisionero\":</p><ul><li><strong>El riesgo financiero:</strong> Si invierten miles de millones y la IA tarda en ser rentable, sus márgenes de beneficio bajarán temporalmente. Es un problema de dinero.</li><li><strong>El riesgo existencial:</strong> Si <strong>NO</strong> invierten y su competidor sí lo hace y acierta, ellos corren el riesgo de volverse irrelevantes tecnológicamente. Es un problema de supervivencia.</li></ul><p>Cuando el riesgo de no hacer nada es desaparecer, la inversión agresiva es la única decisión racional. Por eso creemos que el gasto en infraestructura va a continuar siendo muy fuerte durante más tiempo del que muchos esperan. No es euforia, es necesidad estratégica.</p>",
-             "<h3>3. Alphabet (Google) y la ventaja de \"cocinar en casa\"</h3><p>En este entorno de gasto masivo, la eficiencia se convierte en la mayor ventaja competitiva. Y aquí es donde nuestra visión sobre Alphabet (Google) es muy positiva.</p><p>Mientras la mayoría de empresas dependen casi totalmente de comprar chips a NVIDIA (pagando el precio que NVIDIA quiera), Google lleva más de diez años diseñando sus propios chips: los <strong>TPUs</strong>.</p><p>Al diseñar sus propios chips, Google reduce su dependencia de proveedores externos y, lo más importante, reduce el coste de operar la Inteligencia Artificial.</p><p>A medida que la IA se use cada vez más, quien sea capaz de ofrecer la respuesta más barata tendrá un margen de beneficio superior. Google no solo tiene los datos (Buscador, YouTube), también tiene la fábrica de la infraestructura.</p>",
-             "<h3>4. Conclusión: Una supertendencia histórica</h3><p>Volviendo a la sesión de hoy con NVIDIA. Nuestra visión táctica en Henao Capital es que la fase \"fácil\" del ciclo, donde cualquier acción relacionada con la IA subía sin parar, ha terminado. Entramos en una fase más madura.</p><p>Sin embargo, la tendencia de fondo sigue intacta. Comparar esto con la burbuja de las \".com\" del año 2000 es incorrecto. En aquel entonces, las empresas no tenían ingresos reales. Hoy, estamos en el polo opuesto. Los hyperscalers son auténticas máquinas de imprimir dinero.</p><p>A nuestro juicio, la IA no es una moda pasajera, es un cambio de régimen industrial similar a la electricidad o internet. Y como en cualquier revolución industrial, habrá volatilidad, pero la dirección es clara: el mundo necesitará sin ninguna duda más capacidad de cómputo, más energía y más software inteligente de forma estructural.</p><p>En Henao Capital seguimos claramente posicionados para capturar este valor a largo plazo.</p>"
-          ]
-        },
-        {
-          id: 'btc-eth-correction',
-          date: '18 NOV 2025 | 22:30 CET',
-          category: '$BTCUSD',
-          title: '¿Winter is coming o corrección sana?',
-          excerpt: 'Esta noche BTC ha roto 90.000 USD a la baja y ETH los 3.000 USD. Analizamos si es el inicio de un cripto-invierno.',
-          imageUrl: 'https://news.bit2me.com/wp-content/uploads/2025/03/Bitcoins.jpg',
-          body: [
-            "<p>Esta noche BTC ha roto 90.000 USD a la baja y ETH los 3.000 USD. Quién lo diría hace un par de meses…</p>",
-            "<h3>¿Winter is coming? ¿Bear market? ¿Corrección sana?</h3><p>En primer lugar, algo de contexto. Venimos de semanas de nervios en los activos de riesgo en general: dudas sobre valoraciones en IA y tech, correcciones en <em>high-growth</em>, mucho ruido político, cierre de gobierno en USA y un mercado pendiente al milímetro de qué tono adopta la FED en diciembre.</p><p>En un entorno así, el mercado suele descargar los golpes donde la beta es más alta: en los activos más volátiles y <em>risk-on</em>. Y cripto está en primera línea de fuego.</p>",
-            "<p>Si a ese entorno le sumas el gran evento de liquidación de hace apenas un mes, el cuadro encaja mejor. El mercado venía muy cargado de apalancamiento en derivados... el precio gira, empiezan a saltar <em>margin calls</em>, los brókers cierran posiciones para recuperar el dinero prestado, esas ventas forzadas empujan aún más abajo, saltan nuevas liquidaciones… y en pocas horas tienes un movimiento que se vive como “colapso”, sensación de que \"algo se ha roto\". <strong>Feo de ver, pero nada que desmonte la tesis de fondo.</strong></p>",
-            "<p>Y aquí es donde entra la parte difícil de verdad: separar señal de ruido y aparcar las emociones.</p>",
-            "<h3>Pregunta clave: ¿Es el inicio de un invierno?</h3><p>A día de hoy, en <strong>Henao Capital</strong> vemos bastante más argumentos para una corrección dura dentro de un ciclo alcista. El marco de 12–24 meses no ha cambiado: seguimos en un mundo con deuda pública muy elevada, bancos centrales cada vez más condicionados, y una demanda creciente de activos reales escasos. La corrección es violenta, sí, pero forma parte del viaje. ¿Puede caer más? Siempre.</p>",
-            "<h3>Volviendo a los basics: Bitcoin como activo real</h3><p>En Henao Capital no lo vemos así por dogma, sino por diseño. Si estudias la historia monetaria, el patrón se repite: cada vez que aparece un dinero con mejores propiedades que el anterior (más difícil de censurar, más fácil de verificar, más resistente a la inflación) el capital migra poco a poco hacia ese nuevo estándar.</p><p><strong>Bitcoin lleva esa lógica al extremo:</strong> tiene una oferta conocida y limitada, un calendario de emisión que nadie puede tocar, reglas transparentes y una network descentralizada que no depende de ningún estado ni banco central. Es, a día de hoy, la red descentralizada más robusta e independiente del mundo digital, asegurada por el mayor poder computacional dedicado a una única red que existe.</p>",
-            "<p>Desde el punto de vista de <em>asset allocation</em>, Bitcoin es nuestro activo real núcleo. El coste es evidente: hay que convivir con una volatilidad muy alta en el corto plazo. A cambio, a 5–10 años vista, la combinación de escasez programada, adopción creciente e institucionalización vía ETFs le da un perfil de activo real prácticamente imposible de replicar.</p>",
-            "<h3>El rol de Ethereum y la estrategia</h3><p>Ethereum, por su parte, juega otra liga. Menos “oro digital”, más “infraestructura financiera y de datos”. Aquí el riesgo es distinto: más tecnológico, más regulatorio… y también más competitivo. Para nosotros, dejando de lado Bitcoin, Ethereum tiene sentido como posición satélite relevante.</p>",
-            "<p><strong>¿Cómo interpretamos todo este escenario en Henao Capital?</strong> De forma bastante simple:</p><ul class='list-disc pl-5 space-y-2 mt-2 mb-4'><li>No vemos señales claras de cambio estructural de régimen en cripto.</li><li>Vemos una corrección agresiva dentro de un superciclo ligado a activos reales escasos e infra de nueva generación.</li><li>En este tipo de fases no tiene sentido dramatizar ni idealizar. Tiene sentido revisar tamaños y horizontes.</li></ul>",
-            "<p>¿Hace frío en cripto? Sí. ¿Winter is coming? No es como lo vemos.</p><p>La forma sensata de monetizar la volatilidad de Bitcoin no es adivinar cada giro, es estar estructuralmente largo con un horizonte suficientemente amplio. <strong>Si entras en un activo hipervolátil con mentalidad de corto plazo, no estás invirtiendo, estás en el casino. Y en el casino ya sabemos lo que pasa.</strong></p>"
-          ]
-        },
-        {
-          id: 'ai-bubble-revolution',
-          date: '17 NOV 2025 | 11:20 CET',
-          category: '#AI',
-          title: 'Anatomía de la Inteligencia Artificial',
-          excerpt: '¿Burbuja o supertendencia?',
-          imageUrl: 'https://conversesacatalunya.cat/wp-content/uploads/2024/07/inteligencia-artificial-1024x594.jpg',
-          body: [
-            "<p><em>“Esto es un déjà vu de 1999: valoraciones de ciencia ficción, capex a lo loco y contabilidad creativa… la burbuja está servida.”</em></p><p><em>“La IA es la solución definitiva. Abundancia para todos. Va a arreglar el crecimiento, la productividad y casi todos los problemas de las economías desarrolladas por sí misma.”</em></p>",
-            "<p>Probablemente ninguna de las dos visiones describe bien lo que tenemos delante.</p>",
-            "<p>En el corto plazo, y en tramos muy concretos del mercado, es cierto que hay claros excesos envueltos en la etiqueta ‘IA’. Sin embargo, por debajo de ese ruido, en <strong>Henao Capital</strong> consideramos que se está desarrollando una <strong>infraestructura de propósito general</strong>, transversal y multi-sectorial, que sin ninguna duda puede reescribir la trayectoria de productividad de la economía durante las próximas décadas.</p>",
-            "<p>El reto para el inversor no es elegir entre burbuja o revolución, sino entender cómo conviven ambos elementos dentro de un mismo superciclo.</p>",
-            "<h3>IA: no es una moda, es un cambio de infraestructura</h3><p>La IA definitivamente no es solo otro nicho de crecimiento más. Es una capa nueva de infraestructura que se está desarrollando, poco a poco, en casi toda la cadena productiva: industria, servicios, energía, logística, salud, finanzas, sector público, educación, entretenimiento, etc.</p><p><strong>Una tecnología transversal a la economía.</strong></p><p>Si esta trayectoria se mantiene, el impacto no será un par de años buenos de beneficios, sino un cambio en la pendiente de la productividad y en la estructura de márgenes corporativos durante décadas.</p><p>Más automatización, menos fricción operativa, mejor utilización de capital y datos: eso, agregado, significa más capacidad de generar <em>cash flow</em> real con la misma unidad de trabajo y de inversión. Si la economía se reorganiza y consolida alrededor de esta nueva infraestructura, el eje lógico a largo plazo es claro: ser dueño, en alguna medida, de los activos productivos que capturen ese salto de productividad.</p>",
-            "<h3>Sí, hay excesos… pero dentro de un superciclo real</h3><p>Dicho todo lo anterior, hay ciertos puntos con rasgos clásicos de sobrecalentamiento:</p><ul class='list-disc pl-5 space-y-2 mt-2 mb-4'><li>Capex muy agresivo en hardware e infra.</li><li>Esquemas de financiación creativos entre proveedores y clientes.</li><li>Valoraciones que pre-suponen una ejecución casi perfecta.</li></ul><p>Eso hace que muy probablemente veremos correcciones fuertes en áreas concretas y fases de “mini-burbuja” en segmentos específicos. Pero esto no invalida la estructura de fondo: si la adopción sigue y se consolida (lo hará), el mundo necesitará sin ninguna duda más cómputo, más energía y más software inteligente de forma estructural.</p>",
-            "<h3>De sector tecnológico a activo estratégico a nivel geopolítico</h3><p>A nivel global, la IA ya se ha convertido de-facto en una carrera geopolítica: <strong>USA vs. China.</strong></p><p>Dominar chips, data centers, recopilación de datos y modelos no solo da beneficios; da poder económico, militar y de negociación. Esto no quiere decir que aquí no vaya a haber cadáveres corporativos; los habrá. Lo que sí implica es que cuando algo pasa a ser infraestructura estratégica, los gobiernos pueden dejar caer piezas, pero harán todo lo posible por evitar que se hunda el tablero en su conjunto.</p>",
-            "<h3>¿Y el impacto en el mercado laboral?</h3><p>Sí parece claro que IA y robótica van a eliminar muchas tareas automatizables y a forzar cambios drásticos en sectores concretos. Pero un mundo donde producir es más barato suele generar más productos, servicios y sistemas que mantener. No implica necesariamente menos empleo total, sino empleo distinto. Como cualquier otra revolución tecnológica.</p><p>Parece claro que el riesgo macro no es de paro masivo permanente a 20-30 años vista. Sí lo será la gestión de la transición: fuerza laboral reacia al cambio, regiones descolocadas, transformación de industrias... la flexibilidad y agilidad en la adaptación serán claves. Ahí estará la tensión política y social.</p>",
-            "<h3>Cómo lo enfocamos en Henao Capital</h3><p>Tenemos perfectamente asumido que la IA va a reconfigurar crecimiento y productividad global. En este contexto el riesgo principal no es sufrir varios drawdowns duros durante el camino... hay que aceptar la volatilidad. <strong>El riesgo principal lo vemos en llegar tarde o con una exposición irrelevante aun habiendo acertado en la tesis de fondo.</strong></p><p>Evidentemente esto no justifica comprar cualquier cosa “con narrativa IA” ni ignorar valoraciones. Implica:</p><ul class='list-disc pl-5 space-y-2 mt-2 mb-4'><li>Asumir que estamos en un superciclo con fases inevitables de exceso y corrección.</li><li>Decidir en qué tramos de la cadena (infraestructura, energía asociada, plataformas, aplicaciones con casos de uso claro) tiene sentido ser propietario de activos.</li><li>Calibrar el tamaño de la exposición para poder aguantar la volatilidad sin desmontar la tesis en cada drawdown.</li></ul><p>Por lo tanto, el debate ya no es “¿hay burbuja en la IA?”. La pregunta relevante para nosotros como <em>asset allocators</em> es otra: ¿qué grado de exposición estructural tiene sentido en un superciclo que sin duda damos por confirmado, y que va a ser uno de los vectores centrales de rentabilidad real en las próximas décadas?</p><p>Sin duda habrá volatilidad por el camino, habrá fases de euforia y de purga, y saber ser selectivos será clave. Pero el verdadero error será no reconocer la transformación tecnológica de fondo, la mejora de productividad que trae consigo y quedarse sin una exposición significativa a ese proceso.</p>"
-          ]
-        },
-        {
-          id: 'buffett-google',
-          date: '17 NOV 2025 | 08:45 CET',
-          category: '$BRK.B / $GOOGL',
-          title: '$GOOGL: Compra clara a 284 USD por acción',
-          excerpt: 'Nunca es tarde para comprar negocios extraordinarios.',
-          imageUrl: 'https://media.ouest-france.fr/v1/pictures/MjAyMzA5NDYwMDJiZGVjYmNmNGFiYjNiZjc2N2NiYmRlNmE3M2I?width=1260&height=708&focuspoint=50%2C25&cropresize=1&client_id=bpeditorial&sign=91a6dce9ad58a4e3c762a77aa7eb150c1572314d458f64ae5c9de1dd86fa3a4a',
-          body: [
-            "<p>Nunca es tarde para comprar negocios extraordinarios. Eso debió pensar Buffett, con su retirement oficial ya a la vuelta de la esquina. Y debió pensar también que la mejor manera de pasarle el testigo a Greg Abel en Berkshire Hathaway era dejándole en cartera uno de los mejores negocios del mundo.</p>",
-            "<p>Buffett se redime así de lo que él mismo ha reconocido como uno de los grandes errores de omisión de la era reciente de Berkshire: no haber comprado Google cuando ya era una máquina de imprimir caja. Puede que también estemos empezando a ver el toque de Greg Abel asomando... Quién sabe.</p>",
-            "<p>En Henao Capital coincidimos con Warren en el qué, pero no en el cuándo. Alphabet tenía que haber estado en su cartera hace ya muchos años. Pero, efectivamente, nunca es tarde.</p>",
-            "<p>Y sin duda lo interesante aquí no es el titular, es el contexto. Berkshire podría seguir sentado sobre su montaña de liquidez, sin mover ficha. Aun así, deciden destinar una parte de ese dry powder a Google en pleno ruido de “burbuja de IA”, con el valor cerca de máximos históricos y después de un rally muy serio en el año, especialmente en las últimas semanas.</p>",
-            "<p>No es una jugada contrarian de manual, estilo value old school, desde luego...</p>",
-            "<p>En nuestra opinión, Berkshire no solo valida el activo, Alphabet, como un actor dominante, diversificado, y con amplia opcionalidad, sino que valida la estructura subyacente. Y respaldan ese diagnóstico con una asignación de capital significativa, para nada testimonial.</p>",
-            "<p>Sin alargarlo más, hemos considerado interesante subrayar este movimiento como lo que es: una señal que interpretamos sin duda como relevante.</p>"
-          ]
-        }
+      ]
+    },
+    {
+      id: 'nvidia-q3-2025',
+      date: '19 NOV 2025 | 09:15 CET',
+      category: '$NVDA',
+      title: 'NVIDIA a examen y el mercado mirando con lupa',
+      excerpt: 'Analizamos también el caso específico de Google',
+      imageUrl: 'https://media.es.wired.com/photos/675717ebcc618ee065c49252/master/w_1920,c_limit/2183848501',
+      body: [
+         "<p>Hoy, tras el cierre de mercado, NVIDIA vuelve a someterse a examen. Y no es una presentación de resultados cualquiera; se ha convertido en el evento macroeconómico más relevante del trimestre. Lo que el mercado intenta descifrar hoy no es si la acción subirá o bajará un 5% mañana, sino algo mucho más estructural: <strong>¿Estamos ante una burbuja financiera a punto de estallar o ante el despliegue de una tecnología que marcará las próximas décadas?</strong></p>",
+         "<p>Nuestra lectura en <strong>Henao Capital</strong> es rotunda: no estamos ante una burbuja de \"humo\", sino ante una transformación industrial masiva. Estamos en la fase de construcción de la infraestructura digital del siglo XXI. Y en esta fase, las reglas del juego son distintas.</p>",
+         "<p>A continuación, desarrollamos nuestra tesis en cuatro puntos clave.</p>",
+         "<h3>1. La realidad de la demanda: No se construye para almacenar</h3><p>Para diagnosticar una burbuja, solemos buscar una señal clara: se fabrica mucho más de lo que se consume (exceso de inventario). Los datos de NVIDIA nos cuentan exactamente la historia contraria.</p><p>La compañía ha cerrado su último trimestre con <strong>35.100 millones de dólares</strong> de ingresos, creciendo un 94% respecto al año anterior. Pero el dato crítico no es cuánto vende, sino la insatisfacción de sus clientes. Los gigantes tecnológicos (Microsoft, Amazon, Google) no están recortando pedidos; se están peleando por recibir los chips.</p><ul><li>Microsoft ha confirmado públicamente que su negocio en la nube crecería aún más rápido si tuviera más capacidad instalada.</li><li>Amazon y Google reportan aceleraciones en sus divisiones impulsadas puramente por servicios de IA.</li></ul><p><strong>La conclusión lógica es sencilla:</strong> La infraestructura se está construyendo a toda velocidad porque la demanda real de cómputo excede, con mucho, a la oferta disponible. Se vende todo lo que se fabrica.</p>",
+         "<h3>2. El dilema de los 300.000 Millones: ¿Por qué gastan tanto?</h3><p>El gran miedo del mercado es la cifra de inversión. Entre las cuatro grandes tecnológicas (Microsoft, Amazon, Alphabet, Meta), se estima que gastarán cerca de <strong>300.000 millones de dólares</strong> en 2025 en infraestructura.</p><p>Muchos analistas se preguntan: <em>\"¿Es esto racional? ¿Van a recuperar ese dinero pronto?\"</em>.</p><p>Para entenderlo, hay que mirar esto desde la <strong>Teoría de Juegos</strong>. Estas empresas se enfrentan a lo que llamamos un \"Dilema del Prisionero\":</p><ul><li><strong>El riesgo financiero:</strong> Si invierten miles de millones y la IA tarda en ser rentable, sus márgenes de beneficio bajarán temporalmente. Es un problema de dinero.</li><li><strong>El riesgo existencial:</strong> Si <strong>NO</strong> invierten y su competidor sí lo hace y acierta, ellos corren el riesgo de volverse irrelevantes tecnológicamente. Es un problema de supervivencia.</li></ul><p>Cuando el riesgo de no hacer nada es desaparecer, la inversión agresiva es la única decisión racional. Por eso creemos que el gasto en infraestructura va a continuar siendo muy fuerte durante más tiempo del que muchos esperan. No es euforia, es necesidad estratégica.</p>",
+         "<h3>3. Alphabet (Google) y la ventaja de \"cocinar en casa\"</h3><p>En este entorno de gasto masivo, la eficiencia se convierte en la mayor ventaja competitiva. Y aquí es donde nuestra visión sobre Alphabet (Google) es muy positiva.</p><p>Mientras la mayoría de empresas dependen casi totalmente de comprar chips a NVIDIA (pagando el precio que NVIDIA quiera), Google lleva más de diez años diseñando sus propios chips: los <strong>TPUs</strong>.</p><p>Al diseñar sus propios chips, Google reduce su dependencia de proveedores externos y, lo más importante, reduce el coste de operar la Inteligencia Artificial.</p><p>A medida que la IA se use cada vez más, quien sea capaz de ofrecer la respuesta más barata tendrá un margen de beneficio superior. Google no solo tiene los datos (Buscador, YouTube), también tiene la fábrica de la infraestructura.</p>",
+         "<h3>4. Conclusión: Una supertendencia histórica</h3><p>Volviendo a la sesión de hoy con NVIDIA. Nuestra visión táctica en Henao Capital es que la fase \"fácil\" del ciclo, donde cualquier acción relacionada con la IA subía sin parar, ha terminado. Entramos en una fase más madura.</p><p>Sin embargo, la tendencia de fondo sigue intacta. Comparar esto con la burbuja de las \".com\" del año 2000 es incorrecto. En aquel entonces, las empresas no tenían ingresos reales. Hoy, estamos en el polo opuesto. Los hyperscalers son auténticas máquinas de imprimir dinero.</p><p>A nuestro juicio, la IA no es una moda pasajera, es un cambio de régimen industrial similar a la electricidad o internet. Y como en cualquier revolución industrial, habrá volatilidad, pero la dirección es clara: el mundo necesitará sin ninguna duda más capacidad de cómputo, más energía y más software inteligente de forma estructural.</p><p>En Henao Capital seguimos claramente posicionados para capturar este valor a largo plazo.</p>"
+      ]
+    },
+    {
+      id: 'btc-eth-correction',
+      date: '18 NOV 2025 | 22:30 CET',
+      category: '$BTCUSD',
+      title: '¿Winter is coming o corrección sana?',
+      excerpt: 'Esta noche BTC ha roto 90.000 USD a la baja y ETH los 3.000 USD. Analizamos si es el inicio de un cripto-invierno.',
+      imageUrl: 'https://news.bit2me.com/wp-content/uploads/2025/03/Bitcoins.jpg',
+      body: [
+        "<p>Esta noche BTC ha roto 90.000 USD a la baja y ETH los 3.000 USD. Quién lo diría hace un par de meses…</p>",
+        "<h3>¿Winter is coming? ¿Bear market? ¿Corrección sana?</h3><p>En primer lugar, algo de contexto. Venimos de semanas de nervios en los activos de riesgo en general: dudas sobre valoraciones en IA y tech, correcciones en <em>high-growth</em>, mucho ruido político, cierre de gobierno en USA y un mercado pendiente al milímetro de qué tono adopta la FED en diciembre.</p><p>En un entorno así, el mercado suele descargar los golpes donde la beta es más alta: en los activos más volátiles y <em>risk-on</em>. Y cripto está en primera línea de fuego.</p>",
+        "<p>Si a ese entorno le sumas el gran evento de liquidación de hace apenas un mes, el cuadro encaja mejor. El mercado venía muy cargado de apalancamiento en derivados... el precio gira, empiezan a saltar <em>margin calls</em>, los brókers cierran posiciones para recuperar el dinero prestado, esas ventas forzadas empujan aún más abajo, saltan nuevas liquidaciones… y en pocas horas tienes un movimiento que se vive como “colapso”, sensación de que \"algo se ha roto\". <strong>Feo de ver, pero nada que desmonte la tesis de fondo.</strong></p>",
+        "<p>Y aquí es donde entra la parte difícil de verdad: separar señal de ruido y aparcar las emociones.</p>",
+        "<h3>Pregunta clave: ¿Es el inicio de un invierno?</h3><p>A día de hoy, en <strong>Henao Capital</strong> vemos bastante más argumentos para una corrección dura dentro de un ciclo alcista. El marco de 12–24 meses no ha cambiado: seguimos en un mundo con deuda pública muy elevada, bancos centrales cada vez más condicionados, y una demanda creciente de activos reales escasos. La corrección es violenta, sí, pero forma parte del viaje. ¿Puede caer más? Siempre.</p>",
+        "<h3>Volviendo a los basics: Bitcoin como activo real</h3><p>En Henao Capital no lo vemos así por dogma, sino por diseño. Si estudias la historia monetaria, el patrón se repite: cada vez que aparece un dinero con mejores propiedades que el anterior (más difícil de censurar, más fácil de verificar, más resistente a la inflación) el capital migra poco a poco hacia ese nuevo estándar.</p><p><strong>Bitcoin lleva esa lógica al extremo:</strong> tiene una oferta conocida y limitada, un calendario de emisión que nadie puede tocar, reglas transparentes y una network descentralizada que no depende de ningún estado ni banco central. Es, a día de hoy, la red descentralizada más robusta e independiente del mundo digital, asegurada por el mayor poder computacional dedicado a una única red que existe.</p>",
+        "<p>Desde el punto de vista de <em>asset allocation</em>, Bitcoin es nuestro activo real núcleo. El coste es evidente: hay que convivir con una volatilidad muy alta en el corto plazo. A cambio, a 5–10 años vista, la combinación de escasez programada, adopción creciente e institucionalización vía ETFs le da un perfil de activo real prácticamente imposible de replicar.</p>",
+        "<h3>El rol de Ethereum y la estrategia</h3><p>Ethereum, por su parte, juega otra liga. Menos “oro digital”, más “infraestructura financiera y de datos”. Aquí el riesgo es distinto: más tecnológico, más regulatorio… y también más competitivo. Para nosotros, dejando de lado Bitcoin, Ethereum tiene sentido como posición satélite relevante.</p>",
+        "<p><strong>¿Cómo interpretamos todo este escenario en Henao Capital?</strong> De forma bastante simple:</p><ul class='list-disc pl-5 space-y-2 mt-2 mb-4'><li>No vemos señales claras de cambio estructural de régimen en cripto.</li><li>Vemos una corrección agresiva dentro de un superciclo ligado a activos reales escasos e infra de nueva generación.</li><li>En este tipo de fases no tiene sentido dramatizar ni idealizar. Tiene sentido revisar tamaños y horizontes.</li></ul>",
+        "<p>¿Hace frío en cripto? Sí. ¿Winter is coming? No es como lo vemos.</p><p>La forma sensata de monetizar la volatilidad de Bitcoin no es adivinar cada giro, es estar estructuralmente largo con un horizonte suficientemente amplio. <strong>Si entras en un activo hipervolátil con mentalidad de corto plazo, no estás invirtiendo, estás en el casino. Y en el casino ya sabemos lo que pasa.</strong></p>"
+      ]
+    },
+    {
+      id: 'ai-bubble-revolution',
+      date: '17 NOV 2025 | 11:20 CET',
+      category: '#AI',
+      title: 'Anatomía de la Inteligencia Artificial',
+      excerpt: '¿Burbuja o supertendencia?',
+      imageUrl: 'https://conversesacatalunya.cat/wp-content/uploads/2024/07/inteligencia-artificial-1024x594.jpg',
+      body: [
+        "<p><em>“Esto es un déjà vu de 1999: valoraciones de ciencia ficción, capex a lo loco y contabilidad creativa… la burbuja está servida.”</em></p><p><em>“La IA es la solución definitiva. Abundancia para todos. Va a arreglar el crecimiento, la productividad y casi todos los problemas de las economías desarrolladas por sí misma.”</em></p>",
+        "<p>Probablemente ninguna de las dos visiones describe bien lo que tenemos delante.</p>",
+        "<p>En el corto plazo, y en tramos muy concretos del mercado, es cierto que hay claros excesos envueltos en la etiqueta ‘IA’. Sin embargo, por debajo de ese ruido, en <strong>Henao Capital</strong> consideramos que se está desarrollando una <strong>infraestructura de propósito general</strong>, transversal y multi-sectorial, que sin ninguna duda puede reescribir la trayectoria de productividad de la economía durante las próximas décadas.</p>",
+        "<p>El reto para el inversor no es elegir entre burbuja o revolución, sino entender cómo conviven ambos elementos dentro de un mismo superciclo.</p>",
+        "<h3>IA: no es una moda, es un cambio de infraestructura</h3><p>La IA definitivamente no es solo otro nicho de crecimiento más. Es una capa nueva de infraestructura que se está desarrollando, poco a poco, en casi toda la cadena productiva: industria, servicios, energía, logística, salud, finanzas, sector público, educación, entretenimiento, etc.</p><p><strong>Una tecnología transversal a la economía.</strong></p><p>Si esta trayectoria se mantiene, el impacto no será un par de años buenos de beneficios, sino un cambio en la pendiente de la productividad y en la estructura de márgenes corporativos durante décadas.</p><p>Más automatización, menos fricción operativa, mejor utilización de capital y datos: eso, agregado, significa más capacidad de generar <em>cash flow</em> real con la misma unidad de trabajo y de inversión. Si la economía se reorganiza y consolida alrededor de esta nueva infraestructura, el eje lógico a largo plazo es claro: ser dueño, en alguna medida, de los activos productivos que capturen ese salto de productividad.</p>",
+        "<h3>Sí, hay excesos… pero dentro de un superciclo real</h3><p>Dicho todo lo anterior, hay ciertos puntos con rasgos clásicos de sobrecalentamiento:</p><ul class='list-disc pl-5 space-y-2 mt-2 mb-4'><li>Capex muy agresivo en hardware e infra.</li><li>Esquemas de financiación creativos entre proveedores y clientes.</li><li>Valoraciones que pre-suponen una ejecución casi perfecta.</li></ul><p>Eso hace que muy probablemente veremos correcciones fuertes en áreas concretas y fases de “mini-burbuja” en segmentos específicos. Pero esto no invalida la estructura de fondo: si la adopción sigue y se consolida (lo hará), el mundo necesitará sin ninguna duda más cómputo, más energía y más software inteligente de forma estructural.</p>",
+        "<h3>De sector tecnológico a activo estratégico a nivel geopolítico</h3><p>A nivel global, la IA ya se ha convertido de-facto en una carrera geopolítica: <strong>USA vs. China.</strong></p><p>Dominar chips, data centers, recopilación de datos y modelos no solo da beneficios; da poder económico, militar y de negociación. Esto no quiere decir que aquí no vaya a haber cadáveres corporativos; los habrá. Lo que sí implica es que cuando algo pasa a ser infraestructura estratégica, los gobiernos pueden dejar caer piezas, pero harán todo lo posible por evitar que se hunda el tablero en su conjunto.</p>",
+        "<h3>¿Y el impacto en el mercado laboral?</h3><p>Sí parece claro que IA y robótica van a eliminar muchas tareas automatizables y a forzar cambios drásticos en sectores concretos. Pero un mundo donde producir es más barato suele generar más productos, servicios y sistemas que mantener. No implica necesariamente menos empleo total, sino empleo distinto. Como cualquier otra revolución tecnológica.</p><p>Parece claro que el riesgo macro no es de paro masivo permanente a 20-30 años vista. Sí lo será la gestión de la transición: fuerza laboral reacia al cambio, regiones descolocadas, transformación de industrias... la flexibilidad y agilidad en la adaptación serán claves. Ahí estará la tensión política y social.</p>",
+        "<h3>Cómo lo enfocamos en Henao Capital</h3><p>Tenemos perfectamente asumido que la IA va a reconfigurar crecimiento y productividad global. En este contexto el riesgo principal no es sufrir varios drawdowns duros durante el camino... hay que aceptar la volatilidad. <strong>El riesgo principal lo vemos en llegar tarde o con una exposición irrelevante aun habiendo acertado en la tesis de fondo.</strong></p><p>Evidentemente esto no justifica comprar cualquier cosa “con narrativa IA” ni ignorar valoraciones. Implica:</p><ul class='list-disc pl-5 space-y-2 mt-2 mb-4'><li>Asumir que estamos en un superciclo con fases inevitables de exceso y corrección.</li><li>Decidir en qué tramos de la cadena (infraestructura, energía asociada, plataformas, aplicaciones con casos de uso claro) tiene sentido ser propietario de activos.</li><li>Calibrar el tamaño de la exposición para poder aguantar la volatilidad sin desmontar la tesis en cada drawdown.</li></ul><p>Por lo tanto, el debate ya no es “¿hay burbuja en la IA?”. La pregunta relevante para nosotros como <em>asset allocators</em> es otra: ¿qué grado de exposición estructural tiene sentido en un superciclo que sin duda damos por confirmado, y que va a ser uno de los vectores centrales de rentabilidad real en las próximas décadas?</p><p>Sin duda habrá volatilidad por el camino, habrá fases de euforia y de purga, y saber ser selectivos será clave. Pero el verdadero error será no reconocer la transformación tecnológica de fondo, la mejora de productividad que trae consigo y quedarse sin una exposición significativa a ese proceso.</p>"
+      ]
+    },
+    {
+      id: 'buffett-google',
+      date: '17 NOV 2025 | 08:45 CET',
+      category: '$BRK.B / $GOOGL',
+      title: '$GOOGL: Compra clara a 284 USD por acción',
+      excerpt: 'Nunca es tarde para comprar negocios extraordinarios.',
+      imageUrl: 'https://media.ouest-france.fr/v1/pictures/MjAyMzA5NDYwMDJiZGVjYmNmNGFiYjNiZjc2N2NiYmRlNmE3M2I?width=1260&height=708&focuspoint=50%2C25&cropresize=1&client_id=bpeditorial&sign=91a6dce9ad58a4e3c762a77aa7eb150c1572314d458f64ae5c9de1dd86fa3a4a',
+      body: [
+        "<p>Nunca es tarde para comprar negocios extraordinarios. Eso debió pensar Buffett, con su retirement oficial ya a la vuelta de la esquina. Y debió pensar también que la mejor manera de pasarle el testigo a Greg Abel en Berkshire Hathaway era dejándole en cartera uno de los mejores negocios del mundo.</p>",
+        "<p>Buffett se redime así de lo que él mismo ha reconocido como uno de los grandes errores de omisión de la era reciente de Berkshire: no haber comprado Google cuando ya era una máquina de imprimir caja. Puede que también estemos empezando a ver el toque de Greg Abel asomando... Quién sabe.</p>",
+        "<p>En Henao Capital coincidimos con Warren en el qué, pero no en el cuándo. Alphabet tenía que haber estado en su cartera hace ya muchos años. Pero, efectivamente, nunca es tarde.</p>",
+        "<p>Y sin duda lo interesante aquí no es el titular, es el contexto. Berkshire podría seguir sentado sobre su montaña de liquidez, sin mover ficha. Aun así, deciden destinar una parte de ese dry powder a Google en pleno ruido de “burbuja de IA”, con el valor cerca de máximos históricos y después de un rally muy serio en el año, especialmente en las últimas semanas.</p>",
+        "<p>No es una jugada contrarian de manual, estilo value old school, desde luego...</p>",
+        "<p>En nuestra opinión, Berkshire no solo valida el activo, Alphabet, como un actor dominante, diversificado, y con amplia opcionalidad, sino que valida la estructura subyacente. Y respaldan ese diagnóstico con una asignación de capital significativa, para nada testimonial.</p>",
+        "<p>Sin alargarlo más, hemos considerado interesante subrayar este movimiento como lo que es: una señal que interpretamos sin duda como relevante.</p>"
+      ]
+    }
       ];
 
       // --- COMPONENTS ---
@@ -767,7 +767,7 @@
 
       const DataNav = ({ activeView, onViewChange }) => {
         return (
-            <nav className="sticky top-0 z-40 w-full bg-black/80 backdrop-blur-md border-b border-brand-border/60 shadow-lg shadow-black/50">
+            <nav className="z-40 w-full bg-transparent">
                 <div className="max-w-5xl mx-auto px-6 flex items-center justify-center h-14 md:h-16">
                      {/* Links centered */}
                      <div className="flex items-center gap-6 md:gap-10 overflow-x-auto no-scrollbar whitespace-nowrap">
@@ -861,64 +861,54 @@
       const FinancialCard = ({ article, metrics, onClick }) => {
         return (
             <div 
-                className="financial-card group bg-[#111111] border-l-4 border-[#D4AF37] p-6 hover:translate-x-1 transition-all duration-300 cursor-pointer shadow-lg hover:shadow-[0_0_15px_rgba(212,175,55,0.1)] rounded-r-sm w-full mb-8 relative overflow-hidden"
+                className="financial-card group bg-[#111111] border-l-4 border-[#D4AF37] p-5 hover:translate-x-1 transition-all duration-300 cursor-pointer shadow-lg hover:shadow-[0_0_15px_rgba(212,175,55,0.1)] rounded-r-sm w-full mb-6 relative overflow-hidden"
                 onClick={onClick}
             >
                 {/* Header: Date */}
-                <div className="flex justify-between items-center mb-4 border-b border-gray-800 pb-2">
-                     <span className="text-[10px] uppercase tracking-widest text-gray-500 font-sans">{article.date}</span>
-                     <span className="text-[10px] uppercase tracking-widest text-gray-600 font-sans">Análisis Financiero</span>
+                <div className="flex justify-between items-center mb-3 border-b border-gray-800 pb-2">
+                     <span className="text-[10px] uppercase tracking-widest text-gray-500 font-sans font-semibold">{article.date}</span>
                 </div>
 
                 {/* Identity Row */}
-                <div className="flex items-center justify-between mb-8 financial-card-header">
-                    <div>
-                        <h2 className="font-serif text-3xl md:text-4xl text-white tracking-tight leading-none mb-1">
+                <div className="flex items-center justify-between mb-5 fin-header">
+                    <div className="fin-ticker">
+                        <h2 className="font-sans font-extrabold text-3xl md:text-4xl text-white tracking-tighter leading-none mb-1" style={{ letterSpacing: '-1.5px' }}>
                             {metrics.ticker}
                         </h2>
                         <div className="flex flex-col">
-                            <span className="text-sm text-gray-300 font-medium font-sans">{metrics.name}</span>
-                            <span className="text-xs text-gray-500 uppercase tracking-wide">{metrics.sector}</span>
+                            <span className="text-sm text-gray-300 font-semibold font-sans">{metrics.name}</span>
+                            <span className="text-[10px] text-gray-500 uppercase tracking-wide font-medium">{metrics.sector}</span>
                         </div>
                     </div>
-                    <div className="w-12 h-12 md:w-16 md:h-16 bg-white rounded-full p-2 flex items-center justify-center shrink-0">
-                        <img src={metrics.logoUrl} alt={`${metrics.name} logo`} className="w-full h-full object-contain" />
+                    <div className="w-10 h-10 md:w-14 md:h-14 bg-white rounded-full p-1 flex items-center justify-center shrink-0">
+                        <img src={metrics.logoUrl} alt={`${metrics.name} logo`} className="w-full h-full object-contain rounded-full" />
                     </div>
                 </div>
 
                 {/* Data Grid */}
-                <div className="grid grid-cols-2 md:grid-cols-4 gap-6 mb-8 border-t border-b border-gray-800 py-6">
-                    <div className="flex flex-col">
-                        <span className="text-[10px] uppercase text-gray-500 tracking-wider mb-1">Precio Actual</span>
-                        <span className="text-xl md:text-2xl font-light text-white font-mono">{metrics.price}</span>
+                <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-5 border-t border-b border-gray-800 py-4 fin-grid">
+                    <div className="flex flex-col fin-data-point">
+                        <span className="text-[10px] uppercase text-gray-500 tracking-wider mb-1 font-semibold">Precio Actual</span>
+                        <span className="text-xl font-bold text-white font-sans tracking-tight">{metrics.price}</span>
                     </div>
-                    <div className="flex flex-col">
-                        <span className="text-[10px] uppercase text-gray-500 tracking-wider mb-1">Objetivo 5 años</span>
-                        <span className="text-xl md:text-2xl font-light text-white font-mono">{metrics.target}</span>
+                    <div className="flex flex-col fin-data-point">
+                        <span className="text-[10px] uppercase text-gray-500 tracking-wider mb-1 font-semibold">Objetivo 5y</span>
+                        <span className="text-xl font-bold text-white font-sans tracking-tight">{metrics.target}</span>
                     </div>
-                    <div className="flex flex-col">
-                        <span className="text-[10px] uppercase text-gray-500 tracking-wider mb-1">Potencial Acum.</span>
-                        <span className="text-xl md:text-2xl font-bold text-[#C3F53C] font-mono">{metrics.potAcc}</span>
+                    <div className="flex flex-col fin-data-point">
+                        <span className="text-[10px] uppercase text-gray-500 tracking-wider mb-1 font-semibold">Potencial Ac.</span>
+                        <span className="text-xl font-bold text-[#C3F53C] font-sans tracking-tight">{metrics.potAcc}</span>
                     </div>
-                    <div className="flex flex-col">
-                        <span className="text-[10px] uppercase text-gray-500 tracking-wider mb-1">Potencial Anual</span>
-                        <span className="text-xl md:text-2xl font-bold text-[#C3F53C] font-mono">{metrics.potAnn}</span>
+                    <div className="flex flex-col fin-data-point">
+                        <span className="text-[10px] uppercase text-gray-500 tracking-wider mb-1 font-semibold">Potencial Anual</span>
+                        <span className="text-xl font-bold text-[#C3F53C] font-sans tracking-tight">{metrics.potAnn}</span>
                     </div>
                 </div>
 
                 {/* Footer */}
-                <div className="flex items-center justify-between mt-auto">
-                    <div className="flex items-center gap-3">
-                        <span className="text-[10px] uppercase tracking-widest text-gray-400">Convicción</span>
-                        <div className="bg-[rgba(0,255,0,0.15)] px-3 py-1 rounded-full border border-[rgba(0,255,0,0.2)]">
-                            <span className="text-xs font-bold text-[#C3F53C] uppercase tracking-wider shadow-[0_0_5px_rgba(195,245,60,0.4)]">
-                                {metrics.conviction}
-                            </span>
-                        </div>
-                    </div>
-
-                    <div className="flex items-center text-xs uppercase tracking-widest font-bold text-[#D4AF37] group-hover:text-white transition-colors">
-                         MÁS DETALLES <span className="ml-2 transform group-hover:translate-x-1 transition-transform">→</span>
+                <div className="flex items-center justify-end mt-auto fin-footer">
+                    <div className="details-btn flex items-center text-xs uppercase tracking-widest font-bold text-[#D4AF37] group-hover:text-white transition-colors bg-white/5 px-4 py-2 rounded-sm">
+                         LEER ANÁLISIS <span className="ml-2 transform group-hover:translate-x-1 transition-transform">→</span>
                     </div>
                 </div>
             </div>
@@ -1050,16 +1040,16 @@
                                         <td className="py-4 pl-2">CAGR 2020-2025</td>
                                         <td className="py-4 text-right text-brand-accent">21,17%</td>
                                         <td className="py-4 text-right pr-2">14,53%</td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                        </div>
-                    </div>
-                  )}
-               </div>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
             </div>
-        );
-      };
+          )}
+       </div>
+    </div>
+  );
+};
 
       const ArticleReader = ({ article, onClose }) => {
          React.useEffect(() => {
@@ -1122,6 +1112,123 @@
             </div>
          );
       };
+      
+      /* --- NEW COMPONENTS: CALCULATOR & TOOLS --- */
+
+      const Calculator = () => {
+        const [initial, setInitial] = React.useState('');
+        const [monthly, setMonthly] = React.useState('');
+        const [rate, setRate] = React.useState('21.17');
+        const [years, setYears] = React.useState('');
+        const [result, setResult] = React.useState(null);
+
+        const calculateCompoundInterest = () => {
+            const P = parseFloat(initial) || 0;
+            const PMT = parseFloat(monthly) || 0;
+            const annualRatePercent = parseFloat(rate) || 0;
+            const tYears = parseFloat(years) || 0;
+            
+            // r = Tasa Anual en decimal (ej: 21.17% -> 0.2117) dividido entre 12 (Tasa Mensual).
+            const r = (annualRatePercent / 100) / 12;
+            
+            // n = Años multiplicados por 12 (Número total de meses).
+            const n = tYears * 12;
+
+            // FV_Principal = P * Math.pow((1 + r), n)
+            const fvPrincipal = P * Math.pow((1 + r), n);
+
+            // FV_Contributions = PMT * ((Math.pow((1 + r), n) - 1) / r)
+            let fvContributions = 0;
+            if (r !== 0) {
+                 fvContributions = PMT * ((Math.pow((1 + r), n) - 1) / r);
+            } else {
+                 fvContributions = PMT * n;
+            }
+            
+            // Total
+            const total = fvPrincipal + fvContributions;
+            setResult(total);
+        };
+
+        const formatCurrency = (val) => {
+            return new Intl.NumberFormat('es-ES', { style: 'currency', currency: 'EUR' }).format(val);
+        }
+
+        return (
+            <div className="bg-black/40 backdrop-blur-md border border-brand-border p-6 rounded-[2px] shadow-lg flex flex-col h-full">
+                <div className="flex items-center gap-3 mb-6">
+                    <svg className="w-5 h-5 text-brand-accent" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 7h6m0 10v-3m-3 3h.01M9 17h.01M9 14h.01M12 14h.01M15 11h.01M12 11h.01M9 11h.01M7 21h10a2 2 0 002-2V5a2 2 0 00-2-2H7a2 2 0 00-2 2v14a2 2 0 002 2z"/>
+                    </svg>
+                    <h4 className="font-bold text-white uppercase tracking-wider text-sm">Calculadora de Patrimonio</h4>
+                </div>
+                
+                <div className="space-y-4 flex-grow">
+                    <div>
+                        <label className="block text-[10px] text-brand-muted uppercase tracking-widest mb-1">Importe Inicial</label>
+                        <input 
+                            id="init-amount"
+                            type="number" 
+                            className="w-full bg-black border border-brand-border text-white p-2 text-sm focus:border-brand-accent outline-none transition-colors rounded-[2px]"
+                            placeholder="Ej: 10000"
+                            value={initial}
+                            onChange={(e) => setInitial(e.target.value)}
+                        />
+                    </div>
+                    <div>
+                        <label className="block text-[10px] text-brand-muted uppercase tracking-widest mb-1">Aportaciones Mensuales</label>
+                        <input 
+                            id="monthly-contrib"
+                            type="number" 
+                            className="w-full bg-black border border-brand-border text-white p-2 text-sm focus:border-brand-accent outline-none transition-colors rounded-[2px]"
+                            placeholder="Ej: 500"
+                            value={monthly}
+                            onChange={(e) => setMonthly(e.target.value)}
+                        />
+                    </div>
+                    <div>
+                        <label className="block text-[10px] text-brand-muted uppercase tracking-widest mb-1">RENTABILIDAD ANUAL (%) (Ref. Henao Capital)</label>
+                        <input 
+                            id="annual-rate"
+                            type="number" 
+                            className="w-full bg-black border border-brand-border text-white p-2 text-sm focus:border-brand-accent outline-none transition-colors rounded-[2px]"
+                            value={rate}
+                            onChange={(e) => setRate(e.target.value)}
+                        />
+                    </div>
+                    <div>
+                        <label className="block text-[10px] text-brand-muted uppercase tracking-widest mb-1">Años</label>
+                        <input 
+                            id="years-grow"
+                            type="number" 
+                            className="w-full bg-black border border-brand-border text-white p-2 text-sm focus:border-brand-accent outline-none transition-colors rounded-[2px]"
+                            placeholder="Ej: 10"
+                            value={years}
+                            onChange={(e) => setYears(e.target.value)}
+                        />
+                    </div>
+                </div>
+
+                <div className="mt-6 pt-6 border-t border-brand-border/30">
+                     <button 
+                        onClick={calculateCompoundInterest}
+                        className="w-full bg-brand-accent text-brand-surface font-bold text-xs uppercase tracking-widest py-3 hover:bg-[#B2E32B] transition-colors mb-4 rounded-[2px]"
+                     >
+                        Calcular
+                     </button>
+                     
+                     <div id="calc-result" className="text-center min-h-[40px]">
+                        {result !== null && (
+                            <div className="animate-fade-in">
+                                <span className="block text-[10px] text-brand-muted uppercase tracking-widest mb-1">Importe Final</span>
+                                <span className="text-2xl font-mono font-bold text-white">{formatCurrency(result)}</span>
+                            </div>
+                        )}
+                     </div>
+                </div>
+            </div>
+        );
+      };
 
       // --- APP COMPONENT ---
 
@@ -1151,13 +1258,17 @@
 
         return (
           <React.Fragment>
-            <Header onHomeClick={() => switchView('home')} />
-            <DataNav 
-              activeView={currentView} 
-              onViewChange={switchView} 
-            />
+            {/* WRAPPER FOR STICKY HEADER */}
+            <div id="fixed-navbar">
+                <Header onHomeClick={() => switchView('home')} />
+                <DataNav 
+                  activeView={currentView} 
+                  onViewChange={switchView} 
+                />
+            </div>
             
             <main className="main-content min-h-[60vh]">
+              
               {selectedArticle ? (
                 <ArticleReader 
                   article={selectedArticle} 
@@ -1168,34 +1279,32 @@
                    {currentView === 'home' && (
                       <div id="view-home" className="view-section w-full max-w-[800px] mx-auto px-6 pb-32 pt-6 relative z-10 animate-fade-in">
                           
-                          {/* HERO SECTION - RESTRUCTURED & LEFT ALIGNED */}
+                          {/* HERO SECTION - CLEANED & UPDATED */}
                           <div className="text-left py-16 md:py-24 mb-12 px-2 md:px-0">
                               <h1 className="font-sans text-4xl md:text-6xl text-white mb-8 font-bold leading-tight max-w-2xl drop-shadow-2xl">
                                   Todo lo que necesitas para invertir con éxito
                               </h1>
-                              <div className="flex flex-col gap-5 items-start justify-start font-sans text-brand-muted text-lg md:text-xl font-light mb-12">
-                                   <div className="flex items-center gap-3">
+                              
+                              {/* Updated Bullet List */}
+                              <ul className="flex flex-col gap-5 items-start justify-start font-sans text-brand-muted text-lg md:text-xl font-light mb-12 list-none">
+                                   <li className="flex items-center gap-3">
                                       <svg className="w-5 h-5 text-brand-accent flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="3" d="M5 13l4 4L19 7"></path></svg>
-                                      <span className="text-white/90">Acceso a nuestros research</span>
-                                   </div>
-                                   <div className="flex items-center gap-3">
+                                      <span className="text-white/90">Actualidad de mercado al día. Filtramos el ruido y te damos lo esencial.</span>
+                                   </li>
+                                   <li className="flex items-center gap-3">
                                       <svg className="w-5 h-5 text-brand-accent flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="3" d="M5 13l4 4L19 7"></path></svg>
-                                      <span className="text-white/90">Cartera en abierto</span>
-                                   </div>
-                                   <div className="flex items-center gap-3">
+                                      <span className="text-white/90">Cartera en abierto. Transparencia absoluta.</span>
+                                   </li>
+                                   <li className="flex items-center gap-3">
                                       <svg className="w-5 h-5 text-brand-accent flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="3" d="M5 13l4 4L19 7"></path></svg>
-                                      <span className="text-white/90">Movimientos en tiempo real</span>
-                                   </div>
-                              </div>
+                                      <span className="text-white/90">Las oportunidades más claras. En tiempo real y analizadas al detalle.</span>
+                                   </li>
+                              </ul>
 
-                              {/* MANIFESTO CARD */}
-                              <div className="bg-black/70 backdrop-blur-sm border-l-4 border-brand-accent p-6 md:p-8 max-w-xl rounded-r-sm shadow-2xl animate-fade-in mt-8">
-                                  <div className="space-y-4 text-gray-200 font-light text-base md:text-lg leading-relaxed font-sans">
-                                      <p>La industria financiera vive de la opacidad y las comisiones.</p>
-                                      <p>Nosotros solo vivimos de lo que hacemos con nuestro propio dinero. De nuestros resultados.</p>
-                                      <p>Te los ponemos delante, con plena transparencia. Y gratis.</p>
-                                      <p>Ves nuestra cartera y nuestros movimientos, en tiempo real.</p>
-                                      <p className="font-bold text-white pt-2 font-serif text-xl tracking-wide">Bienvenido a Henao Capital.</p>
+                              {/* NEW TOOLS SECTION (SIMPLIFIED) */}
+                              <div className="mt-16 animate-fade-in w-full flex justify-center">
+                                  <div className="w-full max-w-[500px]">
+                                      <Calculator />
                                   </div>
                               </div>
                           </div>
