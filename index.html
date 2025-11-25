@@ -8,7 +8,7 @@
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
     
-    <!-- Fonts: Playfair Display (Serif) & Inter (Sans) & JetBrains Mono (Numbers) -->
+    <!-- Fonts: Playfair Display (Serif) & Inter (Sans) & JetBrains Mono (Numbers) & Courier New -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
@@ -436,48 +436,40 @@
           }
       }
 
-      /* === PORTFOLIO TABLE REDESIGN - TERMINAL STYLE GLOBAL === */
-      
+      /* === ESTILO GLOBAL (TERMINAL) === */
       .portfolio-table {
           width: 100%;
           border-collapse: collapse;
-          /* ESTILO TERMINAL DE REFERENCIA */
-          background-color: #000000 !important; /* Negro puro */
-          font-family: 'Courier New', Courier, monospace !important; /* Fuente monoespaciada */
-          color: #e0e0e0 !important; /* Gris claro / Blanco roto */
+          font-family: 'Courier New', Courier, monospace !important;
+          background-color: #000000;
+          color: #e0e0e0;
           font-size: 0.9rem;
       }
 
-      .portfolio-table th, .portfolio-table td {
-          padding: 10px 5px;
-          text-align: right; /* Alinear números a la derecha */
-          border: none; /* Sin bordes visibles entre filas, estilo limpio */
-          border-bottom: 1px solid #1a1a1a; /* Linea sutil */
-      }
-
-      /* Encabezados estilo terminal */
       .portfolio-table th {
           text-transform: uppercase;
-          color: #ffffff;
-          border-bottom: 1px solid #333; /* Línea sutil separadora */
+          border-bottom: 1px solid #333;
+          color: #fff;
           font-weight: normal;
-          background-color: #000;
+          padding: 10px 5px;
+          text-align: right;
       }
 
-      /* Columnas alineadas a la izquierda */
-      .portfolio-table th:nth-child(1), .portfolio-table td:nth-child(1), /* Posición */
-      .portfolio-table th:nth-child(2), .portfolio-table td:nth-child(2), /* Símbolo/Ticker */
-      .portfolio-table th:nth-child(5), .portfolio-table td:nth-child(5), /* Pais */
-      .portfolio-table th:nth-child(6), .portfolio-table td:nth-child(6)  /* Empresa */
-      {
+      .portfolio-table td {
+          padding: 10px 5px;
+          border-bottom: 1px solid #111;
+          text-align: right;
+      }
+
+      /* Alinear textos a la izquierda */
+      .portfolio-table th:nth-child(1), .portfolio-table td:nth-child(1),
+      .portfolio-table th:nth-child(2), .portfolio-table td:nth-child(2),
+      .portfolio-table th:nth-child(3), .portfolio-table td:nth-child(3) {
           text-align: left;
       }
 
-      /* Destacado Ticker */
-      .portfolio-table td:nth-child(2) { font-weight: bold; color: #fff; }
-
-      /* Destacado Valor Total (Columna 4) */
-      .portfolio-table td:nth-child(4) { color: #C3F53C !important; }
+      .portfolio-table td:nth-child(2) { font-weight: bold; color: #fff; } /* Ticker */
+      .portfolio-table td:nth-child(7) { color: #C3F53C; } /* Valor Total Neón */
 
       /* Hover sutil */
       .portfolio-table tr:hover td {
@@ -485,12 +477,16 @@
           color: #fff !important;
       }
 
-      /* === PORTFOLIO MOBILE SPECIFIC - PERFECT FIT === */
-      @media (max-width: 768px) {
-          /* 1. CONTENEDOR ESTRICTO */
-          #view-portfolio {
-              padding: 0 5px !important;
+      /* === ESTILO MÓVIL (NUCLEAR FIX) === */
+      @media only screen and (max-width: 768px) {
+          
+          /* 1. CONTENEDOR FLUIDO (SOLUCIONA SCROLL VERTICAL) */
+          .portfolio-table-wrapper {
+              width: 100% !important;
               overflow-x: hidden !important;
+              overflow-y: visible !important;
+              display: block;
+              touch-action: pan-y !important; /* Clave para el dedo */
           }
           
           .portfolio-table-container-styled {
@@ -499,74 +495,59 @@
               background-color: transparent !important;
               box-shadow: none !important;
           }
-          
-          .portfolio-table-wrapper {
-              padding: 0 2px !important;
-              overflow-x: hidden !important;
-              width: 100% !important;
-          }
 
-          /* 2. TABLA FIJA CONDENSADA */
+          /* 2. TABLA FIJA MATEMÁTICA */
           .portfolio-table {
-              display: table !important;
-              table-layout: fixed !important; /* FUERZA MATEMÁTICA DE ANCHOS */
+              table-layout: fixed !important; /* Fuerza anchos estrictos */
               width: 100% !important;
-              font-size: 10px !important; /* Fuente muy pequeña para asegurar encaje */
-          }
-          
-          .portfolio-table thead, .portfolio-table tbody, .portfolio-table tr {
-              display: table-row-group !important;
-          }
-          
-          .portfolio-table tr {
-              display: table-row !important;
-          }
-          
-          .portfolio-table th, .portfolio-table td {
-              display: table-cell !important;
+              min-width: 100% !important;
+              font-size: 11px !important; /* Letra pequeña necesaria */
           }
 
-          /* 3. VISIBILIDAD: OCULTAR TODO MENOS LAS 4 PRIMERAS */
-          /* Ocultamos de la 5 en adelante (País, Empresa, etc.) */
-          .portfolio-table th:nth-child(n+5), 
-          .portfolio-table td:nth-child(n+5) {
-              display: none !important; 
+          /* 3. COLUMNAS A OCULTAR (3, 4, 5) */
+          .portfolio-table th:nth-child(3), .portfolio-table td:nth-child(3),
+          .portfolio-table th:nth-child(4), .portfolio-table td:nth-child(4),
+          .portfolio-table th:nth-child(5), .portfolio-table td:nth-child(5) {
+              display: none !important;
+              width: 0 !important;
           }
 
-          /* 4. ANCHOS EXACTOS (Total = 100%) */
-          /* Col 1: Posición (#) */
+          /* 4. ANCHOS EXACTOS (SUMA 100%) */
+          
+          /* Col 1: Pos (10%) */
           .portfolio-table th:nth-child(1), .portfolio-table td:nth-child(1) {
-              width: 10% !important; 
-              padding: 6px 2px !important;
-              text-align: center !important;
+              width: 10% !important;
+              text-align: center;
+              padding: 8px 2px !important;
           }
-          /* Col 2: Símbolo */
+          
+          /* Col 2: Símbolo (20%) */
           .portfolio-table th:nth-child(2), .portfolio-table td:nth-child(2) {
               width: 20% !important;
-              padding: 6px 2px !important;
-              white-space: nowrap;
-          }
-          /* Col 3: % Total */
-          .portfolio-table th:nth-child(3), .portfolio-table td:nth-child(3) {
-              width: 25% !important;
-              text-align: right !important;
-              padding: 6px 2px !important;
-          }
-          /* Col 4: Valor Total */
-          .portfolio-table th:nth-child(4), .portfolio-table td:nth-child(4) {
-              width: 45% !important; /* Resto del espacio */
-              text-align: right !important;
-              padding: 6px 2px !important;
-              white-space: nowrap; /* No partir la cifra */
-              overflow: hidden;
-              text-overflow: ellipsis; /* Puntos si no cabe */
-              color: #C3F53C !important; /* Color neón destacado */
+              padding: 8px 2px !important;
           }
           
-          /* Total Row adjustments */
-          .portfolio-table tr:last-child td {
-              border-top: 1px solid #333 !important;
-              font-weight: bold;
+          /* Col 6: % Total (25%) */
+          .portfolio-table th:nth-child(6), .portfolio-table td:nth-child(6) {
+              width: 25% !important;
+              text-align: right;
+              padding: 8px 2px !important;
+          }
+          
+          /* Col 7: Valor Total (45%) */
+          .portfolio-table th:nth-child(7), .portfolio-table td:nth-child(7) {
+              width: 45% !important;
+              text-align: right;
+              padding: 8px 2px !important;
+              white-space: nowrap;
+              overflow: hidden;
+              text-overflow: ellipsis; /* Puntos suspensivos si no cabe */
+          }
+          
+          /* 5. ALTURA DE FILA */
+          .portfolio-table td {
+              height: 40px;
+              vertical-align: middle;
           }
       }
 
@@ -1047,64 +1028,42 @@
                {/* Visual Separator */}
                <div className="w-full h-px bg-gradient-to-r from-transparent via-brand-border to-transparent mb-10 opacity-50"></div>
 
-               {/* Portfolio Table Wrapper */}
-               <div className="bg-brand-surface shadow-lg shadow-black/40 border border-brand-border p-4 md:p-6 rounded-[2px] portfolio-table-container-styled">
-                  <div className="w-full overflow-x-auto touch-pan-x portfolio-table-wrapper">
+               {/* Portfolio Table Wrapper - REPLACED FOR MOBILE FIX */}
+               <div className="portfolio-table-container-styled">
+                  <div className="portfolio-table-wrapper">
                       <table className="portfolio-table">
                           <thead>
                               <tr>
-                                  {/* 1. Pos */}
-                                  <th><span className="md:hidden">#</span><span className="hidden md:inline">Posición</span></th>
-                                  {/* 2. Symbol */}
+                                  <th>Pos</th>
                                   <th>Símbolo</th>
-                                  {/* 3. Weight */}
-                                  <th>% posición</th>
-                                  {/* 4. Value */}
-                                  <th>Total $ Actual</th>
-                                  {/* 5. Country */}
-                                  <th>País</th>
-                                  {/* 6. Name */}
-                                  <th className="w-[30%]">Empresa</th>
-                                  {/* 7. Shares */}
-                                  <th>Nº Acciones</th>
-                                  {/* 8. Price */}
-                                  <th>PPS actual $</th>
+                                  <th>Empresa</th>
+                                  <th>Acciones</th>
+                                  <th>Precio</th>
+                                  <th>% Total</th>
+                                  <th>Valor Total</th>
                               </tr>
                           </thead>
                           <tbody>
                               {PORTFOLIO_DATA.map((row, i) => (
-                                  <tr key={i} className="transition-colors group">
-                                      {/* 1. Pos */}
-                                      <td className="text-brand-accent font-bold">{row.rank}</td>
-                                      {/* 2. Symbol */}
+                                  <tr key={i}>
+                                      <td>{row.rank}</td>
                                       <td>{row.symbol}</td>
-                                      {/* 3. Weight */}
-                                      <td className="font-bold text-brand-text">{row.weight}</td>
-                                      {/* 4. Value */}
-                                      <td className="text-right text-brand-text">{row.value}</td>
-                                      {/* 5. Country */}
-                                      <td className="text-brand-muted">{row.country}</td>
-                                      {/* 6. Name */}
-                                      <td className="font-sans text-brand-text">{row.name}</td>
-                                      {/* 7. Shares */}
-                                      <td className="text-right text-brand-muted">{row.shares}</td>
-                                      {/* 8. Price */}
-                                      <td className="text-right text-brand-muted">{row.price}</td>
+                                      <td>{row.name}</td>
+                                      <td>{row.shares}</td>
+                                      <td>{row.price}</td>
+                                      <td>{row.weight}</td>
+                                      <td>{row.value}</td>
                                   </tr>
                               ))}
-                              <tr className="font-bold border-t border-[#333]">
-                                <td></td>
-                                <td className="text-white">TOTAL</td>
-                                <td className="text-brand-accent">100,00%</td>
-                                <td className="text-brand-accent font-mono text-base">
-                                    1.604.825,00 USD
-                                    <br />
-                                    <span className="text-[0.8em] text-gray-500">1.383.469,83 EUR</span>
-                                </td>
+                              {/* Footer row for Totals */}
+                              <tr>
                                 <td></td>
                                 <td></td>
                                 <td></td>
                                 <td></td>
+                                <td></td>
+                                <td style={{color: '#C3F53C', fontWeight: 'bold'}}>100,00%</td>
+                                <td style={{color: '#C3F53C', fontWeight: 'bold'}}>1.604.825 USD</td>
                               </tr>
                           </tbody>
                       </table>
