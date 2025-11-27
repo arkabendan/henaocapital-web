@@ -83,8 +83,20 @@ main { padding: 40px 5%; min-height: 80vh; }
 @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
 
 /* 5. SECCIÓN INICIO */
-#view-home { padding-top: 140px; max-width: 1200px; margin: 0 auto; }
-.hero-content { text-align: left; max-width: 800px; }
+#view-home {
+    padding-top: 140px;
+    max-width: 1200px;
+    margin: 0 auto; /* Esto ya debería centrarlo */
+    padding-left: 5%; /* AÑADE ESTO: Margen de seguridad a la izquierda */
+    padding-right: 5%; /* AÑADE ESTO: Margen de seguridad a la derecha */
+}
+
+.hero-content {
+    text-align: left; /* Mantén izquierda para estilo moderno */
+    max-width: 900px; /* Un poco más ancho para que respire */
+    margin: 0 auto; /* Esto centra el bloque de texto en la pantalla */
+}
+
 .hero-title { font-family: var(--font-main); font-size: 3.5rem; line-height: 1.1; margin-bottom: 30px; color: #fff; font-weight: 800; letter-spacing: -1.5px; }
 .hero-list li { font-family: var(--font-main); font-size: 1.2rem; margin-bottom: 15px; color: #e0e0e0; display: flex; align-items: center; font-weight: 400; letter-spacing: -0.3px; }
 .hero-list li::before { content: '✓'; color: var(--neon-green); margin-right: 15px; font-weight: bold; }
