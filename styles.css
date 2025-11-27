@@ -1,22 +1,8 @@
 /* =========================================
-   STYLES.CSS - VERSIÓN CORREGIDA (FIX MODALES)
+   STYLES.CSS - VERSIÓN CORREGIDA (ALINEACIÓN + MODALES)
    ========================================= */
 
-/* 1. REGLA DE ORO: LOS MODALES DEBEN ESTAR OCULTOS */
-.modal {
-    display: none !important; /* <--- ESTO ES LO QUE FALLABA */
-    position: fixed;
-    z-index: 99999; /* Por encima de todo */
-    left: 0;
-    top: 0;
-    width: 100%;
-    height: 100%;
-    overflow: auto; /* Permite scroll si el texto es largo */
-    background-color: rgba(0,0,0,0.85); /* Fondo oscuro detrás */
-    backdrop-filter: blur(5px);
-}
-
-/* 2. RESET & VARIABLES GLOBALES */
+/* 1. VARIABLES & RESET */
 :root {
     --neon-green: #C3F53C;
     --dark-bg: #0a0a0a;
@@ -34,6 +20,7 @@ body {
     min-height: 100vh;
     overflow-x: hidden;
     background-color: #000000;
+    /* FONDO TECH 4K */
     background-image: 
         radial-gradient(circle at center, rgba(0, 0, 0, 0.3) 0%, rgba(0, 0, 0, 0.8) 100%),
         url('https://images.unsplash.com/photo-1478760329108-5c3ed9d495a0?q=100&w=3840&auto=format&fit=crop');
@@ -43,9 +30,19 @@ body {
     background-repeat: no-repeat;
 }
 
-h1, h2, h3, h4, p, li, a, span, label { text-shadow: 0 2px 10px rgba(0,0,0,0.8); }
-a { text-decoration: none; transition: all 0.3s ease; }
-ul { list-style: none; }
+/* 2. MODALES (IMPORTANTE: Display None por defecto) */
+.modal {
+    display: none; /* ESTO ES CRÍTICO PARA QUE NO SE VEAN AL CARGAR */
+    position: fixed;
+    z-index: 99999;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0,0,0,0.85);
+    backdrop-filter: blur(5px);
+}
 
 /* 3. HEADER FIJO */
 #fixed-navbar {
@@ -53,7 +50,7 @@ ul { list-style: none; }
     top: 0;
     left: 0;
     width: 100%;
-    z-index: 1000; /* Menos que el modal */
+    z-index: 1000;
     background-color: #000000;
     border-bottom: 1px solid rgba(255,255,255,0.1);
 }
@@ -63,42 +60,66 @@ ul { list-style: none; }
     display: flex;
     justify-content: flex-end;
     align-items: center;
-    padding: 0 5%;
+    padding: 0 5%; /* Alineado con el contenido principal */
     font-size: 0.85rem;
     border-bottom: 1px solid rgba(255,255,255,0.05);
 }
-.mini-header a { color: #ffffff; margin-left: 20px; font-weight: 500; }
+.mini-header a { color: #ffffff; margin-left: 20px; font-weight: 500; text-decoration: none; transition: 0.3s; }
 .mini-header a:hover { color: var(--neon-green); }
 
-nav { padding: 20px 5%; display: flex; justify-content: space-between; align-items: center; }
+nav { 
+    padding: 20px 5%; /* Alineado con el contenido principal */
+    display: flex; 
+    justify-content: space-between; 
+    align-items: center; 
+    max-width: 1400px; /* Tope de anchura para pantallas gigantes */
+    margin: 0 auto;
+}
 .logo { font-family: var(--font-main); font-size: 1.8rem; font-weight: 700; color: #fff; letter-spacing: -1px; }
 .nav-links { display: flex; gap: 30px; }
-.nav-links li a { color: #ffffff; font-weight: 600; font-size: 0.95rem; text-transform: uppercase; letter-spacing: 0.5px; padding-bottom: 5px; border-bottom: 2px solid transparent; }
+.nav-links li { list-style: none; }
+.nav-links li a { color: #ffffff; font-weight: 600; font-size: 0.95rem; text-transform: uppercase; letter-spacing: 0.5px; padding-bottom: 5px; border-bottom: 2px solid transparent; text-decoration: none; }
 .nav-links li a:hover, .nav-links li a.active { color: var(--neon-green); border-bottom: 2px solid var(--neon-green); }
 
-/* 4. LAYOUT PRINCIPAL */
-main { padding: 40px 5%; min-height: 80vh; }
-.section-view { display: none; animation: fadeIn 0.5s ease; }
+/* 4. LAYOUT & SECCIONES */
+main { padding: 0 5%; max-width: 1400px; margin: 0 auto; min-height: 80vh; } /* CONTENEDOR CENTRAL MAESTRO */
+
+.section-view { display: none; animation: fadeIn 0.5s ease; padding-top: 140px; }
 .section-view.active { display: block; }
 @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
 
-/* 5. SECCIÓN INICIO */
-#view-home {
-    padding-top: 140px;
-    max-width: 1200px;
-    margin: 0 auto; /* Esto ya debería centrarlo */
-    padding-left: 5%; /* AÑADE ESTO: Margen de seguridad a la izquierda */
-    padding-right: 5%; /* AÑADE ESTO: Margen de seguridad a la derecha */
+/* 5. INICIO (HOME) */
+#view-home { 
+    /* Quitamos paddings extraños, usamos el del main */
 }
 
-.hero-content {
-    text-align: left; /* Mantén izquierda para estilo moderno */
-    max-width: 900px; /* Un poco más ancho para que respire */
-    margin: 0 auto; /* Esto centra el bloque de texto en la pantalla */
+.hero-content { 
+    text-align: left; 
+    max-width: 900px; 
+    /* No margins here, align left naturally */
 }
 
-.hero-title { font-family: var(--font-main); font-size: 3.5rem; line-height: 1.1; margin-bottom: 30px; color: #fff; font-weight: 800; letter-spacing: -1.5px; }
-.hero-list li { font-family: var(--font-main); font-size: 1.2rem; margin-bottom: 15px; color: #e0e0e0; display: flex; align-items: center; font-weight: 400; letter-spacing: -0.3px; }
+.hero-title { 
+    font-family: var(--font-main); 
+    font-size: 3.5rem; 
+    line-height: 1.1; 
+    margin-bottom: 30px; 
+    color: #fff; 
+    font-weight: 800; 
+    letter-spacing: -1.5px; 
+    text-shadow: 0 2px 10px rgba(0,0,0,0.8);
+}
+
+.hero-list li { 
+    font-family: var(--font-main); 
+    font-size: 1.2rem; 
+    margin-bottom: 15px; 
+    color: #e0e0e0; 
+    display: flex; 
+    align-items: center; 
+    font-weight: 400; 
+    letter-spacing: -0.3px; 
+}
 .hero-list li::before { content: '✓'; color: var(--neon-green); margin-right: 15px; font-weight: bold; }
 
 .hero-insight-message { margin: 40px 0 30px 0; text-align: left; max-width: 700px; }
@@ -108,8 +129,16 @@ main { padding: 40px 5%; min-height: 80vh; }
 .insight-henao { font-size: 0.85rem; color: #777777; font-style: italic; margin-top: 5px; }
 .insight-henao .henao-val { color: #aaaaaa; font-weight: 600; }
 
-.calculator-container { background: rgba(10, 10, 10, 0.6); backdrop-filter: blur(10px); border: 1px solid rgba(255, 255, 255, 0.08); border-radius: 16px; padding: 40px; max-width: 600px; margin-top: 30px; }
-.calculator-container h2 { font-size: 1.5rem; margin-bottom: 10px; font-family: var(--font-main); line-height: 1.4; }
+.calculator-container { 
+    background: rgba(10, 10, 10, 0.6); 
+    backdrop-filter: blur(10px); 
+    border: 1px solid rgba(255, 255, 255, 0.08); 
+    border-radius: 16px; 
+    padding: 40px; 
+    max-width: 600px; 
+    margin-top: 30px; 
+}
+.calculator-container h2 { font-size: 1.5rem; margin-bottom: 10px; font-family: var(--font-main); line-height: 1.4; color: #fff; }
 .calc-sub { color: #aaa; margin-bottom: 30px; font-size: 0.95rem; }
 .calc-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-bottom: 25px; }
 .input-group label { display: block; font-size: 0.75rem; color: #888; margin-bottom: 8px; text-transform: uppercase; font-weight: 600; }
@@ -119,29 +148,48 @@ main { padding: 40px 5%; min-height: 80vh; }
 .calc-result-area { margin-top: 20px; text-align: center; font-size: 2rem; font-weight: 700; color: #fff; min-height: 40px; }
 .calc-disclaimer { font-size: 0.7rem; color: #555; text-align: center; margin-top: 15px; font-style: italic; }
 
-/* 6. SECCIÓN INSIGHTS */
-#view-insights { padding-top: 140px; }
-.articles-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); gap: 30px; max-width: 1200px; margin: 0 auto; }
-.article-summary-card { background-color: #111; border: 1px solid #333; border-radius: 8px; overflow: hidden; cursor: pointer; transition: transform 0.3s ease, border-color 0.3s ease; }
-.article-summary-card:hover { transform: translateY(-5px); border-color: var(--neon-green); }
+/* 6. ESTILOS DE INSIGHTS & OPORTUNIDADES (GRIDS) */
+.articles-grid, #view-opportunities { 
+    display: grid; 
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); 
+    gap: 30px; 
+}
+
+.article-summary-card, .financial-card { 
+    background-color: #111; 
+    border: 1px solid #333; 
+    border-radius: 8px; 
+    overflow: hidden; 
+    cursor: pointer; 
+    transition: transform 0.3s; 
+}
+.article-summary-card:hover, .financial-card:hover { transform: translateY(-5px); border-color: var(--neon-green); }
 .card-image { width: 100%; height: 200px; object-fit: cover; border-bottom: 1px solid #333; }
 .card-content { padding: 20px; }
 .card-tag { color: var(--neon-green); font-size: 0.8rem; font-weight: bold; text-transform: uppercase; margin-bottom: 10px; display: block; }
 .card-date { color: #777; font-size: 0.75rem; float: right; }
-.card-title { font-size: 1.4rem; margin-bottom: 10px; color: #fff; font-weight: 700; }
+.card-title { font-size: 1.4rem; margin-bottom: 10px; color: #fff; font-weight: 700; line-height: 1.2; }
 .card-subtitle { font-size: 0.95rem; color: #aaa; line-height: 1.5; }
 
-/* 7. SECCIÓN CARTERA */
-#view-portfolio { padding-top: 140px; max-width: 1200px; margin: 0 auto; }
+/* FINANCIAL CARD SPECIALS */
+.financial-card { border-left: 4px solid #D4AF37; padding: 20px; }
+.fin-header { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 15px; }
+.fin-ticker h3 { font-family: var(--font-main); font-size: 2.2rem; font-weight: 800; letter-spacing: -1px; color: #fff; margin-bottom: 5px; }
+.fin-ticker span { display: block; color: #aaa; font-size: 0.9rem; font-weight: 600; }
+.fin-logo { width: 40px; height: 40px; border-radius: 4px; object-fit: contain; background: #fff; padding: 2px; }
+.fin-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; margin-bottom: 20px; border-top: 1px solid #333; border-bottom: 1px solid #333; padding: 15px 0; }
+.fin-data-point label { display: block; font-size: 0.7rem; color: #888; text-transform: uppercase; font-weight: 600; }
+.fin-data-point .value { font-family: var(--font-main); font-size: 1.3rem; color: #fff; font-weight: 700; }
+.fin-data-point .value.green { color: var(--neon-green); }
+.details-btn { color: #D4AF37; font-size: 0.9rem; font-weight: 700; cursor: pointer; text-transform: uppercase; }
+
+/* 7. CARTERA (TABLE & HERO) */
 .portfolio-hero-dashboard { text-align: center; padding: 40px 20px; margin-bottom: 30px; background: rgba(0, 0, 0, 0.4); border-bottom: 1px solid #333; border-radius: 8px; }
-.portfolio-total-balance .label { display: block; font-family: var(--font-main); font-size: 0.9rem; color: #aaa; margin-bottom: 10px; letter-spacing: 2px; text-transform: uppercase; }
-.portfolio-total-balance h1 { font-family: var(--font-main); font-size: 3.5rem; font-weight: 700; color: #ffffff; margin: 0; letter-spacing: -2px; text-shadow: 0 4px 20px rgba(195, 245, 60, 0.2); }
-.portfolio-secondary-metrics { display: flex; justify-content: center; align-items: center; gap: 20px; margin-top: 20px; }
-.metric-item { text-align: center; }
-.metric-label { display: block; font-size: 0.75rem; color: #888; margin-bottom: 5px; }
-.metric-value { font-size: 1.1rem; font-weight: 600; color: #fff; }
-.metric-value.positive { color: var(--neon-green); }
-.separator { color: #333; font-size: 1.5rem; font-weight: 100; }
+.portfolio-total-balance h1 { font-family: var(--font-main); font-size: 3.5rem; font-weight: 700; color: #ffffff; letter-spacing: -2px; text-shadow: 0 4px 20px rgba(195, 245, 60, 0.2); }
+.portfolio-total-balance .label { color: #aaa; letter-spacing: 2px; text-transform: uppercase; font-size: 0.9rem; margin-bottom: 10px; display: block;}
+.portfolio-secondary-metrics { display: flex; justify-content: center; gap: 20px; margin-top: 20px; color: #fff; }
+.metric-value.positive { color: var(--neon-green); font-weight: bold; }
+.separator { color: #333; font-weight: 100; }
 
 .portfolio-table { width: 100%; border-collapse: collapse; font-family: var(--font-mono) !important; font-size: 13px !important; font-weight: 500; letter-spacing: -0.5px; background-color: #000000 !important; color: #e0e0e0 !important; table-layout: fixed; }
 .portfolio-table th { text-transform: uppercase; color: #ffffff; font-weight: normal; border-bottom: 1px solid #444; padding: 12px 5px; text-align: right; }
@@ -150,47 +198,35 @@ main { padding: 40px 5%; min-height: 80vh; }
 .portfolio-table td:nth-child(2) { font-weight: bold; color: #fff; }
 .portfolio-table td:nth-child(7) { color: var(--neon-green); }
 
+/* TRACK RECORD TABLE (SAME STYLE) */
 .track-record-table { width: 100%; border-collapse: collapse; font-family: var(--font-mono) !important; font-size: 13px !important; font-weight: 500; letter-spacing: -0.5px; background-color: #000000; color: #e0e0e0; }
 .track-record-table th, .track-record-table td { padding: 12px 8px; border-bottom: 1px solid #222; text-align: right; }
 .track-record-table th { border-bottom: 1px solid #444; color: #fff; font-weight: normal; }
 
-/* 8. SECCIÓN OPORTUNIDADES */
-#view-opportunities { padding-top: 140px; max-width: 1200px; margin: 0 auto; display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 30px; }
-.financial-card { background-color: #111; border-left: 4px solid #D4AF37; border-radius: 8px; padding: 20px; position: relative; transition: transform 0.3s; }
-.financial-card:hover { transform: translateY(-5px); }
-.fin-header { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 15px; }
-.fin-ticker h3 { font-family: var(--font-main); font-size: 2.2rem; font-weight: 800; letter-spacing: -1px; color: #fff; margin-bottom: 5px; }
-.fin-ticker span { display: block; color: #aaa; font-size: 0.9rem; font-weight: 600; }
-.fin-logo { width: 40px; height: 40px; border-radius: 4px; object-fit: contain; background: #fff; padding: 2px; }
-.fin-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; margin-bottom: 20px; border-top: 1px solid #333; border-bottom: 1px solid #333; padding: 15px 0; }
-.fin-data-point label { display: block; font-size: 0.7rem; color: #888; text-transform: uppercase; font-weight: 600; letter-spacing: 0.5px; margin-bottom: 3px; font-family: var(--font-main); }
-.fin-data-point .value { font-family: var(--font-main); font-size: 1.3rem; color: #fff; font-weight: 700; letter-spacing: -0.5px; }
-.fin-data-point .value.green { color: var(--neon-green); }
-.details-btn { color: #D4AF37; font-size: 0.9rem; font-weight: 700; letter-spacing: 0.5px; cursor: pointer; text-transform: uppercase; font-family: var(--font-main); }
-
-/* 9. MODALES - ESTILO PERIÓDICO */
-.modal-content {
-    background-color: var(--paper-bg) !important;
-    color: var(--paper-text) !important;
-    text-shadow: none !important;
-    margin: 5% auto;
-    padding: 50px;
-    border-radius: 4px;
-    width: 90%;
-    max-width: 800px;
-    position: relative;
+/* 8. MODAL INTERIOR (ESTILO PERIÓDICO) */
+.modal-content { 
+    background-color: var(--paper-bg) !important; 
+    color: var(--paper-text) !important; 
+    text-shadow: none !important; 
+    margin: 5% auto; 
+    padding: 50px; 
+    border-radius: 4px; 
+    width: 90%; 
+    max-width: 800px; 
+    position: relative; 
 }
 .close-modal { color: #333 !important; float: right; font-size: 28px; font-weight: bold; cursor: pointer; }
-.modal-content h2, .modal-content h3 { color: #000 !important; font-family: 'Playfair Display', serif; text-shadow: none !important; margin-top: 30px; margin-bottom: 15px; }
+.modal-content h2, .modal-content h3 { color: #000 !important; font-family: 'Playfair Display', serif; margin-top: 30px; margin-bottom: 15px; text-shadow: none !important; }
 .modal-content p, .modal-content li { line-height: 1.8; font-size: 1.1rem; margin-bottom: 20px; color: #333; text-shadow: none !important; }
 .modal-content strong { color: #000; }
 
-/* 10. MEDIA QUERIES */
+/* 9. MEDIA QUERIES (TABLET & MOBILE) */
 @media only screen and (max-width: 1024px) {
     .portfolio-table-wrapper { width: 100% !important; overflow-x: hidden; padding: 0 5px; }
     .portfolio-table th:nth-child(2), .portfolio-table td:nth-child(2),
     .portfolio-table th:nth-child(4), .portfolio-table td:nth-child(4),
     .portfolio-table th:nth-child(5), .portfolio-table td:nth-child(5) { display: none !important; }
+    
     .portfolio-table th:nth-child(3), .portfolio-table td:nth-child(3) { display: table-cell !important; width: 40% !important; text-align: left; color: #fff; font-weight: bold; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: 0; }
     .portfolio-table th:nth-child(1), .portfolio-table td:nth-child(1) { width: 10% !important; text-align: center; }
     .portfolio-table th:nth-child(6), .portfolio-table td:nth-child(6) { width: 15% !important; text-align: right; }
@@ -199,7 +235,7 @@ main { padding: 40px 5%; min-height: 80vh; }
 }
 
 @media only screen and (max-width: 768px) {
-    .nav-links { display: none; }
+    .nav-links { display: none; } /* En una versión futura activaremos el menú hamburguesa */
     .hero-title { font-size: 2.5rem; }
     .calc-grid { grid-template-columns: 1fr; }
     .portfolio-total-balance h1 { font-size: 2.5rem; }
