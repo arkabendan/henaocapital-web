@@ -234,6 +234,15 @@
         color: #FFFFFF;
         text-shadow: none;
       }
+      .article-body h4 {
+        font-family: 'Playfair Display', serif;
+        font-weight: 600;
+        font-size: 1.3rem;
+        margin-top: 2rem;
+        margin-bottom: 0.8rem;
+        color: #FFFFFF;
+        text-shadow: none;
+      }
       .article-body ul {
         margin-bottom: 1.5rem;
         padding-left: 1.2rem;
@@ -279,6 +288,7 @@
       .paper-mode-reader h1,
       .paper-mode-reader h2,
       .paper-mode-reader h3,
+      .paper-mode-reader h4,
       .paper-mode-reader p,
       .paper-mode-reader li,
       .paper-mode-reader span,
@@ -292,7 +302,8 @@
 
       .paper-mode-reader h1,
       .paper-mode-reader h2,
-      .paper-mode-reader h3 {
+      .paper-mode-reader h3,
+      .paper-mode-reader h4 {
           color: #000000 !important;
       }
 
@@ -478,7 +489,7 @@
       }
 
       /* === ESTILO MÓVIL (NUCLEAR FIX) === */
-      @media only screen and (max-width: 768px) {
+      @media only screen and (max-width: 1024px) {
           
           /* 1. CONTENEDOR FLUIDO (SOLUCIONA SCROLL VERTICAL) */
           .portfolio-table-wrapper {
@@ -504,39 +515,48 @@
               font-size: 11px !important; /* Letra pequeña necesaria */
           }
 
-          /* 3. COLUMNAS A OCULTAR (3, 4, 5) */
-          .portfolio-table th:nth-child(3), .portfolio-table td:nth-child(3),
-          .portfolio-table th:nth-child(4), .portfolio-table td:nth-child(4),
-          .portfolio-table th:nth-child(5), .portfolio-table td:nth-child(5) {
+          /* 1. OCULTAR SÍMBOLO (Col 2) y otras irrelevantes (Col 4, 5) */
+          .portfolio-table th:nth-child(2), .portfolio-table td:nth-child(2), /* Símbolo fuera */
+          .portfolio-table th:nth-child(4), .portfolio-table td:nth-child(4), /* Acciones fuera */
+          .portfolio-table th:nth-child(5), .portfolio-table td:nth-child(5)  /* Precio fuera */
+          {
               display: none !important;
-              width: 0 !important;
           }
 
-          /* 4. ANCHOS EXACTOS (SUMA 100%) */
+          /* 2. MOSTRAR EMPRESA (Col 3) - CONFIGURACIÓN CRÍTICA */
+          .portfolio-table th:nth-child(3), .portfolio-table td:nth-child(3) {
+              display: table-cell !important; /* Forzar visibilidad */
+              width: 45% !important; /* Darle espacio suficiente */
+              text-align: left;
+              font-weight: bold;
+              color: #fff;
+              
+              /* TRUCO PARA NOMBRES LARGOS: */
+              white-space: nowrap;      /* No saltar de línea */
+              overflow: hidden;         /* Cortar si sobra */
+              text-overflow: ellipsis;  /* Poner '...' al final (ej: Microstrat...) */
+              max-width: 0;             /* Necesario para que funcione el ellipsis en tablas */
+          }
           
-          /* Col 1: Pos (10%) */
+          /* 3. REAJUSTE RESTO DE COLUMNAS (Total 100%) */
+          
+          /* Col 1: Posición (10%) */
           .portfolio-table th:nth-child(1), .portfolio-table td:nth-child(1) {
               width: 10% !important;
               text-align: center;
               padding: 8px 2px !important;
           }
           
-          /* Col 2: Símbolo (20%) */
-          .portfolio-table th:nth-child(2), .portfolio-table td:nth-child(2) {
-              width: 20% !important;
-              padding: 8px 2px !important;
-          }
-          
-          /* Col 6: % Total (25%) */
+          /* Col 6: % Total (15%) */
           .portfolio-table th:nth-child(6), .portfolio-table td:nth-child(6) {
-              width: 25% !important;
+              width: 15% !important;
               text-align: right;
               padding: 8px 2px !important;
           }
           
-          /* Col 7: Valor Total (45%) */
+          /* Col 7: Valor Total (30%) */
           .portfolio-table th:nth-child(7), .portfolio-table td:nth-child(7) {
-              width: 45% !important;
+              width: 30% !important;
               text-align: right;
               padding: 8px 2px !important;
               white-space: nowrap;
@@ -549,6 +569,75 @@
               height: 40px;
               vertical-align: middle;
           }
+      }
+      
+      /* === PORTFOLIO HERO DASHBOARD === */
+      /* CONTENEDOR PRINCIPAL */
+      .portfolio-hero-dashboard {
+          text-align: center;
+          padding: 40px 20px;
+          margin-bottom: 30px;
+          background: rgba(0, 0, 0, 0.4); /* Fondo sutil para separar del fondo web */
+          border-bottom: 1px solid #333;
+          border-radius: 8px;
+      }
+
+      /* SALDO TOTAL (GIGANTE) */
+      .portfolio-total-balance .label {
+          display: block;
+          font-family: 'Inter', sans-serif;
+          font-size: 0.9rem;
+          color: #aaa;
+          margin-bottom: 10px;
+          letter-spacing: 2px;
+          text-transform: uppercase;
+      }
+
+      .portfolio-total-balance h1 {
+          font-family: 'Inter', sans-serif; /* O 'Courier New' si prefieres terminal */
+          font-size: 3.5rem; /* Muy grande */
+          font-weight: 700;
+          color: #ffffff;
+          margin: 0;
+          letter-spacing: -2px;
+          text-shadow: 0 4px 20px rgba(195, 245, 60, 0.2); /* Sutil resplandor verde */
+      }
+
+      /* MÉTRICAS SECUNDARIAS (FILA INFERIOR) */
+      .portfolio-secondary-metrics {
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          gap: 20px;
+          margin-top: 20px;
+      }
+
+      .metric-item {
+          text-align: center;
+      }
+
+      .metric-label {
+          display: block;
+          font-size: 0.75rem;
+          color: #888;
+          margin-bottom: 5px;
+      }
+
+      .metric-value {
+          font-size: 1.1rem;
+          font-weight: 600;
+          color: #fff;
+      }
+
+      .metric-value.positive { color: #C3F53C; } /* Verde Neón */
+
+      .separator { color: #333; font-size: 1.5rem; font-weight: 100; }
+
+      /* AJUSTE MÓVIL */
+      @media only screen and (max-width: 768px) {
+          .portfolio-total-balance h1 { font-size: 2.5rem; }
+          .portfolio-secondary-metrics { flex-direction: column; gap: 10px; }
+          .separator { display: none; }
       }
 
       /* === Desktop Layouts === */
@@ -569,6 +658,64 @@
       .financial-card .bg-white {
           border-radius: 4px !important;
           padding: 4px !important;
+      }
+      
+      /* === HERO INSIGHT MESSAGE === */
+      .hero-insight-message {
+          margin: 40px 0 30px 0;
+          text-align: left;
+          max-width: 700px;
+          /* Resetting any border or padding from previous styles */
+          border-left: none;
+          padding-left: 0;
+      }
+
+      /* 2º PLANO: DATO DE MERCADO (Visible pero no gritando) */
+      .insight-market {
+          font-family: 'Inter', sans-serif;
+          font-size: 1.05rem;
+          color: #d0d0d0; /* Gris claro, no blanco puro */
+          line-height: 1.6;
+          margin-bottom: 12px;
+          font-weight: 300;
+      }
+
+      .insight-market .prefix {
+          color: var(--accent-color); /* Verde Neón para captar la atención inicial */
+          font-weight: 700;
+          margin-right: 5px;
+      }
+
+      .insight-market .highlight {
+          color: #fff;
+          font-weight: 700;
+          border-bottom: 1px solid rgba(255,255,255,0.3); /* Subrayado sutil */
+      }
+
+      /* 3º PLANO: DATO HENAO (Sutil, como nota al pie) */
+      .insight-henao {
+          font-family: 'Inter', sans-serif;
+          font-size: 0.85rem; /* Letra más pequeña */
+          color: #777777;     /* Gris oscuro para que quede en el fondo */
+          font-style: italic; /* Cursiva para diferenciar */
+          margin-top: 5px;
+          font-weight: 400;
+      }
+
+      .insight-henao .henao-val {
+          color: #aaaaaa; /* Un poco más claro que el texto pero no blanco */
+          font-weight: 600;
+      }
+
+      .highlight-neon {
+          color: var(--accent-color);
+          font-weight: 700;
+      }
+
+      @media (max-width: 768px) {
+          .hero-insight-message {
+              margin: 30px 0;
+          }
       }
 
     </style>
@@ -623,14 +770,25 @@
             conviction: 'ALTA',
             logoUrl: 'https://bitbo.io/news/images/strategy-logo.jpg'
         },
+        'brk-b-opportunity': {
+            ticker: '$BRK.B',
+            name: 'Berkshire Hathaway Inc.',
+            sector: 'Holding / Aseguradora',
+            price: '$478',
+            target: '$800',
+            potAcc: '+67,4%',
+            potAnn: '+10,8%',
+            conviction: 'ALTA',
+            logoUrl: 'https://diversiq.com/wp-content/uploads/2024/04/Berkshire-Hathaway-Logo-Square.png'
+        },
         'buffett-google': {
             ticker: '$GOOGL',
             name: 'Alphabet Inc.',
-            sector: 'Tecnología / Servicios',
-            price: '$284',
+            sector: 'Tecnología / Comunicación',
+            price: '$251',
             target: '$491',
-            potAcc: '+64,2%',
-            potAnn: '+10,4%',
+            potAcc: '+95,6%',
+            potAnn: '+14,4%',
             conviction: 'MUY ALTA',
             logoUrl: 'https://storage.googleapis.com/gd-prod/images/a910d418-7123-4bc4-aa3b-ef7e25e74ae6.60c498c559810aa0.webp'
         }
@@ -639,40 +797,150 @@
       const ARTICLES = [
         {
             id: 'trump-vs-jpm',
-            date: '23 NOV 2025',
+            date: '23 NOV 2025 | 16:14 CET',
             category: '#MACRO $JPM',
-            title: 'Trump vs. JP Morgan y el futuro del dinero',
+            title: 'La Guerra Trump vs. JP Morgan y el futuro del dinero',
             excerpt: 'El viejo orden monetario podría estar empezando a chocar con uno nuevo.',
             imageUrl: 'https://media.losandes.com.ar/p/0e1db96b783e9fd0a9f9db884b8965d1/adjuntos/368/imagenes/100/613/0100613694/1200x675/smart/donald-trump-jp-morgan.jpg',
             body: [
-                "<p>La tensión entre la nueva administración y la banca tradicional, personificada en JP Morgan, marca el inicio de un cambio de régimen monetario. No es solo política, es la estructura misma del capital lo que está en juego.</p>",
-                "<h2>El Choque de Dos Sistemas</h2>",
-                "<p>Durante décadas, el sistema financiero ha operado bajo un modelo de confianza centralizada, donde grandes instituciones actúan como guardianes del flujo de capital, utilizando <strong>mecanismos de ingeniería financiera como derivados</strong> para gestionar el riesgo y la liquidez. Este modelo ha funcionado para Wall Street, pero ha mostrado sus grietas para la economía real.</p>",
-                "<p>La postura de Donald Trump, más favorable a la desregulación y, paradójicamente, a activos duros y digitales, choca frontalmente con el status quo defendido por Jamie Dimon. Dimon ha sido un escéptico vocal de Bitcoin, defendiendo la primacía del dólar fiduciario gestionado por la banca central y comercial.</p>",
-                "<h3>¿Qué está en juego?</h3>",
-                "<ul><li><strong>Soberanía Monetaria:</strong> La capacidad de emitir dinero sin restricciones vs. un sistema de activos finitos.</li><li><strong>Control de Capitales:</strong> La libertad de movimiento de valor sin intermediarios vs. el sistema KYC/AML tradicional.</li><li><strong>Innovación Financiera:</strong> DeFi y tokenización vs. el sistema bancario tradicional.</li></ul>",
-                "<p>Si la nueva administración facilita la integración de criptoactivos en el sistema bancario formal, podríamos ver una migración masiva de valor. Los bancos que no se adapten a custodiar y operar con estos nuevos activos corren el riesgo de convertirse en las librerías de la era de internet.</p>",
-                "<p>En <strong>Henao Capital</strong>, monitorizamos este conflicto no como espectadores, sino posicionando nuestras carteras para un mundo donde el monopolio del dinero fiduciario se debilita.</p>"
+                "<p>El viejo orden monetario, el que hemos conocido en las últimas décadas con la Fed en el centro y la gran banca (JPMorgan a la cabeza) como su brazo operativo, empieza a mostrar grietas.</p>",
+                "<p>Se perfila una colisión entre dos modelos:</p>",
+                "<ul><li><strong>El Régimen Heredado (Fed + Gran Banca):</strong> Un sistema centrado en la Reserva Federal y la banca comercial, con JP Morgan como nodo central en la creación de crédito, distribución de dólares y pagos internacionales.</li><li><strong>El Bloque Emergente (Tesoro + Activos Digitales):</strong> Un modelo potencial que orbita alrededor del Tesoro de EE.UU., dólares tokenizados y una infraestructura digital donde Bitcoin emerge como colateral estratégico a largo plazo.</li></ul>",
+                "<h3>El viejo orden: Fed + banca como núcleo del sistema dólar</h3>",
+                "<p>Durante décadas, la Reserva Federal ha ejercido el control predominante sobre la política monetaria. Y la banca comercial sistémica ha actuado como intermediaria fundamental en la creación de crédito, la distribución de dólares y la arquitectura de pagos global.</p>",
+                "<p>En ese grupo, JPMorgan no es simplemente un banco de mayor tamaño; es, de facto, el nodo dominante. Desempeña un papel clave en el settlement global en USD, mantiene una conexión directa con la Reserva Federal y ejerce una influencia regulatoria y política indiscutible. JPM actúa casi como el brazo operativo del régimen monetario heredado.</p>",
+                "<p>Desde esta perspectiva, la conclusión resulta lógica: cualquier transición hacia un sistema donde el dólar circule a través de canales digitales más directos, o donde el Tesoro pueda emitir \"dólares tokenizados\" eludiendo en mayor medida el balance bancario, representa un ataque directo al modelo de negocio y a la posición de poder de estas instituciones.</p>",
+                "<h3>El posible nuevo orden: Tesoro, stablecoins y dinero programable</h3>",
+                "<p>Por otro lado, surge una realidad que hace pocos años sonaba a ciencia ficción: las stablecoins, los tokens de dólar y las nuevas infraestructuras de pago se superponen progresivamente al sistema tradicional.</p>",
+                "<p>El escenario que se dibuja es claro:</p>",
+                "<ul><li>El Tesoro gana peso como emisor y ancla del sistema, integrándose con stablecoins respaldadas directamente por deuda soberana.</li><li>Los raíles de pago se vuelven programables: liquidación instantánea, reglas embebidas, fiscalidad automatizada y trazabilidad total.</li><li>Y en el extremo largo del balance aparece Bitcoin, como colateral escaso, sin riesgo de contraparte, complementando al oro y a la deuda pública como reserva estratégica.</li></ul>",
+                "<p>Si este modelo se consolida, el centro de gravedad se desplazará. Esto implica una reducción del poder relativo de la banca comercial en la creación de dinero y un aumento del poder del Estado (Tesoro y reguladores) sobre las condiciones de uso del dólar digital.</p>",
+                "<p>Los bancos comprenden el mensaje a la perfección. Si este cambio se acelera, defenderán su posición utilizando tácticas de mercado, presión regulatoria y lobby político, y no solo comunicados de prensa. No se trata de una conspiración, sino de autoprotección.</p>",
+                "<h3>Bitcoin: uno de los campos de juego</h3>",
+                "<p>En este contexto, Bitcoin se convierte en el escenario clave donde se libra una parte fundamental de la batalla.</p>",
+                "<p>Por un lado, un Estado que vislumbre un futuro con un dólar digital respaldado parcialmente por Bitcoin tendría incentivos para acumular BTC de manera discreta, dispersa y silenciosa. Un anuncio prematuro provocaría un aumento del precio y dificultaría la acumulación estratégica.</p>",
+                "<p>Por otro lado, quienes manejan el sistema actual tienen mucha experiencia con el oro, usando trucos como derivados y ataques de liquidez para controlar su precio y la opinión pública. Es lógico suponer que están aplicando este mismo manual a Bitcoin. Su objetivo no sería \"eliminarlo\" (algo probablemente ya imposible), sino atenuar su impacto, contener la euforia y retrasar su plena legitimación.</p>",
+                "<p>Parte de la volatilidad extrema que vemos últimamente podría no ser solo \"psicología retail\", sino intervención táctica de agentes con balances masivos y experiencia en mercados de derivados.</p>",
+                "<p>En cualquier caso, para nosotros la pregunta central trasciende la ingeniería de mercado: ¿Se consolida Bitcoin como activo real escaso, sin riesgo de contraparte y con integración creciente en la arquitectura financiera?</p>",
+                "<p>Si la respuesta es sí, el ruido táctico de corto plazo es solo eso. Ruido.</p>",
+                "<h3>MicroStrategy: cuando una empresa se convierte en puente</h3>",
+                "<p>Aquí entra un actor recurrente en nuestros análisis: MicroStrategy (MSTR). MSTR no es solo \"una empresa con mucho Bitcoin\". Por diseño, se ha convertido en una máquina de conversión.</p>",
+                "<p>Emite deuda y equity en el sistema viejo (dólares, crédito) y, con esos recursos, acumula Bitcoin en su balance de forma sistemática. Al hacerlo, ofrece una vía de exposición a BTC a inversores que no pueden o no quieren lidiar con la operativa spot.</p>",
+                "<p>En la práctica, MSTR es un puente muy visible entre el mundo fiat tradicional y el emergente mundo de activos digitales escasos. Y su rol cambia según quién lo mire:</p>",
+                "<ul><li>Para una visión \"pro-Tesoro + Bitcoin\", MSTR es una pieza útil que canaliza capital hacia el activo escaso sin que el Estado tenga que mojarse oficialmente todavía.</li><li>Para la visión \"pro-Fed + gran banca\", es un drenaje de capital desde el sistema bancario hacia un activo que no controlan, desintermediando productos financieros tradicionales.</li></ul>",
+                "<p>Es lógico que, en un entorno de cambio de régimen, los puentes más visibles sean también los más atacados por la pura fricción del sistema.</p>",
+                "<h3>El factor tiempo: la ventana política</h3>",
+                "<p>Para que un giro real en la arquitectura monetaria se materialice, la tecnología (stablecoins, Bitcoin) no basta. Hace falta alineación institucional: mayorías en los órganos de gobernanza, sintonía entre Tesoro, Fed y poder político, y una ventana temporal para aprobar cambios.</p>",
+                "<p>Los próximos años podrían ser esa ventana.</p>",
+                "<p>Desde un punto de vista inversor, lo importante no es predecir cada paso de la Fed, sino comprender el cambio estructural en los incentivos. El modelo de tipos 0% y liquidez ilimitada está dando paso a sistemas donde el Estado ejerce mayor control sobre el dinero digital, idealmente respaldado por activos reales para generar confianza.</p>",
+                "<p>El futuro del dinero, su forma, emisión, circulación y respaldo, será el campo de batalla fundamental en las próximas décadas.</p>"
             ]
         },
         {
             id: 'healthcare-inevitable',
-            date: '22 NOV 2025',
+            date: '17 OCT 2025 | 11:23 CET',
             category: '#HEALTHCARE',
             title: 'Healthcare: Un sector Inevitable',
-            excerpt: 'Por qué Danaher y ThermoFisher son las apuestas más claras ante el envejecimiento global.',
+            excerpt: 'Y por qué Danaher y ThermoFisher son las apuestas más claras.',
             imageUrl: 'https://www.salleurl.edu/sites/default/files/styles/ample_1400/public/content/nodes/Estudio/image/19629/33556/cabecera-portada-desktop.jpg',
             body: [
-                "<p>En un mundo de incertidumbre macroeconómica, hay una tendencia que ofrece certeza casi matemática: el envejecimiento de la población global. La pirámide demográfica se está invirtiendo, y con ella, la demanda de cuidados de salud, diagnóstico e investigación.</p>",
-                "<p>No buscamos la próxima biotecnológica que pueda descubrir una cura milagrosa (o quebrar en el intento). Buscamos los vendedores de picos y palas de esta fiebre del oro científica.</p>",
-                "<h3>Danaher: La Excelencia Operativa</h3>",
-                "<p>Danaher (DHR) no es solo una empresa de ciencias de la vida; es una máquina de composición de capital. A través de su famoso 'Danaher Business System', la compañía adquiere negocios, mejora sus márgenes y reasigna el flujo de caja libre a nuevas adquisiciones.</p>",
-                "<p>Su posición en diagnóstico y bioprocesamiento la convierte en un socio indispensable para cualquier farmacéutica que quiera sacar un medicamento al mercado. No asumen el riesgo del fármaco, pero cobran por el proceso de fabricarlo.</p>",
-                "<h3>Thermo Fisher: El Gigante de la Infraestructura</h3>",
-                "<p>Thermo Fisher Scientific (TMO) es, en muchos sentidos, el Amazon de la ciencia. Su escala le permite ofrecer desde instrumentos analíticos de alta gama hasta consumibles básicos de laboratorio.</p>",
-                "<p>La tesis es sencilla: mientras se siga investigando en salud, TMO cobrará su peaje. Su capacidad para navegar entornos inflacionarios trasladando precios al cliente final es superior a la media del sector.</p>",
-                "<p><strong>Conclusión:</strong> Tanto Danaher como Thermo Fisher representan la forma más robusta de exponerse a la tendencia secular del envejecimiento y el avance científico, minimizando el riesgo idiosincrático de un solo medicamento.</p>"
+                "<p>En las próximas décadas vamos a vivir una combinación de factores que supondrán claros vientos de cola para este sector: poblaciones que envejecen, más años vividos con enfermedades crónicas, presión política para mantener el acceso sanitario y sistemas públicos/privados obligados a gastar más solo para mantener el nivel de bienestar actual.</p>",
+                "<p>En Europa, Japón y buena parte de Asia, el peso de mayores de 65 años se va a disparar. Todos los estudios apuntan a que el gasto sanitario como % del PIB seguirá subiendo salvo reforma muy agresiva (muy poco probable).</p>",
+                "<p>A eso hay que sumarle otros dos aspectos:</p>",
+                "<ul><li>Una regulación cada vez más estricta que implica barreras de entrada fuertes para para nuevos competidores.</li><li>Una ola de IA aplicada al sector que va a disparar los volúmenes de diagnósticos, datos, pruebas y ensayos.</li></ul>",
+                "<p>Con este telón de fondo, tenemos dos opciones: intentar adivinar qué farmacéutica ganará la próxima batalla de turno… o irnos un paso más atrás en la cadena de valor: a los que venden los “picos y palas” del sistema.</p>",
+                "<p>Instrumentación, reactivos, diagnósticos, servicios de laboratorio, bioprocesado, soporte a ensayos clínicos…</p>",
+                "<p>Ahí es donde entran Danaher y Thermo Fisher.</p>",
+                "<h3>Danaher: el “sistema operativo” silencioso de la biotecnología y el diagnóstico</h3>",
+                "<p>Danaher hoy es, básicamente, un conglomerado muy enfocado en tres bloques: biotecnología (bioprocessing), life sciences y diagnóstico. Vende equipos, consumibles y servicios que permiten a otros investigar, fabricar medicamentos biológicos y hacer diagnósticos moleculares.</p>",
+                "<p>Números rápidos para ubicar la escala: en 2024 facturó unos 23.900 M USD, con más de 5.300 M USD de free cash flow y márgenes sólidos, pese a estar digiriendo la “resaca” del pico covid en diagnóstico y bioprocesado.</p>",
+                "<p>Lo relevante no es solo el tamaño, sino el tipo de negocio:</p>",
+                "<ul><li><strong>Bioprocesado:</strong> a través de Cytiva, Pall y otras marcas, Danaher es uno de los proveedores clave de filtros, columnas, biorreactores y sistemas que necesitas sí o sí para fabricar anticuerpos monoclonales, terapias biológicas y, cada vez más, terapias avanzadas. Una vez que un producto se aprueba con cierto proceso y cierto equipo, cambiar de proveedor no es “pruebo otra marca y ya está”; implica revalidar, re-documentar, pasar por regulador. Cambiar cuesta dinero, tiempo y riesgo regulatorio.</li><li><strong>Diagnóstico:</strong> plataformas como Cepheid en diagnóstico molecular han vivido un pico covid, sí, pero dejan una base instalada de máquinas en hospitales y laboratorios que seguirán usando cartuchos para otras infecciones durante años. Es negocio recurrente de consumible.</li><li><strong>Herramientas de life sciences:</strong> microscopía avanzada, genómica, análisis de proteínas… todas las piezas que un laboratorio puntero necesita para generar datos. Datos que luego son materia prima para modelos de IA aplicados a descubrimiento de fármacos, biomarcadores, etc.</li></ul>",
+                "<p>Por encima de todo esto está el famoso Danaher Business System (DBS): una cultura y un marco operativo de mejora continua que han convertido a la compañía en una máquina de integrar adquisiciones y exprimir sinergias. DBS es la razón por la que llevan años comprando activos buenos, integrándolos y elevando márgenes de forma muy consistente.</p>",
+                "<p>Si el mundo va a necesitar más biológicos, más terapias avanzadas y más diagnóstico sofisticado (y todo apunta a que sí), Danaher no es el medicamento, es la fábrica que vende la maquinaria y el “suministro” para que otros lo produzcan.</p>",
+                "<h3>Thermo Fisher: el gigante que está en casi todos los laboratorios</h3>",
+                "<p>Thermo Fisher juega una liga similar, pero aún más diversificada. Su misión oficial es “permitir a sus clientes hacer el mundo más saludable, más limpio y más seguro”, y lo aterrizan en cuatro grandes segmentos: Life Sciences Solutions, Analytical Instruments, Specialty Diagnostics y Laboratory Products & Biopharma Services.</p>",
+                "<p>En 2024 facturó unos 42.900 M USD, con crecimiento en las cuatro divisiones y una combinación muy poco frecuente: tecnología, distribución global y servicios farmacéuticos integrados (Patheon, PPD).</p>",
+                "<p>¿Dónde está la gracia de ThermoFisher? Primero, en que está en todas partes:</p>",
+                "<ul><li>Laboratorios académicos y de investigación básica.</li><li>Biotech y pharma que desarrollan fármacos.</li><li>Laboratorios clínicos y de diagnóstico.</li><li>Industria, alimentación, medio ambiente.</li></ul>",
+                "<p>Fabrican desde equipos de secuenciación y espectrometría de masas hasta kits de diagnóstico, pasando por pipetas, medios de cultivo, reactivos, cámaras de ultracongelación y servicios de fabricación por contrato de medicamentos.</p>",
+                "<p>Segundo, en el modelo de ingresos:</p>",
+                "<ul><li>Una base enorme de equipos instalados.</li><li>Mucho consumible asociado (reactivos, columnas, medios, plásticos).</li><li>Y servicios recurrentes: mantenimiento, validación, outsourcing de ensayos clínicos y de fabricación (bio)farmacéutica.</li></ul>",
+                "<p>Tercero, en cómo se está posicionando para la próxima fase. Un ejemplo concreto: la compra de la unidad de filtración y purificación de Solventum por 4.100 M USD, para reforzar su oferta en bioprocesado y competir más de tú a tú justo en la categoría donde Danaher es muy fuerte.</p>",
+                "<p>Y, como en Danaher, la IA juega a favor: cuanta más digitalización, más automatización y más análisis intensivo de datos, más valioso es tener equipos integrados, software propietario y acceso directo a la base instalada de laboratorios y centros de investigación.</p>",
+                "<h3>IA y salud: por qué estos dos son “picks & shovels” del futuro</h3>",
+                "<p>Cuando se habla de IA en sanidad, la mente se va a dos sitios: algoritmos que leen radiografías mejor que un radiólogo junior y modelos que proponen nuevas moléculas. Eso está bien, pero alguien tiene que generar, limpiar y estructurar los datos sobre los que se entrenan esos modelos.</p>",
+                "<p>Ahí es donde Danaher y Thermo Fisher encajan como guante:</p>",
+                "<ul><li>Diagnósticos más precisos y rápidos → más tests, más plataformas de laboratorio, más consumibles.</li><li>Descubrimiento de fármacos acelerado por IA → más demanda de herramientas de secuenciación, expresión génica, proteómica, bioprocesado.</li><li>Ensayos clínicos mejor diseñados → más servicios de laboratorio, más CROs, más infraestructura que Thermo y Danaher ya abastecen.</li></ul>",
+                "<p>La IA puede comprimir márgenes en algunas partes de la cadena (por ejemplo, en servicios básicos comoditizados), pero difícilmente va a reducir el peso del diagnóstico, de la caracterización molecular y de la fabricación compleja. Más bien al revés: si quieres medicina personalizada, necesitas más pruebas, más capas de análisis y más control de procesos.</p>",
+                "<p>Y en cada una de esas capas, estas dos compañías venden algo crítico.</p>",
+                "<h3>Conclusión: por qué nos importa como asset allocators de largo plazo</h3>",
+                "<p>Queda bastante claro que el sector Salud tiene vientos de cola evidentes: envejecimiento, presión de gasto, cronicidad, necesidad de eficiencia y, ahora, una ola de IA que empuja a medir y analizar mucho más de lo que medíamos antes.</p>",
+                "<p>Desde esta perspectiva, Danaher y Thermo Fisher representan, a nuestro juicio, una forma limpia de estar expuesto al crecimiento del sistema de forma bastante predecible y sin riesgo de nueva competencia.</p>",
+                "<p>Son apuestas claras a años vista. Negocios de calidad, con barreras de entrada altas, flujos recurrentes y un papel muy difícil de desintermediar en el sistema sanitario global.</p>",
+                "<p>Si asumimos que en 10-15 años seguiremos gastando más en salud, necesitaremos más diagnóstico, más biológicos y más datos para alimentar modelos de IA… la lógica de fondo es sencilla: alguien tendrá que vender las herramientas, consumibles y servicios que hacen todo eso posible. Y Danaher y Thermo Fisher son los candidatos claros a seguir cobrando ese peaje.</p>"
             ]
+        },
+        {
+          id: 'tesla-abundance',
+          date: '25 NOV 2025 | 07:21 CET',
+          category: '#TECNOLOGÍA $TSLA',
+          title: 'Tesla: hacia la abundancia sostenible',
+          excerpt: 'Entendiendo la transición estructural de la compañía de Elon Musk.',
+          imageUrl: 'https://s3.elespanol.com/2025/11/07/actualidad/1003744004976_259820466_1024x576.jpg',
+          body: [
+            "<p>Reducir a Tesla a \"la marca de coches eléctricos de Elon Musk\" es un error de cálculo que el mercado cometió hace tiempo, y que algunos aún a día de hoy siguen cometiendo.</p>",
+            "<p>Aunque la figura del CEO y su gestión mediática a menudo generan ruido y polarización, el inversor inteligente debe saber filtrar esa volatilidad. Si apartamos la vista de los titulares y nos centramos en los fundamentales y la hoja de ruta, la realidad es inequívoca: no estamos ante una automotriz, sino ante una plataforma tecnológica integral y transversal.</p>",
+            "<p>El automóvil funciona hoy como el pulmón financiero de la compañía. Es la unidad de negocio que genera la caja necesaria para escalar tres verticales con un potencial de retorno muy superior: el software de conducción autónoma (FSD), la energía y la robótica.</p>",
+            "<p>Vamos a desglosarlo.</p>",
+            "<h3>El automóvil: Un negocio implacable… pero el cimiento necesario</h3>",
+            "<p>2024 marcó un punto de inflexión para Tesla, una dosis de realidad para los más optimistas: fue el primer año en más de una década en el que Tesla no registró crecimiento en volumen, cerrando con 1,79 millones de entregas (un descenso del 1% interanual).</p>",
+            "<p>Esta cifra no es un accidente, sino el síntoma de un mercado del vehículo eléctrico (EV) que ha dejado atrás la fase de adopción temprana para entrar en una madurez compleja: la competencia se ha endurecido, con BYD liderando la ofensiva china y los fabricantes tradicionales (OEMs) reaccionando (aunque sea torpemente), los subsidios en Europa se diluyen y el consumidor medio, asfixiado por los tipos de interés, duda antes de dar el salto eléctrico.</p>",
+            "<p>Sin embargo, dar a Tesla por \"estancada\" sería un error de análisis. El Model Y mantiene una hegemonía difícil de replicar: tras coronarse como el vehículo más vendido del mundo en 2023 (el primer eléctrico en la historia en lograrlo), en 2024 se mantuvo en el podio global, disputando el trono palmo a palmo con el Toyota RAV4. Tesla no ha perdido su capacidad de jugar en la \"Champions League\" del volumen… simplemente el partido se ha vuelto más defensivo.</p>",
+            "<p>Aquí es donde entra la estrategia de producto. El proyecto \"Juniper\" (la inminente actualización del Model Y) no busca revolucionar, sino optimizar. Su misión es crítica: reducir costes de manufactura, mejorar la eficiencia energética y extender el ciclo de vida de su \"vaca lechera\" sin incurrir en el riesgo de nuevas plataformas no probadas. A esto se suma la consolidación del Model 3 \"Highland\", el lento pero mediático ramp-up del Cybertruck y la eterna promesa del modelo low-cost.</p>",
+            "<p>No obstante, desde una perspectiva de inversión, no podemos engañarnos: fabricar coches es un negocio estructuralmente ingrato. Es intensivo en capex, sus márgenes operativos están constantemente amenazados por guerras de precios y la demanda es puramente cíclica.</p>",
+            "<p>Si no eres Ferrari, vender coches no es el modelo de negocio ideal para quien busca retornos interesantes a largo plazo.</p>",
+            "<p>Entonces, ¿por qué seguir apostando? La clave para entender a la Tesla actual reside en un cambio de paradigma: el automóvil ha dejado de ser el producto final para convertirse en la base instalada. Cada coche vendido no es solo una transacción única, sino un nodo más en una red de recolección de datos y una futura terminal de servicios. El negocio del hardware automotriz \"paga la fiesta\". Es la plataforma física necesaria sobre la que se desplegarán las capas de software y servicios de alto margen.</p>",
+            "<p>Tesla está dispuesta a sacrificar margen bruto en la venta del coche hoy, para asegurar la captura del valor del software mañana.</p>",
+            "<h3>FSD: De la \"opcionalidad\" a la plataforma de Inteligencia Artificial</h3>",
+            "<p>Durante años, el programa Full Self-Driving (FSD) ha sido el blanco del escepticismo de Wall Street: una cronología de promesas incumplidas sobre robotaxis y cronogramas fallidos que minaron la credibilidad de Musk.</p>",
+            "<p>No obstante, seguir juzgando a la compañía por los plazos incumplidos del pasado es un error de análisis que oculta la realidad actual. La evolución técnica de los últimos 18 meses marca un punto de inflexión: no estamos ante una simple actualización incremental, sino ante un cambio absoluto de paradigma tecnológico.</p>",
+            "<p>Para entender por qué el software actual (v13 y superiores) es una ruptura total con el pasado, hay que entender que, hasta hace poco, el Autopilot (ahora FSD) funcionaba como un manual de instrucciones gigante escrito por humanos: \"Si ves una señal de Stop, frena\" … \"Si el coche de delante está a 20 metros, reduce velocidad\".</p>",
+            "<p>Esto tenía un problema grave: el mundo real es demasiado caótico para escribir una regla para cada cosa. ¿Qué pasa si un policía te hace señas con la mano contradiciendo un semáforo? ¿O si una bolsa de plástico vuela por la carretera? El sistema antiguo, al no encontrar esa \"regla\" en su manual, se bloqueaba o frenaba de golpe.</p>",
+            "<p>Tesla tomó una decisión drástica: borró esas miles de reglas manuales y tiró años de trabajo a la basura.</p>",
+            "<p>Aquí es necesario hacer un inciso, porque este movimiento explica por qué Elon Musk tiene un valor incalculable para Tesla, más allá de su faceta de genio. En el mundo corporativo tradicional, nadie se atreve a destruir lo que funciona \"más o menos bien\". Musk sí. Elon gestiona una compañía de más de 1 trillion de dólares con la mentalidad hambrienta de una start-up de garaje. No tiene miedo a borrar lo innecesario y empezar de cero si la física dice que es el camino correcto. Ese liderazgo radical, esa aversión a la burocracia y al \"siempre se ha hecho así\", es lo que atrae a los mejores ingenieros del mundo. Los talentos más brillantes de la IA no quieren trabajar en empresas lentas y tediosas, quieren trabajar donde se reescriben las reglas y donde el talento manda.</p>",
+            "<p>Gracias a ese mindset, crearon el sistema de Redes Neuronales \"End-to-End\". Explicado sencillo:</p>",
+            "<ul><li>1. Entrada: Las cámaras ven lo que pasa (vídeo).</li><li>2. Caja Negra: Una inteligencia artificial procesa ese vídeo.</li><li>3. Salida: El coche mueve el volante y los pedales.</li></ul>",
+            "<p>Ya no hay un programador escribiendo código para cada rotonda. El coche ha aprendido a conducir por pura imitación, analizando millones de vídeos de conductores humanos. Es como aprender un idioma viviendo en el país, en lugar de memorizando el diccionario: al principio cuesta, pero el resultado es infinitamente más fluido y natural.</p>",
+            "<p>¿Por qué esto dispara el valor de Tesla? Porque ahora la mejora del sistema no depende de contratar a 2.000 ingenieros para escribir más reglas. Depende de darle más vídeos al sistema para que \"practique\". Y como Tesla tiene millones de coches enviando vídeo cada día, su inteligencia artificial \"practica\" en una semana lo que un humano tardaría mil vidas en conducir. Por eso, de repente, el coche ya no duda en los cruces y se mueve con una naturalidad que asusta.</p>",
+            "<p>Es el \"momento ChatGPT\" de la automoción: el software ya no sigue reglas rígidas, sino que entiende el contexto y se comporta con una fluidez casi humana.</p>",
+            "<p>Y dicho todo esto… ¿En qué punto estamos hoy? Esto nos lleva a la situación actual, con la versión 14.1 desplegándose ya activamente en múltiples estados. El debate teórico se ha acabado; ahora es ejecución pura.</p>",
+            "<p>Esta versión es la primera hija legítima de los nuevos clústeres de supercomputación Cortex y Dojo. Al haber sido entrenada con una capacidad de cómputo y una cantidad de datos órdenes de magnitud superiores a la v12, la v14.1 ha roto el techo de cristal de la fiabilidad. Lo que estamos viendo en las calles de Texas, California y Florida ya no es un \"test beta\" nervioso; es un sistema que gestiona situaciones complejas (clima adverso, zonas de construcción no señalizadas, interacciones policiales) con una solvencia que asusta.</p>",
+            "<h3>Energía: Del nicho a la columna vertebral de la red eléctrica</h3>",
+            "<p>Si el automóvil es la cara visible de Tesla, la división de Energía es el motor que trabaja en la sombra. Considerada durante mucho tiempo como un \"proyecto secundario\", esta vertical ha emergido en 2025 como un pilar fundamental.</p>",
+            "<p>Durante años, Tesla Energía fue vista como un \"hobby\" de Elon. Hoy, a finales de 2025, esa narrativa ha muerto. Con la \"Megafactory\" de California a pleno rendimiento y la nueva planta de Shanghái entregando baterías masivamente desde hace unos meses, lo que estamos viendo es una explosión vertical.</p>",
+            "<p>Mientras el negocio de coches pelea por apenas crecer debido a la madurez del mercado, la división de Energía vuela creciendo al 44%. Ha duplicado su peso en la empresa en apenas dos años y ya representa más del 12% de toda la facturación de Tesla. A día de hoy, el margen de beneficio de la energía se ha disparado al 31,4%.</p>",
+            "<p>Léelo otra vez: cada dólar que Tesla ingresa vendiendo baterías es casi el doble de rentable que un dólar ingresado vendiendo coches. Gracias a esa rentabilidad superior, aunque la energía \"solo\" sea el 12% de las ventas, ya aporta casi el 25% del beneficio bruto total de la compañía.</p>",
+            "<p>¿Qué hace de este vertical una auténtica joya para la cartera? Principalmente, el cambio radical en la calidad del ingreso. Dejamos atrás la volatilidad de vender coches a familias (una batalla constante contra los tipos de interés y el marketing) para entrar en el terreno de la infraestructura crítica. Tesla vende sus \"Megapacks\" a gobiernos y grandes compañías eléctricas mediante contratos millonarios y de largo plazo.</p>",
+            "<p>Es lo que en inversión llamamos flujos de caja predecibles y de alta calidad; ese dinero \"aburrido\" y constante que tanto valora el mercado cuando vienen curvas.</p>",
+            "<p>Además, el viento de cola es estructural e imparable: la intermitencia de las energías renovables convierte el almacenamiento en una necesidad física, no en una opción, garantizando una demanda prácticamente infinita. Al aplicar su escala de manufactura a este sector, Tesla ha logrado unos márgenes operativos de lujo que actúan como el estabilizador financiero perfecto, protegiendo los beneficios de la compañía incluso cuando el ciclo del automóvil se resiente.</p>",
+            "<p>En resumen: A día de hoy, Tesla ya no es solo una \"automotriz\". Tiene una segunda pierna financiera tan musculosa como la primera.</p>",
+            "<h3>Optimus: La variable impredecible y la joya de la corona</h3>",
+            "<p>Finalmente, llegamos a la frontera más especulativa. Es, por definición, la parte del negocio menos predecible de la ecuación, pero paradójicamente representa, sin ninguna duda, la joya de la corona de toda la tesis de inversión: Optimus.</p>",
+            "<p>Lo que comenzó siendo ridiculizado por el mercado como un \"actor disfrazado\", es considerado internamente por la directiva como el activo que podría justificar la mayor parte de la capitalización futura de la empresa.</p>",
+            "<p>Las versiones recientes muestran una evolución acelerada en motricidad fina, equilibrio y, lo más crítico, capacidad de aprendizaje. Optimus ya no está siendo teledirigido, está operando mediante redes neuronales que interpretan el mundo real en tiempo real.</p>",
+            "<p>La razón por la que Optimus ha dejado de ser una fantasía de ciencia ficción para convertirse en una evidencia industrial en este 2025 reside en una sinergia tecnológica única que la competencia no puede replicar. Tesla no ha tenido que inventar un cerebro robótico desde cero; simplemente ha trasplantado la arquitectura de inteligencia artificial que ya conduce sus coches a un cuerpo humanoide. Al resolver la visión y la toma de decisiones para el tráfico complejo, resolvieron involuntariamente el 80 % del problema de la robótica generalista. Mientras otros rivales programan movimientos, Optimus aprende observando, aprovechando la misma infraestructura de supercomputación y datos que alimenta al FSD.</p>",
+            "<p>Pero tener el mejor cerebro no es suficiente; hay que saber fabricar el cuerpo, y aquí es donde Tesla despliega su foso defensivo más ancho. A diferencia de los laboratorios de robótica tradicionales que crean prototipos artesanales de costes astronómicos, Tesla es, ante todo, un monstruo de la producción a escala. Al diseñar y fabricar sus propios actuadores y baterías, tienen una hoja de ruta creíble para producir este humanoide por un coste inferior al de un coche económico. Si la competencia logra hacer robots que funcionen, Tesla logrará hacer robots que funcionen y que, además, sean rentables de fabricar en masa.</p>",
+            "<p>El mercado al que se dirigen es, sencillamente, el más grande que existe: la mano de obra. En un mundo con una demografía envejecida y escasez crónica de mano de obra en logística y manufactura, la demanda de una fuerza laboral incansable y escalable es virtualmente infinita. Si Tesla logra capturar incluso una fracción modesta de este pastel, pasaremos de valorar la compañía por los coches que vende a valorarla por las horas de trabajo que su flota puede realizar.</p>",
+            "<p>Estamos ante la asimetría perfecta. A día de hoy, el mercado apenas asigna valor a esta división. Pero con cientos de unidades validándose ya internamente en sus propias fábricas, la posibilidad de que Tesla se convierta en la principal plataforma de automatización de la economía global es real. Si esta apuesta sale bien, no solo cambiará la cuenta de resultados de la compañía, cambiará para siempre el concepto de productividad humana.</p>",
+            "<h3>Reflexiones Finales: El Factor Humano y la Verdadera Definición</h3>",
+            "<p>Para cerrar el análisis, debemos abordar el catalizador definitivo: el factor humano. La reciente ratificación por parte de los accionistas del paquete de compensación de Elon Musk debe leerse, lejos del ruido mediático, en clave de supervivencia y ambición.</p>",
+            "<p>No se trata de un \"regalo\" retroactivo, se trata de alineación absoluta. Al vincular su patrimonio personal al éxito bursátil de la compañía, los accionistas hemos asegurado que el hambre insaciable y la capacidad de ejecución de un \"monstruo\" de la innovación como Musk sigan enfocadas en mover este mastodonte tecnológico.</p>",
+            "<p>En un momento donde su atención se divide entre la política y las múltiples multi-billion companies que posee y dirige, este paquete es la garantía de que Elon solo cumplirá sus objetivos vitales si Tesla se convierte en la compañía más valiosa de la Tierra. Es la definición más pura de skin in the Game: él solo gana si nosotros ganamos.</p>",
+            "<p>Eso sí, seamos realistas: el momento actual exige convicción. Tesla transita ahora mismo una etapa incómoda, atrapada temporalmente entre la madurez de su negocio de coches y la explosión de la Inteligencia Artificial. La volatilidad está garantizada y los riesgos de ejecución son tangibles.</p>",
+            "<p>A estos precios, la valoración es estricta y el mercado no perdonará errores a corto plazo, ya que el precio actual descuenta parte del éxito futuro. No obstante, aunque la acción recoja esas expectativas, estamos convencidos de que el mercado sigue subestimando drásticamente la magnitud del valor que esta plataforma tecnológica liberará en la próxima década.</p>",
+            "<p>Pero la tesis de Henao Capital es inequívoca: no estamos invirtiendo en una empresa de coches. Estamos invirtiendo en la mayor plataforma de ingeniería y robótica impulsada por inteligencia artificial y aplicada al mundo real que existe en el mundo a día de hoy.</p>"
+          ]
         },
         {
           id: 'mstr-strategy-detailed',
@@ -682,118 +950,91 @@
           excerpt: 'Mientras el mercado sigue etiquetando a la compañía como un simple vehículo pasivo de BTC, la realidad operativa de Strategy apunta a algo mucho mayor: la primera institución financiera estructurada sobre capital digital.',
           imageUrl: 'https://cryptodnes.bg/en/wp-content/uploads/sites/2/2025/09/strategy-page-thumbnail.png',
           body: [
-            "<p>La narrativa dominante en medios generalistas y en buena parte de Wall Street sigue siendo cómoda: Strategy (MSTR) sería poco más que una “tesorería de Bitcoin” o un proxy apalancado del activo. Esa lectura simplista pasa por alto lo que, en nuestra opinión, es el punto central: <strong>MSTR no es un fondo, ni un trust, ni una holding pasiva. Es una empresa operativa que utiliza Bitcoin como capital productivo.</strong></p>",
-            "<p>Strategy no solo custodia Bitcoin… crea productos a partir de él. Mientras que un fondo o un ETF se limita a tener BTC en una caja fuerte, Strategy lo utiliza como base para diseñar y vender sus propios productos financieros al mercado. Está construyendo, en la práctica, una especie de <strong>“banco digital” respaldado por Bitcoin</strong>, que compite con la banca tradicional, pero con una estructura mucho más transparente y directa.</p>",
-            "<p>En esta línea, este año Strategy ha levantado más de <strong>7.700 millones de dólares</strong> mediante la emisión de cinco productos de crédito digital propios: $STRK, $STRF, $STRD, $STRC, $STRE.</p>",
-            "<h3>El menú de productos de capital digital de MSTR</h3><p>Explicado en sencillo, a nivel inversor bajo–medio, el menú es algo así:</p><ul><li><strong>STRK (“Strike”):</strong> preferente perpetua con cupón del entorno del 8 %, dividendo acumulativo y opción de conversión en acciones ordinarias. Para el inversor, es una forma de tener exposición a la estructura de capital de MSTR con menos volatilidad que la acción. Para la compañía, es capital a muy largo plazo sin diluir de golpe al accionista común.</li><li><strong>STRF (“Strife”):</strong> preferente perpetua con cupón fijo del 10 %, senior a STRK y sin opción de conversión. Es, en la práctica, financiación de largo plazo de tipo “bono con esteroides”: alto cupón, prioridad de cobro frente a otros preferentes y sin vencimiento. Muy útil para MSTR porque consigue mucho capital estable sin tocar la base accionarial.</li><li><strong>STRD (“Stride”):</strong> otra preferente perpetua al 10 % pero situada un escalón por debajo de STRF en la jerarquía. Es el tramo intermedio de la curva de capital: paga mucho, asume algo más de riesgo dentro de la propia estructura de MSTR y completa la “escala” entre preferentes más seguras y la acción ordinaria.</li><li><strong>STRC (“Stretch”):</strong> preferente perpetua con dividendo variable pagado mes a mes, diseñada para intentar que el precio se mantenga cerca del valor nominal. Es una herramienta muy flexible para la tesorería: MSTR puede ajustar el dividendo dentro de un rango para hacerla atractiva según las condiciones de mercado, a cambio de ofrecer al inversor una pieza de “renta” ligada al universo Bitcoin.</li><li><strong>STRE (“Stream”):</strong> preferente perpetua en euros, con cupón del 10 % que puede subir hasta el 18 % si se difieren dividendos, dirigida principalmente a institucionales europeos. Amplía el abanico geográfico y de divisa, y deja claro que MSTR ya no juega solo en dólar: está construyendo una curva de capital global respaldada por Bitcoin.</li></ul>",
-            "<p>En conjunto, todo esto demuestra que la compañía dispone de herramientas financieras exclusivas y potentes. Ningún ETF ni fondo pasivo puede hacer esto: <strong>emitir su propia deuda híbrida, escalonada, para seguir comprando Bitcoin de forma agresiva y, al mismo tiempo, reforzar la sostenibilidad de su estructura de capital a largo plazo.</strong></p>",
-            "<h3>La diferencia fundamental y la oportunidad</h3><p>En resumidas cuentas, la diferencia entre MSTR y un vehículo pasivo es su capacidad para aumentar la cantidad de BTC por acción con el paso del tiempo.</p><p>A día de hoy, con MSTR cotizando en el entorno de 171 USD por acción, la incomprensión del mercado sobre esta ventaja estructural genera ineficiencias claras. <strong>MicroStrategy cotiza por debajo de 1x su Valor Neto de Activos Modificado (MNAV).</strong> Traducido: a estos múltiplos, el mercado está descontando, implícitamente, que la compañía será más destructiva que creativa en términos de BTC por acción; que es más probable que diluya o destruya valor que que siga aumentando esa métrica con el tiempo.</p><p>El único argumento sólido para descartar una exposición responsable a MSTR es no confiar en Bitcoin como activo de fondo. Si no crees en BTC, no tiene sentido dar un paso más en la pirámide de riesgo. Pero si aceptas la tesis de Bitcoin como activo real del siglo XXI, la ingeniería que ha desarrollado Saylor (y su equipo) y, sobre todo, la escala que han alcanzado mientras el resto del mundo miraba y dudaba, le dan a MSTR una ventaja competitiva difícil de ignorar.</p><p>Históricamente, cuando MicroStrategy ha cotizado con este tipo de descuento frente al valor de sus tenencias subyacentes de BTC, el tiempo ha terminado dando la razón a quien fue capaz de mirar más allá de la etiqueta y verlo por lo que es: <strong>una apuesta asimétrica, de largo plazo, sobre la combinación de Bitcoin y una arquitectura de capital digital que el mercado todavía no ha terminado de entender.</strong></p>"
+            "<p><strong>Mientras el mercado sigue etiquetando a la compañía como un simple vehículo pasivo de BTC, la realidad operativa de Strategy apunta a algo mucho mayor: la primera institución financiera estructurada sobre capital digital.</strong></p>",
+            "<p>La narrativa dominante en medios generalistas y en buena parte de Wall Street sigue siendo cómoda: Strategy (MSTR) sería poco más que una “tesorería de Bitcoin” o un proxy apalancado del activo. Esa lectura simplista pasa por alto lo que, en nuestra opinión, es el punto central: MSTR no es un fondo, ni un trust, ni una holding pasiva. Es una empresa operativa que utiliza Bitcoin como capital productivo.</p>",
+            "<p>Strategy no solo custodia Bitcoin… crea productos a partir de él. Mientras que un fondo o un ETF se limita a tener BTC en una caja fuerte, Strategy lo utiliza como base para diseñar y vender sus propios productos financieros al mercado. Está construyendo, en la práctica, una especie de “banco digital” respaldado por Bitcoin, que compite con la banca tradicional, pero con una estructura mucho más transparente y directa.</p>",
+            "<p>En esta línea, este año Strategy ha levantado más de 7.700 millones de dólares mediante la emisión de cinco productos de crédito digital propios: $STRK, $STRF, $STRD, $STRC, $STRE.</p>",
+            "<h3>El menú de productos de capital digital de MSTR</h3>",
+            "<p>Explicado en sencillo, a nivel inversor bajo–medio, el menú es algo así:</p>",
+            "<ul style=\"list-style: none; padding-left: 0;\"><li style=\"margin-bottom: 15px;\"><strong>STRK (“Strike”):</strong> preferente perpetua con cupón del entorno del 8 %, dividendo acumulativo y opción de conversión en acciones ordinarias. Para el inversor, es una forma de tener exposición a la estructura de capital de MSTR con menos volatilidad que la acción. Para la compañía, es capital a muy largo plazo sin diluir de golpe al accionista común.</li><li style=\"margin-bottom: 15px;\"><strong>STRF (“Strife”):</strong> preferente perpetua con cupón fijo del 10 %, senior a STRK y sin opción de conversión. Es, en la práctica, financiación de largo plazo de tipo “bono con esteroides”: alto cupón, prioridad de cobro frente a otros preferentes y sin vencimiento. Muy útil para MSTR porque consigue mucho capital estable sin tocar la base accionarial.</li><li style=\"margin-bottom: 15px;\"><strong>STRD (“Stride”):</strong> otra preferente perpetua al 10 % pero situada un escalón por debajo de STRF en la jerarquía. Es el tramo intermedio de la curva de capital: paga mucho, asume algo más de riesgo dentro de la propia estructura de MSTR y completa la “escala” entre preferentes más seguras y la acción ordinaria.</li><li style=\"margin-bottom: 15px;\"><strong>STRC (“Stretch”):</strong> preferente perpetua con dividendo variable pagado mes a mes, diseñada para intentar que el precio se mantenga cerca del valor nominal. Es una herramienta muy flexible para la tesorería: MSTR puede ajustar el dividendo dentro de un rango para hacerla atractiva según las condiciones de mercado, a cambio de ofrecer al inversor una pieza de “renta” ligada al universo Bitcoin.</li><li style=\"margin-bottom: 15px;\"><strong>STRE (“Stream”):</strong> preferente perpetua en euros, con cupón del 10 % que puede subir hasta el 18 % si se difieren dividendos, dirigida principalmente a institucionales europeos. Amplía el abanico geográfico y de divisa, y deja claro que MSTR ya no juega solo en dólar: está construyendo una curva de capital global respaldada por Bitcoin.</li></ul>",
+            "<p>En conjunto, todo esto demuestra que la compañía dispone de herramientas financieras exclusivas y potentes. Ningún ETF ni fondo pasivo puede hacer esto: emitir su propia deuda híbrida, escalonada, para seguir comprando Bitcoin de forma agresiva y, al mismo tiempo, reforzar la sostenibilidad de su estructura de capital a largo plazo.</p>",
+            "<h3>La diferencia fundamental y la oportunidad</h3>",
+            "<p>En resumidas cuentas, la diferencia entre MSTR y un vehículo pasivo es su capacidad para aumentar la cantidad de BTC por acción con el paso del tiempo.</p>",
+            "<p>A día de hoy, con MSTR cotizando en el entorno de 171 USD por acción, la incomprensión del mercado sobre esta ventaja estructural genera ineficiencias claras. MicroStrategy cotiza por debajo de 1x su Valor Neto de Activos Modificado (MNAV). Traducido: a estos múltiplos, el mercado está descontando, implícitamente, que la compañía será más destructiva que creativa en términos de BTC por acción; que es más probable que diluya o destruya valor que que siga aumentando esa métrica con el tiempo.</p>",
+            "<p>El único argumento sólido para descartar una exposición responsable a MSTR es no confiar en Bitcoin como activo de fondo. Si no crees en BTC, no tiene sentido dar un paso más en la pirámide de riesgo. Pero si aceptas la tesis de Bitcoin como activo real del siglo XXI, la ingeniería que ha desarrollado Saylor (y su equipo) y, sobre todo, la escala que han alcanzado mientras el resto del mundo miraba y dudaba, le dan a MSTR una ventaja competitiva difícil de ignorar.</p>",
+            "<p>Históricamente, cuando MicroStrategy ha cotizado con este tipo de descuento frente al valor de sus tenencias subyacentes de BTC, el tiempo ha terminado dando la razón a quien fue capaz de mirar más allá de la etiqueta y verlo por lo que es: una apuesta asimétrica, de largo plazo, sobre la combinación de Bitcoin y una arquitectura de capital digital que el mercado todavía no ha terminado de entender.</p>"
           ]
         },
         {
-          id: 'japan-yen-carry-trade',
-          date: '21 NOV 2025 | 17:00 CET',
-          category: '$JPY',
-          title: 'Japón y el yen carry trade: se está acabando el dinero japonés "gratis"',
-          excerpt: 'Llevamos años hablando de la Fed, del BCE, de la IA, de Bitcoin… y, en silencio, se está moviendo una pieza gorda del tablero: Japón.',
-          imageUrl: 'https://image.cnbcfm.com/api/v1/image/107428988-1718330300365-gettyimages-2154653061-AFP_34UB8PH.jpeg?v=1752551942',
+          id: 'brk-b-opportunity',
+          date: '30 OCT 2025 | 11:24 CET',
+          category: '#HOLDING $BRK.B',
+          title: 'Berkshire Hathaway: El acorazado del capitalismo',
+          excerpt: 'En un mercado que sigue obsesionado con la velocidad, Berkshire es la definición de antifragilidad.',
+          imageUrl: 'https://diversiq.com/wp-content/uploads/2024/04/Berkshire-Hathaway-Logo-Square.png', 
           body: [
-            "<p><strong>El país que durante décadas fue la gasolinera de tipos al 0 % para financiar medio planeta ya no está jugando ese papel.</strong> Y eso tiene implicaciones para todos: liquidez global, renta fija, bolsa, emergentes y, por extensión, cómo pensamos el riesgo desde el <em>asset allocation</em>.</p>",
-            "<h3>Qué ha cambiado en Japón</h3><p>Durante casi 20 años, Japón vivió en un régimen muy simple: inflación baja o negativa, tipos a 0 % o menos, y el Banco de Japón controlando la curva de tipos a 10 años. Eso se ha terminado. Hoy la foto es otra:</p><ul><li>La inflación subyacente está cerca del 3 % interanual y lleva casi tres años por encima del objetivo del 2 %.</li><li>El tipo oficial del BoJ está ya en el 0,5 %, después de subidas este año, y el mercado descuenta que puede ir camino del 0,75 % en los próximos meses.</li><li>El 10 años japonés ronda el 1,8 %, máximos desde la crisis financiera global.</li><li>El 30 años se ha ido por encima del 3,3 %, niveles de finales de los 90, en parte por el miedo a la deuda pública que ya está por encima del 250 % del PIB.</li></ul><p><strong>Conclusión simple:</strong> Japón ya no es ese sitio donde los bonos pagan cero. Estamos en una transición: de país deflacionario que subvencionaba al resto del mundo con dinero casi gratis, a país con inflación algo más alta y tipos más \"normales\".</p>",
-            "<h3>Qué es el yen carry trade</h3><p>El yen <em>carry trade</em> es, en esencia:</p><ul><li>Pides prestado en yenes a tipo bajo, casi 0%.</li><li>Vendes esos yenes y compras otra moneda (dólares, euros…).</li><li>Con ese dinero compras activos que pagan más: bonos USA, crédito, bolsa, emergentes.</li></ul><p>Durante años, el yen fue el combustible barato de multitud de *trades* de riesgo. Ese combustible ya no es tan barato ni tan estable. Y cuando un *carry trade* se vuelve peligroso, se deshace. Eso significa vender los activos comprados fuera, recomprar yenes… y, muchas veces, amplificar los movimientos de mercado.</p>",
-            "<h3>Flujos, riesgo y el escenario base</h3><p>El movimiento reciente tiene dos patas: <strong>1)</strong> Los <em>yields</em> suben porque el mercado mira con otros ojos la deuda (más gasto, menos BOJ dispuesto a absorberlo todo). <strong>2)</strong> El cambio en quién compra y quién vende. Los inversores domésticos ahora encuentran atractivo quedarse en casa en vez de buscar rendimiento fuera. La dirección del flujo ya no es tan obvia.</p><p>Siempre que se mueve Japón, aparecen los titulares catastrofistas. Pongamos esto en contexto: nuestro escenario base razonable hoy es:</p><ul><li>El BoJ normalizará despacio: tipos algo más altos, pero muy lejos de ser restrictivos en términos reales.</li><li>Los <em>yields</em> de los JGBs seguirán más arriba que en la década pasada, pero no tanto como para hacer explotar el sistema.</li><li>El capital japonés que antes volaba a comprar bonos extranjeros irá encontrando atractivo en casa, pero esto es un flujo gradual, no un botón de “pánico, cierro todo hoy”.</li></ul><p>Sí existe un escenario de alto riesgo (no base, pero posible) donde una subida más agresiva de <em>yields</em> obliga a cerrar posiciones apalancadas a la vez. Eso tiende a amplificar movimientos de **\"risk-off\"**. Pero a día de hoy sigue siendo un escenario de cola.</p>",
-            "<h3>Qué implica todo esto para un asset allocator</h3><p>Japón ha dejado de ser el proveedor silencioso de dinero casi gratuito que lubricaba una parte importante del sistema financiero global.</p><p>Esto no implica “crash garantizado”, pero sí **más volatilidad** cuando el BoJ hable, cuando los JGBs se muevan fuerte o cuando el yen tenga un rally repentino. A medio plazo, es otro ladrillo en la pared del nuevo régimen: tipos algo más altos, más dispersión entre activos y menos viento de cola de \"dinero gratis\".</p><p><strong>El mensaje con Japón no es “se hunde el mundo”, es otro:</strong> una de las grandes fuentes históricas de liquidez barata está cambiando de fase. En un sistema cargado de deuda y apalancamiento, estos cambios no revientan nada de un día para otro, pero sí van moviendo las placas del ciclo. Y conviene entenderlo a tiempo.</p>"
+            "<p>En un mercado que sigue obsesionado con la velocidad, los múltiplos de la Inteligencia Artificial y la adrenalina de los activos digitales, es fácil olvidar la importancia de la solidez estructural. Mientras gran parte del capital persigue lanchas rápidas para surfear las olas de la volatilidad, sabemos que una cartera compounder de largo plazo necesita algo más que eso.</p>",
+            "<p>Necesita un acorazado.</p>",
+            "<p>Cotizando hoy a 478 USD, Berkshire Hathaway (BRK.B) no está diseñada para ganar carreras de sprint trimestrales. Está diseñada para sobrevivir a huracanes, atravesar crisis financieras y salir fortalecida del caos. Es la definición de manual de antifragilidad: una fortaleza financiera capaz de beneficiarse del desorden ajeno.</p>",
+            "<p>Nuestra proyección a 5 años sitúa el valor de la acción en el entorno de los 800 USD. Esto implica un retorno anualizado (CAGR) cercano al 10,8 %. Puede que no suene \"sexy\", pero un 11 % compuesto, con un riesgo de ruina virtualmente cero, es como se construyen las verdaderas dinastías patrimoniales.</p>",
+            "<p>Analicemos por qué este activo es un \"MUST\" en cartera.</p>",
+            "<h3>La Ingeniería del Acorazado: El \"Float\"</h3>",
+            "<p>El secreto de su éxito es su estructura de capital. El corazón de la maquinaria es el sector asegurador (GEICO, General Re, BH Reinsurance). Estas compañías generan lo que Warren Buffett llama el \"Float\": dinero de las primas que Berkshire cobra hoy, pero que no tendrá que pagar en reclamaciones hasta dentro de muchos años.</p>",
+            "<p>Mientras tanto, ese dinero no se queda quieto. Berkshire lo invierte para su propio beneficio. Es, en esencia, apalancamiento gratuito. Es dinero que el mercado le \"presta\" al 0 % de interés para comprar negocios rentables. Ningún otro fondo o ETF del mundo tiene esta ventaja estructural de coste de capital negativo.</p>",
+            "<h3>Los cuatro motores de la Bestia: Anatomía de un Imperio</h3>",
+            "<p>Berkshire no es una empresa monolítica; es un índice de la economía real americana cuidadosamente curado, diversificado para resistir cualquier ciclo y capturar valor en múltiples frentes.</p>",
+            "<h4>BNSF (Burlington Northern Santa Fe): La arteria insustituible</h4>",
+            "<p>No estamos hablando simplemente de trenes; hablamos de la mayor arteria logística de Norteamérica por volumen de carga. BNSF opera una de las redes ferroviarias más extensas del mundo, con más de 32.500 millas de vías que conectan los puertos del Pacífico con el corazón industrial y agrícola de EE. UU.</p>",
+            "<p>Es un activo con un moat infinito. Hoy en día es imposible replicar esta infraestructura; nadie va a expropiar tierras y tender vías de costa a costa de nuevo.</p>",
+            "<p>Si la economía real se mueve, BNSF cobra peaje. Transportan desde el carbón que ilumina las ciudades y el grano que alimenta al mundo, hasta los coches y bienes de consumo que llenan los centros comerciales. Es una apuesta apalancada al PIB americano con barreras de entrada absolutas.</p>",
+            "<h4>BHE (Berkshire Hathaway Energy)</h4>",
+            "<p>En un 2025 donde la revolución de la Inteligencia Artificial y los Data Centers ha disparado la demanda eléctrica a niveles inéditos, BHE se ha revelado como una joya estratégica.</p>",
+            "<p>No es solo una eléctrica local. BHE posee una cartera masiva que incluye PacifiCorp y MidAmerican Energy (generación y distribución), gasoductos interestatales que transportan el 15 % del gas natural de EE. UU., y operaciones de transmisión en Reino Unido y Canadá.</p>",
+            "<p>A diferencia de sus competidores listados que viven trimestre a trimestre, BHE reinvierte casi el 100 % de sus beneficios. Esto le permite financiar proyectos de infraestructura energética renovable gigantescos sin diluir al accionista, convirtiéndose en una máquina de \"imprimir cupones\" regulados y seguros, inmune a la volatilidad del mercado.</p>",
+            "<h4>Manufactura, Servicios y Retail: El ejército diversificado</h4>",
+            "<p>Este es el segmento más heterogéneo y a menudo infravalorado, pero es el que toma el pulso real al consumidor y a la industria. Se divide en clústeres de alta calidad:</p>",
+            "<ul><li><strong>Industrial (Marmon & IMC):</strong> Un conglomerado dentro del conglomerado. Marmon agrupa a más de 100 empresas de manufactura y servicios (desde vagones de tren hasta tratamiento de aguas). IMC (Iscar) es líder mundial en herramientas de corte de metal, un barómetro perfecto de la actividad industrial global.</li><li><strong>Construcción (Clayton Homes & Shaw):</strong> Clayton es el líder indiscutible en vivienda prefabricada en EE. UU., una solución clave en la crisis de asequibilidad de vivienda. Shaw Industries domina el mercado de suelos y revestimientos.</li><li><strong>Consumo y Servicios:</strong> Marcas icónicas con poder de fijación de precios como Duracell (baterías), Dairy Queen (restauración), Benjamin Moore (pinturas) y NetJets (aviación privada).</li><li><strong>Lubrizol:</strong> Gigante de la química especializada, esencial para motores y maquinaria industrial.</li></ul>",
+            "<h3>La Cartera de Acciones: El \"Fondo\" dentro de la Empresa</h3>",
+            "<p>Finalmente, tenemos la cartera de renta variable pública, que actúa como un fondo de inversión gigante y ultra-líquido dentro del balance.</p>",
+            "<ul><li><strong>La Joya (Apple):</strong> A pesar de los reajustes tácticos, la participación en Apple sigue siendo masiva, proporcionando exposición al mejor negocio de consumo tecnológico de la historia.</li><li><strong>El Núcleo Financiero:</strong> Posiciones estructurales en American Express, Bank of America y Moody’s. Buffett ama estos negocios por su retorno sobre capital tangible y su capacidad de atravesar crisis.</li><li><strong>Consumo Defensivo:</strong> La eterna Coca-Cola y Kraft Heinz, generadoras de dividendos crecientes que Berkshire recicla para comprar nuevos negocios.</li></ul>",
+            "<p>Esta estructura permite a Berkshire pivotar: si el mercado de acciones está caro, invierten en sus propios negocios (Capex en energía o trenes). Si el mercado colapsa, usan el efectivo del negocio operativo para comprar acciones baratas. Es una maquinaria de asignación de capital perfecta.</p>",
+            "<h3>La Cultura: El \"Sistema Operativo\" de la Racionalidad</h3>",
+            "<p>Lo que hace a Berkshire verdaderamente robusta, más allá de sus activos físicos, es su arquitectura organizacional: una descentralización radical. Y su cultura empresarial.</p>",
+            "<p>Es una anomalía en el mundo corporativo moderno. La sede central en Omaha, Kiewit Plaza, alberga apenas a 25 personas que gestionan un imperio de casi 400.000 empleados. No hay departamentos de recursos humanos globales, ni abogados corporativos inmiscuyéndose en la operativa diaria, ni comités de estrategia superfluos.</p>",
+            "<p>Los CEOs de las subsidiarias operan con autonomía total, como dueños de sus propios negocios, bajo una única regla de oro impuesta por Buffett: \"Pierde dinero para la firma y seré comprensivo; pierde una pizca de reputación y seré despiadado\".</p>",
+            "<h3>El Legado Intelectual: 70 Años de Aprendizaje Continuo</h3>",
+            "<p>Para entender la solidez de este acorazado, hay que entender a sus arquitectos: Warren Buffett y el eterno Charlie Munger. Berkshire no es el resultado de la suerte, sino de siete décadas de disciplina espartana y una capacidad de adaptación brutal.</p>",
+            "<p>Juntos construyeron un track record impecable navegando cada tormenta financiera del último siglo: la inflación de los años 70, el lunes negro del 87, la burbuja puntocom del 2000, el colapso financiero de 2008 y la pandemia de 2020. En cada uno de esos eventos, mientras el mundo entraba en pánico, Berkshire mantuvo el rumbo, desplegando capital cuando la sangre corría por las calles.</p>",
+            "<p>Esta historia es la prueba de una evolución intelectual constante. Pasaron de comprar \"colillas de cigarro\" (empresas mediocres a precios de derribo) a comprar \"empresas maravillosas a precios justos\". Esa mutación, impulsada en gran parte por la visión de Munger, es lo que permitió a Berkshire escalar hasta convertirse en el gigante que es hoy.</p>",
+            "<h3>Sucesión 2025: La Institucionalización del Genio</h3>",
+            "<p>Durante años, el mercado tembló ante la pregunta: \"¿Qué pasará cuando no estén?\". A fecha de hoy, octubre de 2025, el \"riesgo de sucesión\" se ha revelado como un fantasma del pasado.</p>",
+            "<p>La transición operativa es una realidad consolidada. El \"Sistema Operativo\" de Berkshire, basado en la asignación racional de capital, la integridad y el largo plazo, ha trascendido a sus fundadores.</p>",
+            "<ul><li><strong>Greg Abel</strong>, al frente de las operaciones no aseguradoras, ha demostrado tener la misma disciplina de hierro en la gestión del capital industrial y energético.</li><li><strong>Ajit Jain</strong>, el cerebro matemático detrás del riesgo, mantiene el negocio asegurador bajo control estricto.</li></ul>",
+            "<p>No intentan ser Warren ni Charlie; simplemente ejecutan el sistema que ellos diseñaron. Berkshire ha dejado de ser una extensión de la personalidad de sus fundadores para convertirse en una institución con vida propia, diseñada para perdurar más allá de cualquier individuo.</p>",
+            "<h3>Conclusión: Lento, seguro e imparable</h3>",
+            "<p>Berkshire Hathaway, cotizando hoy a 478 USD, no está en nuestra cartera para ofrecer la gratificación instantánea de la especulación. Su función en la arquitectura de Henao Capital es estructural: es la roca madre.</p>",
+            "<p>Es el activo que actúa como estabilizador maestro, permitiéndonos mantener la calma y el rumbo cuando el mercado corrige un 20 % y el pánico se apodera del resto.</p>",
+            "<p>En un ecosistema financiero definido por su fragilidad, ser copropietario de una fortaleza con un balance impenetrable no es una estrategia defensiva; es la forma más inteligente de garantizar la supervivencia y el crecimiento del patrimonio a través de las décadas.</p>",
+            "<p>Nuestro objetivo a 5 años proyecta la acción hacia los 800 USD con una probabilidad de éxito asimétricamente alta. Sin embargo, el verdadero retorno de esta inversión no es solo numérico, sino cualitativo: la tranquilidad de saber que, pase lo que pase en la economía, nuestro capital viaja en un acorazado diseñado para no hundirse jamás. El horizonte temporal aquí no son cinco años; es, idealmente, para siempre.</p>"
           ]
         },
         {
-          id: 'fed-fiscal-dominance',
-          date: '20 NOV 2025 | 16:30 CET',
-          category: '#FED',
-          title: 'Fed, Empleo y la "Dominancia Fiscal": Nothing stops this train',
-          excerpt: 'Con el desempleo en el 4,4 %, la Fed no tiene opción: la liquidez seguirá fluyendo, le guste o no a los "halcones".',
-          imageUrl: 'https://assets.bwbx.io/images/users/iqjWHBFdfxIU/iCxNNeOQcDv4/v1/-1x-1.webp',
+          id: 'buffett-google',
+          date: '15 OCT 2025 | 18:00 CET',
+          category: '$BRK.B / $GOOGL',
+          title: '$GOOGL: Compra clara a 251 USD por acción',
+          excerpt: 'Nunca es tarde para comprar negocios extraordinarios.',
+          imageUrl: 'https://media.ouest-france.fr/v1/pictures/MjAyMzA5NDYwMDJiZGVjYmNmNGFiYjNiZjc2N2NiYmRlNmE3M2I?width=1260&height=708&focuspoint=50%2C25&cropresize=1&client_id=bpeditorial&sign=91a6dce9ad58a4e3c762a77aa7eb150c1572314d458f64ae5c9de1dd86fa3a4a',
           body: [
-            "<p>Las actas de la última reunión de la Fed muestran a un banco central dividido, debatiendo acaloradamente si pausar o seguir recortando. Mientras tanto, en el mundo real, el desempleo en EE. UU. escala al 4,4 %, su nivel más alto en cuatro años, y los futuros del S&P 500 responden subiendo con fuerza.</p>",
-            "<p>A simple vista parece la vieja contradicción de <em>\"Bad news is good news\"</em>. Pero bajo la superficie, la dinámica es mucho más profunda e inevitable. En <strong>Henao Capital</strong> nuestra lectura es clara: el tren de la liquidez no se va a detener.</p>",
-            "<h3>La Fed contra la espada y la pared</h3><p>En su última reunión, el Comité (FOMC) recortó tipos al rango 3,75-4 % con una mayoría ajustada y mucha preocupación interna. Los \"halcones\" señalan, no sin razón, que la inflación repunta por los aranceles y que ciertos sectores crecen con fuerza gracias a la inversión en IA. Tienen razón en los datos, pero se equivocan en la tendencia.</p><p>La realidad que pesa sobre Powell es otra: <strong>el mercado laboral se está agrietando</strong>. Con un desempleo del 4,4 %, la Fed sabe que el riesgo de un shock negativo en la economía real (\"Main Street\") es ahora exponencialmente mayor que el riesgo de una inflación descontrolada. El mandato de pleno empleo pesa más.</p>",
-            "<h3>Dos economías, un solo grifo</h3><p>Estamos viviendo una desconexión histórica en Estados Unidos:</p><ul><li><strong>La economía real sufre:</strong> El ciudadano medio pierde poder adquisitivo, la asequibilidad de la vivienda está en mínimos y la seguridad laboral se deteriora.</li><li><strong>La economía de activos vuela:</strong> Las \"Magníficas 7\" superan los 20 Trillones de capitalización, el crédito privado se dispara y las valoraciones no paran de expandirse.</li></ul><p>La paradoja es cruel: para salvar a la economía real de una recesión inminente, la Fed está obligada a bajar tipos y relajar la política monetaria. Pero al hacerlo, inyecta gasolina de alto octanaje en un mercado de activos que ya está en máximos históricos.</p>",
-            "<h3>\"Nothing stops this train\"</h3><p>Como bien señala la analista macro Lyn Alden, nada detiene este tren. La combinación de déficit fiscal estructural y debilidad laboral crea un escenario de <strong>Dominancia Fiscal</strong>. El Tesoro necesita tipos bajos para pagar la deuda, y la economía necesita liquidez para no gripar el motor.</p><p>Aunque las actas muestren dudas y división, la dirección real es inevitable: política monetaria más laxa en coordinación implícita con el Tesoro.</p>",
-            "<h3>Nuestra conclusión</h3><p>El mensaje para nuestros socios es el mismo que hemos reiterado todo el año: <strong>\"Own assets or be left behind\"</strong> (Ten activos o quédate atrás).</p><p>El efectivo es un pasivo en un mundo de represión financiera. La única protección real es ser propietario de activos reales y de calidad que capturen esta expansión monetaria.</p>"
-      ]
-    },
-    {
-      id: 'nvidia-q3-2025',
-      date: '19 NOV 2025 | 09:15 CET',
-      category: '$NVDA',
-      title: 'NVIDIA a examen y el mercado mirando con lupa',
-      excerpt: 'Analizamos también el caso específico de Google',
-      imageUrl: 'https://media.es.wired.com/photos/675717ebcc618ee065c49252/master/w_1920,c_limit/2183848501',
-      body: [
-         "<p>Hoy, tras el cierre de mercado, NVIDIA vuelve a someterse a examen. Y no es una presentación de resultados cualquiera; se ha convertido en el evento macroeconómico más relevante del trimestre. Lo que el mercado intenta descifrar hoy no es si la acción subirá o bajará un 5% mañana, sino algo mucho más estructural: <strong>¿Estamos ante una burbuja financiera a punto de estallar o ante el despliegue de una tecnología que marcará las próximas décadas?</strong></p>",
-         "<p>Nuestra lectura en <strong>Henao Capital</strong> es rotunda: no estamos ante una burbuja de \"humo\", sino ante una transformación industrial masiva. Estamos en la fase de construcción de la infraestructura digital del siglo XXI. Y en esta fase, las reglas del juego son distintas.</p>",
-         "<p>A continuación, desarrollamos nuestra tesis en cuatro puntos clave.</p>",
-         "<h3>1. La realidad de la demanda: No se construye para almacenar</h3><p>Para diagnosticar una burbuja, solemos buscar una señal clara: se fabrica mucho más de lo que se consume (exceso de inventario). Los datos de NVIDIA nos cuentan exactamente la historia contraria.</p><p>La compañía ha cerrado su último trimestre con <strong>35.100 millones de dólares</strong> de ingresos, creciendo un 94% respecto al año anterior. Pero el dato crítico no es cuánto vende, sino la insatisfacción de sus clientes. Los gigantes tecnológicos (Microsoft, Amazon, Google) no están recortando pedidos; se están peleando por recibir los chips.</p><ul><li>Microsoft ha confirmado públicamente que su negocio en la nube crecería aún más rápido si tuviera más capacidad instalada.</li><li>Amazon y Google reportan aceleraciones en sus divisiones impulsadas puramente por servicios de IA.</li></ul><p><strong>La conclusión lógica es sencilla:</strong> La infraestructura se está construyendo a toda velocidad porque la demanda real de cómputo excede, con mucho, a la oferta disponible. Se vende todo lo que se fabrica.</p>",
-         "<h3>2. El dilema de los 300.000 Millones: ¿Por qué gastan tanto?</h3><p>El gran miedo del mercado es la cifra de inversión. Entre las cuatro grandes tecnológicas (Microsoft, Amazon, Alphabet, Meta), se estima que gastarán cerca de <strong>300.000 millones de dólares</strong> en 2025 en infraestructura.</p><p>Muchos analistas se preguntan: <em>\"¿Es esto racional? ¿Van a recuperar ese dinero pronto?\"</em>.</p><p>Para entenderlo, hay que mirar esto desde la <strong>Teoría de Juegos</strong>. Estas empresas se enfrentan a lo que llamamos un \"Dilema del Prisionero\":</p><ul><li><strong>El riesgo financiero:</strong> Si invierten miles de millones y la IA tarda en ser rentable, sus márgenes de beneficio bajarán temporalmente. Es un problema de dinero.</li><li><strong>El riesgo existencial:</strong> Si <strong>NO</strong> invierten y su competidor sí lo hace y acierta, ellos corren el riesgo de volverse irrelevantes tecnológicamente. Es un problema de supervivencia.</li></ul><p>Cuando el riesgo de no hacer nada es desaparecer, la inversión agresiva es la única decisión racional. Por eso creemos que el gasto en infraestructura va a continuar siendo muy fuerte durante más tiempo del que muchos esperan. No es euforia, es necesidad estratégica.</p>",
-         "<h3>3. Alphabet (Google) y la ventaja de \"cocinar en casa\"</h3><p>En este entorno de gasto masivo, la eficiencia se convierte en la mayor ventaja competitiva. Y aquí es donde nuestra visión sobre Alphabet (Google) es muy positiva.</p><p>Mientras la mayoría de empresas dependen casi totalmente de comprar chips a NVIDIA (pagando el precio que NVIDIA quiera), Google lleva más de diez años diseñando sus propios chips: los <strong>TPUs</strong>.</p><p>Al diseñar sus propios chips, Google reduce su dependencia de proveedores externos y, lo más importante, reduce el coste de operar la Inteligencia Artificial.</p><p>A medida que la IA se use cada vez más, quien sea capaz de ofrecer la respuesta más barata tendrá un margen de beneficio superior. Google no solo tiene los datos (Buscador, YouTube), también tiene la fábrica de la infraestructura.</p>",
-         "<h3>4. Conclusión: Una supertendencia histórica</h3><p>Volviendo a la sesión de hoy con NVIDIA. Nuestra visión táctica en Henao Capital es que la fase \"fácil\" del ciclo, donde cualquier acción relacionada con la IA subía sin parar, ha terminado. Entramos en una fase más madura.</p><p>Sin embargo, la tendencia de fondo sigue intacta. Comparar esto con la burbuja de las \".com\" del año 2000 es incorrecto. En aquel entonces, las empresas no tenían ingresos reales. Hoy, estamos en el polo opuesto. Los hyperscalers son auténticas máquinas de imprimir dinero.</p><p>A nuestro juicio, la IA no es una moda pasajera, es un cambio de régimen industrial similar a la electricidad o internet. Y como en cualquier revolución industrial, habrá volatilidad, pero la dirección es clara: el mundo necesitará sin ninguna duda más capacidad de cómputo, más energía y más software inteligente de forma estructural.</p><p>En Henao Capital seguimos claramente posicionados para capturar este valor a largo plazo.</p>"
-      ]
-    },
-    {
-      id: 'btc-eth-correction',
-      date: '18 NOV 2025 | 22:30 CET',
-      category: '$BTCUSD',
-      title: '¿Winter is coming o corrección sana?',
-      excerpt: 'Esta noche BTC ha roto 90.000 USD a la baja y ETH los 3.000 USD. Analizamos si es el inicio de un cripto-invierno.',
-      imageUrl: 'https://news.bit2me.com/wp-content/uploads/2025/03/Bitcoins.jpg',
-      body: [
-        "<p>Esta noche BTC ha roto 90.000 USD a la baja y ETH los 3.000 USD. Quién lo diría hace un par de meses…</p>",
-        "<h3>¿Winter is coming? ¿Bear market? ¿Corrección sana?</h3><p>En primer lugar, algo de contexto. Venimos de semanas de nervios en los activos de riesgo en general: dudas sobre valoraciones en IA y tech, correcciones en <em>high-growth</em>, mucho ruido político, cierre de gobierno en USA y un mercado pendiente al milímetro de qué tono adopta la FED en diciembre.</p><p>En un entorno así, el mercado suele descargar los golpes donde la beta es más alta: en los activos más volátiles y <em>risk-on</em>. Y cripto está en primera línea de fuego.</p>",
-        "<p>Si a ese entorno le sumas el gran evento de liquidación de hace apenas un mes, el cuadro encaja mejor. El mercado venía muy cargado de apalancamiento en derivados... el precio gira, empiezan a saltar <em>margin calls</em>, los brókers cierran posiciones para recuperar el dinero prestado, esas ventas forzadas empujan aún más abajo, saltan nuevas liquidaciones… y en pocas horas tienes un movimiento que se vive como “colapso”, sensación de que \"algo se ha roto\". <strong>Feo de ver, pero nada que desmonte la tesis de fondo.</strong></p>",
-        "<p>Y aquí es donde entra la parte difícil de verdad: separar señal de ruido y aparcar las emociones.</p>",
-        "<h3>Pregunta clave: ¿Es el inicio de un invierno?</h3><p>A día de hoy, en <strong>Henao Capital</strong> vemos bastante más argumentos para una corrección dura dentro de un ciclo alcista. El marco de 12–24 meses no ha cambiado: seguimos en un mundo con deuda pública muy elevada, bancos centrales cada vez más condicionados, y una demanda creciente de activos reales escasos. La corrección es violenta, sí, pero forma parte del viaje. ¿Puede caer más? Siempre.</p>",
-        "<h3>Volviendo a los basics: Bitcoin como activo real</h3><p>En Henao Capital no lo vemos así por dogma, sino por diseño. Si estudias la historia monetaria, el patrón se repite: cada vez que aparece un dinero con mejores propiedades que el anterior (más difícil de censurar, más fácil de verificar, más resistente a la inflación) el capital migra poco a poco hacia ese nuevo estándar.</p><p><strong>Bitcoin lleva esa lógica al extremo:</strong> tiene una oferta conocida y limitada, un calendario de emisión que nadie puede tocar, reglas transparentes y una network descentralizada que no depende de ningún estado ni banco central. Es, a día de hoy, la red descentralizada más robusta e independiente del mundo digital, asegurada por el mayor poder computacional dedicado a una única red que existe.</p>",
-        "<p>Desde el punto de vista de <em>asset allocation</em>, Bitcoin es nuestro activo real núcleo. El coste es evidente: hay que convivir con una volatilidad muy alta en el corto plazo. A cambio, a 5–10 años vista, la combinación de escasez programada, adopción creciente e institucionalización vía ETFs le da un perfil de activo real prácticamente imposible de replicar.</p>",
-        "<h3>El rol de Ethereum y la estrategia</h3><p>Ethereum, por su parte, juega otra liga. Menos “oro digital”, más “infraestructura financiera y de datos”. Aquí el riesgo es distinto: más tecnológico, más regulatorio… y también más competitivo. Para nosotros, dejando de lado Bitcoin, Ethereum tiene sentido como posición satélite relevante.</p>",
-        "<p><strong>¿Cómo interpretamos todo este escenario en Henao Capital?</strong> De forma bastante simple:</p><ul class='list-disc pl-5 space-y-2 mt-2 mb-4'><li>No vemos señales claras de cambio estructural de régimen en cripto.</li><li>Vemos una corrección agresiva dentro de un superciclo ligado a activos reales escasos e infra de nueva generación.</li><li>En este tipo de fases no tiene sentido dramatizar ni idealizar. Tiene sentido revisar tamaños y horizontes.</li></ul>",
-        "<p>¿Hace frío en cripto? Sí. ¿Winter is coming? No es como lo vemos.</p><p>La forma sensata de monetizar la volatilidad de Bitcoin no es adivinar cada giro, es estar estructuralmente largo con un horizonte suficientemente amplio. <strong>Si entras en un activo hipervolátil con mentalidad de corto plazo, no estás invirtiendo, estás en el casino. Y en el casino ya sabemos lo que pasa.</strong></p>"
-      ]
-    },
-    {
-      id: 'ai-bubble-revolution',
-      date: '17 NOV 2025 | 11:20 CET',
-      category: '#AI',
-      title: 'Anatomía de la Inteligencia Artificial',
-      excerpt: '¿Burbuja o supertendencia?',
-      imageUrl: 'https://conversesacatalunya.cat/wp-content/uploads/2024/07/inteligencia-artificial-1024x594.jpg',
-      body: [
-        "<p><em>“Esto es un déjà vu de 1999: valoraciones de ciencia ficción, capex a lo loco y contabilidad creativa… la burbuja está servida.”</em></p><p><em>“La IA es la solución definitiva. Abundancia para todos. Va a arreglar el crecimiento, la productividad y casi todos los problemas de las economías desarrolladas por sí misma.”</em></p>",
-        "<p>Probablemente ninguna de las dos visiones describe bien lo que tenemos delante.</p>",
-        "<p>En el corto plazo, y en tramos muy concretos del mercado, es cierto que hay claros excesos envueltos en la etiqueta ‘IA’. Sin embargo, por debajo de ese ruido, en <strong>Henao Capital</strong> consideramos que se está desarrollando una <strong>infraestructura de propósito general</strong>, transversal y multi-sectorial, que sin ninguna duda puede reescribir la trayectoria de productividad de la economía durante las próximas décadas.</p>",
-        "<p>El reto para el inversor no es elegir entre burbuja o revolución, sino entender cómo conviven ambos elementos dentro de un mismo superciclo.</p>",
-        "<h3>IA: no es una moda, es un cambio de infraestructura</h3><p>La IA definitivamente no es solo otro nicho de crecimiento más. Es una capa nueva de infraestructura que se está desarrollando, poco a poco, en casi toda la cadena productiva: industria, servicios, energía, logística, salud, finanzas, sector público, educación, entretenimiento, etc.</p><p><strong>Una tecnología transversal a la economía.</strong></p><p>Si esta trayectoria se mantiene, el impacto no será un par de años buenos de beneficios, sino un cambio en la pendiente de la productividad y en la estructura de márgenes corporativos durante décadas.</p><p>Más automatización, menos fricción operativa, mejor utilización de capital y datos: eso, agregado, significa más capacidad de generar <em>cash flow</em> real con la misma unidad de trabajo y de inversión. Si la economía se reorganiza y consolida alrededor de esta nueva infraestructura, el eje lógico a largo plazo es claro: ser dueño, en alguna medida, de los activos productivos que capturen ese salto de productividad.</p>",
-        "<h3>Sí, hay excesos… pero dentro de un superciclo real</h3><p>Dicho todo lo anterior, hay ciertos puntos con rasgos clásicos de sobrecalentamiento:</p><ul class='list-disc pl-5 space-y-2 mt-2 mb-4'><li>Capex muy agresivo en hardware e infra.</li><li>Esquemas de financiación creativos entre proveedores y clientes.</li><li>Valoraciones que pre-suponen una ejecución casi perfecta.</li></ul><p>Eso hace que muy probablemente veremos correcciones fuertes en áreas concretas y fases de “mini-burbuja” en segmentos específicos. Pero esto no invalida la estructura de fondo: si la adopción sigue y se consolida (lo hará), el mundo necesitará sin ninguna duda más cómputo, más energía y más software inteligente de forma estructural.</p>",
-        "<h3>De sector tecnológico a activo estratégico a nivel geopolítico</h3><p>A nivel global, la IA ya se ha convertido de-facto en una carrera geopolítica: <strong>USA vs. China.</strong></p><p>Dominar chips, data centers, recopilación de datos y modelos no solo da beneficios; da poder económico, militar y de negociación. Esto no quiere decir que aquí no vaya a haber cadáveres corporativos; los habrá. Lo que sí implica es que cuando algo pasa a ser infraestructura estratégica, los gobiernos pueden dejar caer piezas, pero harán todo lo posible por evitar que se hunda el tablero en su conjunto.</p>",
-        "<h3>¿Y el impacto en el mercado laboral?</h3><p>Sí parece claro que IA y robótica van a eliminar muchas tareas automatizables y a forzar cambios drásticos en sectores concretos. Pero un mundo donde producir es más barato suele generar más productos, servicios y sistemas que mantener. No implica necesariamente menos empleo total, sino empleo distinto. Como cualquier otra revolución tecnológica.</p><p>Parece claro que el riesgo macro no es de paro masivo permanente a 20-30 años vista. Sí lo será la gestión de la transición: fuerza laboral reacia al cambio, regiones descolocadas, transformación de industrias... la flexibilidad y agilidad en la adaptación serán claves. Ahí estará la tensión política y social.</p>",
-        "<h3>Cómo lo enfocamos en Henao Capital</h3><p>Tenemos perfectamente asumido que la IA va a reconfigurar crecimiento y productividad global. En este contexto el riesgo principal no es sufrir varios drawdowns duros durante el camino... hay que aceptar la volatilidad. <strong>El riesgo principal lo vemos en llegar tarde o con una exposición irrelevante aun habiendo acertado en la tesis de fondo.</strong></p><p>Evidentemente esto no justifica comprar cualquier cosa “con narrativa IA” ni ignorar valoraciones. Implica:</p><ul class='list-disc pl-5 space-y-2 mt-2 mb-4'><li>Asumir que estamos en un superciclo con fases inevitables de exceso y corrección.</li><li>Decidir en qué tramos de la cadena (infraestructura, energía asociada, plataformas, aplicaciones con casos de uso claro) tiene sentido ser propietario de activos.</li><li>Calibrar el tamaño de la exposición para poder aguantar la volatilidad sin desmontar la tesis en cada drawdown.</li></ul><p>Por lo tanto, el debate ya no es “¿hay burbuja en la IA?”. La pregunta relevante para nosotros como <em>asset allocators</em> es otra: ¿qué grado de exposición estructural tiene sentido en un superciclo que sin duda damos por confirmado, y que va a ser uno de los vectores centrales de rentabilidad real en las próximas décadas?</p><p>Sin duda habrá volatilidad por el camino, habrá fases de euforia y de purga, y saber ser selectivos será clave. Pero el verdadero error será no reconocer la transformación tecnológica de fondo, la mejora de productividad que trae consigo y quedarse sin una exposición significativa a ese proceso.</p>"
-      ]
-    },
-    {
-      id: 'buffett-google',
-      date: '17 NOV 2025 | 08:45 CET',
-      category: '$BRK.B / $GOOGL',
-      title: '$GOOGL: Compra clara a 284 USD por acción',
-      excerpt: 'Nunca es tarde para comprar negocios extraordinarios.',
-      imageUrl: 'https://media.ouest-france.fr/v1/pictures/MjAyMzA5NDYwMDJiZGVjYmNmNGFiYjNiZjc2N2NiYmRlNmE3M2I?width=1260&height=708&focuspoint=50%2C25&cropresize=1&client_id=bpeditorial&sign=91a6dce9ad58a4e3c762a77aa7eb150c1572314d458f64ae5c9de1dd86fa3a4a',
-      body: [
-        "<p>Nunca es tarde para comprar negocios extraordinarios. Eso debió pensar Buffett, con su retirement oficial ya a la vuelta de la esquina. Y debió pensar también que la mejor manera de pasarle el testigo a Greg Abel en Berkshire Hathaway era dejándole en cartera uno de los mejores negocios del mundo.</p>",
-        "<p>Buffett se redime así de lo que él mismo ha reconocido como uno de los grandes errores de omisión de la era reciente de Berkshire: no haber comprado Google cuando ya era una máquina de imprimir caja. Puede que también estemos empezando a ver el toque de Greg Abel asomando... Quién sabe.</p>",
-        "<p>En Henao Capital coincidimos con Warren en el qué, pero no en el cuándo. Alphabet tenía que haber estado en su cartera hace ya muchos años. Pero, efectivamente, nunca es tarde.</p>",
-        "<p>Y sin duda lo interesante aquí no es el titular, es el contexto. Berkshire podría seguir sentado sobre su montaña de liquidez, sin mover ficha. Aun así, deciden destinar una parte de ese dry powder a Google en pleno ruido de “burbuja de IA”, con el valor cerca de máximos históricos y después de un rally muy serio en el año, especialmente en las últimas semanas.</p>",
-        "<p>No es una jugada contrarian de manual, estilo value old school, desde luego...</p>",
-        "<p>En nuestra opinión, Berkshire no solo valida el activo, Alphabet, como un actor dominante, diversificado, y con amplia opcionalidad, sino que valida la estructura subyacente. Y respaldan ese diagnóstico con una asignación de capital significativa, para nada testimonial.</p>",
-        "<p>Sin alargarlo más, hemos considerado interesante subrayar este movimiento como lo que es: una señal que interpretamos sin duda como relevante.</p>"
-      ]
-    }
+            "<p>Nunca es tarde para comprar negocios extraordinarios. Eso debió pensar Buffett, con su retirement oficial ya a la vuelta de la esquina. Y debió pensar también que la mejor manera de pasarle el testigo a Greg Abel en Berkshire Hathaway era dejándole en cartera uno de los mejores negocios del mundo.</p>",
+            "<p>Buffett se redime así de lo que él mismo ha reconocido como uno de los grandes errores de omisión de la era reciente de Berkshire: no haber comprado Google cuando ya era una máquina de imprimir caja. Puede que también estemos empezando a ver el toque de Greg Abel asomando... Quién sabe.</p>",
+            "<p>En Henao Capital coincidimos con Warren en el qué, pero no en el cuándo. Alphabet tenía que haber estado en su cartera hace ya muchos años. Pero, efectivamente, nunca es tarde.</p>",
+            "<p>Y sin duda lo interesante aquí no es el titular, es el contexto. Berkshire podría seguir sentado sobre su montaña de liquidez, sin mover ficha. Aun así, deciden destinar una parte de ese dry powder a Google en pleno ruido de “burbuja de IA”, con el valor cerca de máximos históricos y después de un rally muy serio en el año, especialmente en las últimas semanas.</p>",
+            "<p>No es una jugada contrarian de manual, estilo value old school, desde luego...</p>",
+            "<p>En nuestra opinión, Berkshire no solo valida el activo, Alphabet, como un actor dominante, diversificado, y con amplia opcionalidad, sino que valida la estructura subyacente. Y respaldan ese diagnóstico con una asignación de capital significativa, para nada testimonial.</p>",
+            "<p>Sin alargarlo más, hemos considerado interesante subrayar este movimiento como lo que es: una señal que interpretamos sin duda como relevante.</p>"
+          ]
+        }
       ];
 
       // --- COMPONENTS ---
@@ -993,42 +1234,53 @@
       const PortfolioView = () => {
         const [isTrackRecordOpen, setIsTrackRecordOpen] = React.useState(false);
 
+        // Calculate total balance from portfolio data
+        const totalBalance = React.useMemo(() => {
+          return PORTFOLIO_DATA.reduce((acc, item) => {
+            if (item.value) {
+              const val = parseFloat(item.value.replace(/\./g, '').replace(',', '.').replace(' USD', ''));
+              return acc + (isNaN(val) ? 0 : val);
+            }
+            return acc;
+          }, 0);
+        }, []);
+
+        const formatCurrency = (val) => {
+            return new Intl.NumberFormat('de-DE', { minimumFractionDigits: 2, maximumFractionDigits: 2 }).format(val) + ' USD';
+        };
+
         return (
             <div id="view-portfolio" className="view-section w-full max-w-[900px] mx-auto px-4 md:px-8 pt-10 animate-fade-in">
                
-               {/* PERFORMANCE DASHBOARD (KPI GRID) */}
-               <div className="portfolio-stats-grid grid grid-cols-2 md:grid-cols-4 gap-4 mb-8">
-                    {/* KPI 1: AUM */}
-                    <div className="bg-brand-surface border border-brand-border p-5 rounded-[2px] flex flex-col justify-between hover:border-brand-accent/30 transition-colors shadow-lg shadow-black/20">
-                         <span className="text-[9px] md:text-[10px] font-bold uppercase tracking-widest text-[#D4AF37] opacity-80 mb-2 font-sans">Total Assets (AUM)</span>
-                         <span className="text-2xl md:text-3xl font-mono font-medium text-white tracking-tight">$1,604,825</span>
-                         <span className="text-[9px] font-mono text-gray-500 mt-2">100% ALLOCATION</span>
-                    </div>
-                    
-                    {/* KPI 2: YTD RETURN */}
-                    <div className="bg-brand-surface border border-brand-border p-5 rounded-[2px] flex flex-col justify-between hover:border-brand-accent/30 transition-colors shadow-lg shadow-black/20">
-                         <span className="text-[9px] md:text-[10px] font-bold uppercase tracking-widest text-gray-400 mb-2 font-sans">Rentabilidad 2025</span>
-                         <span className="text-2xl md:text-3xl font-mono font-medium text-brand-accent tracking-tight">+42.8%</span>
-                    </div>
-
-                    {/* KPI 3: HISTORICAL */}
-                    <div className="bg-brand-surface border border-brand-border p-5 rounded-[2px] flex flex-col justify-between hover:border-brand-accent/30 transition-colors shadow-lg shadow-black/20">
-                         <span className="text-[9px] md:text-[10px] font-bold uppercase tracking-widest text-gray-400 mb-2 font-sans">Retorno Histórico</span>
-                         <span className="text-2xl md:text-3xl font-mono font-medium text-brand-accent tracking-tight">+184.2%</span>
-                    </div>
-
-                    {/* KPI 4: SHARPE */}
-                    <div className="bg-brand-surface border border-brand-border p-5 rounded-[2px] flex flex-col justify-between hover:border-brand-accent/30 transition-colors shadow-lg shadow-black/20">
-                         <span className="text-[9px] md:text-[10px] font-bold uppercase tracking-widest text-gray-400 mb-2 font-sans">Ratio de Sharpe</span>
-                         <span className="text-2xl md:text-3xl font-mono font-medium text-white tracking-tight">2.45</span>
-                         <span className="text-[9px] font-mono text-brand-accent mt-2 opacity-90">RIESGO AJUSTADO: ÓPTIMO</span>
-                    </div>
+               {/* PERFORMANCE DASHBOARD (HERO STYLE) */}
+               <div className="portfolio-hero-dashboard">
+                   <div className="portfolio-total-balance">
+                       <span className="label">VALOR TOTAL CARTERA</span>
+                       <h1 id="total-portfolio-value">{formatCurrency(totalBalance)}</h1>
+                   </div>
+                   
+                   <div className="portfolio-secondary-metrics">
+                       <div className="metric-item">
+                           <span className="metric-label">RENTABILIDAD 2025 (YTD)</span>
+                           <span className="metric-value positive">+42.8%</span>
+                       </div>
+                       <div className="separator">|</div>
+                       <div className="metric-item">
+                           <span className="metric-label">CAGR DESDE 2020</span>
+                           <span className="metric-value positive">+21,17%</span>
+                       </div>
+                       <div className="separator">|</div>
+                       <div className="metric-item">
+                            <span className="metric-label">RATIO SHARPE</span>
+                            <span className="metric-value">2.45</span>
+                       </div>
+                   </div>
                </div>
 
                {/* Visual Separator */}
                <div className="w-full h-px bg-gradient-to-r from-transparent via-brand-border to-transparent mb-10 opacity-50"></div>
 
-               {/* Portfolio Table Wrapper - REPLACED FOR MOBILE FIX */}
+               {/* Portfolio Table Wrapper */}
                <div className="portfolio-table-container-styled">
                   <div className="portfolio-table-wrapper">
                       <table className="portfolio-table">
@@ -1063,7 +1315,7 @@
                                 <td></td>
                                 <td></td>
                                 <td style={{color: '#C3F53C', fontWeight: 'bold'}}>100,00%</td>
-                                <td style={{color: '#C3F53C', fontWeight: 'bold'}}>1.604.825 USD</td>
+                                <td style={{color: '#C3F53C', fontWeight: 'bold'}}>{formatCurrency(totalBalance)}</td>
                               </tr>
                           </tbody>
                       </table>
@@ -1220,7 +1472,7 @@
 
                 <div className="mb-8 relative z-10">
                     <h2 className="font-sans text-2xl text-white font-bold leading-tight mb-2 tracking-tight">
-                        Calcula qué puede hacer el tiempo por tu patrimonio.
+                        Calcula tú mismo lo que puede hacer el tiempo y la disciplina con tu patrimonio.
                     </h2>
                     <p className="font-sans text-brand-muted text-sm font-light leading-relaxed">
                         Aplica nuestra rentabilidad histórica a tus cifras y juega con los escenarios.
@@ -1321,8 +1573,8 @@
         const selectedArticle = ARTICLES.find(a => a.id === selectedArticleId);
         
         // Categorize Articles
-        const buyingArticles = ARTICLES.filter(a => a.id === 'mstr-strategy-detailed' || a.id === 'buffett-google');
-        const insightsArticles = ARTICLES.filter(a => a.id !== 'mstr-strategy-detailed' && a.id !== 'buffett-google');
+        const buyingArticles = ARTICLES.filter(a => a.id === 'mstr-strategy-detailed' || a.id === 'brk-b-opportunity' || a.id === 'buffett-google');
+        const insightsArticles = ARTICLES.filter(a => a.id !== 'mstr-strategy-detailed' && a.id !== 'brk-b-opportunity' && a.id !== 'buffett-google');
 
         return (
           <React.Fragment>
@@ -1369,13 +1621,14 @@
                                    </li>
                               </ul>
 
-                              {/* SOCIAL PROOF METRICS (NEW) */}
-                              <div className="hero-kpi-row flex justify-center mb-16 w-full animate-fade-in">
-                                  <div className="w-full max-w-lg bg-black/20 border border-white/10 p-6 rounded-lg backdrop-blur-sm hover:border-brand-accent/30 transition-colors text-center">
-                                       <span className="block text-[10px] text-brand-muted uppercase tracking-widest mb-3 font-bold">RENTABILIDAD ANUALIZADA (CAGR)</span>
-                                       <span className="block text-4xl md:text-5xl font-bold text-brand-accent font-sans mb-2 tracking-tighter">+21.17%</span>
-                                       <span className="block text-[10px] text-gray-500 font-mono tracking-wide">Desde inicio (2020-2025)</span>
-                                  </div>
+                              {/* INSIGHT MESSAGE (REPLACES KPIs) */}
+                              <div className="hero-insight-message">
+                                  <p className="insight-market">
+                                      <span className="prefix">¿Sabías que...?</span> En periodos de al menos 5 años, la bolsa ha dado ganancias en más del <span class="highlight">92 %</span> de los casos desde 1971. El verdadero riesgo para tu patrimonio no es invertir, es dejarlo parado.
+                                  </p>
+                                  <p className="insight-henao">
+                                      (Dato: Henao Capital ha dado una rentabilidad anualizada de un <span class="henao-val">21,17%</span> desde 2020).
+                                  </p>
                               </div>
 
                               {/* NEW TOOLS SECTION (SIMPLIFIED & REDESIGNED) */}
