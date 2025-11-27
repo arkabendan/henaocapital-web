@@ -8,12 +8,12 @@
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
     
-    <!-- Fonts: Playfair Display (Serif) & Inter (Sans) & JetBrains Mono (Numbers) & Courier New -->
+    <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
     
-    <!-- React & ReactDOM & Babel -->
+    <!-- React & ReactDOM & Babel (UMD) -->
     <script src="https://unpkg.com/react@18/umd/react.production.min.js" crossorigin></script>
     <script src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js" crossorigin></script>
     <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
@@ -69,30 +69,18 @@
           --border-color: #333333;
       }
       
-      /* === HIGH-TECH / MINIMAL THEME (ABSTRACT LIGHTS) === */
-
-      /* 1. GLOBAL BACKGROUND (BODY) */
       body {
-          /* 1. Fondo base negro puro */
           background-color: #000000 !important;
-
-          /* 2. IMAGEN + VIÑETEADO PARA CENTRAR LA ATENCIÓN */
           background-image: 
-              /* Capa 1: Oscurecimiento lateral para que el texto central brille */
               radial-gradient(circle at center, 
-                  rgba(0, 0, 0, 0.3) 0%,      /* Centro limpio */
-                  rgba(0, 0, 0, 0.8) 100%     /* Bordes oscuros */
+                  rgba(0, 0, 0, 0.3) 0%,      
+                  rgba(0, 0, 0, 0.8) 100%     
               ),
-              /* Capa 2: Imagen Minimalista 4K */
               url('https://images.unsplash.com/photo-1478760329108-5c3ed9d495a0?q=100&w=3840&auto=format&fit=crop');
-
-          /* 3. AJUSTES DE VISUALIZACIÓN */
           background-size: cover !important;
           background-position: center center !important;
           background-attachment: fixed !important;
           background-repeat: no-repeat !important;
-
-          /* 4. TIPOGRAFÍA Y LEGISLADAD */
           color: #ffffff;
           margin: 0;
           min-height: 100vh;
@@ -100,44 +88,36 @@
           overflow-x: hidden;
       }
 
-      /* REFUERZO DE LEGIBILIDAD (Sombra suave para el texto sobre las líneas de luz) */
       h1, h2, h3, p, li, a, label {
           text-shadow: 0 2px 10px rgba(0,0,0,0.8) !important;
       }
 
-      /* Ensure root is transparent to let body background show */
       #root {
           background: transparent !important;
       }
 
-      /* === STICKY NAVIGATION & PADDING COMPENSATION === */
-
-      /* The Fixed Wrapper for Header & Nav */
       #fixed-navbar {
           position: fixed;
           top: 0;
           left: 0;
           width: 100%;
           z-index: 9999;
-          background-color: rgba(0, 0, 0, 0.85) !important; /* Semi-transparent black */
-          backdrop-filter: blur(10px); /* Modern blur effect */
-          border-bottom: 1px solid rgba(195, 245, 60, 0.2); /* Tech Green border tint */
+          background-color: rgba(0, 0, 0, 0.85) !important;
+          backdrop-filter: blur(10px);
+          border-bottom: 1px solid rgba(195, 245, 60, 0.2);
           box-shadow: 0 10px 30px rgba(0,0,0,0.8);
       }
 
-      /* Push content down so it's not hidden behind the fixed header */
       .main-content {
-          padding-top: 210px; /* Safe padding for header height */
+          padding-top: 210px;
       }
       
       @media (max-width: 768px) {
           .main-content {
-              padding-top: 180px; /* Adjusted for mobile header height */
+              padding-top: 180px;
           }
       }
 
-      /* 2. TRANSPARENCY FOR HEADERS (HEADER/NAV) */
-      /* Note: Elements INSIDE fixed-navbar will be transparent, revealing the black background of the wrapper */
       header, nav, .mini-header, .navbar-container,
       div[class*="bg-black"], nav[class*="bg-black"] 
       {
@@ -147,39 +127,31 @@
           backdrop-filter: none !important;
       }
       
-      /* Tech Borders for Nav */
       .mini-header {
           border-bottom: 1px solid rgba(195, 245, 60, 0.15) !important;
       }
       nav {
-          border-bottom: none !important; /* Border is now on #fixed-navbar */
+          border-bottom: none !important;
       }
 
-      /* 3. CONTRAST CORRECTION - Specific elements overrides */
-      /* Asegurar que el menú también tenga sombra si es blanco */
       nav a, nav span, .mini-header a {
           color: #ffffff !important;
           opacity: 1 !important;
           text-shadow: 0px 1px 3px rgba(0, 0, 0, 0.9) !important;
       }
       
-      /* === ROBINHOOD STYLE TYPOGRAPHY UPDATES === */
-
-      /* Logo: Inter, Bold (700), Negative Tracking (-1px) */
       header h1 {
           font-family: 'Inter', sans-serif !important;
           font-weight: 700 !important;
           letter-spacing: -1px !important;
       }
 
-      /* Hero Title (Home): Inter, ExtraBold (800), Tight Tracking (-1.5px) */
       #view-home h1 {
           font-family: 'Inter', sans-serif !important;
           font-weight: 800 !important;
           letter-spacing: -1.5px !important;
       }
 
-      /* Hero Content (List & Manifesto): Inter, Regular (400), Subtle Tight Tracking (-0.3px) */
       #view-home .text-brand-muted,
       #view-home .manifesto-text,
       #view-home p,
@@ -190,7 +162,6 @@
           letter-spacing: -0.3px !important;
       }
 
-      /* Explicitly target the manifesto card text */
       #view-home .bg-black\/70 p {
           font-family: 'Inter', sans-serif !important;
           font-weight: 400 !important;
@@ -201,21 +172,16 @@
           font-family: 'Inter', sans-serif !important;
       }
 
-      /* === Standard Component Styles === */
-      
-      /* Ensure cards retain their dark backgrounds for content readability */
       .bg-brand-surface, .financial-card, .tear-sheet-card, .portfolio-table-container-styled {
           background-color: var(--surface-color) !important; 
-          border-color: rgba(195, 245, 60, 0.2); /* Tech Green border tint */
+          border-color: rgba(195, 245, 60, 0.2);
       }
 
-      /* Elegant scrollbar */
       ::-webkit-scrollbar { width: 6px; }
       ::-webkit-scrollbar-track { background: transparent; }
       ::-webkit-scrollbar-thumb { background: #333; border-radius: 3px; }
       ::-webkit-scrollbar-thumb:hover { background: var(--accent-color); }
       
-      /* Typography Standards */
       .article-body p {
         font-family: 'Inter', sans-serif;
         font-size: 1.125rem;
@@ -262,17 +228,9 @@
         font-weight: 600;
       }
       
-      /* Dark Panel Utilities */
-      .glass-panel {
-        background: var(--surface-color);
-        border: 1px solid var(--border-color);
-        transition: border-color 0.3s ease, transform 0.3s ease;
-      }
-
-      /* === PAPER MODE READER STYLES (NEWSPAPER EFFECT) === */
       .paper-mode-reader {
-          background-color: #F9F7F1 !important; /* Off-white / Antique Paper */
-          color: #1a1a1a !important; /* Charcoal Text */
+          background-color: #F9F7F1 !important;
+          color: #1a1a1a !important;
           padding: 40px !important;
           border-radius: 4px !important;
           box-shadow: 0 10px 40px rgba(0,0,0,0.5) !important;
@@ -324,10 +282,9 @@
           color: #333333 !important;
       }
 
-      /* === FINANCIAL REPORT STYLE (DARK TERMINAL) FOR TRACK RECORD === */
       .financial-report-theme {
-          background-color: #050505 !important; /* Dark Terminal Background */
-          color: #e0e0e0 !important; /* Terminal Gray/White */
+          background-color: #050505 !important;
+          color: #e0e0e0 !important;
           font-family: 'Courier New', Courier, monospace !important;
           padding: 24px !important;
           border-radius: 2px !important;
@@ -382,7 +339,6 @@
           color: var(--accent-color) !important;
       }
       
-      /* Remove hover effects from main theme for this table */
       .financial-report-table tr:hover td {
           background-color: rgba(255,255,255,0.05) !important;
       }
@@ -394,12 +350,11 @@
           }
           .financial-report-table th, 
           .financial-report-table td {
-              font-size: 11px !important; /* Ultra compact for mobile */
+              font-size: 11px !important;
               padding: 4px 2px !important;
           }
       }
 
-      /* === Navigation === */
       .nav-link {
         position: relative;
         cursor: pointer;
@@ -415,15 +370,12 @@
         font-weight: 600;
       }
 
-      /* === Responsive & Mobile Fixes === */
       @media (max-width: 768px) {
-          /* FIX: Force KPI Cards Stacking */
           .hero-kpi-row {
               flex-direction: column !important;
               gap: 15px !important;
           }
 
-          /* FIX: Track Record Button Mobile Visibility */
           .track-record-btn {
               white-space: normal !important;
               height: auto !important;
@@ -437,7 +389,6 @@
               line-height: 1.4 !important;
           }
 
-          /* --- Buying/Opportunities Grid Fix --- */
           #view-buying .articles-list-container {
               display: block !important; 
               gap: 0 !important;
@@ -447,7 +398,6 @@
           }
       }
 
-      /* === ESTILO GLOBAL (TERMINAL) === */
       .portfolio-table {
           width: 100%;
           border-collapse: collapse;
@@ -472,32 +422,27 @@
           text-align: right;
       }
 
-      /* Alinear textos a la izquierda */
       .portfolio-table th:nth-child(1), .portfolio-table td:nth-child(1),
       .portfolio-table th:nth-child(2), .portfolio-table td:nth-child(2),
       .portfolio-table th:nth-child(3), .portfolio-table td:nth-child(3) {
           text-align: left;
       }
 
-      .portfolio-table td:nth-child(2) { font-weight: bold; color: #fff; } /* Ticker */
-      .portfolio-table td:nth-child(7) { color: #C3F53C; } /* Valor Total Neón */
+      .portfolio-table td:nth-child(2) { font-weight: bold; color: #fff; }
+      .portfolio-table td:nth-child(7) { color: #C3F53C; }
 
-      /* Hover sutil */
       .portfolio-table tr:hover td {
           background-color: #111 !important;
           color: #fff !important;
       }
 
-      /* === ESTILO MÓVIL (NUCLEAR FIX) === */
       @media only screen and (max-width: 1024px) {
-          
-          /* 1. CONTENEDOR FLUIDO (SOLUCIONA SCROLL VERTICAL) */
           .portfolio-table-wrapper {
               width: 100% !important;
               overflow-x: hidden !important;
               overflow-y: visible !important;
               display: block;
-              touch-action: pan-y !important; /* Clave para el dedo */
+              touch-action: pan-y !important;
           }
           
           .portfolio-table-container-styled {
@@ -507,82 +452,68 @@
               box-shadow: none !important;
           }
 
-          /* 2. TABLA FIJA MATEMÁTICA */
           .portfolio-table {
-              table-layout: fixed !important; /* Fuerza anchos estrictos */
+              table-layout: fixed !important;
               width: 100% !important;
               min-width: 100% !important;
-              font-size: 11px !important; /* Letra pequeña necesaria */
+              font-size: 11px !important;
           }
 
-          /* 1. OCULTAR SÍMBOLO (Col 2) y otras irrelevantes (Col 4, 5) */
-          .portfolio-table th:nth-child(2), .portfolio-table td:nth-child(2), /* Símbolo fuera */
-          .portfolio-table th:nth-child(4), .portfolio-table td:nth-child(4), /* Acciones fuera */
-          .portfolio-table th:nth-child(5), .portfolio-table td:nth-child(5)  /* Precio fuera */
+          .portfolio-table th:nth-child(2), .portfolio-table td:nth-child(2),
+          .portfolio-table th:nth-child(4), .portfolio-table td:nth-child(4),
+          .portfolio-table th:nth-child(5), .portfolio-table td:nth-child(5)
           {
               display: none !important;
           }
 
-          /* 2. MOSTRAR EMPRESA (Col 3) - CONFIGURACIÓN CRÍTICA */
           .portfolio-table th:nth-child(3), .portfolio-table td:nth-child(3) {
-              display: table-cell !important; /* Forzar visibilidad */
-              width: 45% !important; /* Darle espacio suficiente */
+              display: table-cell !important;
+              width: 45% !important;
               text-align: left;
               font-weight: bold;
               color: #fff;
-              
-              /* TRUCO PARA NOMBRES LARGOS: */
-              white-space: nowrap;      /* No saltar de línea */
-              overflow: hidden;         /* Cortar si sobra */
-              text-overflow: ellipsis;  /* Poner '...' al final (ej: Microstrat...) */
-              max-width: 0;             /* Necesario para que funcione el ellipsis en tablas */
+              white-space: nowrap;
+              overflow: hidden;
+              text-overflow: ellipsis;
+              max-width: 0;
           }
           
-          /* 3. REAJUSTE RESTO DE COLUMNAS (Total 100%) */
-          
-          /* Col 1: Posición (10%) */
           .portfolio-table th:nth-child(1), .portfolio-table td:nth-child(1) {
               width: 10% !important;
               text-align: center;
               padding: 8px 2px !important;
           }
           
-          /* Col 6: % Total (15%) */
           .portfolio-table th:nth-child(6), .portfolio-table td:nth-child(6) {
               width: 15% !important;
               text-align: right;
               padding: 8px 2px !important;
           }
           
-          /* Col 7: Valor Total (30%) */
           .portfolio-table th:nth-child(7), .portfolio-table td:nth-child(7) {
               width: 30% !important;
               text-align: right;
               padding: 8px 2px !important;
               white-space: nowrap;
               overflow: hidden;
-              text-overflow: ellipsis; /* Puntos suspensivos si no cabe */
+              text-overflow: ellipsis;
           }
           
-          /* 5. ALTURA DE FILA */
           .portfolio-table td {
               height: 40px;
               vertical-align: middle;
           }
       }
       
-      /* === PORTFOLIO HERO DASHBOARD === */
-      /* CONTENEDOR PRINCIPAL */
       .portfolio-hero-dashboard {
           text-align: center;
           padding: 40px 20px;
           margin-bottom: 30px;
-          background: rgba(0, 0, 0, 0.4); /* Fondo sutil para separar del fondo web */
+          background: rgba(0, 0, 0, 0.4);
           border-bottom: 1px solid #333;
           border-radius: 8px;
       }
 
-      /* SALDO TOTAL (GIGANTE) */
       .portfolio-total-balance .label {
           display: block;
           font-family: 'Inter', sans-serif;
@@ -594,16 +525,15 @@
       }
 
       .portfolio-total-balance h1 {
-          font-family: 'Inter', sans-serif; /* O 'Courier New' si prefieres terminal */
-          font-size: 3.5rem; /* Muy grande */
+          font-family: 'Inter', sans-serif;
+          font-size: 3.5rem;
           font-weight: 700;
           color: #ffffff;
           margin: 0;
           letter-spacing: -2px;
-          text-shadow: 0 4px 20px rgba(195, 245, 60, 0.2); /* Sutil resplandor verde */
+          text-shadow: 0 4px 20px rgba(195, 245, 60, 0.2);
       }
 
-      /* MÉTRICAS SECUNDARIAS (FILA INFERIOR) */
       .portfolio-secondary-metrics {
           display: flex;
           justify-content: center;
@@ -629,18 +559,16 @@
           color: #fff;
       }
 
-      .metric-value.positive { color: #C3F53C; } /* Verde Neón */
+      .metric-value.positive { color: #C3F53C; }
 
       .separator { color: #333; font-size: 1.5rem; font-weight: 100; }
 
-      /* AJUSTE MÓVIL */
       @media only screen and (max-width: 768px) {
           .portfolio-total-balance h1 { font-size: 2.5rem; }
           .portfolio-secondary-metrics { flex-direction: column; gap: 10px; }
           .separator { display: none; }
       }
 
-      /* === Desktop Layouts === */
       #view-buying .articles-list-container {
           display: grid;
           grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
@@ -648,7 +576,6 @@
           flex-direction: unset;
       }
       
-      /* === LOGO FIXES FOR FINANCIAL CARDS === */
       .financial-card img {
           max-height: 40px !important;
           width: auto !important;
@@ -660,28 +587,25 @@
           padding: 4px !important;
       }
       
-      /* === HERO INSIGHT MESSAGE === */
       .hero-insight-message {
           margin: 40px 0 30px 0;
           text-align: left;
           max-width: 700px;
-          /* Resetting any border or padding from previous styles */
           border-left: none;
           padding-left: 0;
       }
 
-      /* 2º PLANO: DATO DE MERCADO (Visible pero no gritando) */
       .insight-market {
           font-family: 'Inter', sans-serif;
           font-size: 1.05rem;
-          color: #d0d0d0; /* Gris claro, no blanco puro */
+          color: #d0d0d0;
           line-height: 1.6;
           margin-bottom: 12px;
           font-weight: 300;
       }
 
       .insight-market .prefix {
-          color: var(--accent-color); /* Verde Neón para captar la atención inicial */
+          color: var(--accent-color);
           font-weight: 700;
           margin-right: 5px;
       }
@@ -689,21 +613,20 @@
       .insight-market .highlight {
           color: #fff;
           font-weight: 700;
-          border-bottom: 1px solid rgba(255,255,255,0.3); /* Subrayado sutil */
+          border-bottom: 1px solid rgba(255,255,255,0.3);
       }
 
-      /* 3º PLANO: DATO HENAO (Sutil, como nota al pie) */
       .insight-henao {
           font-family: 'Inter', sans-serif;
-          font-size: 0.85rem; /* Letra más pequeña */
-          color: #777777;     /* Gris oscuro para que quede en el fondo */
-          font-style: italic; /* Cursiva para diferenciar */
+          font-size: 0.85rem;
+          color: #777777;
+          font-style: italic;
           margin-top: 5px;
           font-weight: 400;
       }
 
       .insight-henao .henao-val {
-          color: #aaaaaa; /* Un poco más claro que el texto pero no blanco */
+          color: #aaaaaa;
           font-weight: 600;
       }
 
@@ -717,7 +640,6 @@
               margin: 30px 0;
           }
       }
-
     </style>
   <script type="importmap">
 {
@@ -733,9 +655,9 @@
     <div id="root"></div>
 
     <script type="text/babel">
-      
-      // --- CONSTANTS & DATA ---
-      
+      const { useState, useMemo, useEffect } = React;
+
+      // --- DATA ---
       const PORTFOLIO_DATA = [
         { rank: 1, country: 'WORLD', symbol: 'BTC', name: 'Bitcoin', weight: '10,43%', shares: '1,97', price: '85.000,000 USD', value: '167.450,00 USD' },
         { rank: 2, country: 'CAD', symbol: 'BN', name: 'Brookfield Corporation', weight: '8,41%', shares: '3000', price: '63,00 CAD', value: '135.000,00 USD' },
@@ -837,53 +759,73 @@
             ]
         },
         {
-            id: 'healthcare-inevitable',
-            date: '17 OCT 2025 | 11:23 CET',
-            category: '#HEALTHCARE',
-            title: 'Healthcare: Un sector Inevitable',
-            excerpt: 'Y por qué Danaher y ThermoFisher son las apuestas más claras.',
-            imageUrl: 'https://www.salleurl.edu/sites/default/files/styles/ample_1400/public/content/nodes/Estudio/image/19629/33556/cabecera-portada-desktop.jpg',
+            id: 'nvidia-exam',
+            date: '19 NOV 2025 | 19:55 CET',
+            category: '#TECNOLOGÍA $NVDA',
+            title: 'NVIDIA a examen y el mercado mirando con lupa.',
+            excerpt: '¿Estamos ante una burbuja financiera a punto de estallar o ante el despliegue de una tecnología que marcará las próximas décadas?',
+            imageUrl: 'https://gbm.com/media/wp-content/uploads/2025/04/nvidia.png',
             body: [
-                "<p>En las próximas décadas vamos a vivir una combinación de factores que supondrán claros vientos de cola para este sector: poblaciones que envejecen, más años vividos con enfermedades crónicas, presión política para mantener el acceso sanitario y sistemas públicos/privados obligados a gastar más solo para mantener el nivel de bienestar actual.</p>",
-                "<p>En Europa, Japón y buena parte de Asia, el peso de mayores de 65 años se va a disparar. Todos los estudios apuntan a que el gasto sanitario como % del PIB seguirá subiendo salvo reforma muy agresiva (muy poco probable).</p>",
-                "<p>A eso hay que sumarle otros dos aspectos:</p>",
-                "<ul><li>Una regulación cada vez más estricta que implica barreras de entrada fuertes para para nuevos competidores.</li><li>Una ola de IA aplicada al sector que va a disparar los volúmenes de diagnósticos, datos, pruebas y ensayos.</li></ul>",
-                "<p>Con este telón de fondo, tenemos dos opciones: intentar adivinar qué farmacéutica ganará la próxima batalla de turno… o irnos un paso más atrás en la cadena de valor: a los que venden los “picos y palas” del sistema.</p>",
-                "<p>Instrumentación, reactivos, diagnósticos, servicios de laboratorio, bioprocesado, soporte a ensayos clínicos…</p>",
-                "<p>Ahí es donde entran Danaher y Thermo Fisher.</p>",
-                "<h3>Danaher: el “sistema operativo” silencioso de la biotecnología y el diagnóstico</h3>",
-                "<p>Danaher hoy es, básicamente, un conglomerado muy enfocado en tres bloques: biotecnología (bioprocessing), life sciences y diagnóstico. Vende equipos, consumibles y servicios que permiten a otros investigar, fabricar medicamentos biológicos y hacer diagnósticos moleculares.</p>",
-                "<p>Números rápidos para ubicar la escala: en 2024 facturó unos 23.900 M USD, con más de 5.300 M USD de free cash flow y márgenes sólidos, pese a estar digiriendo la “resaca” del pico covid en diagnóstico y bioprocesado.</p>",
-                "<p>Lo relevante no es solo el tamaño, sino el tipo de negocio:</p>",
-                "<ul><li><strong>Bioprocesado:</strong> a través de Cytiva, Pall y otras marcas, Danaher es uno de los proveedores clave de filtros, columnas, biorreactores y sistemas que necesitas sí o sí para fabricar anticuerpos monoclonales, terapias biológicas y, cada vez más, terapias avanzadas. Una vez que un producto se aprueba con cierto proceso y cierto equipo, cambiar de proveedor no es “pruebo otra marca y ya está”; implica revalidar, re-documentar, pasar por regulador. Cambiar cuesta dinero, tiempo y riesgo regulatorio.</li><li><strong>Diagnóstico:</strong> plataformas como Cepheid en diagnóstico molecular han vivido un pico covid, sí, pero dejan una base instalada de máquinas en hospitales y laboratorios que seguirán usando cartuchos para otras infecciones durante años. Es negocio recurrente de consumible.</li><li><strong>Herramientas de life sciences:</strong> microscopía avanzada, genómica, análisis de proteínas… todas las piezas que un laboratorio puntero necesita para generar datos. Datos que luego son materia prima para modelos de IA aplicados a descubrimiento de fármacos, biomarcadores, etc.</li></ul>",
-                "<p>Por encima de todo esto está el famoso Danaher Business System (DBS): una cultura y un marco operativo de mejora continua que han convertido a la compañía en una máquina de integrar adquisiciones y exprimir sinergias. DBS es la razón por la que llevan años comprando activos buenos, integrándolos y elevando márgenes de forma muy consistente.</p>",
-                "<p>Si el mundo va a necesitar más biológicos, más terapias avanzadas y más diagnóstico sofisticado (y todo apunta a que sí), Danaher no es el medicamento, es la fábrica que vende la maquinaria y el “suministro” para que otros lo produzcan.</p>",
-                "<h3>Thermo Fisher: el gigante que está en casi todos los laboratorios</h3>",
-                "<p>Thermo Fisher juega una liga similar, pero aún más diversificada. Su misión oficial es “permitir a sus clientes hacer el mundo más saludable, más limpio y más seguro”, y lo aterrizan en cuatro grandes segmentos: Life Sciences Solutions, Analytical Instruments, Specialty Diagnostics y Laboratory Products & Biopharma Services.</p>",
-                "<p>En 2024 facturó unos 42.900 M USD, con crecimiento en las cuatro divisiones y una combinación muy poco frecuente: tecnología, distribución global y servicios farmacéuticos integrados (Patheon, PPD).</p>",
-                "<p>¿Dónde está la gracia de ThermoFisher? Primero, en que está en todas partes:</p>",
-                "<ul><li>Laboratorios académicos y de investigación básica.</li><li>Biotech y pharma que desarrollan fármacos.</li><li>Laboratorios clínicos y de diagnóstico.</li><li>Industria, alimentación, medio ambiente.</li></ul>",
-                "<p>Fabrican desde equipos de secuenciación y espectrometría de masas hasta kits de diagnóstico, pasando por pipetas, medios de cultivo, reactivos, cámaras de ultracongelación y servicios de fabricación por contrato de medicamentos.</p>",
-                "<p>Segundo, en el modelo de ingresos:</p>",
-                "<ul><li>Una base enorme de equipos instalados.</li><li>Mucho consumible asociado (reactivos, columnas, medios, plásticos).</li><li>Y servicios recurrentes: mantenimiento, validación, outsourcing de ensayos clínicos y de fabricación (bio)farmacéutica.</li></ul>",
-                "<p>Tercero, en cómo se está posicionando para la próxima fase. Un ejemplo concreto: la compra de la unidad de filtración y purificación de Solventum por 4.100 M USD, para reforzar su oferta en bioprocesado y competir más de tú a tú justo en la categoría donde Danaher es muy fuerte.</p>",
-                "<p>Y, como en Danaher, la IA juega a favor: cuanta más digitalización, más automatización y más análisis intensivo de datos, más valioso es tener equipos integrados, software propietario y acceso directo a la base instalada de laboratorios y centros de investigación.</p>",
-                "<h3>IA y salud: por qué estos dos son “picks & shovels” del futuro</h3>",
-                "<p>Cuando se habla de IA en sanidad, la mente se va a dos sitios: algoritmos que leen radiografías mejor que un radiólogo junior y modelos que proponen nuevas moléculas. Eso está bien, pero alguien tiene que generar, limpiar y estructurar los datos sobre los que se entrenan esos modelos.</p>",
-                "<p>Ahí es donde Danaher y Thermo Fisher encajan como guante:</p>",
-                "<ul><li>Diagnósticos más precisos y rápidos → más tests, más plataformas de laboratorio, más consumibles.</li><li>Descubrimiento de fármacos acelerado por IA → más demanda de herramientas de secuenciación, expresión génica, proteómica, bioprocesado.</li><li>Ensayos clínicos mejor diseñados → más servicios de laboratorio, más CROs, más infraestructura que Thermo y Danaher ya abastecen.</li></ul>",
-                "<p>La IA puede comprimir márgenes en algunas partes de la cadena (por ejemplo, en servicios básicos comoditizados), pero difícilmente va a reducir el peso del diagnóstico, de la caracterización molecular y de la fabricación compleja. Más bien al revés: si quieres medicina personalizada, necesitas más pruebas, más capas de análisis y más control de procesos.</p>",
-                "<p>Y en cada una de esas capas, estas dos compañías venden algo crítico.</p>",
-                "<h3>Conclusión: por qué nos importa como asset allocators de largo plazo</h3>",
-                "<p>Queda bastante claro que el sector Salud tiene vientos de cola evidentes: envejecimiento, presión de gasto, cronicidad, necesidad de eficiencia y, ahora, una ola de IA que empuja a medir y analizar mucho más de lo que medíamos antes.</p>",
-                "<p>Desde esta perspectiva, Danaher y Thermo Fisher representan, a nuestro juicio, una forma limpia de estar expuesto al crecimiento del sistema de forma bastante predecible y sin riesgo de nueva competencia.</p>",
-                "<p>Son apuestas claras a años vista. Negocios de calidad, con barreras de entrada altas, flujos recurrentes y un papel muy difícil de desintermediar en el sistema sanitario global.</p>",
-                "<p>Si asumimos que en 10-15 años seguiremos gastando más en salud, necesitaremos más diagnóstico, más biológicos y más datos para alimentar modelos de IA… la lógica de fondo es sencilla: alguien tendrá que vender las herramientas, consumibles y servicios que hacen todo eso posible. Y Danaher y Thermo Fisher son los candidatos claros a seguir cobrando ese peaje.</p>"
+                "<p>Hoy, tras el cierre de mercado, NVIDIA vuelve a someterse a examen. Y no es una presentación de resultados cualquiera; se ha convertido en el evento macroeconómico más relevante del trimestre. Lo que el mercado intenta descifrar hoy no es si la acción subirá o bajará un 5% mañana, sino algo mucho más estructural:</p>",
+                "<p><strong>¿Estamos ante una burbuja financiera a punto de estallar o ante el despliegue de una tecnología que marcará las próximas décadas?</strong></p>",
+                "<p>Nuestra lectura en Henao Capital es rotunda: no estamos ante una burbuja de \"humo\", sino ante una transformación industrial masiva. Estamos en la fase de construcción de la infraestructura digital del siglo XXI.</p>",
+                "<p>Y en esta fase, las reglas del juego son distintas.</p>",
+                "<p>A continuación, desarrollamos nuestra tesis en cuatro puntos clave.</p>",
+                "<h3>La realidad de la demanda: No se construye para almacenar</h3>",
+                "<p>Para diagnosticar una burbuja, solemos buscar una señal clara: se fabrica mucho más de lo que se consume (exceso de inventario). Los datos de NVIDIA nos cuentan exactamente la historia contraria.</p>",
+                "<p>La compañía ha cerrado su último trimestre con 35.100 millones de dólares de ingresos, creciendo un 94% respecto al año anterior. Pero el dato crítico no es cuánto vende, sino la insatisfacción de sus clientes. Los gigantes tecnológicos (Microsoft, Amazon, Google) no están recortando pedidos; se están peleando por recibir los chips.</p>",
+                "<ul><li>Microsoft ha confirmado públicamente que su negocio en la nube crecería aún más rápido si tuviera más capacidad instalada.</li><li>Amazon y Google reportan aceleraciones en sus divisiones impulsadas puramente por servicios de IA.</li></ul>",
+                "<p>La conclusión lógica es sencilla: La infraestructura se está construyendo a toda velocidad porque la demanda real de cómputo excede, con mucho, a la oferta disponible. Se vende todo lo que se fabrica.</p>",
+                "<h3>El dilema de los 300.000 Millones: ¿Por qué gastan tanto?</h3>",
+                "<p>El gran miedo del mercado es la cifra de inversión. Entre las cuatro grandes tecnológicas (Microsoft, Amazon, Alphabet, Meta), se estima que gastarán cerca de 300.000 millones de dólares en 2025 en infraestructura.</p>",
+                "<p>Muchos analistas se preguntan: \"¿Es esto racional? ¿Van a recuperar ese dinero pronto?\".</p>",
+                "<p>Para entenderlo, hay que mirar esto desde la Teoría de Juegos. Estas empresas se enfrentan a lo que llamamos un \"Dilema del Prisionero\":</p>",
+                "<ul><li><strong>El riesgo financiero:</strong> Si invierten miles de millones y la IA tarda en ser rentable, sus márgenes de beneficio bajarán temporalmente. Es un problema de dinero.</li><li><strong>El riesgo existencial:</strong> Si NO invierten y su competidor sí lo hace y acierta, ellos corren el riesgo de volverse irrelevantes tecnológicamente. Es un problema de supervivencia.</li></ul>",
+                "<p>Cuando el riesgo de no hacer nada es desaparecer, la inversión agresiva es la única decisión racional. Por eso creemos que el gasto en infraestructura va a continuar siendo muy fuerte durante más tiempo del que muchos esperan. No es euforia, es necesidad estratégica.</p>",
+                "<h3>Alphabet (Google) y la ventaja de \"cocinar en casa\"</h3>",
+                "<p>En este entorno de gasto masivo, la eficiencia se convierte en la mayor ventaja competitiva. Y aquí es donde nuestra visión sobre Alphabet (Google) es muy positiva.</p>",
+                "<p>Mientras la mayoría de empresas dependen casi totalmente de comprar chips a NVIDIA (pagando el precio que NVIDIA quiera), Google lleva más de diez años diseñando sus propios chips: los TPUs.</p>",
+                "<p>Al diseñar sus propios chips, Google reduce su dependencia de proveedores externos y, lo más importante, reduce el coste de operar la Inteligencia Artificial.</p>",
+                "<p>A medida que la IA se use cada vez más, quien sea capaz de ofrecer la respuesta más barata tendrá un margen de beneficio superior. Google no solo tiene los datos (Buscador, YouTube), también tiene la fábrica de la infraestructura.</p>",
+                "<h3>Conclusión: Una supertendencia histórica</h3>",
+                "<p>Volviendo a la sesión de hoy con NVIDIA. Nuestra visión táctica en Henao Capital es que la fase \"fácil\" del ciclo, donde cualquier acción relacionada con la IA subía sin parar, ha terminado. Entramos en una fase más madura.</p>",
+                "<p>Sin embargo, la tendencia de fondo sigue intacta. Comparar esto con la burbuja de las \".com\" del año 2000 es incorrecto. En aquel entonces, las empresas no tenían ingresos reales. Hoy, estamos en el polo opuesto. Los hyperscalers son auténticas máquinas de imprimir dinero.</p>",
+                "<p>A nuestro juicio, la IA no es una moda pasajera, es un cambio de régimen industrial similar a la electricidad o internet. Y como en cualquier revolución industrial, habrá volatilidad, pero la dirección es clara: el mundo necesitará estructuralmente más capacidad de cómputo, más energía y mejores modelos.</p>",
+                "<p>En Henao Capital seguimos claramente posicionados para capturar este valor a largo plazo.</p>"
+            ]
+        },
+        {
+            id: 'crypto-winter',
+            date: '10 NOV 2025 | 07:33 CET',
+            category: '#CRYPTO #BTC',
+            title: 'Esta noche BTC ha roto 90.000 USD a la baja y ETH los 3.000 USD.',
+            excerpt: 'Quién lo diría hace un par de meses… ¿Winter is coming o corrección sana?',
+            imageUrl: 'https://s10.s3c.es/imag/_v0/2309x1260/5/4/7/bitcoin-btc-bear-market-istock.jpg',
+            body: [
+              "<p><strong>¿Winter is coming? ¿Bear market? ¿Corrección sana?</strong></p>",
+              "<p>En primer lugar, algo de contexto. Venimos de semanas de nervios en los activos de riesgo en general: dudas sobre valoraciones en IA y tech, correcciones en high-growth, mucho ruido político, cierre de gobierno en USA y un mercado pendiente al milímetro de qué tono adopta la FED en diciembre.</p>",
+              "<p>En un entorno así, el mercado suele descargar los golpes donde la beta es más alta: en los activos más volátiles y risk-on. Y cripto está en primera línea de fuego.</p>",
+              "<p>Si a ese entorno le sumas el gran evento de liquidación de hace apenas un mes, el cuadro encaja mejor. El mercado venía muy cargado de apalancamiento en derivados... el precio gira, empiezan a saltar margin calls, los brókers cierran posiciones para recuperar el dinero prestado, esas ventas forzadas empujan aún más abajo, saltan nuevas liquidaciones… y en pocas horas tienes un movimiento que se vive como “colapso”, sensación de que \"algo se ha roto\". Feo de ver, pero nada que desmonte la tesis de fondo.</p>",
+              "<p>Y aquí es donde entra la parte difícil de verdad: separar señal de ruido y aparcar las emociones.</p>",
+              "<h3>Pregunta clave: ¿esto es el inicio de un cripto-invierno o una corrección dura dentro de un ciclo alcista más largo?</h3>",
+              "<p>A día de hoy, en Henao Capital vemos bastante más argumentos para lo segundo. El marco de 12–24 meses no ha cambiado: seguimos en un mundo con deuda pública muy elevada, bancos centrales cada vez más condicionados, y una demanda creciente de activos reales escasos. La corrección es violenta, sí, pero forma parte del viaje. ¿Puede caer más? Siempre.</p>",
+              "<p>Aquí conviene hacer una pausa y volver a los basics de por qué, para nosotros, Bitcoin es el activo real por excelencia del siglo XXI.</p>",
+              "<p>En Henao Capital no lo vemos así por dogma, sino por diseño. Si estudias la historia monetaria, el patrón se repite: cada vez que aparece un dinero con mejores propiedades que el anterior… más difícil de censurar, más fácil de verificar, más resistente a la inflación… el capital migra poco a poco hacia ese nuevo estándar. Bitcoin lleva esa lógica al extremo: tiene una oferta conocida y limitada, un calendario de emisión que nadie puede tocar, reglas transparentes y una network descentralizada que no depende de ningún estado ni banco central. Es, a día de hoy, la red descentralizada más robusta e independiente del mundo digital, asegurada por el mayor poder computacional dedicado a una única red que existe, muy por encima de cualquier otra blockchain y de todas las otras principales infraestructuras tecnológicas individuales... combinadas.</p>",
+              "<p>Ahora comparémoslo con el sistema tradicional: llevamos décadas en un mundo donde el dinero fiat es el pasivo de bancos y gobiernos, y donde la tentación de diluirlo vía inflación queda a criterio e intereses de quien esté al mando. El mal es estructural. En ese contexto, Bitcoin es un outsider: un activo sin riesgo de contraparte y con una política monetaria que nadie puede tocar.</p>",
+              "<p>Pero todo esto evidentemente no implica que sea estable en precio a corto plazo, al contrario: la volatilidad viene en el pack.</p>",
+              "<p>Desde el punto de vista de asset allocation, Bitcoin es nuestro activo real núcleo. El coste es evidente: hay que convivir con una volatilidad muy alta en el corto plazo. A cambio, a 5–10 años vista, la combinación de escasez programada, adopción creciente e institucionalización vía ETFs le da un perfil de activo real prácticamente imposible de replicar.</p>",
+              "<h3>Ethereum y la estrategia</h3>",
+              "<p>Ethereum, por su parte, juega otra liga. Menos “oro digital”, más “infraestructura financiera y de datos” sobre la que se construyen stablecoins, protocolos DeFi, tokenización de activos, mercados de predicción e identidad digital, etc...</p>",
+              "<p>Aquí el riesgo es distinto: más tecnológico, más regulatorio… y también más competitivo. Pero el vector común es similar: son tendencias seculares que pueden seguir avanzando con sus vaivenes. En una corrección como la actual, Ethereum sufre como cualquier activo de crecimiento, pero si miras el ecosistema subyacente no se parece en absoluto a un sistema muerto. Para nosotros, dejando de lado Bitcoin, Ethereum tiene sentido como posición satélite relevante.</p>",
+              "<p>Dicho todo esto… ¿Cómo interpretamos todo este escenario en Henao Capital? De forma bastante simple:</p>",
+              "<ol><li>No vemos señales claras de cambio estructural de régimen en cripto, vemos una corrección agresiva dentro de un superciclo ligado a activos reales escasos (Bitcoin) e infra de nueva generación (Ethereum y posiblemente pocas cosas más muy seleccionadas).</li><li>En este tipo de fases no tiene sentido dramatizar ni idealizar. Tiene sentido revisar tamaños y horizontes. Bitcoin sigue siendo el principal activo real de una cartera macro pensada a largo plazo. Ethereum puede complementar como apuesta de infraestructura. Y US high-quality equities siguen siendo el otro gran bloque de riesgo.</li></ol>",
+              "<h3>¿Hace frío en cripto? Sí. ¿Winter is coming? No es como lo vemos.</h3>",
+              "<p>La forma sensata de monetizar la volatilidad de Bitcoin no es adivinar cada giro, es estar estructuralmente largo con un horizonte suficientemente amplio. Si entras en un activo hipervolátil con mentalidad de corto plazo, no estás invirtiendo, estás en el casino. Y en el casino ya sabemos lo que pasa.</p>"
             ]
         },
         {
           id: 'tesla-abundance',
-          date: '25 NOV 2025 | 07:21 CET',
+          date: '07 NOV 2025 | 09:11 CET',
           category: '#TECNOLOGÍA $TSLA',
           title: 'Tesla: hacia la abundancia sostenible',
           excerpt: 'Entendiendo la transición estructural de la compañía de Elon Musk.',
@@ -940,6 +882,51 @@
             "<p>Eso sí, seamos realistas: el momento actual exige convicción. Tesla transita ahora mismo una etapa incómoda, atrapada temporalmente entre la madurez de su negocio de coches y la explosión de la Inteligencia Artificial. La volatilidad está garantizada y los riesgos de ejecución son tangibles.</p>",
             "<p>A estos precios, la valoración es estricta y el mercado no perdonará errores a corto plazo, ya que el precio actual descuenta parte del éxito futuro. No obstante, aunque la acción recoja esas expectativas, estamos convencidos de que el mercado sigue subestimando drásticamente la magnitud del valor que esta plataforma tecnológica liberará en la próxima década.</p>",
             "<p>Pero la tesis de Henao Capital es inequívoca: no estamos invirtiendo en una empresa de coches. Estamos invirtiendo en la mayor plataforma de ingeniería y robótica impulsada por inteligencia artificial y aplicada al mundo real que existe en el mundo a día de hoy.</p>"
+          ]
+        },
+        {
+          id: 'healthcare-inevitable',
+          date: '17 OCT 2025 | 11:23 CET',
+          category: '#HEALTHCARE',
+          title: 'Healthcare: Un sector Inevitable',
+          excerpt: 'Y por qué Danaher y ThermoFisher son las apuestas más claras.',
+          imageUrl: 'https://www.salleurl.edu/sites/default/files/styles/ample_1400/public/content/nodes/Estudio/image/19629/33556/cabecera-portada-desktop.jpg',
+          body: [
+              "<p>En las próximas décadas vamos a vivir una combinación de factores que supondrán claros vientos de cola para este sector: poblaciones que envejecen, más años vividos con enfermedades crónicas, presión política para mantener el acceso sanitario y sistemas públicos/privados obligados a gastar más solo para mantener el nivel de bienestar actual.</p>",
+              "<p>En Europa, Japón y buena parte de Asia, el peso de mayores de 65 años se va a disparar. Todos los estudios apuntan a que el gasto sanitario como % del PIB seguirá subiendo salvo reforma muy agresiva (muy poco probable).</p>",
+              "<p>A eso hay que sumarle otros dos aspectos:</p>",
+              "<ul><li>Una regulación cada vez más estricta que implica barreras de entrada fuertes para para nuevos competidores.</li><li>Una ola de IA aplicada al sector que va a disparar los volúmenes de diagnósticos, datos, pruebas y ensayos.</li></ul>",
+              "<p>Con este telón de fondo, tenemos dos opciones: intentar adivinar qué farmacéutica ganará la próxima batalla de turno… o irnos un paso más atrás en la cadena de valor: a los que venden los “picos y palas” del sistema.</p>",
+              "<p>Instrumentación, reactivos, diagnósticos, servicios de laboratorio, bioprocesado, soporte a ensayos clínicos…</p>",
+              "<p>Ahí es donde entran Danaher y Thermo Fisher.</p>",
+              "<h3>Danaher: el “sistema operativo” silencioso de la biotecnología y el diagnóstico</h3>",
+              "<p>Danaher hoy es, básicamente, un conglomerado muy enfocado en tres bloques: biotecnología (bioprocessing), life sciences y diagnóstico. Vende equipos, consumibles y servicios que permiten a otros investigar, fabricar medicamentos biológicos y hacer diagnósticos moleculares.</p>",
+              "<p>Números rápidos para ubicar la escala: en 2024 facturó unos 23.900 M USD, con más de 5.300 M USD de free cash flow y márgenes sólidos, pese a estar digiriendo la “resaca” del pico covid en diagnóstico y bioprocesado.</p>",
+              "<p>Lo relevante no es solo el tamaño, sino el tipo de negocio:</p>",
+              "<ul><li><strong>Bioprocesado:</strong> a través de Cytiva, Pall y otras marcas, Danaher es uno de los proveedores clave de filtros, columnas, biorreactores y sistemas que necesitas sí o sí para fabricar anticuerpos monoclonales, terapias biológicas y, cada vez más, terapias avanzadas. Una vez que un producto se aprueba con cierto proceso y cierto equipo, cambiar de proveedor no es “pruebo otra marca y ya está”; implica revalidar, re-documentar, pasar por regulador. Cambiar cuesta dinero, tiempo y riesgo regulatorio.</li><li><strong>Diagnóstico:</strong> plataformas como Cepheid en diagnóstico molecular han vivido un pico covid, sí, pero dejan una base instalada de máquinas en hospitales y laboratorios que seguirán usando cartuchos para otras infecciones durante años. Es negocio recurrente de consumible.</li><li><strong>Herramientas de life sciences:</strong> microscopía avanzada, genómica, análisis de proteínas… todas las piezas que un laboratorio puntero necesita para generar datos. Datos que luego son materia prima para modelos de IA aplicados a descubrimiento de fármacos, biomarcadores, etc.</li></ul>",
+              "<p>Por encima de todo esto está el famoso Danaher Business System (DBS): una cultura y un marco operativo de mejora continua que han convertido a la compañía en una máquina de integrar adquisiciones y exprimir sinergias. DBS es la razón por la que llevan años comprando activos buenos, integrándolos y elevando márgenes de forma muy consistente.</p>",
+              "<p>Si el mundo va a necesitar más biológicos, más terapias avanzadas y más diagnóstico sofisticado (y todo apunta a que sí), Danaher no es el medicamento, es la fábrica que vende la maquinaria y el “suministro” para que otros lo produzcan.</p>",
+              "<h3>Thermo Fisher: el gigante que está en casi todos los laboratorios</h3>",
+              "<p>Thermo Fisher juega una liga similar, pero aún más diversificada. Su misión oficial es “permitir a sus clientes hacer el mundo más saludable, más limpio y más seguro”, y lo aterrizan en cuatro grandes segmentos: Life Sciences Solutions, Analytical Instruments, Specialty Diagnostics y Laboratory Products & Biopharma Services.</p>",
+              "<p>En 2024 facturó unos 42.900 M USD, con crecimiento en las cuatro divisiones y una combinación muy poco frecuente: tecnología, distribución global y servicios farmacéuticos integrados (Patheon, PPD).</p>",
+              "<p>¿Dónde está la gracia de ThermoFisher? Primero, en que está en todas partes:</p>",
+              "<ul><li>Laboratorios académicos y de investigación básica.</li><li>Biotech y pharma que desarrollan fármacos.</li><li>Laboratorios clínicos y de diagnóstico.</li><li>Industria, alimentación, medio ambiente.</li></ul>",
+              "<p>Fabrican desde equipos de secuenciación y espectrometría de masas hasta kits de diagnóstico, pasando por pipetas, medios de cultivo, reactivos, cámaras de ultracongelación y servicios de fabricación por contrato de medicamentos.</p>",
+              "<p>Segundo, en el modelo de ingresos:</p>",
+              "<ul><li>Una base enorme de equipos instalados.</li><li>Mucho consumible asociado (reactivos, columnas, medios, plásticos).</li><li>Y servicios recurrentes: mantenimiento, validación, outsourcing de ensayos clínicos y de fabricación (bio)farmacéutica.</li></ul>",
+              "<p>Tercero, en cómo se está posicionando para la próxima fase. Un ejemplo concreto: la compra de la unidad de filtración y purificación de Solventum por 4.100 M USD, para reforzar su oferta en bioprocesado y competir más de tú a tú justo en la categoría donde Danaher es muy fuerte.</p>",
+              "<p>Y, como en Danaher, la IA juega a favor: cuanta más digitalización, más automatización y más análisis intensivo de datos, más valioso es tener equipos integrados, software propietario y acceso directo a la base instalada de laboratorios y centros de investigación.</p>",
+              "<h3>IA y salud: por qué estos dos son “picks & shovels” del futuro</h3>",
+              "<p>Cuando se habla de IA en sanidad, la mente se va a dos sitios: algoritmos que leen radiografías mejor que un radiólogo junior y modelos que proponen nuevas moléculas. Eso está bien, pero alguien tiene que generar, limpiar y estructurar los datos sobre los que se entrenan esos modelos.</p>",
+              "<p>Ahí es donde Danaher y Thermo Fisher encajan como guante:</p>",
+              "<ul><li>Diagnósticos más precisos y rápidos → más tests, más plataformas de laboratorio, más consumibles.</li><li>Descubrimiento de fármacos acelerado por IA → más demanda de herramientas de secuenciación, expresión génica, proteómica, bioprocesado.</li><li>Ensayos clínicos mejor diseñados → más servicios de laboratorio, más CROs, más infraestructura que Thermo y Danaher ya abastecen.</li></ul>",
+              "<p>La IA puede comprimir márgenes en algunas partes de la cadena (por ejemplo, en servicios básicos comoditizados), pero difícilmente va a reducir el peso del diagnóstico, de la caracterización molecular y de la fabricación compleja. Más bien al revés: si quieres medicina personalizada, necesitas más pruebas, más capas de análisis y más control de procesos.</p>",
+              "<p>Y en cada una de esas capas, estas dos compañías venden algo crítico.</p>",
+              "<h3>Conclusión: por qué nos importa como asset allocators de largo plazo</h3>",
+              "<p>Queda bastante claro que el sector Salud tiene vientos de cola evidentes: envejecimiento, presión de gasto, cronicidad, necesidad de eficiencia y, ahora, una ola de IA que empuja a medir y analizar mucho más de lo que medíamos antes.</p>",
+              "<p>Desde esta perspectiva, Danaher y Thermo Fisher representan, a nuestro juicio, una forma limpia de estar expuesto al crecimiento del sistema de forma bastante predecible y sin riesgo de nueva competencia.</p>",
+              "<p>Son apuestas claras a años vista. Negocios de calidad, con barreras de entrada altas, flujos recurrentes y un papel muy difícil de desintermediar en el sistema sanitario global.</p>",
+              "<p>Si asumimos que en 10-15 años seguiremos gastando más en salud, necesitaremos más diagnóstico, más biológicos y más datos para alimentar modelos de IA… la lógica de fondo es sencilla: alguien tendrá que vender las herramientas, consumibles y servicios que hacen todo eso posible. Y Danaher y Thermo Fisher son los candidatos claros a seguir cobrando ese peaje.</p>"
           ]
         },
         {
@@ -1232,10 +1219,10 @@
       };
 
       const PortfolioView = () => {
-        const [isTrackRecordOpen, setIsTrackRecordOpen] = React.useState(false);
+        const [isTrackRecordOpen, setIsTrackRecordOpen] = useState(false);
 
         // Calculate total balance from portfolio data
-        const totalBalance = React.useMemo(() => {
+        const totalBalance = useMemo(() => {
           return PORTFOLIO_DATA.reduce((acc, item) => {
             if (item.value) {
               const val = parseFloat(item.value.replace(/\./g, '').replace(',', '.').replace(' USD', ''));
@@ -1363,7 +1350,7 @@
       };
 
       const ArticleReader = ({ article, onClose }) => {
-         React.useEffect(() => {
+         useEffect(() => {
              window.scrollTo(0, 0);
          }, []);
 
@@ -1423,15 +1410,15 @@
             </div>
          );
       };
-      
+
       /* --- NEW COMPONENTS: CALCULATOR & TOOLS --- */
 
       const Calculator = () => {
-        const [initial, setInitial] = React.useState('');
-        const [monthly, setMonthly] = React.useState('');
-        const [rate, setRate] = React.useState('21.17');
-        const [years, setYears] = React.useState('');
-        const [result, setResult] = React.useState(null);
+        const [initial, setInitial] = useState('');
+        const [monthly, setMonthly] = useState('');
+        const [rate, setRate] = useState('21.17');
+        const [years, setYears] = useState('');
+        const [result, setResult] = useState(null);
 
         const calculateCompoundInterest = () => {
             const P = parseFloat(initial) || 0;
@@ -1439,10 +1426,8 @@
             const annualRatePercent = parseFloat(rate) || 0;
             const tYears = parseFloat(years) || 0;
             
-            // r = Tasa Anual en decimal (ej: 21.17% -> 0.2117) dividido entre 12 (Tasa Mensual).
             const r = (annualRatePercent / 100) / 12;
             
-            // n = Años multiplicados por 12 (Número total de meses).
             const n = tYears * 12;
 
             // FV_Principal = P * Math.pow((1 + r), n)
@@ -1553,8 +1538,8 @@
       // --- APP COMPONENT ---
 
       const App = () => {
-        const [currentView, setCurrentView] = React.useState('home');
-        const [selectedArticleId, setSelectedArticleId] = React.useState(null);
+        const [currentView, setCurrentView] = useState('home');
+        const [selectedArticleId, setSelectedArticleId] = useState(null);
 
         const handleArticleClick = (id) => {
           setSelectedArticleId(id);
@@ -1599,7 +1584,7 @@
                    {currentView === 'home' && (
                       <div id="view-home" className="view-section w-full max-w-[800px] mx-auto px-6 pb-32 pt-6 relative z-10 animate-fade-in">
                           
-                          {/* HERO SECTION - CLEANED & UPDATED */}
+                          {/* HERO SECTION */}
                           <div className="text-left py-16 md:py-24 mb-12 px-2 md:px-0">
                               <h1 className="font-sans text-4xl md:text-6xl text-white mb-8 font-bold leading-tight max-w-2xl drop-shadow-2xl">
                                   Todo lo que necesitas para invertir con éxito
@@ -1621,17 +1606,17 @@
                                    </li>
                               </ul>
 
-                              {/* INSIGHT MESSAGE (REPLACES KPIs) */}
+                              {/* INSIGHT MESSAGE */}
                               <div className="hero-insight-message">
                                   <p className="insight-market">
-                                      <span className="prefix">¿Sabías que...?</span> En periodos de al menos 5 años, la bolsa ha dado ganancias en más del <span class="highlight">92 %</span> de los casos desde 1971. El verdadero riesgo para tu patrimonio no es invertir, es dejarlo parado.
+                                      <span className="prefix">¿Sabías que...?</span> En periodos de al menos 5 años, la bolsa ha dado ganancias en más del <span className="highlight">92 %</span> de los casos desde 1971. El verdadero riesgo para tu patrimonio no es invertir, es dejarlo parado.
                                   </p>
                                   <p className="insight-henao">
-                                      (Dato: Henao Capital ha dado una rentabilidad anualizada de un <span class="henao-val">21,17%</span> desde 2020).
+                                      (Dato: Henao Capital ha dado una rentabilidad anualizada de un <span className="henao-val">21,17%</span> desde 2020).
                                   </p>
                               </div>
 
-                              {/* NEW TOOLS SECTION (SIMPLIFIED & REDESIGNED) */}
+                              {/* NEW TOOLS SECTION */}
                               <div className="animate-fade-in w-full flex justify-center">
                                   <div className="w-full max-w-[600px]">
                                       <Calculator />
